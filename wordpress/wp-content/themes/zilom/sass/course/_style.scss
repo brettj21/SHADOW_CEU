@@ -1,0 +1,846 @@
+.course-loop-title{
+   .title{
+      font-size: 16px;
+      line-height: 24px;
+      margin: 5px 0 8px;
+   }
+}
+
+.course-loop-price{
+   font-size: 15px;
+   font-weight: 700;
+   color: $black;
+   .price{
+      display: inline-block;
+      ins{
+         text-decoration: none;
+      }
+      del{
+         float: right;
+         margin-left: 6px;
+         display: inline-block;
+         font-size: 14px;
+         font-weight: 400;
+         color: $body-color;
+      }
+   }
+}
+
+.tutor-course-loop{
+   .featured-label{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      line-height: 22px;
+      padding: 2px 10px 0;
+      letter-spacing: 1px;
+      border-radius: 6px;
+      background: $theme-color;
+      color: $white;
+      z-index: 11;
+   }
+   .course-content{
+   	.tutor-course-booking-progress, .list-item-button, .tutor-loop-cart-btn-wrap, .tutor-course-list-btn{
+			display: none!important;
+		}
+   }
+}
+
+.tutor-course-loop{
+   .tutor-star-rating-group{
+      font-size: 14px;
+   }
+   .tutor-rating-count{
+      font-size: 13px;
+   }
+}
+.course-block.tutor-course-loop{
+   display: block;
+   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.06);
+   border: none;
+   margin-bottom: 30px;
+   background: $white;
+   border-radius: 10px;
+   overflow: hidden;
+   .course-header{
+      position: relative;
+      .tutor-course-wishlist{
+         position: absolute;
+         z-index: 11;
+         right: 10px;
+         top: 10px;
+         a{
+            color: $white;
+            background: rgba(0, 0, 0, 0.36);
+            border-radius: 4px;
+            @include size(30px, 30px);
+            text-align: center;
+            line-height: 35px;
+            display: inline-block;
+            &.has-wish-listed{
+               background: $theme-color;
+               color: $white;
+               .icon{
+                  &:before{
+                     font-family: "Font Awesome 5 Free";
+                     font-weight: 900;
+                  }
+               }
+            }
+            &.updating-icon{
+               &:before{
+                  position: relative;
+                  top: -2px;
+                  left: 2px;
+               }
+               .icon{
+                  display: none;
+               }
+            }
+         }
+      }
+   }
+   .course-content{
+      padding: 0 28px 2px;
+      position: relative;
+      z-index: 1;
+      @media(max-width: 1024px){
+      	padding-left: 18px;
+      	padding-right: 18px;
+      }
+      .tutor-course-list-btn {
+      	display: none!important;
+      }
+      .course-loop-price{
+      	margin-bottom: 8px;
+      }
+      .course-loop-meta{
+         position: relative;
+         .course-author{
+            margin-top: -19px;
+            .author-avatar{
+               margin-bottom: 6px;
+               .tutor-text-avatar, img{
+                  display: block;
+                  @include size(38px, 38px);
+                  border-radius: 50%;
+                  text-align: center;
+               }
+               .tutor-text-avatar{
+                  line-height: 40px;
+               }
+            }
+            .author-name{
+               font-size: 14px;
+               text-transform: capitalize;
+               a{
+                  color: $theme-color;
+               }
+            }
+         }
+         .course-user{
+            position: absolute;
+            right: 0;
+            top: 44px;
+            z-index: 1;
+            font-size: 14px;
+            color: $black;
+            i{
+               color: $theme-color;
+               margin-right: 5px;
+            }
+         }
+      }
+   }
+   .course-loop-footer{
+      padding: 0 30px;
+      font-size: 12px;
+      position: relative;
+      color: $body-color;
+      overflow: hidden;
+      .content-inner{
+         border-top: 1px solid $border-color;
+         display: flex;
+         padding: 8px 0 3px;
+         justify-content: space-between;
+         > div{
+            i{
+               color: $theme-color;
+               margin-right: 6px;
+            }
+            &.coruse-duration{
+               display: none;
+            }         
+         }
+      }
+      .course-loop-hover{
+         background: $theme-color;
+         position: absolute;
+         bottom: -30px;
+         left: 0;
+         z-index: 11;
+         height: 100%;
+         width: 100%;
+         text-align: center;
+         transition: all 0.35s;
+         opacity: 0;
+         .tutor-loop-cart-btn-wrap{
+            height: 100%;
+         }
+         .btn-purchase, .added_to_cart{
+            display: inline-block;
+            color: $white;
+            font-weight: 700;
+            position: relative;
+            text-align: center;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+            line-height: 18px;
+            &:before{
+               content: "\f122";
+               font-family: "flaticon"!important;
+               position: relative;
+               top: 3px;
+               z-index: 11;
+               color: $white;
+               font-size: 16px;
+               margin-right: 6px;
+            }
+            &.loading{
+               &:before{
+                  background: none;
+               }
+               &:after{
+                  background: url('#{$image-theme-path-base}preloader-2.gif') center center no-repeat rgba(255, 255, 255, 0.92);
+               }
+            }
+         }
+         .added_to_cart{
+            line-height: 18px;
+            &:before{
+               display: none;
+            }
+            &:after{
+               content: "\f061";
+               font-family: "Font Awesome 5 Free";
+               margin: 0 0 0 5px;
+            }
+         }
+         .btn-purchase{
+            line-height: 34px;
+            &.added{
+               display: none;
+            }
+         }
+      }
+   }
+   &:hover{
+      .course-loop-footer{
+         .course-loop-hover{
+            bottom: 0;
+            opacity: 1;
+         }
+      }
+   }
+}
+
+.course-block-2.tutor-course-loop{
+   display: block;
+   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.06);
+   border: none;
+   margin-bottom: 30px;
+   position: relative;
+   border-radius: 10px;
+   overflow: hidden;
+   .course-header{
+      .link-overlay{
+         position: absolute;
+         top: 0;
+         left: 0;
+         z-index: 1;
+         @include size(100%, 100%);
+         background: linear-gradient( 0deg, rgb(0,0,0) 0%, rgba(0,0,0,0) 100%);
+         background: -moz-linear-gradient( 0deg, rgb(0,0,0) 0%, rgba(0,0,0,0) 100%);
+         background: -webkit-linear-gradient( 0deg, rgb(0,0,0) 0%, rgba(0,0,0,0) 100%);
+         background: -ms-linear-gradient( 0deg, rgb(0,0,0) 0%, rgba(0,0,0,0) 100%);
+         transition: all 0.35s;
+      }
+      .tutor-course-wishlist{
+         position: absolute;
+         z-index: 11;
+         right: 10px;
+         top: 10px;
+         a{
+            color: $white;
+            background: rgba(0, 0, 0, 0.36);
+            border-radius: 4px;
+            @include size(30px, 30px);
+            text-align: center;
+            line-height: 35px;
+            display: inline-block;
+            &.has-wish-listed{
+               background: $theme-color;
+               color: $white;
+               .icon{
+                  &:before{
+                     font-family: "Font Awesome 5 Free";
+                     font-weight: 900;
+                  }
+               }
+            }
+            &.updating-icon{
+               &:before{
+                  position: relative;
+                  top: -2px;
+                  left: 2px;
+               }
+               .icon{
+                  display: none;
+               }
+            }
+         }
+      }
+   }
+   .course-content-wrap{
+      padding: 35px 30px 0; 
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+      transition: all 0.35s;
+      .course-content{
+         padding-bottom: 5px;
+      }
+      .course-loop-meta{
+         position: relative;
+      }
+      .course-author{
+         margin-top: -15px;
+         .author-avatar{
+            margin-bottom: 10px;
+            width: 30px;
+            float: left;
+            .tutor-text-avatar, img{
+               display: block;
+               @include size(30px, 30px);
+               border-radius: 50%;
+               text-align: center;
+            }
+         }
+         .author-name{
+            font-size: 14px;
+            text-transform: capitalize;
+            padding-left: 45px;
+            a{
+               color: $theme-color;
+            }
+         }
+      }
+      .course-user{
+         position: absolute;
+         right: 0;
+         top: 2px;
+         z-index: 1;
+         font-size: 16px;
+         color: $white;
+         i{
+            color: $white;
+            margin-right: 5px;
+         }
+      }
+   }
+   .course-loop-footer{
+      padding: 0;
+      font-size: 12px;
+      position: relative;
+      color: $white;
+      overflow: hidden;
+      .content-inner{
+         border-top: 1px solid rgba(255, 255, 255, 0.2);
+         display: flex;
+         padding: 8px 0 3px;
+         justify-content: space-between;
+         > div{
+            i{
+               color: $theme-color-2;
+               margin-right: 6px;
+            }            
+         }
+      }
+      .course-loop-hover{
+         position: absolute;
+         bottom: -30px;
+         left: 0;
+         z-index: 11;
+         width: 100%;
+         transition: all 0.35s;
+         opacity: 0;
+         .btn-purchase, .added_to_cart, .tutor-native-add-to-cart{
+            display: inline-block;
+            color: $theme-color;
+            font-weight: 700;
+            position: relative;
+            text-align: left;
+            font-size: 12px;
+            padding: 0!important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+            background: none;
+            border: none!important;
+            .tutor-icon-cart-line{
+            	display: none!important;
+            }
+            &:before{
+               content: "\f122";
+               font-family: "flaticon"!important;
+               position: relative;
+               top: 3px;
+               z-index: 11;
+               color: $theme-color;
+               font-size: 16px;
+               margin-right: 6px;
+            }
+            &.loading{
+               &:before{
+                  background: none;
+               }
+               &:after{
+                  background: url('#{$image-theme-path-base}preloader-2.gif') center center no-repeat rgba(255, 255, 255, 0.92);
+               }
+            }
+         }
+         .added_to_cart{
+            &:before{
+               display: none;
+            }
+            &:after{
+               content: "\f061";
+               font-family: "Font Awesome 5 Free";
+               margin: 0 0 0 5px;
+            }
+         }
+         .btn-purchase{
+            &.added{
+               display: none;
+            }
+         }
+      }
+   }
+   &:hover{
+      .course-loop-footer{
+         .content-inner{
+            opacity: 0;
+         }
+         .course-loop-hover{
+            bottom: 15px;
+            opacity: 1;
+         }
+      }
+   }
+   .course-loop-title .title a{
+      color: $white;
+   }
+   .course-author, .course-author a{
+      color: $white!important;
+   }
+   .tutor-rating-count{
+      color: $white;
+      .number{
+         color: $body-color;
+      }
+   }
+   .course-loop-price{
+      color: $white;
+      del{
+         color: $white;
+      }
+   }
+   &:hover{
+      .course-content-wrap{
+         background: $white;
+      }
+      .course-loop-title .title a{
+         color: $black;
+      }
+      .course-author, .course-author a{
+         color: $theme-color!important;
+      }
+      .tutor-rating-count{
+         color: $body-color;
+      }
+      .course-loop-price{
+         color: $black;
+         del{
+            color: $body-color;
+         }
+      }
+      .course-user{
+         color: $black;
+         i{
+            color: $theme-color;
+         }
+      }
+   }
+}
+
+.course-block-3.tutor-course-loop{
+   display: block;
+   box-shadow: 0 0 16px #ccc;
+   border: none;
+   margin-bottom: 30px;
+   background: $white;
+   border-radius: 6px;
+   overflow: hidden;
+   .course-header{
+      position: relative;
+      .tutor-course-wishlist{
+         position: absolute;
+         z-index: 11;
+         right: 10px;
+         top: 10px;
+         a{
+            color: $white;
+            background: rgba(0, 0, 0, 0.36);
+            border-radius: 4px;
+            @include size(30px, 30px);
+            text-align: center;
+            line-height: 35px;
+            display: inline-block;
+            &.has-wish-listed{
+               background: $theme-color;
+               color: $white;
+               .icon{
+                  &:before{
+                     font-family: "Font Awesome 5 Free";
+                     font-weight: 900;
+                  }
+               }
+            }
+            &.updating-icon{
+               &:before{
+                  position: relative;
+                  top: -2px;
+                  left: 2px;
+               }
+               .icon{
+                  display: none;
+               }
+            }
+         }
+      }
+   }
+   .course-content{
+      padding: 25px 28px 8px;
+      position: relative;
+      z-index: 1;
+      .title{
+         margin: 0;
+         a{
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            text-decoration: none;
+            vertical-align: bottom;
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+         }
+      }
+      .course-loop-meta{
+         position: relative;
+         font-size: 14px;
+         line-height: 24px;
+         margin-top: 10px;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         a{
+            color: $body-color;
+            &:hover{
+               color: $theme-color;
+               text-decoration: underline;
+            }
+         }
+         .course-user{
+            position: absolute;
+            right: 0;
+            top: 38px;
+            z-index: 1;
+            font-size: 14px;
+            color: $black;
+            i{
+               color: $theme-color;
+               margin-right: 5px;
+            }
+         }
+      }
+      .tutor-star-rating-group{
+         letter-spacing: -1px;
+         margin: 5px 0 0;
+      }
+   }
+   .course-loop-footer{
+      padding: 0 30px;
+      font-size: 12px;
+      position: relative;
+      color: $body-color;
+      overflow: hidden;
+      .content-inner{
+         border-top: 1px solid $border-color;
+         display: flex;
+         padding: 8px 0 3px;
+         justify-content: space-between;
+         > div{
+            i{
+               color: $theme-color;
+               margin-right: 6px;
+            }            
+         }
+      }
+      .course-loop-hover{
+         background: $theme-color;
+         position: absolute;
+         bottom: -30px;
+         left: 0;
+         z-index: 11;
+         height: 100%;
+         width: 100%;
+         text-align: center;
+         transition: all 0.35s;
+         opacity: 0;
+         .tutor-loop-cart-btn-wrap{
+            height: 100%;
+         }
+         .btn-purchase, .added_to_cart{
+            display: inline-block;
+            color: $white;
+            font-weight: 700;
+            position: relative;
+            text-align: center;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+            line-height: 38px;
+            &:before{
+               content: "\f122";
+               font-family: "flaticon"!important;
+               position: relative;
+               top: 3px;
+               z-index: 11;
+               color: $white;
+               font-size: 16px;
+               margin-right: 6px;
+            }
+            &.loading{
+               &:before{
+                  background: none;
+               }
+               &:after{
+                  background: url('#{$image-theme-path-base}preloader-2.gif') center center no-repeat rgba(255, 255, 255, 0.92);
+               }
+            }
+         }
+         .added_to_cart{
+            line-height: 48px;
+            &:before{
+               display: none;
+            }
+            &:after{
+               content: "\f061";
+               font-family: "Font Awesome 5 Free";
+               margin: 0 0 0 5px;
+            }
+         }
+         .btn-purchase{
+            &.added{
+               display: none;
+            }
+         }
+      }
+   }
+   &:hover{
+      box-shadow: 0 0 16px #ccc;
+      .course-loop-footer{
+         .course-loop-hover{
+            bottom: 0;
+            opacity: 1;
+         }
+      }
+   }
+}
+
+.course-block-list{
+   border-bottom: 1px solid $border-color;
+   padding: 30px 20px;
+   background: $white;
+   @include transition(all 0.35s);
+   position: relative;
+   display: flex;
+   align-items: center;
+   @include media-breakpoint-down(lg){
+      display: block;
+   }
+   &:hover{
+      @include box-shadow(0px 0px 8px 2px rgba(0, 0, 0, 0.08));
+      z-index: 9;
+   }
+   > div{
+      float: left;
+      &.course-title{
+         width: 40%;
+         .title{
+            font-size: 16px;
+            line-height: 24px;
+            padding-right: 10px;
+            margin: 0;
+         }
+         @include media-breakpoint-down(lg){
+           width: 55%;
+         }
+         @media(max-width: 580px){
+           width: 100%;
+         }
+      }
+      &.course-category{
+         width: 19%;
+         a{
+            color: $theme-color;
+         }
+         @include media-breakpoint-down(lg){
+            width: 22%;
+         }
+         @media(max-width: 580px){
+            width: 100%;
+         }
+      }
+      &.course-teacher{ 
+         width: 17%;
+         font-size: 16px;
+         @include media-breakpoint-down(lg){
+           width: 23%;
+         }
+         @media(max-width: 580px){
+           width: 100%;
+         }
+      }
+      &.content-action{
+         width: 24%;
+         @include media-breakpoint-down(lg){
+            width: 100%;
+            margin-top: 10px;
+            > div{
+               margin-right: 15px;
+               float: left;
+            }
+         }
+         .price{
+            float: left;
+            padding-top: 5px;
+            > div{
+               display: inline-block;
+               color: $theme-color;
+               font-size: 16px;
+               font-weight: 700; 
+            }
+         }
+         .course-loop-price{
+         	display: inline-block;
+         }
+         .enroll{
+            float: right;
+            @include media-breakpoint-down(lg){
+               float: left;
+            }
+            .btn-purchase, .added_to_cart, .tutor-native-add-to-cart{
+               display: inline-block;
+               color: $white;
+               font-weight: 700;
+               position: relative;
+               text-align: center;
+               font-size: 10px;
+               text-transform: uppercase;
+               letter-spacing: 1px;
+               width: 100%;
+               line-height: 26px;
+               background: $theme-color;
+               padding: 0 12px;
+               border-radius: 6px;
+               &:before{
+                  content: "\f122";
+                  font-family: "flaticon"!important;
+                  position: relative;
+                  top: 3px;
+                  z-index: 11;
+                  color: $white;
+                  font-size: 16px;
+                  margin-right: 6px;
+               }
+               .tutor-icon-cart-line{
+               	display: none;
+               }
+               &.loading{
+                  &:before{
+                     background: none;
+                  }
+                  &:after{
+                     background: url('#{$image-theme-path-base}preloader-2.gif') center center no-repeat rgba(255, 255, 255, 0.92);
+                  }
+               }
+            }
+            .added_to_cart{
+               &:before{
+                  display: none;
+               }
+               &:after{
+                  content: "\f061";
+                  font-family: "Font Awesome 5 Free";
+                  margin: 0 0 0 5px;
+               }
+            }
+            .btn-purchase{
+               &.added{
+                  display: none;
+               }
+            }
+         }
+      }
+   }
+}
+
+.gva-course-list{
+   .list-course-content{
+      border-radius: 10px;
+      overflow: hidden;
+      .item{
+         &:last-child{
+            .course-block-list{
+               border-bottom: none;
+            }
+         }
+      }
+   }
+}
+
+.tutor-accordion-item{
+   .tutor-course-content-list{
+      .tutor-course-content-list-item{
+         padding: 10px 16px;
+         .tutor-course-content-list-item-title{
+            font-weight: 500;
+         }
+      }
+   }
+}
+
+.tutor-review-individual-item .tutor-review-user-info{
+   padding-left: 0;
+}

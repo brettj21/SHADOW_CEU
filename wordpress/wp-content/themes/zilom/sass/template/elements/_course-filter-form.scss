@@ -1,0 +1,152 @@
+.gsc-course-filter-form{
+   max-width: 1030px;
+   margin: 0 auto;
+   .search-form-content{
+      position: relative;
+      padding-right: 190px;
+      z-index: 11;
+      @media(max-width: 710px){
+         padding-right: 0; 
+      }
+      .search-form-fields{
+         background: $white;
+         border-radius: 4px;
+         > div{
+            float: left;
+            border-left: 1px solid $border-color;
+            padding: 8px 5px 0;
+            height: 65px;
+            @media(max-width: 710px){
+               width: 100%!important;
+               border-left: 0;
+               border-top: 1px solid $border-color;
+            }
+            &:first-child{
+               border: none;
+            }
+            input, select{
+               width: 100%;
+               border: none;
+               background: none;
+               box-shadow: none!important;
+            }
+            .select2-selection{
+               border: none!important;
+            }
+         }
+         .select2-container .select2-selection{
+            background: $white;
+         }
+         .course-filter_search{
+            input{
+               font-size: 16px;
+            }
+            i{
+               display: none;
+            }
+         }
+         &.cols-5{
+            > div{
+               width: 20%;
+            }
+         }
+         &.cols-4{
+            > div{
+               width: 25%;
+            }
+         }
+         &.cols-3{
+            > div{
+               width: 33.33%;
+            }
+         }
+         &.cols-2{
+            > div{
+               width: 50%;
+            }
+         }
+         &.clos-1{
+            > div{
+               width: 100%;
+            }
+         }
+      }
+      .form-action{
+         position: absolute;
+         top: 0;
+         right: 0;
+         width: 190px;
+         padding-left: 10px;
+         @media(max-width: 710px){
+            position: relative;
+            width: 100%;
+            padding-left: 0;
+            margin-top: 10px;
+         }
+         .btn-action{
+            width: 100%;
+            height: 65px;
+         }
+      }
+   }
+   &.style-1{
+       .search-form-content{
+         .search-form-fields{
+            .select2-selection{
+               box-shadow: none;
+            }
+         }
+       }
+   }
+   &.style-2{
+      .search-form-content{
+         padding: 0;
+         .search-form-fields{
+            background: none;
+            > div{
+               width: 100%;
+               margin-bottom: 30px;
+               background: $white;
+               border: none;
+               height: 60px; 
+               padding: 6px 0 0; 
+
+            }
+            .select2-selection{
+               box-shadow: none;
+            }
+         }
+         .form-action{
+            width: 100%;
+            position: relative;
+            padding: 0;
+         }
+      }
+   }
+   &.style-3{
+      background: $white;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      .search-form-content{
+         .search-form-fields > div{
+            height: 50px;
+            padding: 0;
+            input[type="text"]{
+               line-height: 55px;
+            }
+            .select2-selection{
+               box-shadow: none;
+            }
+         }
+         .form-action{
+            .btn-action{
+               padding: 10px 15px;
+               height: auto;
+               line-height: 30px;
+            }
+         }
+      }
+   }
+} 

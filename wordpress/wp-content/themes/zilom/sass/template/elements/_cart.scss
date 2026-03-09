@@ -1,0 +1,41 @@
+.gsc-cart-box{
+   .mini-cart-header{
+      position: relative;
+      z-index: 1;
+      .mini-cart{
+        text-align: center;
+        display: inline-block;
+        font-weight: 600;
+        position: relative;
+        padding-right: 5px;
+        line-height: 32px;
+        .title-cart{
+          font-size: 24px;
+          color: $black;
+          position: relative;
+          top: 6px;
+        }
+        .mini-cart-items{
+          position: absolute;
+          font-size: 12px;
+          background: $theme-color;
+          color: $white;
+          @include border-radius(50%);
+          top: -2px;
+          right: -8px;
+          min-width: 18px;
+          line-height: 18px;
+          text-align: center;
+        }
+        .mini-cart-items-title{
+          display: none;
+        }
+        .amount{
+          display: none;
+        }
+      }
+      .total{
+        color: $black;
+      }
+   }
+}

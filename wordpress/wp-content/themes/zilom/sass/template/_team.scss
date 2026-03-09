@@ -1,0 +1,312 @@
+.team-progress-wrapper{
+  	margin-bottom: 30px;
+  	.team__progress-label{
+	 	font-weight: 500;
+	 	color: $black;
+	 	padding-bottom: 4px;
+	 	text-transform: uppercase;
+	 	font-size: 14px;
+  	}
+  	.team__progress {
+	 	background-color: #ccc;
+	 	position: relative;
+	 	overflow: visible;
+	 	z-index: 11;
+	 	.team__progress-bar{
+			@include transition(width 1s ease-in-out);
+			height: 2px;
+			background: $black;
+			position: relative;
+			display: block; 
+			width: 0;
+			.percentage{
+		  		position: absolute;
+		  		bottom: 100%;
+		  		left: 100%;
+		  		z-index: 1;
+		  		padding: 6px 8px;
+		  		background: $black;
+		  		font-size: 12px;
+		  		color: $white;
+		  		margin-bottom: 10px;
+		  		line-height: 1;
+		  		font-weight: 600;
+			  	&:after{
+				 	content: "";
+				 	border: 6px solid transparent;
+				 	border-top-color: $black;
+				 	position: absolute;
+				 	top: 100%;
+				 	left: 0;
+				 	z-index: 1;
+				 	transform: rotate(-90deg);
+				 	margin-top: -6px;
+			  	}
+		  		&.percentage-left{ 
+			 		left: auto;
+			 		right: 0;
+			 		&:after{
+						right: 0;
+						left: auto;
+						transform: rotate(90deg);
+						margin-right: 2px;
+			 		}
+		  		}
+			}
+	 	}
+  	}
+}
+
+.team-block{
+  	&.team-v1{
+	 	margin: 0 auto 30px;
+	 	background: $white;
+	 	text-align: center;
+	 	.team-image{
+	 		position: relative;
+	 		padding: 20px;
+	 		box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+	 		margin: 0 0 28px; 
+	 		border-radius: 10px;
+	 		&:after{
+	 			content: '';
+	 			position: absolute;
+	 			background: rgba(0, 0, 0, 0.7);
+	 			top: 20px;
+	 			left: 20px;
+	 			right: 20px;
+	 			bottom: 20px;
+	 			z-index: 9;
+	 			opacity: 0;
+			  	transition: all 0.35s;
+	 		}
+	 		.socials-team{
+	 			position: absolute;
+	 			top: 50%;
+	 			left: 0;
+	 			width: 100%;
+	 			z-index: 11;
+	 			margin-top: -12px;
+	 			text-align: center;
+	 			opacity: 0;
+	 			a{
+	 				margin-left: 20px;
+	 				font-size: 20px;
+	 				color: $white;
+	 				&:hover{
+	 					color: $theme-color;
+	 				}
+	 				&:first-child{
+	 					margin-left: 0;
+	 				}
+	 			}
+	 		}
+	 		.line-1{
+				&:before, &:after{
+					content: '';
+					background: $theme-color;
+					position: absolute;
+					top: 0;
+					left: 0;
+					z-index: 1;
+					transition: all 0.35s;
+				}
+			}
+			.line-2{
+				&:before, &:after{
+					content: '';
+					position: absolute;
+					z-index: 1;
+					background: $theme-color;
+					bottom: 0;
+					right: 0;
+					transition: all 0.35s;
+				}
+			}
+			.line-1, .line-2{
+				&:before{
+					@include size(1px, 0);
+				}
+				&:after{
+					@include size(0, 1px);
+				}
+			}
+	 	}
+		.team-content{
+			border-top: 0;
+			padding: 0;
+			background: $white;
+			position: relative;
+			z-index: 11;
+			transition: all 0.35s;
+			.team-name{
+			  	font-size: 20px;
+			  	margin: 0 0 2px;
+			}
+			.team-job{
+			  	font-size: 14px;
+			  	color: #737373;
+				margin-bottom: 10px;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+			}
+			.socials-team{
+			  	margin-top: 20px;
+			  	transition: all 0.35s;
+			  	a{
+				 	@include size(36px, 36px);
+				 	font-size: 14px;
+				 	display: inline-block;
+				 	margin-right: 10px;
+				 	color: $black;
+				 	transition: all 0.35s;
+				 	line-height: 38px;
+				 	border-radius: 50%;
+				 	background: #E5EEEC;
+				 	text-align: center;
+				 	&:last-child(){
+				 		margin-right: 0;
+				 	}
+				 	&:hover{
+						background: $theme-color;
+						color: $white;
+				 	}
+			  	}
+			}
+		}
+		&:hover{
+			.team-image{
+				&:after{
+					opacity: 1;
+				}
+				.socials-team{
+					opacity: 1;
+				}
+				.line-1, .line-2{
+					&:before{
+						@include size(1px, 100%);
+					}
+					&:after{
+						@include size(100%, 1px);
+					}
+				}
+			}
+		}
+  	}
+}
+
+.owl-carousel{
+	.team-block{
+  		.team-v1{
+	 		margin-top: 10px;
+	 	}
+	}
+}
+
+.team-block-single{
+  	margin: 0 0 30px;
+  	.team-thumbnail{
+	   border: 1px solid rgba(0, 0, 0, 0.06);
+	   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.06); 
+	   margin: 0 0 30px;
+  		.team-content{
+	   	padding: 30px;
+	   	margin-bottom: 0;
+  		}
+  		.heading-contact{
+  			margin-top: 0;
+  		}
+  	}
+  	.team-right-content{
+  		padding-left: 50px;
+  		@include media-breakpoint-down(lg){
+  			padding-left: 15px;
+  		}
+  	}
+  	.heading, .heading-contact{
+	 	font-size: 20px;
+	 	position: relative;
+	 	float: left;
+	 	width: 100%;
+ 		padding-bottom: 15px;
+ 		margin-bottom: 15px;
+	 	&:after{
+	 		content: '';
+	 		@include size(60px, 1px);
+	 		background: $black;
+	 		position: absolute;
+	 		left: 0;
+	 		bottom: 0;
+	 		z-index: 1;
+	 	}
+  	}
+  	.team-name{
+	 	color: $black;
+	 	font-size: 26px;
+	 	margin: 0 0 2px;
+  	}
+  	.team-email, .team-phone{
+	 	float: left;
+	 	width: 100%;
+	 	margin-bottom: 10px;
+	 	font-weight: 500;
+  	}
+  	.team-job{
+	 	font-size: 14px;
+	 	font-weight: 500;
+	 	text-transform: uppercase;
+  	}
+  	.team-educations{
+  		margin-top: 30px;
+  		margin-bottom: 30px;
+  	}
+  	.team-skills{
+  		margin-bottom: 20px;
+  	}
+  	.team-content{
+  		margin-bottom: 40px;
+  	}
+  	.team-quote{
+	 	font-size: 16px;
+	 	color: #999999;
+	 	margin-top: 20px;
+	 	padding-left: 50px;
+	 	position: relative;
+	 	font-style: italic;
+	 	&:after{
+			font-family: "Font Awesome 5 Free";
+			content: "\f10d";
+			left: 0;
+			top: 0;
+			position: absolute;
+			z-index: 1;
+			color: $black;
+			font-size: 24px;
+			text-align: center;
+			line-height: 40px;
+			font-weight: 700;
+	 	}
+  	}
+  	.socials-team{
+	 	margin-top: 10px;
+	 	float: left;
+	 	width: 100%;
+		a{
+			@include size(38px, 38px);
+			font-size: 14px;
+			display: inline-block;
+			margin-right: 15px;
+			color: $body-color;
+			transition: all 0.35s;
+			line-height: 38px;
+			border-radius: 50%;
+			text-align: center;
+			border: 1px solid $border-color;
+			&:hover{
+			  	background: $theme-color;
+			  	color: $white;
+			  	border-color: $theme-color;
+			}
+	 	}
+  	}
+}

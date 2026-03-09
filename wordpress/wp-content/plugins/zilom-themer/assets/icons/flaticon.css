@@ -1,0 +1,286 @@
+@font-face {
+    font-family: "flaticon";
+    src: url("./flaticon.ttf?de156df570d84e5522d5dde764f368da") format("truetype"),
+url("./flaticon.woff?de156df570d84e5522d5dde764f368da") format("woff"),
+url("./flaticon.woff2?de156df570d84e5522d5dde764f368da") format("woff2"),
+url("./flaticon.eot?de156df570d84e5522d5dde764f368da#iefix") format("embedded-opentype"),
+url("./flaticon.svg?de156df570d84e5522d5dde764f368da#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.elementor-icons-manager__tab__item__icon[class^="flaticon-"]{
+    font-size: 50px;
+}
+.flaticon-open-book:before {
+    content: "\f101";
+}
+.flaticon-university:before {
+    content: "\f102";
+}
+.flaticon-mortarboard:before {
+    content: "\f103";
+}
+.flaticon-exam:before {
+    content: "\f104";
+}
+.flaticon-books:before {
+    content: "\f105";
+}
+.flaticon-diploma:before {
+    content: "\f106";
+}
+.flaticon-earth-globe:before {
+    content: "\f107";
+}
+.flaticon-books-1:before {
+    content: "\f108";
+}
+.flaticon-student:before {
+    content: "\f109";
+}
+.flaticon-library:before {
+    content: "\f10a";
+}
+.flaticon-school-material:before {
+    content: "\f10b";
+}
+.flaticon-professor:before {
+    content: "\f10c";
+}
+.flaticon-blackboard:before {
+    content: "\f10d";
+}
+.flaticon-book:before {
+    content: "\f10e";
+}
+.flaticon-blackboard-1:before {
+    content: "\f10f";
+}
+.flaticon-ink:before {
+    content: "\f110";
+}
+.flaticon-bell:before {
+    content: "\f111";
+}
+.flaticon-exam-1:before {
+    content: "\f112";
+}
+.flaticon-abacus:before {
+    content: "\f113";
+}
+.flaticon-pass:before {
+    content: "\f114";
+}
+.flaticon-megaphone:before {
+    content: "\f115";
+}
+.flaticon-map:before {
+    content: "\f116";
+}
+.flaticon-stop:before {
+    content: "\f117";
+}
+.flaticon-time:before {
+    content: "\f118";
+}
+.flaticon-database:before {
+    content: "\f119";
+}
+.flaticon-compass:before {
+    content: "\f11a";
+}
+.flaticon-gear:before {
+    content: "\f11b";
+}
+.flaticon-folder:before {
+    content: "\f11c";
+}
+.flaticon-phone-call:before {
+    content: "\f11d";
+}
+.flaticon-mail-send:before {
+    content: "\f11e";
+}
+.flaticon-email:before {
+    content: "\f11f";
+}
+.flaticon-email-1:before {
+    content: "\f120";
+}
+.flaticon-send:before {
+    content: "\f121";
+}
+.flaticon-shopping-cart:before {
+    content: "\f122";
+}
+.flaticon-empowerment:before {
+    content: "\f123";
+}
+.flaticon-empowerment-1:before {
+    content: "\f124";
+}
+.flaticon-training:before {
+    content: "\f125";
+}
+.flaticon-human-resources:before {
+    content: "\f126";
+}
+.flaticon-reading:before {
+    content: "\f127";
+}
+.flaticon-motivation:before {
+    content: "\f128";
+}
+.flaticon-incentive:before {
+    content: "\f129";
+}
+.flaticon-checklist:before {
+    content: "\f12a";
+}
+.flaticon-recruitment:before {
+    content: "\f12b";
+}
+.flaticon-cooperation:before {
+    content: "\f12c";
+}
+.flaticon-mail:before {
+    content: "\f12d";
+}
+.flaticon-collaboration:before {
+    content: "\f12e";
+}
+.flaticon-relationship:before {
+    content: "\f12f";
+}
+.flaticon-confirmation:before {
+    content: "\f130";
+}
+.flaticon-online-course:before {
+    content: "\f131";
+}
+.flaticon-paper-plane:before {
+    content: "\f132";
+}
+.flaticon-human-resources-1:before {
+    content: "\f133";
+}
+.flaticon-value:before {
+    content: "\f134";
+}
+.flaticon-handshake:before {
+    content: "\f135";
+}
+.flaticon-analysis:before {
+    content: "\f136";
+}
+.flaticon-creative:before {
+    content: "\f137";
+}
+.flaticon-idea:before {
+    content: "\f138";
+}
+.flaticon-achievement:before {
+    content: "\f139";
+}
+.flaticon-lamp:before {
+    content: "\f13a";
+}
+.flaticon-creativity:before {
+    content: "\f13b";
+}
+.flaticon-bedurfnisse:before {
+    content: "\f13c";
+}
+.flaticon-photo-camera:before {
+    content: "\f13d";
+}
+.flaticon-canvas:before {
+    content: "\f13e";
+}
+.flaticon-target:before {
+    content: "\f13f";
+}
+.flaticon-desk:before {
+    content: "\f140";
+}
+.flaticon-knowledge:before {
+    content: "\f141";
+}
+.flaticon-teacher:before {
+    content: "\f142";
+}
+.flaticon-student-1:before {
+    content: "\f143";
+}
+.flaticon-chat:before {
+    content: "\f144";
+}
+.flaticon-message:before {
+    content: "\f145";
+}
+.flaticon-address:before {
+    content: "\f146";
+}
+.flaticon-home:before {
+    content: "\f147";
+}
+.flaticon-presentation:before {
+    content: "\f148";
+}
+.flaticon-work:before {
+    content: "\f149";
+}
+.flaticon-analytics:before {
+    content: "\f14a";
+}
+.flaticon-tutorial:before {
+    content: "\f14b";
+}
+.flaticon-bar-chart:before {
+    content: "\f14c";
+}
+.flaticon-lecture:before {
+    content: "\f14d";
+}
+.flaticon-meeting:before {
+    content: "\f14e";
+}
+.flaticon-puzzle:before {
+    content: "\f14f";
+}
+.flaticon-research:before {
+    content: "\f150";
+}
+.flaticon-pencil-and-ruler:before {
+    content: "\f151";
+}
+.flaticon-book-1:before {
+    content: "\f152";
+}
+.flaticon-certificate:before {
+    content: "\f153";
+}
+.flaticon-education:before {
+    content: "\f154";
+}
+.flaticon-right-arrow:before {
+    content: "\f155";
+}
+.flaticon-search-interface-symbol:before {
+    content: "\f156";
+}
+.flaticon-left-arrow:before {
+    content: "\f157";
+}
+.flaticon-calling:before {
+    content: "\f158";
+}

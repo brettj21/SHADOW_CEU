@@ -1,0 +1,86 @@
+.gva-blogs-list{
+   .post{
+      width: 100%;
+      float: left;
+      .post-thumbnail{
+         width: 45%;
+         float: left;
+         @include media-breakpoint-down(md){
+            width: 100%;
+         }
+         iframe{
+            height: 250px;
+            min-height: 250px;
+         }
+      }
+      .entry-content{
+         width: 55%;
+         float: left;
+         padding-left: 30px;
+         @include media-breakpoint-down(md){
+            width: 100%;
+            padding-left: 0;
+            padding-top: 15px;
+            .entry-title{
+               @include media-breakpoint-down(md){
+                  margin-top: 15px;
+               }
+            }
+         }
+      }
+      
+   }
+   &.show-read-more{
+      .read-more{
+         margin-top: 5px;
+         display: block!important;
+         visibility: visible!important;
+      }
+   }
+   .row-item{
+      &:last-child{
+         .post{
+            margin-bottom: 0!important;
+         }
+      }
+   }
+}
+
+.post-small{
+   .post{
+      margin-bottom: 20px!important;
+      float: left;
+      width: 100%;
+      .post-thumbnail{
+         width: 70px;
+         float: left;
+      }
+      .post-content{
+         padding-left: 85px;
+         width: 100%;
+         float: none;
+      }
+      .entry-title{
+         font-size: 14px!important;
+         margin: 0;
+         padding: 0;
+      }
+      .cat-links{
+         a{
+            color: $theme-color;
+            &:hover{
+               text-decoration: underline;
+            }
+         }
+      }
+      .entry-meta{
+         margin: 5px 0;
+         .author{
+            display: none;
+         }
+      }
+      .line-1{
+         display: none;
+      }
+   }
+}

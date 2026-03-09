@@ -1,0 +1,116 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Duplicate Page\n"
+"POT-Creation-Date: 2024-03-20 09:07+0700\n"
+"PO-Revision-Date: 2024-03-20 09:07+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: wp-duplicate-page.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: includes/Classes/ButtonDuplicate.php:38
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: includes/Classes/ButtonDuplicate.php:58
+#: includes/Classes/ButtonDuplicate.php:150
+msgid "Copy creation failed, could not find original:"
+msgstr ""
+
+#: includes/Classes/ButtonDuplicate.php:73 views/pages/html-settings.php:104
+msgid "Duplicate"
+msgstr ""
+
+#. translators: %s: Button Duplicate text.
+#: includes/Classes/ButtonDuplicate.php:75
+#, php-format
+msgid " %s "
+msgstr ""
+
+#: includes/Classes/ButtonDuplicate.php:110
+msgid "Current user is not allowed to duplicate ."
+msgstr ""
+
+#: includes/Classes/ButtonDuplicate.php:114
+msgid "No post to duplicate!"
+msgstr ""
+
+#: includes/Classes/CreateDuplicate.php:25
+msgid "Copy features for this post type are not enabled in setting page"
+msgstr ""
+
+#: includes/Classes/CreateDuplicate.php:36
+msgid "Untitled"
+msgstr ""
+
+#: includes/Page/Settings.php:34 views/pages/html-settings.php:16
+msgid "Duplicate Page Settings"
+msgstr ""
+
+#: includes/Page/Settings.php:34
+msgid "Duplicate Page"
+msgstr ""
+
+#: includes/Page/Settings.php:43
+msgid "Settings"
+msgstr ""
+
+#. translators: 1: Plugin Title, 2: Link to review
+#: includes/Page/Settings.php:53
+#, php-format
+msgid ""
+"Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your "
+"support!"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: includes/Page/Settings.php:54
+msgid "WP Duplicate Page"
+msgstr ""
+
+#: views/pages/html-settings.php:22
+msgid "Allowed User Roles"
+msgstr ""
+
+#: views/pages/html-settings.php:62
+msgid "Allowed Post Types"
+msgstr ""
+
+#: views/pages/html-settings.php:98
+msgid "Duplicate Page Link Text"
+msgstr ""
+
+#: views/pages/html-settings.php:104
+msgid "Text for duplicate page link. Default: "
+msgstr ""
+
+#: views/pages/html-settings.php:111
+msgid "Save changes"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://ninjateam.org"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Duplicate Posts, Pages and Custom Post Types."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Ninja Team"
+msgstr ""

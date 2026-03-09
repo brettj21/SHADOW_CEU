@@ -1,0 +1,97 @@
+.gsc-listings-banner{
+   position: relative;
+   border-radius: 4px;
+   overflow: hidden;
+   margin-bottom: 30px;
+   .banner-image{
+      position: relative;
+      display: inline-block;
+      &:after{
+         content: '';
+         position: absolute;
+         background-image: -webkit-linear-gradient(to bottom,transparent 30%, #062443 100%);
+         background-image: -moz-linear-gradient(to bottom,transparent 30%, #062443 100%);
+         background-image: -ms-linear-gradient(to bottom,transparent 30%, #062443 100%);
+         background-image: -o-linear-gradient(to bottom,transparent 30%, #062443 100%);
+         background-image: linear-gradient(to bottom,transparent 30%, #062443 100%);
+         @include size(100%, 100%);
+         top: 0;
+         left: 0;
+         z-index: 1;
+         transition: all 0.35s;
+         opacity: 0.6;
+      }
+      img{
+         transition: all 10s;
+      }
+   }
+   .banner-content{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 11;
+      width: 100%;
+      padding: 15px 30px 30px;
+      @include media-breakpoint-down(lg){ 
+         padding: 20px;
+      }
+      .subtitle{
+         font-size: 16px;
+         color: $white;
+      }
+      .title{
+         font-size: 20px;
+         color: $white;
+         margin: 0;
+         line-height: 1.2;
+         @include media-breakpoint-down(lg){ 
+            font-size: 18px;
+         }
+      }
+   }
+   .number-listings{
+      font-size: 14px;
+      font-weight: 600;
+      background: $theme-color;
+      color: $white;
+      padding: 6px 30px;
+      text-align: center;
+      border-radius: 4px 4px 0 0;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 12;
+      white-space: nowrap;
+      @include media-breakpoint-down(lg){
+         padding: 6px 18px;
+      }
+   }
+   .link-term-overlay{
+      position: absolute;
+      @include size(100%, 100%);
+      top: 0;
+      left: 0;
+      z-index: 15;
+   }
+   &.text-left{
+      .number-listings{
+         left: auto;
+         right: 60px;
+         transform: translateX(0);
+      }
+   }
+   &.text-right{
+      .number-listings{
+         left: 60px;
+         transform: translateX(0);
+      }
+   }
+   &:hover{
+      .banner-image{
+         img{
+            @include scale(1.2);
+         }
+      }
+   }
+}

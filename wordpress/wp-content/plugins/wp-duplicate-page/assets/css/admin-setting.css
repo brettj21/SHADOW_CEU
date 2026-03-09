@@ -1,0 +1,722 @@
+.settings_page_njt-duplicate-settings .wrap {
+  margin: 0;
+}
+.settings_page_njt-duplicate-settings #wpbody-content {
+  padding: 0;
+  overflow-x: hidden !important;
+  min-height: calc(100vh - 32px);
+}
+@media (min-width: 783px) {
+  .settings_page_njt-duplicate-settings #wpbody-content {
+    padding-left: 0;
+  }
+}
+:root {
+  --large-gap: 40px;
+  --main-gap: 24px;
+}
+@media (max-width: 960px) {
+  :root {
+    --large-gap: 24px;
+  }
+}
+@media (max-width: 782px) {
+  :root {
+    --large-gap: 16px;
+    --main-gap: 16px;
+  }
+}
+@keyframes loading-fade {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+.njt-duplicate-layout * {
+  box-sizing: border-box;
+}
+.njt-duplicate-layout-primary {
+  margin: 40px 0 0 40px;
+  margin: 40px 0 0 var(--large-gap);
+}
+@media (min-width: 961px) {
+  .njt-duplicate-layout-primary {
+    margin-top: 40px;
+  }
+}
+@media (max-width: 782px) {
+  .njt-duplicate-layout-primary {
+    margin-top: 30px;
+  }
+}
+.njt-duplicate-layout .njt-duplicate-layout-main {
+  padding-right: 40px;
+  padding-right: var(--large-gap);
+  max-width: 100%;
+}
+.njt-duplicate-settings {
+  max-width: 1032px;
+  margin: 0 auto;
+}
+.njt-duplicate-settings .njt-duplicate-card {
+  margin-bottom: 50px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.2s cubic-bezier(0.4, 1, 0.4, 1);
+}
+.njt-duplicate-settings .njt-duplicate-card-header {
+  padding: 5px 24px;
+  border-bottom: 1px solid #e2e4e7;
+}
+.njt-duplicate-settings .njt-duplicate-card-title {
+  font-size: 20px;
+  line-height: 10px;
+  font-weight: 400;
+}
+.njt-duplicate-settings .njt-duplicate-card-description {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  margin-top: 4px;
+}
+.njt-duplicate-settings .njt-duplicate-card .njt-duplicate-card-body {
+  padding: 16px 24px;
+}
+.njt-duplicate-control {
+  display: flex;
+  margin-bottom: 25px;
+}
+.njt-duplicate-control:last-of-type,
+.njt-duplicate-control:last-of-type .njt-duplicate-base-control {
+  margin-bottom: 0;
+}
+
+@media (max-width: 782px) {
+  .njt-duplicate-base-control
+    .njt-duplicate-base-control-field
+    .njt-duplicate-select-control-input {
+    font-size: 16px;
+  }
+}
+.njt-duplicate-base-control {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans,
+    Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.njt-duplicate-base-control .njt-duplicate-base-control-field {
+  margin-bottom: 8px;
+}
+.njt-duplicate-control .njt-duplicate-base-control-label {
+  flex-basis: 200px;
+  margin-right: 40px;
+  min-width: 180px;
+  cursor: auto;
+}
+@media (max-width: 600px) {
+  .njt-duplicate-control .njt-duplicate-base-control-label {
+    min-width: 110px;
+  }
+}
+.njt-duplicate-control .njt-duplicate-text {
+  line-height: 30px;
+}
+.njt-duplicate-base-control .njt-duplicate-base-control-help {
+  margin-top: -8px;
+  font-style: italic;
+}
+.njt-duplicate-base-control
+  .njt-duplicate-base-control-help
+  .njt-duplicate-default-text {
+  font-weight: 700;
+}
+
+.njt-duplicate-text-control-input,
+.njt-duplicate-text-control-input[type="text"] {
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  padding: 6px 8px;
+  box-shadow: 0 0 0 transparent;
+  transition: box-shadow 0.1s linear;
+  border-radius: 2px;
+  border: 1px solid #757575;
+  font-size: 16px;
+  line-height: normal;
+}
+@media (min-width: 600px) {
+  .njt-duplicate-text-control-input,
+  .njt-duplicate-text-control-input[type="text"] {
+    font-size: 13px;
+    line-height: normal;
+  }
+}
+
+/* Style Checkbox */
+.njt-duplicate-checkbox-control-input-container {
+  position: relative;
+  display: inline-block;
+  margin-right: 12px;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+}
+.njt-duplicate-checkbox-control-input[type="checkbox"] {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  border: 1px solid #7e8993;
+  border-radius: 2px;
+  background: #fff;
+  color: #555;
+  clear: none;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 0;
+  margin: 0 4px 0 0;
+  outline: 0;
+  padding: 0 !important;
+  text-align: center;
+  vertical-align: top;
+  width: 18px;
+  height: 18px;
+  -webkit-appearance: none;
+  box-shadow: 0 0 0 transparent;
+  transition: border-color 0.1s ease-in-out;
+}
+.njt-duplicate-checkbox-control-input[type="checkbox"]:focus {
+  border-color: #5b9dd9;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px #007cba;
+  outline: 2px solid transparent;
+}
+.njt-duplicate-checkbox-control-input[type="checkbox"]:checked {
+  background: #007cba;
+  border-color: #007cba;
+}
+.njt-duplicate-checkbox-control-input[type="checkbox"]:checked::-ms-check {
+  opacity: 0;
+}
+.njt-duplicate-checkbox-control-input[type="checkbox"]:focus:checked {
+  border: none;
+}
+.njt-duplicate-checkbox-control-input[type="checkbox"]:checked:before {
+  content: none;
+}
+@media (min-width: 600px) {
+  .njt-duplicate-checkbox-control-input-container {
+    width: 18px;
+    height: 18px;
+  }
+}
+svg.njt-duplicate-checkbox-control-checked {
+  fill: #fff;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+svg {
+  fill: currentColor;
+  outline: none;
+}
+.njt-duplicate-checkbox-control-label {
+  vertical-align: middle;
+}
+
+.njt-duplicate-button.is-primary {
+  white-space: nowrap;
+  background: #007cba;
+  border-color: #007cba;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: none;
+}
+/* CSS button */
+.njt-duplicate-button {
+  display: inline-flex;
+  text-decoration: none;
+  font-size: 13px;
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  background: none;
+  transition: box-shadow 0.1s linear;
+  height: 36px;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 6px 12px;
+  border-radius: 2px;
+  color: #1e1e1e;
+}
+.njt-duplicate-button.is-primary:focus:enabled,
+.njt-duplicate-button.is-primary:hover {
+  background: #0078a7;
+  border-color: #0078a7;
+  color: #fff;
+}
+.njt-duplicate-button.is-primary:focus:not(:disabled) {
+  box-shadow: inset 0 0 0 1px #fff, 0 0 0 1.5px #007cba;
+  box-shadow: inset 0 0 0 1px #fff, 0 0 0 1.5px #0078a7;
+  outline: 1px solid transparent;
+}
+.njt-duplicate-button.is-primary:active:not(:disabled) {
+  background: #005a87;
+  border-color: #005a87;
+  color: #fff;
+}
+.njt-duplicate-button.is-primary:hover:not(:disabled) {
+  background: #006ba1;
+  color: #fff;
+}
+.njt-duplicate-button:not([aria-disabled="true"]):active {
+  color: inherit;
+}
+.njt-duplicate-button:focus:not(:disabled) {
+  box-shadow: 0 0 0 1.5px #007cba;
+  outline: 1px solid transparent;
+}
+.njt-duplicate-button.is-busy:focus:not(:disabled) {
+  color: #fff;
+  background-size: 100px 100%;
+  background-image: linear-gradient(
+    -45deg,
+    #007cba 33%,
+    #005a87 0,
+    #005a87 70%,
+    #007cba 0
+  );
+  border-color: #007cba;
+  animation: NjtButtonBusy 2.5s linear infinite;
+  opacity: 1;
+}
+/* CSS Notification */
+.njt-duplicate-notification {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans,
+    Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+  font-size: 13px;
+  background-color: #32373c;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  padding: 16px 24px;
+  width: fit-content;
+  max-width: 600px;
+  box-sizing: border-box;
+  cursor: pointer;
+  animation: NslideUp 0.5s both linear;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  z-index: 20;
+}
+@keyframes NslideUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 50%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes NslideDown {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 50%, 0);
+  }
+}
+
+@keyframes NjtButtonBusy {
+  0% {
+    background-position: 200px 0;
+  }
+}
+.njt-duplicate-notification .NslideDown {
+  animation: NslideDown 0.5s both linear;
+}
+
+.njt-duplicate-notification-content {
+  display: flex;
+  align-items: center;
+}
+
+.njt-duplicate-notification-success-message {
+  background: #00a42a;
+  border-radius: 50%;
+  margin-right: 10px;
+  padding: 2px;
+  height: 20px;
+  width: 20px;
+}
+
+/* Toggle Switch Styles */
+.njt-duplicate-toggle-control {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 16px;
+}
+
+.njt-duplicate-toggle-control-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.njt-duplicate-toggle-control-label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.njt-duplicate-toggle-control-label:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.njt-duplicate-toggle-control-input:checked
+  + .njt-duplicate-toggle-control-label {
+  background-color: #007cba;
+}
+
+.njt-duplicate-toggle-control-input:checked
+  + .njt-duplicate-toggle-control-label:before {
+  transform: translateX(20px);
+}
+
+.njt-duplicate-toggle-control-switch {
+  display: none;
+}
+.njt-duplicate-wrap,
+.njt-duplicate-wrap * {
+  box-sizing: border-box;
+}
+/* Header */
+.njt-duplicate-top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  background: #fff;
+  border-bottom: 1px solid #e6e8eb;
+  margin: -10px -20px 10px -22px;
+}
+
+.njt-duplicate-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.njt-duplicate-header-logo img {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+.njt-duplicate-top-header h1.njt-duplicate-header-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1d2327;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+}
+
+.njt-duplicate-header-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding-right: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .njt-duplicate-top-header h1.njt-duplicate-header-title {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .njt-duplicate-top-header {
+    padding: 10px 15px;
+  }
+
+  .njt-duplicate-header-left {
+    gap: 8px;
+  }
+
+  .njt-duplicate-header-logo img {
+    height: 28px;
+  }
+
+  .njt-duplicate-header-title {
+    font-size: 14px;
+  }
+
+  .njt-duplicate-header-actions {
+    gap: 12px;
+  }
+}
+/* Button */
+.njt-duplicate-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid #e2e8f0;
+  background-color: #fff;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+.njt-duplicate-btn.fixed-width {
+  width: 42px;
+  height: 36px;
+}
+.njt-duplicate-btn svg {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+}
+
+.njt-duplicate-btn,
+.njt-duplicate-btn:hover {
+  color: #0f172a;
+  text-decoration: none;
+}
+
+.njt-duplicate-btn:hover {
+  background-color: #f5f5f5;
+  border-color: #cbd5e1;
+}
+
+.njt-duplicate-btn:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.njt-duplicate-btn:active {
+  transform: scale(0.98);
+}
+
+.njt-duplicate-btn-xs {
+  height: 22px;
+  padding: 0 6px;
+  line-height: 22px;
+  font-size: 10px;
+}
+
+.njt-duplicate-btn-sm {
+  height: 28px;
+  font-size: 12px;
+  padding: 0 10px;
+}
+
+.njt-duplicate-btn-lg {
+  height: 40px;
+  font-size: 14px;
+  padding: 0 16px;
+}
+
+@media only screen and (max-width: 768px) {
+  .njt-duplicate-btn {
+    font-size: 12px;
+    height: 28px;
+    padding: 0 10px;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .njt-duplicate-btn {
+    font-size: 11px;
+    height: 26px;
+    padding: 0 8px;
+  }
+}
+/* Footer */
+.njt-duplicate-footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #f5f5f5;
+  padding: 4px 10px;
+  z-index: 9999;
+  left: auto;
+  border-top: 1px solid #ddd;
+  width: calc(100% - 160px);
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.njt-duplicate-footer-breadcrumb {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.njt-duplicate-footer-breadcrumb svg {
+  vertical-align: middle;
+}
+.njt-duplicate-footer-breadcrumb span.njt-duplicate-footer-breadcrumb-item {
+  color: #737373;
+  text-decoration: none;
+}
+
+.njt-duplicate-footer-breadcrumb span a:hover {
+  color: #0073aa;
+  text-decoration: none;
+}
+.njt-duplicate-footer-review-text a {
+  color: #0073aa;
+  text-decoration: none;
+}
+
+.njt-duplicate-footer-review-text a:hover {
+  color: #00a0d2;
+  text-decoration: none;
+}
+
+/* Responsive */
+@media only screen and (max-width: 782px) {
+  .njt-duplicate-footer {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 783px) and (max-width: 960px) {
+  .njt-duplicate-footer {
+    width: calc(100% - 36px);
+  }
+}
+
+/* Tooltip Styles */
+.njt-duplicate-header-link {
+  position: relative;
+}
+
+.njt-duplicate-tooltip {
+  position: absolute;
+  background-color: #000;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.njt-duplicate-tooltip.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Tooltip arrow - bottom position */
+.njt-duplicate-tooltip[data-place="bottom"] {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.njt-duplicate-tooltip[data-place="bottom"]::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: #000;
+}
+
+/* Tooltip arrow - top position */
+.njt-duplicate-tooltip[data-place="top"] {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.njt-duplicate-tooltip[data-place="top"]::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #000;
+}
+
+/* Tooltip arrow - left position */
+.njt-duplicate-tooltip[data-place="left"] {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.njt-duplicate-tooltip[data-place="left"]::before {
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: #000;
+}
+
+/* Tooltip arrow - right position */
+.njt-duplicate-tooltip[data-place="right"] {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.njt-duplicate-tooltip[data-place="right"]::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-right-color: #000;
+}

@@ -1,0 +1,377 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?de156df570d84e5522d5dde764f368da") format("truetype"),
+url("./flaticon.woff?de156df570d84e5522d5dde764f368da") format("woff"),
+url("./flaticon.woff2?de156df570d84e5522d5dde764f368da") format("woff2"),
+url("./flaticon.eot?de156df570d84e5522d5dde764f368da#iefix") format("embedded-opentype"),
+url("./flaticon.svg?de156df570d84e5522d5dde764f368da#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "open-book": "\f101",
+    "university": "\f102",
+    "mortarboard": "\f103",
+    "exam": "\f104",
+    "books": "\f105",
+    "diploma": "\f106",
+    "earth-globe": "\f107",
+    "books-1": "\f108",
+    "student": "\f109",
+    "library": "\f10a",
+    "school-material": "\f10b",
+    "professor": "\f10c",
+    "blackboard": "\f10d",
+    "book": "\f10e",
+    "blackboard-1": "\f10f",
+    "ink": "\f110",
+    "bell": "\f111",
+    "exam-1": "\f112",
+    "abacus": "\f113",
+    "pass": "\f114",
+    "megaphone": "\f115",
+    "map": "\f116",
+    "stop": "\f117",
+    "time": "\f118",
+    "database": "\f119",
+    "compass": "\f11a",
+    "gear": "\f11b",
+    "folder": "\f11c",
+    "phone-call": "\f11d",
+    "mail-send": "\f11e",
+    "email": "\f11f",
+    "email-1": "\f120",
+    "send": "\f121",
+    "shopping-cart": "\f122",
+    "empowerment": "\f123",
+    "empowerment-1": "\f124",
+    "training": "\f125",
+    "human-resources": "\f126",
+    "reading": "\f127",
+    "motivation": "\f128",
+    "incentive": "\f129",
+    "checklist": "\f12a",
+    "recruitment": "\f12b",
+    "cooperation": "\f12c",
+    "mail": "\f12d",
+    "collaboration": "\f12e",
+    "relationship": "\f12f",
+    "confirmation": "\f130",
+    "online-course": "\f131",
+    "paper-plane": "\f132",
+    "human-resources-1": "\f133",
+    "value": "\f134",
+    "handshake": "\f135",
+    "analysis": "\f136",
+    "creative": "\f137",
+    "idea": "\f138",
+    "achievement": "\f139",
+    "lamp": "\f13a",
+    "creativity": "\f13b",
+    "bedurfnisse": "\f13c",
+    "photo-camera": "\f13d",
+    "canvas": "\f13e",
+    "target": "\f13f",
+    "desk": "\f140",
+    "knowledge": "\f141",
+    "teacher": "\f142",
+    "student-1": "\f143",
+    "chat": "\f144",
+    "message": "\f145",
+    "address": "\f146",
+    "home": "\f147",
+    "presentation": "\f148",
+    "work": "\f149",
+    "analytics": "\f14a",
+    "tutorial": "\f14b",
+    "bar-chart": "\f14c",
+    "lecture": "\f14d",
+    "meeting": "\f14e",
+    "puzzle": "\f14f",
+    "research": "\f150",
+    "pencil-and-ruler": "\f151",
+    "book-1": "\f152",
+    "certificate": "\f153",
+    "education": "\f154",
+    "right-arrow": "\f155",
+    "search-interface-symbol": "\f156",
+    "left-arrow": "\f157",
+    "calling": "\f158",
+);
+
+.flaticon-open-book:before {
+    content: map-get($flaticon-map, "open-book");
+}
+.flaticon-university:before {
+    content: map-get($flaticon-map, "university");
+}
+.flaticon-mortarboard:before {
+    content: map-get($flaticon-map, "mortarboard");
+}
+.flaticon-exam:before {
+    content: map-get($flaticon-map, "exam");
+}
+.flaticon-books:before {
+    content: map-get($flaticon-map, "books");
+}
+.flaticon-diploma:before {
+    content: map-get($flaticon-map, "diploma");
+}
+.flaticon-earth-globe:before {
+    content: map-get($flaticon-map, "earth-globe");
+}
+.flaticon-books-1:before {
+    content: map-get($flaticon-map, "books-1");
+}
+.flaticon-student:before {
+    content: map-get($flaticon-map, "student");
+}
+.flaticon-library:before {
+    content: map-get($flaticon-map, "library");
+}
+.flaticon-school-material:before {
+    content: map-get($flaticon-map, "school-material");
+}
+.flaticon-professor:before {
+    content: map-get($flaticon-map, "professor");
+}
+.flaticon-blackboard:before {
+    content: map-get($flaticon-map, "blackboard");
+}
+.flaticon-book:before {
+    content: map-get($flaticon-map, "book");
+}
+.flaticon-blackboard-1:before {
+    content: map-get($flaticon-map, "blackboard-1");
+}
+.flaticon-ink:before {
+    content: map-get($flaticon-map, "ink");
+}
+.flaticon-bell:before {
+    content: map-get($flaticon-map, "bell");
+}
+.flaticon-exam-1:before {
+    content: map-get($flaticon-map, "exam-1");
+}
+.flaticon-abacus:before {
+    content: map-get($flaticon-map, "abacus");
+}
+.flaticon-pass:before {
+    content: map-get($flaticon-map, "pass");
+}
+.flaticon-megaphone:before {
+    content: map-get($flaticon-map, "megaphone");
+}
+.flaticon-map:before {
+    content: map-get($flaticon-map, "map");
+}
+.flaticon-stop:before {
+    content: map-get($flaticon-map, "stop");
+}
+.flaticon-time:before {
+    content: map-get($flaticon-map, "time");
+}
+.flaticon-database:before {
+    content: map-get($flaticon-map, "database");
+}
+.flaticon-compass:before {
+    content: map-get($flaticon-map, "compass");
+}
+.flaticon-gear:before {
+    content: map-get($flaticon-map, "gear");
+}
+.flaticon-folder:before {
+    content: map-get($flaticon-map, "folder");
+}
+.flaticon-phone-call:before {
+    content: map-get($flaticon-map, "phone-call");
+}
+.flaticon-mail-send:before {
+    content: map-get($flaticon-map, "mail-send");
+}
+.flaticon-email:before {
+    content: map-get($flaticon-map, "email");
+}
+.flaticon-email-1:before {
+    content: map-get($flaticon-map, "email-1");
+}
+.flaticon-send:before {
+    content: map-get($flaticon-map, "send");
+}
+.flaticon-shopping-cart:before {
+    content: map-get($flaticon-map, "shopping-cart");
+}
+.flaticon-empowerment:before {
+    content: map-get($flaticon-map, "empowerment");
+}
+.flaticon-empowerment-1:before {
+    content: map-get($flaticon-map, "empowerment-1");
+}
+.flaticon-training:before {
+    content: map-get($flaticon-map, "training");
+}
+.flaticon-human-resources:before {
+    content: map-get($flaticon-map, "human-resources");
+}
+.flaticon-reading:before {
+    content: map-get($flaticon-map, "reading");
+}
+.flaticon-motivation:before {
+    content: map-get($flaticon-map, "motivation");
+}
+.flaticon-incentive:before {
+    content: map-get($flaticon-map, "incentive");
+}
+.flaticon-checklist:before {
+    content: map-get($flaticon-map, "checklist");
+}
+.flaticon-recruitment:before {
+    content: map-get($flaticon-map, "recruitment");
+}
+.flaticon-cooperation:before {
+    content: map-get($flaticon-map, "cooperation");
+}
+.flaticon-mail:before {
+    content: map-get($flaticon-map, "mail");
+}
+.flaticon-collaboration:before {
+    content: map-get($flaticon-map, "collaboration");
+}
+.flaticon-relationship:before {
+    content: map-get($flaticon-map, "relationship");
+}
+.flaticon-confirmation:before {
+    content: map-get($flaticon-map, "confirmation");
+}
+.flaticon-online-course:before {
+    content: map-get($flaticon-map, "online-course");
+}
+.flaticon-paper-plane:before {
+    content: map-get($flaticon-map, "paper-plane");
+}
+.flaticon-human-resources-1:before {
+    content: map-get($flaticon-map, "human-resources-1");
+}
+.flaticon-value:before {
+    content: map-get($flaticon-map, "value");
+}
+.flaticon-handshake:before {
+    content: map-get($flaticon-map, "handshake");
+}
+.flaticon-analysis:before {
+    content: map-get($flaticon-map, "analysis");
+}
+.flaticon-creative:before {
+    content: map-get($flaticon-map, "creative");
+}
+.flaticon-idea:before {
+    content: map-get($flaticon-map, "idea");
+}
+.flaticon-achievement:before {
+    content: map-get($flaticon-map, "achievement");
+}
+.flaticon-lamp:before {
+    content: map-get($flaticon-map, "lamp");
+}
+.flaticon-creativity:before {
+    content: map-get($flaticon-map, "creativity");
+}
+.flaticon-bedurfnisse:before {
+    content: map-get($flaticon-map, "bedurfnisse");
+}
+.flaticon-photo-camera:before {
+    content: map-get($flaticon-map, "photo-camera");
+}
+.flaticon-canvas:before {
+    content: map-get($flaticon-map, "canvas");
+}
+.flaticon-target:before {
+    content: map-get($flaticon-map, "target");
+}
+.flaticon-desk:before {
+    content: map-get($flaticon-map, "desk");
+}
+.flaticon-knowledge:before {
+    content: map-get($flaticon-map, "knowledge");
+}
+.flaticon-teacher:before {
+    content: map-get($flaticon-map, "teacher");
+}
+.flaticon-student-1:before {
+    content: map-get($flaticon-map, "student-1");
+}
+.flaticon-chat:before {
+    content: map-get($flaticon-map, "chat");
+}
+.flaticon-message:before {
+    content: map-get($flaticon-map, "message");
+}
+.flaticon-address:before {
+    content: map-get($flaticon-map, "address");
+}
+.flaticon-home:before {
+    content: map-get($flaticon-map, "home");
+}
+.flaticon-presentation:before {
+    content: map-get($flaticon-map, "presentation");
+}
+.flaticon-work:before {
+    content: map-get($flaticon-map, "work");
+}
+.flaticon-analytics:before {
+    content: map-get($flaticon-map, "analytics");
+}
+.flaticon-tutorial:before {
+    content: map-get($flaticon-map, "tutorial");
+}
+.flaticon-bar-chart:before {
+    content: map-get($flaticon-map, "bar-chart");
+}
+.flaticon-lecture:before {
+    content: map-get($flaticon-map, "lecture");
+}
+.flaticon-meeting:before {
+    content: map-get($flaticon-map, "meeting");
+}
+.flaticon-puzzle:before {
+    content: map-get($flaticon-map, "puzzle");
+}
+.flaticon-research:before {
+    content: map-get($flaticon-map, "research");
+}
+.flaticon-pencil-and-ruler:before {
+    content: map-get($flaticon-map, "pencil-and-ruler");
+}
+.flaticon-book-1:before {
+    content: map-get($flaticon-map, "book-1");
+}
+.flaticon-certificate:before {
+    content: map-get($flaticon-map, "certificate");
+}
+.flaticon-education:before {
+    content: map-get($flaticon-map, "education");
+}
+.flaticon-right-arrow:before {
+    content: map-get($flaticon-map, "right-arrow");
+}
+.flaticon-search-interface-symbol:before {
+    content: map-get($flaticon-map, "search-interface-symbol");
+}
+.flaticon-left-arrow:before {
+    content: map-get($flaticon-map, "left-arrow");
+}
+.flaticon-calling:before {
+    content: map-get($flaticon-map, "calling");
+}

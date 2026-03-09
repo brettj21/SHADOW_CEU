@@ -1,0 +1,126 @@
+.gva-locations-map{
+   position: relative;
+  .map_canvas{ 
+    z-index: 11!important;
+  }
+ 
+  .gm-style{
+    div {
+      border: none!important;
+    }
+  }
+  .gm-style-iw{
+    max-width: 590px;
+    padding: 0;
+    > div{
+      max-width: 100%!important;
+      width: 100%;
+    }
+    div{
+      height: auto!important;
+      overflow: hidden;
+      .marker{
+        width: 99%;
+        max-width: 590px;
+        background: $white!important;
+        padding: 30px 10px 20px 30px;
+        margin-top: 1px;
+        margin-left: 1px;
+        .image{ 
+          width: 45%;
+          float: left;
+          @media(max-width: 640px){
+            width: 100%;
+          }
+          img{
+            width: 100%;
+            height: auto;
+          }
+        }
+        .info{
+          float: left;
+          width: 55%;
+          padding-left: 20px;
+          @media(max-width: 640px){
+            width: 100%;
+            padding-left: 0;
+          }
+          .title{
+            font-size: 18px;
+            text-transform: none;
+            margin: 0 0 10px;
+            @media(max-width: 640px){
+              margin-top: 20px;
+            }
+          }
+          .desc{
+            line-height: 24px;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 15px; 
+          }
+          p{
+            -webkit-hyphens: auto;
+            -moz-hyphens:    auto;
+            -ms-hyphens:     auto;
+            hyphens:         auto;
+            word-wrap: break-word;
+          }
+          .link-visit{
+            
+          }
+        }
+      }
+    }
+  }
+  .makers{
+   padding: 50px 30px 20px;
+   background: #F7F7F9;
+   .location-item{
+      margin-bottom: 35px;
+      .maker-item-inner{
+         font-size: 14px;
+         margin-top: 0;
+         @include media-breakpoint-down(md){
+           margin-bottom: 20px;
+         }
+          .left{
+             @include size(30px, auto);
+             float: left;
+             .icon{
+               font-size: 24px;
+               margin-top: 2px;
+               color: $black;
+             }
+           }
+          .right{
+             padding-left: 35px;
+             line-height: 24px;
+             .location-title{
+               font-size: 18px;
+               text-transform: none;
+               margin-top: 0;
+               margin-bottom: 5px;
+               &:hover{
+                 cursor: pointer;
+                 color: $theme-color;
+               }
+             } 
+          }
+          &:hover, &.active{
+           cursor: pointer;
+           .location-title{
+             color: $theme-color;
+           }
+           .icon{
+             color: $theme-color;
+             -webkit-animation: bounce 800ms ease-out;
+             -moz-animation: bounce 800ms ease-out;
+             -o-animation: bounce 800ms ease-out;
+             animation: bounce 800ms ease-out;
+            }
+         }
+       }
+      }
+   }
+}

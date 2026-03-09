@@ -1,0 +1,12 @@
+$theme-font-path : "../fonts/"!default;
+
+@font-face { 
+   font-family: 'reey'; 
+   font-style: normal;
+   font-weight: normal;
+   src: url('#{$theme-font-path}reey/reey-regular.ttf') format('ttf'),
+   url('#{$theme-font-path}reey/reey-regular.woff') format('woff'), 
+   url('#{$theme-font-path}reey/reey-regular.eot') format('eot'),
+   url('#{$theme-font-path}reey/reey-regular.otf') format('otf'),
+   url('#{$theme-font-path}reey/reey-regular.svg') format('svg')
+}

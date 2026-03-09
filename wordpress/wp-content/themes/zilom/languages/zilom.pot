@@ -1,0 +1,3004 @@
+# Copyright (C) 2022 Gaviasthemes Team
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Zilom 1.1.8\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/zilom\n"
+"POT-Creation-Date: 2022-10-11 01:24:21+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2022-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: 404.php:16
+msgid "404"
+msgstr ""
+
+#: 404.php:17
+msgid "Page Not Found"
+msgstr ""
+
+#: 404.php:18
+msgid ""
+"The page requested couldn't be found. This could be a spelling error in the "
+"URL or a removed page."
+msgstr ""
+
+#: 404.php:21
+msgid "Back Homepage"
+msgstr ""
+
+#: comments.php:23
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:46
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: comments.php:47
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: comments.php:52
+msgid "Comments are closed."
+msgstr ""
+
+#: comments.php:64
+msgid "Write Your Comment"
+msgstr ""
+
+#: comments.php:68
+msgid "Your Name *"
+msgstr ""
+
+#: comments.php:72
+msgid "Email *"
+msgstr ""
+
+#: comments.php:77
+msgid "Add a Comment"
+msgstr ""
+
+#: comments.php:85
+msgid "Post Comment"
+msgstr ""
+
+#: comments.php:86
+msgid "Your email address will not be published."
+msgstr ""
+
+#: content-audio.php:65 content-gallery.php:71 content-link.php:54
+#: content-quote.php:53 content-video.php:61 content.php:61
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: content-audio.php:69 content-gallery.php:75 content-link.php:58
+#: content-quote.php:57 content-video.php:65 content.php:65
+msgid "Pages:"
+msgstr ""
+
+#: content-audio.php:83 content-gallery.php:90 content-link.php:72
+#: content-quote.php:71 content-video.php:79 content.php:79
+msgid "Tags:"
+msgstr ""
+
+#: footer-dashboard.php:10 footer.php:39
+msgid "Copyright 2021 - Company - All rights reserved. Powered by WordPress."
+msgstr ""
+
+#: functions.php:73
+msgid "Default Sidebar"
+msgstr ""
+
+#: functions.php:75
+msgid "Appears in the Default Sidebar section of the site."
+msgstr ""
+
+#: functions.php:84
+msgid "WooCommerce Sidebar"
+msgstr ""
+
+#: functions.php:86
+msgid "Appears in the Plugin WooCommerce section of the site."
+msgstr ""
+
+#: functions.php:93
+msgid "WooCommerce Single"
+msgstr ""
+
+#: functions.php:95
+msgid ""
+"Appears in the WooCommerce Single Page like social, description text ..."
+msgstr ""
+
+#: functions.php:103
+msgid "After Offcanvas Mobile"
+msgstr ""
+
+#: functions.php:105
+msgid "Appears in the Offcanvas section of the site."
+msgstr ""
+
+#: functions.php:112
+msgid "Blog Sidebar"
+msgstr ""
+
+#: functions.php:114
+msgid "Appears in the Blog sidebar section of the site."
+msgstr ""
+
+#: functions.php:121
+msgid "Page Sidebar"
+msgstr ""
+
+#: functions.php:123
+msgid "Appears in the Page Sidebar section of the site."
+msgstr ""
+
+#: functions.php:130
+msgid "Portfolio Sidebar"
+msgstr ""
+
+#: functions.php:132
+msgid "Appears in the Portfolio Page Sidebar section of the site."
+msgstr ""
+
+#: functions.php:141
+msgid "Archive Course Sidebar"
+msgstr ""
+
+#: functions.php:143
+msgid "Appears in the Archive Course Page Sidebar section of the site."
+msgstr ""
+
+#. Translators: If there are characters in your language that are not supported
+#. by Noto Sans, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:169
+msgctxt "Kumbh Sans font: on or off"
+msgid "on"
+msgstr ""
+
+#: includes/comment.php:26
+msgid "%1$s"
+msgstr ""
+
+#: includes/comment.php:31
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: includes/comment.php:41
+msgid "Edit"
+msgstr ""
+
+#: includes/comment.php:43
+msgid "Reply"
+msgstr ""
+
+#. translators: %s: title of menu item which is invalid
+#: includes/menu/megamenu.php:373
+msgid "%s (Invalid)"
+msgstr ""
+
+#. translators: %s: title of menu item in draft status
+#: includes/menu/megamenu.php:377
+msgid "%s (Pending)"
+msgstr ""
+
+#: includes/menu/megamenu.php:395
+msgid "Mega Menu"
+msgstr ""
+
+#: includes/menu/megamenu.php:399
+msgid "Sub item"
+msgstr ""
+
+#: includes/menu/megamenu.php:416
+msgid "Move up"
+msgstr ""
+
+#: includes/menu/megamenu.php:429
+msgid "Move down"
+msgstr ""
+
+#: includes/menu/megamenu.php:431
+msgid "Edit Menu Item"
+msgstr ""
+
+#: includes/menu/megamenu.php:442
+msgid "Mega Menu Setting"
+msgstr ""
+
+#: includes/menu/megamenu.php:446
+msgid "Mega Menu Enabled"
+msgstr ""
+
+#: includes/menu/megamenu.php:452
+msgid "Choose MegaMenu"
+msgstr ""
+
+#: includes/menu/megamenu.php:467
+msgid "Number columns"
+msgstr ""
+
+#: includes/menu/megamenu.php:469
+msgid "Number columns of submenu(support 1,2,3,4,6 columns)"
+msgstr ""
+
+#: includes/menu/megamenu.php:479
+msgid "Mega menu width"
+msgstr ""
+
+#: includes/menu/megamenu.php:490
+msgid "Mega menu Align"
+msgstr ""
+
+#: includes/menu/megamenu.php:493 includes/metaboxes.php:262
+#: includes/options/opts-breadcrumb.php:88 includes/options/opts-woo.php:212
+msgid "Center"
+msgstr ""
+
+#: includes/menu/megamenu.php:494 includes/metaboxes.php:261
+#: includes/options/opts-breadcrumb.php:87 includes/options/opts-woo.php:211
+msgid "Left"
+msgstr ""
+
+#: includes/menu/megamenu.php:495 includes/metaboxes.php:263
+#: includes/options/opts-breadcrumb.php:89 includes/options/opts-woo.php:213
+msgid "Right"
+msgstr ""
+
+#: includes/menu/megamenu.php:509
+msgid "Icon"
+msgstr ""
+
+#: includes/menu/megamenu.php:509
+msgid "(icons in Font Awesome)"
+msgstr ""
+
+#: includes/menu/megamenu.php:518
+msgid "URL"
+msgstr ""
+
+#: includes/menu/megamenu.php:525
+msgid "Navigation Label"
+msgstr ""
+
+#: includes/menu/megamenu.php:531
+msgid "Title Attribute"
+msgstr ""
+
+#: includes/menu/megamenu.php:538
+msgid "Open link in a new window/tab"
+msgstr ""
+
+#: includes/menu/megamenu.php:543
+msgid "CSS Classes (optional)"
+msgstr ""
+
+#: includes/menu/megamenu.php:549
+msgid "Link Relationship (XFN)"
+msgstr ""
+
+#: includes/menu/megamenu.php:555
+msgid "Description"
+msgstr ""
+
+#: includes/menu/megamenu.php:557
+msgid ""
+"The description will be displayed in the menu if the current theme supports "
+"it."
+msgstr ""
+
+#: includes/menu/megamenu.php:563
+msgid "Move"
+msgstr ""
+
+#: includes/menu/megamenu.php:564
+msgid "Up one"
+msgstr ""
+
+#: includes/menu/megamenu.php:565
+msgid "Down one"
+msgstr ""
+
+#: includes/menu/megamenu.php:568
+msgid "To the top"
+msgstr ""
+
+#: includes/menu/megamenu.php:575
+msgid "Original: %s"
+msgstr ""
+
+#: includes/menu/megamenu.php:588
+msgid "Remove"
+msgstr ""
+
+#: includes/menu/megamenu.php:589 tutor/dashboard/question-answer.php:73
+#: tutor/single/course/enrolled/question_and_answer.php:52
+#: tutor/single/course/enrolled/question_and_answer.php:135
+#: tutor/single/quiz/top.php:145
+msgid "Cancel"
+msgstr ""
+
+#: includes/metaboxes.php:17
+msgid "Thumbnail"
+msgstr ""
+
+#: includes/metaboxes.php:24
+msgid "Thumbnail image"
+msgstr ""
+
+#: includes/metaboxes.php:25
+msgid "The image that will be used as the thumbnail image."
+msgstr ""
+
+#: includes/metaboxes.php:33
+msgid "Thumbnail video URL"
+msgstr ""
+
+#: includes/metaboxes.php:35
+msgid ""
+"Enter the video url for the thumbnail. Only links from Vimeo & YouTube are "
+"supported."
+msgstr ""
+
+#: includes/metaboxes.php:43
+msgid "Thumbnail audio URL"
+msgstr ""
+
+#: includes/metaboxes.php:45
+msgid "Enter the audio url for the thumbnail."
+msgstr ""
+
+#: includes/metaboxes.php:53
+msgid "Thumbnail gallery"
+msgstr ""
+
+#: includes/metaboxes.php:54
+msgid "The images that will be used in the thumbnail gallery."
+msgstr ""
+
+#: includes/metaboxes.php:62
+msgid "Thumbnail link type"
+msgstr ""
+
+#: includes/metaboxes.php:66
+msgid "Link to item"
+msgstr ""
+
+#: includes/metaboxes.php:67
+msgid "Link to URL"
+msgstr ""
+
+#: includes/metaboxes.php:68
+msgid "Link to URL (New Window)"
+msgstr ""
+
+#: includes/metaboxes.php:69
+msgid "Lightbox to the thumbnail image"
+msgstr ""
+
+#: includes/metaboxes.php:70
+msgid "Lightbox to image (select below)"
+msgstr ""
+
+#: includes/metaboxes.php:71
+msgid "Fullscreen Video Overlay (input below)"
+msgstr ""
+
+#: includes/metaboxes.php:75
+msgid "Choose what link will be used for the image(s) and title of the item."
+msgstr ""
+
+#: includes/metaboxes.php:80
+msgid "Thumbnail link URL"
+msgstr ""
+
+#: includes/metaboxes.php:82
+msgid "Enter the url for the thumbnail link."
+msgstr ""
+
+#: includes/metaboxes.php:90
+msgid "Thumbnail link lightbox image"
+msgstr ""
+
+#: includes/metaboxes.php:91
+msgid "The image that will be used as the lightbox image."
+msgstr ""
+
+#: includes/metaboxes.php:101
+msgid "Page Meta"
+msgstr ""
+
+#: includes/metaboxes.php:106 includes/metaboxes.php:368
+msgid "Full Width( 100% Main Width )"
+msgstr ""
+
+#: includes/metaboxes.php:109 includes/metaboxes.php:371
+msgid ""
+"Turn on to have the main area display at 100% width according to the window "
+"size. Turn off to follow site width."
+msgstr ""
+
+#: includes/metaboxes.php:113
+msgid "Header"
+msgstr ""
+
+#: includes/metaboxes.php:115
+msgid "You can change header for page if you like's."
+msgstr ""
+
+#: includes/metaboxes.php:121
+msgid "Footer"
+msgstr ""
+
+#: includes/metaboxes.php:123
+msgid "You can change footer for page if you like's"
+msgstr ""
+
+#: includes/metaboxes.php:129
+msgid "Extra page class"
+msgstr ""
+
+#: includes/metaboxes.php:131
+msgid ""
+"If you wish to add extra classes to the body class of the page (for custom "
+"css use), then please add the class(es) here."
+msgstr ""
+
+#: includes/metaboxes.php:142
+msgid "Page Title & Breadcrumb"
+msgstr ""
+
+#: includes/metaboxes.php:148
+msgid "Remove Title of Page"
+msgstr ""
+
+#: includes/metaboxes.php:154
+msgid "Disable Breadcrumbs"
+msgstr ""
+
+#: includes/metaboxes.php:157
+msgid "Disable the breadcrumbs from under the page title on this page."
+msgstr ""
+
+#: includes/metaboxes.php:161
+msgid "Breadcrumb Layout"
+msgstr ""
+
+#: includes/metaboxes.php:165
+msgid "Default Options in Theme-Settings"
+msgstr ""
+
+#: includes/metaboxes.php:166
+msgid "Individuals Options This Page"
+msgstr ""
+
+#: includes/metaboxes.php:170
+msgid ""
+"You can use breadcrumb settings default in Theme-Settings or individuals "
+"this page"
+msgstr ""
+
+#: includes/metaboxes.php:173
+msgid "Show page title in the breadcrumbs"
+msgstr ""
+
+#: includes/metaboxes.php:180
+msgid "Page Title Override"
+msgstr ""
+
+#: includes/metaboxes.php:182
+msgid "Enter a custom page title if you'd like."
+msgstr ""
+
+#: includes/metaboxes.php:188
+msgid "Breadcrumb Padding Top (px)"
+msgstr ""
+
+#: includes/metaboxes.php:193
+msgid "Option Padding Top of Breacrumb, set empty = padding default of theme"
+msgstr ""
+
+#: includes/metaboxes.php:197
+msgid "Breadcrumb Padding Bottom (px)"
+msgstr ""
+
+#: includes/metaboxes.php:202
+msgid ""
+"Option Padding Bottom of Breacrumb, set empty = padding default of theme"
+msgstr ""
+
+#: includes/metaboxes.php:206 includes/options/opts-breadcrumb.php:39
+#: includes/options/opts-woo.php:163
+msgid "Background Overlay Color"
+msgstr ""
+
+#: includes/metaboxes.php:208
+msgid "Set an overlay color for hero heading image."
+msgstr ""
+
+#: includes/metaboxes.php:214
+msgid "Overlay Opacity"
+msgstr ""
+
+#: includes/metaboxes.php:216
+msgid ""
+"Set the opacity level of the overlay. This will lighten or darken the image "
+"depening on the color selected."
+msgstr ""
+
+#: includes/metaboxes.php:229 includes/options/opts-breadcrumb.php:55
+msgid "Enable Breadcrumb Image"
+msgstr ""
+
+#: includes/metaboxes.php:236 includes/options/opts-breadcrumb.php:66
+#: includes/options/opts-woo.php:190
+msgid "Breadcrumb Background Image"
+msgstr ""
+
+#: includes/metaboxes.php:243
+msgid "Heading Text Style"
+msgstr ""
+
+#: includes/metaboxes.php:248 includes/options/opts-breadcrumb.php:76
+#: includes/options/opts-woo.php:200
+msgid "Light"
+msgstr ""
+
+#: includes/metaboxes.php:249 includes/options/opts-breadcrumb.php:77
+#: includes/options/opts-woo.php:201
+msgid "Dark"
+msgstr ""
+
+#: includes/metaboxes.php:253
+msgid ""
+"If you uploaded an image in the option above, choose light/dark styling for "
+"the text heading text here."
+msgstr ""
+
+#: includes/metaboxes.php:256
+msgid "Heading Text Align"
+msgstr ""
+
+#: includes/metaboxes.php:267
+msgid "Choose the text alignment for the hero heading."
+msgstr ""
+
+#: includes/metaboxes.php:275
+msgid "Sidebar Options"
+msgstr ""
+
+#: includes/metaboxes.php:281
+msgid "Sidebar configuration"
+msgstr ""
+
+#: includes/metaboxes.php:285
+msgid "--Default--"
+msgstr ""
+
+#: includes/metaboxes.php:286 includes/options/opts-blog.php:74
+#: includes/options/opts-blog.php:114 includes/options/opts-course.php:97
+#: includes/options/opts-page.php:23 includes/options/opts-portfolio.php:85
+#: includes/options/opts-portfolio.php:120
+msgid "No Sidebars"
+msgstr ""
+
+#: includes/metaboxes.php:287 includes/metaboxes.php:296
+#: includes/options/opts-blog.php:75 includes/options/opts-blog.php:115
+#: includes/options/opts-course.php:98 includes/options/opts-page.php:24
+#: includes/options/opts-portfolio.php:86
+#: includes/options/opts-portfolio.php:121
+msgid "Left Sidebar"
+msgstr ""
+
+#: includes/metaboxes.php:288 includes/metaboxes.php:304
+#: includes/options/opts-blog.php:76 includes/options/opts-blog.php:116
+#: includes/options/opts-course.php:99 includes/options/opts-page.php:25
+#: includes/options/opts-portfolio.php:87
+#: includes/options/opts-portfolio.php:122
+msgid "Right Sidebar"
+msgstr ""
+
+#: includes/metaboxes.php:292
+msgid "Choose the sidebar configuration for the detail page of this page."
+msgstr ""
+
+#: includes/metaboxes.php:316
+msgid "Team Settings"
+msgstr ""
+
+#: includes/metaboxes.php:321
+msgid "Position"
+msgstr ""
+
+#: includes/metaboxes.php:327
+msgid "Quote"
+msgstr ""
+
+#: includes/metaboxes.php:333
+msgid "Email"
+msgstr ""
+
+#: includes/metaboxes.php:339
+msgid "Phone"
+msgstr ""
+
+#: includes/metaboxes.php:345
+msgid "Address"
+msgstr ""
+
+#: includes/metaboxes.php:356
+msgid "Header Builder"
+msgstr ""
+
+#: includes/metaboxes.php:361
+msgid "Enable Background Black"
+msgstr ""
+
+#: includes/metaboxes.php:364
+msgid "It will display background black when builder header."
+msgstr ""
+
+#: includes/metaboxes.php:375
+msgid "Position Styling"
+msgstr ""
+
+#: includes/metaboxes.php:379
+msgid "Relative"
+msgstr ""
+
+#: includes/metaboxes.php:380
+msgid "Absolute"
+msgstr ""
+
+#: includes/metaboxes.php:390
+msgid "Administrator Settings for Course"
+msgstr ""
+
+#: includes/metaboxes.php:395 tutor/loop/header.php:32
+msgid "Featured"
+msgstr ""
+
+#: includes/options/init.php:37 includes/options/init.php:38
+msgid "Theme Settings"
+msgstr ""
+
+#: includes/options/opts-blog.php:3
+msgid "Blog Options"
+msgstr ""
+
+#: includes/options/opts-blog.php:10 includes/options/opts-portfolio.php:21
+msgid "Archive/Listing"
+msgstr ""
+
+#: includes/options/opts-blog.php:15 includes/options/opts-course.php:38
+#: includes/options/opts-portfolio.php:26 includes/options/opts-woo.php:37
+msgid "Display Columns for Large Screen"
+msgstr ""
+
+#: includes/options/opts-blog.php:29 includes/options/opts-course.php:52
+#: includes/options/opts-portfolio.php:40 includes/options/opts-woo.php:53
+msgid "Display Columns for Medium Screen"
+msgstr ""
+
+#: includes/options/opts-blog.php:43 includes/options/opts-course.php:66
+#: includes/options/opts-portfolio.php:54 includes/options/opts-woo.php:69
+msgid "Display Columns for Small Screen"
+msgstr ""
+
+#: includes/options/opts-blog.php:57 includes/options/opts-course.php:80
+#: includes/options/opts-portfolio.php:68 includes/options/opts-woo.php:85
+msgid "Display Columns for Extra Small Screen"
+msgstr ""
+
+#: includes/options/opts-blog.php:71
+msgid "Default Archive Page Blog Sidebar Config"
+msgstr ""
+
+#: includes/options/opts-blog.php:72 includes/options/opts-blog.php:112
+#: includes/options/opts-portfolio.php:83
+msgid "Choose single post layout."
+msgstr ""
+
+#: includes/options/opts-blog.php:83
+msgid "Default Archive Page Blog Left Sidebar"
+msgstr ""
+
+#: includes/options/opts-blog.php:84 includes/options/opts-blog.php:124
+#: includes/options/opts-portfolio.php:95
+msgid "Choose the default left sidebar for Single Post."
+msgstr ""
+
+#: includes/options/opts-blog.php:91
+msgid "Default Archive Page Blog Right Sidebar"
+msgstr ""
+
+#: includes/options/opts-blog.php:92 includes/options/opts-portfolio.php:103
+msgid "Choose the default right sidebar for Single Post."
+msgstr ""
+
+#: includes/options/opts-blog.php:99
+msgid "Blog Excerpt Limit"
+msgstr ""
+
+#: includes/options/opts-blog.php:106
+msgid "Single Post"
+msgstr ""
+
+#: includes/options/opts-blog.php:111 includes/options/opts-portfolio.php:117
+msgid "Default Single Sidebar Config"
+msgstr ""
+
+#: includes/options/opts-blog.php:123 includes/options/opts-portfolio.php:129
+msgid "Default Single Left Sidebar"
+msgstr ""
+
+#: includes/options/opts-blog.php:131 includes/options/opts-portfolio.php:137
+msgid "Default Single Right Sidebar"
+msgstr ""
+
+#: includes/options/opts-blog.php:132
+msgid "DChoose the default right sidebar for Single Post."
+msgstr ""
+
+#: includes/options/opts-breadcrumb.php:3
+msgid "Breadcrumb Options"
+msgstr ""
+
+#: includes/options/opts-breadcrumb.php:9 includes/options/opts-woo.php:133
+msgid "Breadcrumb Display Title Page"
+msgstr ""
+
+#: includes/options/opts-breadcrumb.php:11
+#: includes/options/opts-breadcrumb.php:57 includes/options/opts-footer.php:17
+#: includes/options/opts-header.php:58 includes/options/opts-woo.php:135
+#: includes/options/opts-woo.php:181 includes/tutor/hooks.php:56
+msgid "Enable"
+msgstr ""
+
+#: includes/options/opts-breadcrumb.php:12
+#: includes/options/opts-breadcrumb.php:58 includes/options/opts-footer.php:18
+#: includes/options/opts-header.php:59 includes/options/opts-woo.php:136
+#: includes/options/opts-woo.php:182
+msgid "Disable"
+msgstr ""
+
+#: includes/options/opts-breadcrumb.php:19
+#: includes/options/opts-breadcrumb.php:29 includes/options/opts-woo.php:143
+#: includes/options/opts-woo.php:153
+msgid "Breadcrumb Padding Top"
+msgstr ""
+
+#: includes/options/opts-breadcrumb.php:45 includes/options/opts-woo.php:169
+msgid "Breadcrumb Ovelay Color Opacity"
+msgstr ""
+
+#: includes/options/opts-breadcrumb.php:73 includes/options/opts-woo.php:197
+msgid "Breadcrumb Text Stype"
+msgstr ""
+
+#: includes/options/opts-breadcrumb.php:84 includes/options/opts-woo.php:208
+msgid "Breadcrumb Text Align"
+msgstr ""
+
+#: includes/options/opts-course.php:3
+msgid "Course Options"
+msgstr ""
+
+#: includes/options/opts-course.php:10
+msgid "Archive Course Page"
+msgstr ""
+
+#: includes/options/opts-course.php:16
+msgid "Filter Layout"
+msgstr ""
+
+#: includes/options/opts-course.php:18
+msgid "Disable Filter"
+msgstr ""
+
+#: includes/options/opts-course.php:19
+msgid "Filter Top"
+msgstr ""
+
+#: includes/options/opts-course.php:20
+msgid "Filter Left"
+msgstr ""
+
+#: includes/options/opts-course.php:21
+msgid "Filter Right"
+msgstr ""
+
+#: includes/options/opts-course.php:27
+msgid "Select Input Style"
+msgstr ""
+
+#: includes/options/opts-course.php:29
+msgid "Filter Dropdow"
+msgstr ""
+
+#: includes/options/opts-course.php:30
+msgid "Filter List"
+msgstr ""
+
+#: includes/options/opts-course.php:95
+msgid "Courses Archive Page Sidebar Config"
+msgstr ""
+
+#: includes/options/opts-course.php:106
+msgid "Courses Archive Page Left Sidebar"
+msgstr ""
+
+#: includes/options/opts-course.php:113
+msgid "Courses Archive Page Right Sidebar"
+msgstr ""
+
+#: includes/options/opts-footer.php:3
+msgid "Footer Options"
+msgstr ""
+
+#: includes/options/opts-footer.php:15
+msgid "Enable/Disable Copyright Text"
+msgstr ""
+
+#: includes/options/opts-footer.php:25
+msgid "Footer Copyright Text"
+msgstr ""
+
+#: includes/options/opts-footer.php:26
+msgid "Copyright - 2021 - Company - All rights reserved. Powered by WordPress."
+msgstr ""
+
+#: includes/options/opts-general.php:3
+msgid "General Options"
+msgstr ""
+
+#: includes/options/opts-general.php:9
+msgid "Custom Color Theme"
+msgstr ""
+
+#: includes/options/opts-general.php:10
+msgid "Used custom color theme instead of Skin Colors Available."
+msgstr ""
+
+#: includes/options/opts-general.php:18
+msgid "Page Layout"
+msgstr ""
+
+#: includes/options/opts-general.php:19
+msgid "Select the page layout type"
+msgstr ""
+
+#: includes/options/opts-general.php:21
+msgid "Boxed"
+msgstr ""
+
+#: includes/options/opts-general.php:22
+msgid "Fullwidth"
+msgstr ""
+
+#: includes/options/opts-general.php:29
+msgid "Enable Back To Top"
+msgstr ""
+
+#: includes/options/opts-general.php:30
+msgid ""
+"Enable the back to top button that appears in the bottom right corner of the "
+"screen."
+msgstr ""
+
+#: includes/options/opts-general.php:32 includes/options/opts-page.php:12
+msgid "On"
+msgstr ""
+
+#: includes/options/opts-general.php:33 includes/options/opts-page.php:13
+msgid "Off"
+msgstr ""
+
+#: includes/options/opts-general.php:40
+msgid "Google Map API key"
+msgstr ""
+
+#: includes/options/opts-header.php:3
+msgid "Header Options"
+msgstr ""
+
+#: includes/options/opts-header.php:9
+msgid "Header Layout"
+msgstr ""
+
+#: includes/options/opts-header.php:10
+msgid "Select a header layout option from the examples."
+msgstr ""
+
+#: includes/options/opts-header.php:18
+msgid "Logo in header default"
+msgstr ""
+
+#: includes/options/opts-header.php:24
+msgid "Header Mobile settings"
+msgstr ""
+
+#: includes/options/opts-header.php:30
+msgid "Header Mobile | Logo"
+msgstr ""
+
+#: includes/options/opts-header.php:36
+msgid "Header Mobile | Logo Width"
+msgstr ""
+
+#: includes/options/opts-header.php:46
+msgid "Header Mobile | Logo Padding Top"
+msgstr ""
+
+#: includes/options/opts-header.php:56
+msgid "Show User"
+msgstr ""
+
+#: includes/options/opts-page.php:4
+msgid "Page Options"
+msgstr ""
+
+#: includes/options/opts-page.php:9
+msgid "Default Show Page Heading"
+msgstr ""
+
+#: includes/options/opts-page.php:10
+msgid "Choose the default state for the page heading, shown/hidden."
+msgstr ""
+
+#: includes/options/opts-page.php:20
+msgid "Default Page Sidebar Config"
+msgstr ""
+
+#: includes/options/opts-page.php:21
+msgid "Choose the default sidebar config for pages"
+msgstr ""
+
+#: includes/options/opts-page.php:32
+msgid "Default Page Left Sidebar"
+msgstr ""
+
+#: includes/options/opts-page.php:33
+msgid "Choose the default left sidebar for pages"
+msgstr ""
+
+#: includes/options/opts-page.php:40
+msgid "Default Page Right Sidebar"
+msgstr ""
+
+#: includes/options/opts-page.php:41
+msgid "Choose the default right sidebar for pages"
+msgstr ""
+
+#: includes/options/opts-page.php:49
+msgid "Register Page Settings"
+msgstr ""
+
+#: includes/options/opts-page.php:55
+msgid "Register Image"
+msgstr ""
+
+#: includes/options/opts-portfolio.php:3
+msgid "Portfolio Options"
+msgstr ""
+
+#: includes/options/opts-portfolio.php:9
+msgid "Slug url portfolio post type"
+msgstr ""
+
+#: includes/options/opts-portfolio.php:14
+msgid "Slug Portfolio"
+msgstr ""
+
+#: includes/options/opts-portfolio.php:82
+msgid "Default Archive Page Portfolio Sidebar Config"
+msgstr ""
+
+#: includes/options/opts-portfolio.php:94
+msgid "Default Archive Page Portfolio Left Sidebar"
+msgstr ""
+
+#: includes/options/opts-portfolio.php:102
+msgid "Default Archive Page Portfolio Right Sidebar"
+msgstr ""
+
+#: includes/options/opts-portfolio.php:112
+msgid "Single Portfolio"
+msgstr ""
+
+#: includes/options/opts-portfolio.php:118
+msgid "Choose single Portfolio layout."
+msgstr ""
+
+#: includes/options/opts-portfolio.php:130
+msgid "Choose the default left sidebar for Single Portfolio."
+msgstr ""
+
+#: includes/options/opts-portfolio.php:138
+msgid "Choose the default right sidebar for Single Portfolio."
+msgstr ""
+
+#: includes/options/opts-styling.php:3
+msgid "Styling"
+msgstr ""
+
+#: includes/options/opts-styling.php:9
+msgid "Colors"
+msgstr ""
+
+#: includes/options/opts-styling.php:14
+msgid "Body Color"
+msgstr ""
+
+#: includes/options/opts-styling.php:22 includes/options/opts-styling.php:99
+msgid "Link Color"
+msgstr ""
+
+#: includes/options/opts-styling.php:30 includes/options/opts-styling.php:106
+msgid "Link Hover Color"
+msgstr ""
+
+#: includes/options/opts-styling.php:38
+msgid "Heading Color"
+msgstr ""
+
+#: includes/options/opts-styling.php:47
+msgid "Background"
+msgstr ""
+
+#: includes/options/opts-styling.php:52 includes/options/opts-styling.php:85
+msgid "Background Color"
+msgstr ""
+
+#: includes/options/opts-styling.php:53
+msgid "Used for the main site background."
+msgstr ""
+
+#: includes/options/opts-styling.php:62
+msgid "Background Image"
+msgstr ""
+
+#: includes/options/opts-styling.php:63
+msgid "Upload a background image or specify a URL (boxed layout)."
+msgstr ""
+
+#: includes/options/opts-styling.php:68
+msgid "Background Type"
+msgstr ""
+
+#: includes/options/opts-styling.php:69
+msgid ""
+"Select the background-image type (fixed image or repeat pattern/texture)."
+msgstr ""
+
+#: includes/options/opts-styling.php:71
+msgid "Fixed (Full)"
+msgstr ""
+
+#: includes/options/opts-styling.php:72
+msgid "Repeat (Pattern)"
+msgstr ""
+
+#: includes/options/opts-styling.php:80
+msgid "Footer Default Styling"
+msgstr ""
+
+#: includes/options/opts-styling.php:92
+msgid "Text Color"
+msgstr ""
+
+#: includes/options/opts-typography.php:3
+msgid "Typography"
+msgstr ""
+
+#: includes/options/opts-typography.php:10
+msgid "Main Font"
+msgstr ""
+
+#: includes/options/opts-typography.php:15
+#: includes/options/opts-typography.php:50
+msgid "Font Source"
+msgstr ""
+
+#: includes/options/opts-typography.php:17
+#: includes/options/opts-typography.php:52
+msgid "(none)"
+msgstr ""
+
+#: includes/options/opts-typography.php:18
+#: includes/options/opts-typography.php:53
+msgid "Standard + Google Webfonts"
+msgstr ""
+
+#: includes/options/opts-typography.php:26
+#: includes/options/opts-typography.php:61
+msgid "Font Face"
+msgstr ""
+
+#: includes/options/opts-typography.php:45
+msgid "Secondary Font"
+msgstr ""
+
+#: includes/options/opts-woo.php:4 includes/options/opts-woo.php:222
+msgid "Product Options"
+msgstr ""
+
+#: includes/options/opts-woo.php:9
+msgid "Products Per Page"
+msgstr ""
+
+#: includes/options/opts-woo.php:10
+msgid "Number value."
+msgstr ""
+
+#: includes/options/opts-woo.php:11
+msgid ""
+"The amount of products you would like to show per page on shop/category "
+"pages."
+msgstr ""
+
+#: includes/options/opts-woo.php:20
+msgid "Shop Options"
+msgstr ""
+
+#: includes/options/opts-woo.php:26
+msgid "Default Product Display Layout"
+msgstr ""
+
+#: includes/options/opts-woo.php:27
+msgid ""
+"Choose the default product display layout for WooCommerce shop/category "
+"pages."
+msgstr ""
+
+#: includes/options/opts-woo.php:38 includes/options/opts-woo.php:54
+#: includes/options/opts-woo.php:70 includes/options/opts-woo.php:86
+msgid "Choose the number of columns to display on shop/category pages."
+msgstr ""
+
+#: includes/options/opts-woo.php:101
+msgid "WooCommerce Sidebar Config"
+msgstr ""
+
+#: includes/options/opts-woo.php:102
+msgid "Choose the sidebar config for WooCommerce shop/category pages."
+msgstr ""
+
+#: includes/options/opts-woo.php:113
+msgid "WooCommerce Left Sidebar"
+msgstr ""
+
+#: includes/options/opts-woo.php:114
+msgid "Choose the left sidebar for WooCommerce shop/category pages."
+msgstr ""
+
+#: includes/options/opts-woo.php:121
+msgid "WooCommerce Right Sidebar"
+msgstr ""
+
+#: includes/options/opts-woo.php:122
+msgid "Choose the right sidebar for WooCommerce shop/category pages."
+msgstr ""
+
+#: includes/options/opts-woo.php:179
+msgid "Breadcrumb Image"
+msgstr ""
+
+#: includes/options/opts-woo.php:228
+msgid "Upsell Heading Text"
+msgstr ""
+
+#: includes/options/opts-woo.php:229
+msgid "Complete the look"
+msgstr ""
+
+#: includes/options/opts-woo.php:234
+msgid "Related Heading Text"
+msgstr ""
+
+#: includes/options/opts-woo.php:235
+msgid "Related Products"
+msgstr ""
+
+#: includes/template.php:73
+msgid "Main menu"
+msgstr ""
+
+#: includes/template.php:79 includes/template.php:97
+msgid "Sticky"
+msgstr ""
+
+#: includes/template.php:86
+msgid "0 Comments"
+msgstr ""
+
+#: includes/template.php:86
+msgid "1 Comment"
+msgstr ""
+
+#: includes/template.php:86
+msgid "% Comments"
+msgstr ""
+
+#: includes/template.php:105 includes/template.php:124
+msgid "0 comments"
+msgstr ""
+
+#: includes/template.php:105 includes/template.php:124
+msgid "1 comment"
+msgstr ""
+
+#: includes/template.php:105 includes/template.php:124
+msgid "% comments"
+msgstr ""
+
+#: includes/template.php:109
+msgctxt "Used between list items, there is a space after the comma."
+msgid ", "
+msgstr ""
+
+#: includes/template.php:121 tutor/loop/content/item-course-3.php:31
+msgid "by"
+msgstr ""
+
+#: includes/template.php:136
+msgid "Prev page"
+msgstr ""
+
+#: includes/template.php:137
+msgid "Next page"
+msgstr ""
+
+#: includes/template.php:138
+msgid "Load more"
+msgstr ""
+
+#: includes/template.php:193
+msgid "Post navigation"
+msgstr ""
+
+#: includes/template.php:197
+msgid "Published In"
+msgstr ""
+
+#: includes/template.php:199
+msgid "Previous Post"
+msgstr ""
+
+#: includes/template.php:200
+msgid "Next Post"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:334
+#: includes/tgmpa/config.php:89
+msgid "Install Required Plugins"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:335
+#: includes/tgmpa/config.php:90
+msgid "Install Plugins"
+msgstr ""
+
+#. translators: %s: plugin name.
+#: includes/tgmpa/class-tgm-plugin-activation.php:337
+#: includes/tgmpa/config.php:91
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#. translators: %s: plugin name.
+#: includes/tgmpa/class-tgm-plugin-activation.php:339
+msgid "Updating Plugin: %s"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:340
+#: includes/tgmpa/config.php:92
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#. translators: 1: plugin name(s).
+#: includes/tgmpa/class-tgm-plugin-activation.php:377
+#: includes/tgmpa/config.php:101
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:382
+msgid "Begin updating plugin"
+msgid_plural "Begin updating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:387
+#: includes/tgmpa/config.php:102
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:392
+#: includes/tgmpa/config.php:103
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:393
+#: includes/tgmpa/class-tgm-plugin-activation.php:917
+#: includes/tgmpa/class-tgm-plugin-activation.php:2623
+#: includes/tgmpa/class-tgm-plugin-activation.php:3670
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:394
+#: includes/tgmpa/class-tgm-plugin-activation.php:3249
+#: includes/tgmpa/config.php:104
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:395
+#: includes/tgmpa/class-tgm-plugin-activation.php:3042
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#. translators: 1: plugin name.
+#: includes/tgmpa/class-tgm-plugin-activation.php:397
+msgid "No action taken. Plugin %1$s was already active."
+msgstr ""
+
+#. translators: 1: plugin name.
+#: includes/tgmpa/class-tgm-plugin-activation.php:399
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. "
+"Please update the plugin."
+msgstr ""
+
+#. translators: 1: dashboard link.
+#: includes/tgmpa/class-tgm-plugin-activation.php:401
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:402
+msgid "Dismiss this notice"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:403
+msgid ""
+"There are one or more required or recommended plugins to install, update or "
+"activate."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:404
+msgid "Please contact the administrator of this site for help."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:607
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:608
+msgid "Update Required"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:725
+msgid "Set the parent_slug config variable instead."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:1024
+msgid ""
+"The remote plugin package does not contain a folder with the desired slug "
+"and renaming did not work."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:1024
+#: includes/tgmpa/class-tgm-plugin-activation.php:1027
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:1027
+msgid ""
+"The remote plugin package consists of more than one file, but the files are "
+"not packaged in a folder."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:1211
+#: includes/tgmpa/class-tgm-plugin-activation.php:3038
+msgctxt "plugin A *and* plugin B"
+msgid "and"
+msgstr ""
+
+#. translators: %s: version number
+#: includes/tgmpa/class-tgm-plugin-activation.php:2072
+msgid "TGMPA v%s"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2363
+msgid "Required"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2366
+msgid "Recommended"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2382
+msgid "WordPress Repository"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2385
+msgid "External Source"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2388
+msgid "Pre-Packaged"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2405
+msgid "Not Installed"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2409
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2411
+msgid "Active"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2417
+msgid "Required Update not Available"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2420
+msgid "Requires Update"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2423
+msgid "Update recommended"
+msgstr ""
+
+#. translators: 1: install status, 2: update status
+#: includes/tgmpa/class-tgm-plugin-activation.php:2432
+msgctxt "Install/Update Status"
+msgid "%1$s, %2$s"
+msgstr ""
+
+#. translators: 1: number of plugins.
+#: includes/tgmpa/class-tgm-plugin-activation.php:2478
+msgctxt "plugins"
+msgid "All <span class=\"count\">(%s)</span>"
+msgid_plural "All <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: number of plugins.
+#: includes/tgmpa/class-tgm-plugin-activation.php:2482
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgid_plural "To Install <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: number of plugins.
+#: includes/tgmpa/class-tgm-plugin-activation.php:2486
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgid_plural "Update Available <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: number of plugins.
+#: includes/tgmpa/class-tgm-plugin-activation.php:2490
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgid_plural "To Activate <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2572
+msgctxt "as in: \"version nr unknown\""
+msgid "unknown"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2580
+msgid "Installed version:"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2588
+msgid "Minimum required version:"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2600
+msgid "Available version:"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2623
+msgid "No plugins to install, update or activate."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2637
+msgid "Plugin"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2638
+msgid "Source"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2639
+msgid "Type"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2643
+msgid "Version"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2644
+#: tutor/dashboard/dashboard.php:84 tutor/dashboard/purchase_history.php:23
+msgid "Status"
+msgstr ""
+
+#. translators: %2$s: plugin name in screen reader markup
+#: includes/tgmpa/class-tgm-plugin-activation.php:2693
+msgid "Install %2$s"
+msgstr ""
+
+#. translators: %2$s: plugin name in screen reader markup
+#: includes/tgmpa/class-tgm-plugin-activation.php:2698
+msgid "Update %2$s"
+msgstr ""
+
+#. translators: %2$s: plugin name in screen reader markup
+#: includes/tgmpa/class-tgm-plugin-activation.php:2704
+msgid "Activate %2$s"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2774
+msgid "Upgrade message from the plugin author:"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2807
+msgid "Install"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2813
+msgid "Update"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2816
+msgid "Activate"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2847
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2849
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2890
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2892
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:2998
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:3024
+msgid "No plugins are available to be activated at this time."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:3248
+msgid "Plugin activation failed."
+msgstr ""
+
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+#: includes/tgmpa/class-tgm-plugin-activation.php:3588
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#. translators: 1: plugin name, 2: error message.
+#: includes/tgmpa/class-tgm-plugin-activation.php:3591
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#. translators: 1: plugin name.
+#: includes/tgmpa/class-tgm-plugin-activation.php:3593
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:3597
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#. translators: 1: plugin name.
+#: includes/tgmpa/class-tgm-plugin-activation.php:3599
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:3599
+#: includes/tgmpa/class-tgm-plugin-activation.php:3607
+msgid "Show Details"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:3599
+#: includes/tgmpa/class-tgm-plugin-activation.php:3607
+msgid "Hide Details"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:3600
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+#: includes/tgmpa/class-tgm-plugin-activation.php:3602
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:3605
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#. translators: 1: plugin name.
+#: includes/tgmpa/class-tgm-plugin-activation.php:3607
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: includes/tgmpa/class-tgm-plugin-activation.php:3608
+msgid "All installations have been completed."
+msgstr ""
+
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+#: includes/tgmpa/class-tgm-plugin-activation.php:3610
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: includes/tgmpa/config.php:22
+msgid "Zilom Themer"
+msgstr ""
+
+#: includes/tgmpa/config.php:29
+msgid "Slider Revolution"
+msgstr ""
+
+#: includes/tgmpa/config.php:35
+msgid "Elementor Page Builder"
+msgstr ""
+
+#: includes/tgmpa/config.php:40
+msgid "Tutor LMS – eLearning and online course solution"
+msgstr ""
+
+#: includes/tgmpa/config.php:45
+msgid "Nextend Social Login and Register"
+msgstr ""
+
+#: includes/tgmpa/config.php:50
+msgid "Meta Box"
+msgstr ""
+
+#: includes/tgmpa/config.php:55
+msgid "Contact Form 7"
+msgstr ""
+
+#: includes/tgmpa/config.php:60
+msgid "MailChimp"
+msgstr ""
+
+#: includes/tgmpa/config.php:65
+msgid "Events Calendar"
+msgstr ""
+
+#: includes/tgmpa/config.php:70
+msgid "Woocommerce"
+msgstr ""
+
+#: includes/tgmpa/config.php:75
+msgid "Classic Editor"
+msgstr ""
+
+#: includes/tgmpa/config.php:93
+msgid "This theme requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/tgmpa/config.php:94
+msgid "This theme recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/tgmpa/config.php:95
+msgid ""
+"Sorry, but you do not have the correct permissions to install the %s plugin. "
+"Contact the administrator of this site for help on getting the plugin "
+"installed."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to install the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/tgmpa/config.php:96
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/tgmpa/config.php:97
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/tgmpa/config.php:98
+msgid ""
+"Sorry, but you do not have the correct permissions to activate the %s "
+"plugin. Contact the administrator of this site for help on getting the "
+"plugin activated."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to activate the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins activated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/tgmpa/config.php:99
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgid_plural ""
+"The following plugins need to be updated to their latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/tgmpa/config.php:100
+msgid ""
+"Sorry, but you do not have the correct permissions to update the %s plugin. "
+"Contact the administrator of this site for help on getting the plugin "
+"updated."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to update the %s plugins. "
+"Contact the administrator of this site for help on getting the plugins "
+"updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/tgmpa/config.php:105
+msgid "All plugins installed and activated successfully. %s"
+msgstr ""
+
+#: includes/theme-functions.php:38
+msgid "Home"
+msgstr ""
+
+#: includes/theme-functions.php:76
+msgid "Search results for"
+msgstr ""
+
+#: includes/theme-functions.php:126
+msgid "Posts tagged"
+msgstr ""
+
+#: includes/theme-functions.php:133
+msgid "Articles posted by"
+msgstr ""
+
+#: includes/theme-functions.php:137 woocommerce/global/breadcrumb.php:157
+msgid "Error 404"
+msgstr ""
+
+#: includes/theme-functions.php:141 woocommerce/global/breadcrumb.php:217
+msgid "Page"
+msgstr ""
+
+#: includes/theme-functions.php:157
+msgid "Comment navigation"
+msgstr ""
+
+#: includes/theme-functions.php:160
+msgid "Older Comments"
+msgstr ""
+
+#: includes/theme-functions.php:164
+msgid "Newer Comments"
+msgstr ""
+
+#: includes/theme-hook.php:80
+msgid "Latest posts"
+msgstr ""
+
+#: includes/theme-hook.php:140
+msgid "Search"
+msgstr ""
+
+#: includes/tutor/hooks.php:24
+msgid "English"
+msgstr ""
+
+#: includes/tutor/hooks.php:27
+msgid "Language"
+msgstr ""
+
+#: includes/tutor/hooks.php:34
+msgid "Yes"
+msgstr ""
+
+#: includes/tutor/hooks.php:37
+msgid "Certificate"
+msgstr ""
+
+#: includes/tutor/hooks.php:50
+msgid "Layout Settings"
+msgstr ""
+
+#: includes/tutor/hooks.php:55
+msgid "Single Layout"
+msgstr ""
+
+#: includes/tutor/hooks.php:58
+msgid "Layout I"
+msgstr ""
+
+#: includes/tutor/hooks.php:59
+msgid "Layout II"
+msgstr ""
+
+#: includes/tutor/hooks.php:60
+msgid "Layout III"
+msgstr ""
+
+#: includes/tutor/hooks.php:61
+msgid "Layout IV"
+msgstr ""
+
+#: includes/tutor/hooks.php:62
+msgid "Layout V"
+msgstr ""
+
+#: includes/tutor/hooks.php:118
+msgid "Select Lesson Access"
+msgstr ""
+
+#: includes/tutor/hooks.php:123
+msgid "Enroll"
+msgstr ""
+
+#: includes/tutor/hooks.php:126 tutor/course-filter/filters.php:9
+#: tutor/loop/course-price-edd.php:20
+#: tutor/loop/course-price-woocommerce.php:18 tutor/loop/course-price.php:19
+#: tutor/single/course/course-entry-box.php:203
+#: tutor/single/course/wc-price-html.php:23
+msgid "Free"
+msgstr ""
+
+#: includes/woocommerce/functions.php:27
+msgid "View your shopping cart"
+msgstr ""
+
+#: search.php:60 templates/content/item-post-style-1.php:46
+msgid "Read more"
+msgstr ""
+
+#: search.php:76 templates/layout/archive.php:44
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: searchform.php:13 tutor/course-filter/filters.php:38
+msgid "Search..."
+msgstr ""
+
+#: single-gva_team.php:43
+msgid "Contact Info"
+msgstr ""
+
+#: single-gva_team.php:45
+msgid "Email: "
+msgstr ""
+
+#: single-gva_team.php:51
+msgid "Phone: "
+msgstr ""
+
+#: single-gva_team.php:77
+msgid "Educations"
+msgstr ""
+
+#: single-gva_team.php:94
+msgid "Skills"
+msgstr ""
+
+#: templates/content/item-portfolio-style-1.php:11
+#: templates/content/item-portfolio-style-2.php:8
+msgid "View all posts in %s"
+msgstr ""
+
+#: templates/content/item-user-style-1.php:36
+msgid "Teacher"
+msgstr ""
+
+#: templates/content/item-user-style-1.php:38
+#: tutor/dashboard/instructor/registration.php:39
+#: tutor/dashboard/question-answer.php:27 tutor/dashboard/registration.php:46
+#: tutor/student-public-profile.php:119
+msgid "Student"
+msgstr ""
+
+#: templates/content/item-user-style-1.php:69 tutor/archive-course-init.php:123
+#: tutor/dashboard/purchase_history.php:21
+#: tutor/shortcode/tutor-instructor.php:30
+#: tutor/single/course/instructors.php:80 tutor/student-public-profile.php:106
+msgid "Courses"
+msgstr ""
+
+#: templates/content/item-user-style-1.php:71
+#: tutor/dashboard/question-answer.php:28
+#: tutor/shortcode/tutor-instructor.php:32 tutor/student-public-profile.php:108
+msgid "Course"
+msgstr ""
+
+#: templates/content/item-user-style-1.php:85
+#: tutor/student-public-profile.php:147
+msgid "Courses Completed"
+msgstr ""
+
+#: templates/content/item-user-style-1.php:87
+#: tutor/student-public-profile.php:149
+msgid "Course Completed"
+msgstr ""
+
+#: templates/parts/header-mobile.php:108
+msgid "Sign in"
+msgstr ""
+
+#: templates/parts/header-mobile.php:119 tutor/dashboard/registration.php:133
+msgid "Register"
+msgstr ""
+
+#: tribe/events/v2/list/event.php:99 tribe-events/list/single-event.php:96
+msgid "Join Event"
+msgstr ""
+
+#: tribe-events/list/nav.php:22
+msgid "%s List Navigation"
+msgstr ""
+
+#: tribe-events/list/nav.php:28
+msgid "Previous %s"
+msgstr ""
+
+#: tribe-events/list/nav.php:36
+msgid "Next %s"
+msgstr ""
+
+#: tribe-events/list/single-featured.php:78
+msgid "Find out more"
+msgstr ""
+
+#: tribe-events/single-event.php:34
+msgctxt "%s Events plural label"
+msgid "All %s"
+msgstr ""
+
+#: tribe-events/single-event.php:78
+msgid "%s Navigation"
+msgstr ""
+
+#: tutor/archive-course.php:44
+msgid "Show Sidebar"
+msgstr ""
+
+#: tutor/course-filter/filters.php:4
+msgid "Beginner"
+msgstr ""
+
+#: tutor/course-filter/filters.php:5
+msgid "Intermediate"
+msgstr ""
+
+#: tutor/course-filter/filters.php:6
+msgid "Expert"
+msgstr ""
+
+#: tutor/course-filter/filters.php:10
+msgid "Paid"
+msgstr ""
+
+#: tutor/course-filter/filters.php:36
+msgid "Keyword"
+msgstr ""
+
+#: tutor/course-filter/filters.php:47 tutor/shortcode/instructor-filter.php:57
+msgid "Category"
+msgstr ""
+
+#: tutor/course-filter/filters.php:48 tutor/course-filter/filters.php:49
+msgid "All Category"
+msgstr ""
+
+#: tutor/course-filter/filters.php:63
+msgid "Tag"
+msgstr ""
+
+#: tutor/course-filter/filters.php:64 tutor/course-filter/filters.php:65
+msgid "All Tags"
+msgstr ""
+
+#: tutor/course-filter/filters.php:78
+#: tutor/single/course/course-entry-box.php:38
+msgid "Level"
+msgstr ""
+
+#: tutor/course-filter/filters.php:79 tutor/course-filter/filters.php:80
+msgid "All Level"
+msgstr ""
+
+#: tutor/course-filter/filters.php:97 tutor/course-filter/filters.php:98
+#: tutor/course-filter/filters.php:99
+msgid "Price"
+msgstr ""
+
+#: tutor/course-filter/filters.php:123
+msgid "Clear All Filter"
+msgstr ""
+
+#: tutor/dashboard/dashboard.php:9
+msgid "Dashboard"
+msgstr ""
+
+#: tutor/dashboard/dashboard.php:30
+msgid "Enrolled Courses"
+msgstr ""
+
+#: tutor/dashboard/dashboard.php:36
+msgid "Active Courses"
+msgstr ""
+
+#: tutor/dashboard/dashboard.php:42
+msgid "Completed Courses"
+msgstr ""
+
+#: tutor/dashboard/dashboard.php:52
+msgid "Total Students"
+msgstr ""
+
+#: tutor/dashboard/dashboard.php:58
+msgid "Total Courses"
+msgstr ""
+
+#: tutor/dashboard/dashboard.php:64
+msgid "Total Earnings"
+msgstr ""
+
+#: tutor/dashboard/dashboard.php:78
+msgid "Most Popular Courses"
+msgstr ""
+
+#: tutor/dashboard/dashboard.php:82
+msgid "Course Name"
+msgstr ""
+
+#: tutor/dashboard/dashboard.php:83 tutor/single/parts/lead-info.php:96
+msgid "Enrolled"
+msgstr ""
+
+#: tutor/dashboard/dashboard.php:92
+msgid "Published"
+msgstr ""
+
+#: tutor/dashboard/instructor/apply_for_instructor.php:16
+msgid "Apply to become an instructor"
+msgstr ""
+
+#: tutor/dashboard/instructor/logged-in.php:22
+msgid ""
+"Your application will be reviewed and the results will be sent to you by "
+"email."
+msgstr ""
+
+#: tutor/dashboard/instructor/logged-in.php:24
+msgid ""
+"Your application has been accepted. Further necessary details have been sent "
+"to your registered email account."
+msgstr ""
+
+#: tutor/dashboard/instructor/logged-in.php:26
+msgid "You have been blocked from being an instructor."
+msgstr ""
+
+#: tutor/dashboard/instructor/logged-in.php:32
+msgid "New User"
+msgstr ""
+
+#: tutor/dashboard/instructor/logged-in.php:38
+msgid "Thank you for registering as an instructor! "
+msgstr ""
+
+#: tutor/dashboard/instructor/logged-in.php:40
+msgid "Congratulations! You are now registered as an instructor."
+msgstr ""
+
+#: tutor/dashboard/instructor/logged-in.php:42
+msgid "Unfortunately, your instructor status has been removed."
+msgstr ""
+
+#: tutor/dashboard/instructor/logged-in.php:51
+msgid ""
+"We've received your application, and we will review it soon. Please hang "
+"tight!"
+msgstr ""
+
+#: tutor/dashboard/instructor/logged-in.php:53
+msgid ""
+"Start building your first course today and let your eLearning journey begin."
+msgstr ""
+
+#: tutor/dashboard/instructor/logged-in.php:55
+msgid "Please contact the site administrator for further information."
+msgstr ""
+
+#: tutor/dashboard/instructor/logged-in.php:62
+msgid "Go to Dashboard"
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:11
+#: tutor/dashboard/registration.php:11
+msgid "Registration disabled. Please ask site admin to enable registration."
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:25
+#: tutor/dashboard/registration.php:32
+msgid "Already a member"
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:27
+#: tutor/dashboard/registration.php:34
+msgid "Login"
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:36
+#: tutor/dashboard/registration.php:43
+msgid "Create a free account"
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:37
+#: tutor/dashboard/registration.php:44
+msgid "A few clicks away from creating your account."
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:40
+#: tutor/dashboard/registration.php:47
+msgid "Instructor"
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:63
+#: tutor/dashboard/instructor/registration.php:64
+#: tutor/dashboard/registration.php:70 tutor/dashboard/registration.php:71
+msgid "First Name"
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:69
+#: tutor/dashboard/instructor/registration.php:70
+#: tutor/dashboard/registration.php:77 tutor/dashboard/registration.php:79
+msgid "Last Name"
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:78
+#: tutor/dashboard/instructor/registration.php:79
+#: tutor/dashboard/registration.php:87 tutor/dashboard/registration.php:88
+msgid "User Name"
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:85
+#: tutor/dashboard/instructor/registration.php:86
+#: tutor/dashboard/registration.php:94 tutor/dashboard/registration.php:95
+msgid "E-Mail"
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:94
+#: tutor/dashboard/instructor/registration.php:95
+#: tutor/dashboard/registration.php:103 tutor/dashboard/registration.php:104
+msgid "Password"
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:101
+#: tutor/dashboard/registration.php:110
+msgid "Password confirmation"
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:102
+#: tutor/dashboard/registration.php:111
+msgid "Password Confirmation"
+msgstr ""
+
+#: tutor/dashboard/instructor/registration.php:124
+msgid "Register as instructor"
+msgstr ""
+
+#: tutor/dashboard/notifications/profile-completion.php:12
+msgid "Complete Your Profile"
+msgstr ""
+
+#: tutor/dashboard/notifications/profile-completion.php:14
+msgid "Complete your profile so people can know more about you! Go to Profile"
+msgstr ""
+
+#: tutor/dashboard/notifications/profile-completion.php:15
+#: tutor/dashboard/settings.php:8
+msgid "Settings"
+msgstr ""
+
+#: tutor/dashboard/notifications/profile-completion.php:20
+msgid "Set Your"
+msgstr ""
+
+#: tutor/dashboard/notifications/profile-completion.php:25
+msgid "% Complete"
+msgstr ""
+
+#: tutor/dashboard/notifications/profile-completion.php:25
+msgid "You are almost done!"
+msgstr ""
+
+#: tutor/dashboard/purchase_history.php:9
+msgid "Purchase History"
+msgstr ""
+
+#: tutor/dashboard/purchase_history.php:20
+msgid "ID"
+msgstr ""
+
+#: tutor/dashboard/purchase_history.php:22
+msgid "Amount"
+msgstr ""
+
+#: tutor/dashboard/purchase_history.php:24
+msgid "Date"
+msgstr ""
+
+#: tutor/dashboard/purchase_history.php:66
+msgid "No purchase history available"
+msgstr ""
+
+#: tutor/dashboard/question-answer.php:10
+msgid "Question & Answer"
+msgstr ""
+
+#: tutor/dashboard/question-answer.php:26
+msgid "Question"
+msgstr ""
+
+#: tutor/dashboard/question-answer.php:29
+msgid "Answer"
+msgstr ""
+
+#: tutor/dashboard/question-answer.php:41
+#: tutor/dashboard/question-answer.php:66
+msgid "Delete"
+msgstr ""
+
+#: tutor/dashboard/question-answer.php:67
+msgid "Delete This Question?"
+msgstr ""
+
+#: tutor/dashboard/question-answer.php:68
+msgid "You are going to delete this question, it can't be undone"
+msgstr ""
+
+#: tutor/dashboard/question-answer.php:74
+msgid "Yes, Delete Question"
+msgstr ""
+
+#: tutor/dashboard/question-answer.php:85
+msgid "No question is available"
+msgstr ""
+
+#: tutor/dashboard/wishlist.php:11 tutor/single/parts/lead-info.php:53
+msgid "Wishlist"
+msgstr ""
+
+#: tutor/dashboard/wishlist.php:43
+msgid "You do not have any course on the wishlist yet."
+msgstr ""
+
+#: tutor/dashboard.php:55
+msgid "close"
+msgstr ""
+
+#: tutor/dashboard.php:77
+msgid "View Profile"
+msgstr ""
+
+#: tutor/dashboard.php:94
+msgid "%s Become an instructor"
+msgstr ""
+
+#: tutor/dashboard.php:105
+msgid "Your Application is pending from"
+msgstr ""
+
+#: tutor/dashboard.php:127
+msgid "Your application to become an instructor was rejected on"
+msgstr ""
+
+#: tutor/dashboard.php:164
+msgid "Add A New Course"
+msgstr ""
+
+#: tutor/dashboard.php:183
+msgid "Sidebar"
+msgstr ""
+
+#: tutor/loop/add-to-cart-edd.php:17
+msgid "Buy Now"
+msgstr ""
+
+#: tutor/loop/add-to-cart-edd.php:17
+msgid "Purchase"
+msgstr ""
+
+#: tutor/loop/content/item-course-3.php:33
+msgid "in"
+msgstr ""
+
+#: tutor/loop/content/item-course-list.php:48
+#: tutor/loop/course-price-edd.php:19 tutor/loop/footer.php:48
+msgid "Get Enrolled"
+msgstr ""
+
+#: tutor/loop/course-continue.php:18
+#: tutor/single/course/course-enrolled-box.php:46
+msgid "Continue Course"
+msgstr ""
+
+#: tutor/loop/course-in-cart.php:19 woocommerce/cart/mini-cart.php:93
+msgid "View Cart"
+msgstr ""
+
+#: tutor/loop/footer.php:15
+msgid "%s Lessons"
+msgstr ""
+
+#: tutor/profile/courses_taken.php:39
+msgid "No course yet."
+msgstr ""
+
+#: tutor/shortcode/instructor-filter.php:29
+#: tutor/shortcode/instructor-filter.php:59
+msgid "Clear All"
+msgstr ""
+
+#: tutor/shortcode/instructor-filter.php:42
+#: tutor/shortcode/instructor-filter.php:49
+msgid "Search any instructor..."
+msgstr ""
+
+#: tutor/shortcode/instructor-filter.php:67
+msgid "Apply Filter"
+msgstr ""
+
+#: tutor/shortcode/tutor-instructor.php:43
+msgid "No Instructor Found"
+msgstr ""
+
+#: tutor/shortcode/tutor-instructor.php:55
+msgid "Previous"
+msgstr ""
+
+#: tutor/shortcode/tutor-instructor.php:56
+msgid "Next"
+msgstr ""
+
+#: tutor/single/assignment/content.php:30 tutor/single/lesson/content.php:34
+msgid "Go to Course Home"
+msgstr ""
+
+#: tutor/single/assignment/content.php:79
+msgid "Time Duration : "
+msgstr ""
+
+#: tutor/single/assignment/content.php:80
+msgid "No limit"
+msgstr ""
+
+#: tutor/single/assignment/content.php:91
+msgid "Deadline : "
+msgstr ""
+
+#: tutor/single/assignment/content.php:92
+#: tutor/single/course/course-topics.php:96
+msgid "Expired"
+msgstr ""
+
+#: tutor/single/assignment/content.php:100
+msgid "Total Points : "
+msgstr ""
+
+#: tutor/single/assignment/content.php:104
+msgid "Minimum Pass Points : "
+msgstr ""
+
+#: tutor/single/assignment/content.php:121
+msgid ""
+"You have missed the submission deadline. Please contact the instructor for "
+"more information."
+msgstr ""
+
+#: tutor/single/assignment/content.php:137
+msgid "Attachments"
+msgstr ""
+
+#: tutor/single/assignment/content.php:159
+msgid "Assignment answer form"
+msgstr ""
+
+#: tutor/single/assignment/content.php:169
+msgid "Write your answer briefly"
+msgstr ""
+
+#: tutor/single/assignment/content.php:176
+msgid "Attach assignment files"
+msgstr ""
+
+#: tutor/single/assignment/content.php:182
+msgid "Upload file"
+msgstr ""
+
+#: tutor/single/assignment/content.php:194
+msgid "Submit Assignment"
+msgstr ""
+
+#: tutor/single/assignment/content.php:220
+msgid "You received %s points out of %s"
+msgstr ""
+
+#: tutor/single/assignment/content.php:222
+msgid "Your Grade is "
+msgstr ""
+
+#: tutor/single/assignment/content.php:226
+msgid "Passed"
+msgstr ""
+
+#: tutor/single/assignment/content.php:232
+msgid "Failed"
+msgstr ""
+
+#: tutor/single/assignment/content.php:245
+msgid "Your Answers"
+msgstr ""
+
+#: tutor/single/assignment/content.php:256
+msgid "Your uploaded file(s)"
+msgstr ""
+
+#: tutor/single/assignment/content.php:276
+msgid "Instructor Note"
+msgstr ""
+
+#: tutor/single/assignment/content.php:292
+msgid "Submit assignment"
+msgstr ""
+
+#: tutor/single/course/complete_form.php:30
+#: tutor/single/course/course-entry-box.php:137
+msgid "Complete Course"
+msgstr ""
+
+#: tutor/single/course/continue-lesson.php:34
+msgid "Continue to lesson"
+msgstr ""
+
+#: tutor/single/course/course-benefits.php:31
+msgid "What Will I Learn?"
+msgstr ""
+
+#: tutor/single/course/course-enrolled-box.php:42
+#: tutor/single/course/course-entry-box.php:113
+msgid "Retake This Course"
+msgstr ""
+
+#: tutor/single/course/course-enrolled-box.php:44
+msgid "Start Course"
+msgstr ""
+
+#: tutor/single/course/course-enrolled-box.php:69
+msgid "You have been enrolled on %s."
+msgstr ""
+
+#: tutor/single/course/course-entry-box.php:19
+#: tutor/single/course/course-entry-box.php:20
+msgid "Total Enrolled"
+msgstr ""
+
+#: tutor/single/course/course-entry-box.php:24
+#: tutor/single/course/course-entry-box.php:25
+msgid "Duration"
+msgstr ""
+
+#: tutor/single/course/course-entry-box.php:29
+#: tutor/single/course/course-entry-box.php:30
+msgid "Last Updated"
+msgstr ""
+
+#: tutor/single/course/course-entry-box.php:73
+msgid "Course Progress"
+msgstr ""
+
+#: tutor/single/course/course-entry-box.php:83
+msgid "Complete"
+msgstr ""
+
+#: tutor/single/course/course-entry-box.php:115
+#: tutor/single/course/course-entry-box.php:172
+msgid "Start Learning"
+msgstr ""
+
+#: tutor/single/course/course-entry-box.php:117
+msgid "Continue Learning"
+msgstr ""
+
+#: tutor/single/course/course-entry-box.php:153
+msgid "You enrolled in this course on"
+msgstr ""
+
+#: tutor/single/course/course-entry-box.php:187
+msgid ""
+"This course is full right now. We limit the number of students to create an "
+"optimized and productive group dynamic."
+msgstr ""
+
+#: tutor/single/course/course-entry-box.php:213
+msgid "Enroll now"
+msgstr ""
+
+#: tutor/single/course/course-entry-box.php:219
+msgid "Free access this course"
+msgstr ""
+
+#: tutor/single/course/course-meta.php:13
+msgid "Durations:"
+msgstr ""
+
+#: tutor/single/course/course-meta.php:20
+msgid "Lectures:"
+msgstr ""
+
+#: tutor/single/course/course-meta.php:27
+msgid "Students:"
+msgstr ""
+
+#: tutor/single/course/course-meta.php:28
+msgid "Max"
+msgstr ""
+
+#: tutor/single/course/course-meta.php:34
+msgid "Level:"
+msgstr ""
+
+#: tutor/single/course/course-meta.php:41
+msgid "Language:"
+msgstr ""
+
+#: tutor/single/course/course-meta.php:48
+msgid "Certificate:"
+msgstr ""
+
+#: tutor/single/course/course-requirements.php:28
+msgid "Requirements"
+msgstr ""
+
+#: tutor/single/course/course-target-audience.php:28
+msgid "Audience"
+msgstr ""
+
+#: tutor/single/course/course-topics.php:28
+#: tutor/single/lesson/lesson_sidebar.php:37
+msgid "Course Content"
+msgstr ""
+
+#: tutor/single/course/course-topics.php:98
+msgid "Live"
+msgstr ""
+
+#: tutor/single/course/enrolled/announcements.php:30
+msgid "Posted by %s, at %s ago"
+msgstr ""
+
+#: tutor/single/course/enrolled/announcements.php:44
+msgid "No announcements posted yet."
+msgstr ""
+
+#: tutor/single/course/enrolled/announcements.php:46
+msgid ""
+"The instructor hasn’t added any announcements to this course yet. "
+"Announcements are used to inform you of updates or additions to the course."
+msgstr ""
+
+#: tutor/single/course/enrolled/completing-progress.php:19
+msgid "Course Status"
+msgstr ""
+
+#: tutor/single/course/enrolled/completing-progress.php:24
+msgid " Complete"
+msgstr ""
+
+#: tutor/single/course/enrolled/lead-info.php:37
+#: tutor/single/course/lead-info.php:34
+msgid "About Course"
+msgstr ""
+
+#: tutor/single/course/enrolled/nav.php:26
+msgid "Course Page"
+msgstr ""
+
+#: tutor/single/course/enrolled/question_and_answer.php:25
+msgid "Ask a new question"
+msgstr ""
+
+#: tutor/single/course/enrolled/question_and_answer.php:36
+msgid "Question Title"
+msgstr ""
+
+#: tutor/single/course/enrolled/question_and_answer.php:53
+msgid "Post Question"
+msgstr ""
+
+#: tutor/single/course/enrolled/question_and_answer.php:75
+#: tutor/single/course/enrolled/question_and_answer.php:103
+#: tutor/single/course/reviews.php:127
+msgid "%s ago"
+msgstr ""
+
+#: tutor/single/course/enrolled/question_and_answer.php:122
+msgid "Add an answer"
+msgstr ""
+
+#: tutor/single/course/enrolled/question_and_answer.php:131
+msgid "Write your answer here..."
+msgstr ""
+
+#: tutor/single/course/enrolled/question_and_answer.php:137
+msgid "Add Answer"
+msgstr ""
+
+#: tutor/single/course/instructors.php:27
+msgid "About the instructors"
+msgstr ""
+
+#: tutor/single/course/instructors.php:29
+msgid "About the instructor"
+msgstr ""
+
+#: tutor/single/course/instructors.php:73
+msgid "ratings"
+msgstr ""
+
+#: tutor/single/course/instructors.php:89
+msgid "students"
+msgstr ""
+
+#: tutor/single/course/material-includes.php:27
+msgid "Material Includes"
+msgstr ""
+
+#: tutor/single/course/review-form.php:15
+msgid "Edit review"
+msgstr ""
+
+#: tutor/single/course/review-form.php:17
+msgid "Write a review"
+msgstr ""
+
+#: tutor/single/course/review-form.php:34
+msgid "write a review"
+msgstr ""
+
+#: tutor/single/course/review-form.php:37
+msgid "Submit Review"
+msgstr ""
+
+#: tutor/single/course/reviews.php:32
+msgid "Student Feedback"
+msgstr ""
+
+#: tutor/single/course/reviews.php:51
+msgid "Excellent"
+msgstr ""
+
+#: tutor/single/course/reviews.php:54
+msgid "Very Good"
+msgstr ""
+
+#: tutor/single/course/reviews.php:57
+msgid "Average"
+msgstr ""
+
+#: tutor/single/course/reviews.php:60
+msgid "Poor"
+msgstr ""
+
+#: tutor/single/course/reviews.php:63
+msgid "Terrible"
+msgstr ""
+
+#: tutor/single/course/reviews.php:94
+msgid "Review"
+msgstr ""
+
+#: tutor/single/course/reviews.php:96
+msgid "Reviews"
+msgstr ""
+
+#: tutor/single/course/social_share.php:23
+msgid "Share"
+msgstr ""
+
+#: tutor/single/lesson/complete_form.php:29
+msgid "Complete Lesson"
+msgstr ""
+
+#: tutor/single/parts/lead-info.php:29
+msgid "Last Update"
+msgstr ""
+
+#: tutor/single/quiz/parts/question.php:71
+msgid "Marks : "
+msgstr ""
+
+#: tutor/single/quiz/parts/question.php:131
+msgid "Back"
+msgstr ""
+
+#: tutor/single/quiz/parts/question.php:137
+msgid "Submit & Next"
+msgstr ""
+
+#: tutor/single/quiz/parts/question.php:137
+#: tutor/single/quiz/parts/question.php:155
+msgid "Submit Quiz"
+msgstr ""
+
+#: tutor/single/quiz/parts/question.php:141
+msgid "Skip Question"
+msgstr ""
+
+#: tutor/single/quiz/top.php:33
+msgid "Quiz"
+msgstr ""
+
+#: tutor/single/quiz/top.php:49
+msgid "Questions"
+msgstr ""
+
+#: tutor/single/quiz/top.php:63
+msgid "Seconds"
+msgstr ""
+
+#: tutor/single/quiz/top.php:63
+msgid "Second"
+msgstr ""
+
+#: tutor/single/quiz/top.php:64
+msgid "Minutes"
+msgstr ""
+
+#: tutor/single/quiz/top.php:64
+msgid "Minute"
+msgstr ""
+
+#: tutor/single/quiz/top.php:65
+msgid "Hours"
+msgstr ""
+
+#: tutor/single/quiz/top.php:65
+msgid "Hour"
+msgstr ""
+
+#: tutor/single/quiz/top.php:66
+msgid "Days"
+msgstr ""
+
+#: tutor/single/quiz/top.php:66
+msgid "Day"
+msgstr ""
+
+#: tutor/single/quiz/top.php:67
+msgid "Weeks"
+msgstr ""
+
+#: tutor/single/quiz/top.php:67
+msgid "Week"
+msgstr ""
+
+#: tutor/single/quiz/top.php:72
+msgid "Quize Time"
+msgstr ""
+
+#: tutor/single/quiz/top.php:74
+msgid "%s"
+msgstr ""
+
+#: tutor/single/quiz/top.php:84
+msgid "Total Attempted"
+msgstr ""
+
+#: tutor/single/quiz/top.php:96
+msgid "Passing Grade"
+msgstr ""
+
+#: tutor/single/quiz/top.php:116
+msgid "Start Quiz"
+msgstr ""
+
+#: tutor/single/quiz/top.php:121
+msgid "Skip Quiz"
+msgstr ""
+
+#: tutor/single/quiz/top.php:137
+msgid "Skip This Quiz?"
+msgstr ""
+
+#: tutor/single/quiz/top.php:140
+msgid "Are you sure you want to skip this quiz? Please confirm your choice."
+msgstr ""
+
+#: tutor/single/quiz/top.php:148
+msgid "Yes, Skip This"
+msgstr ""
+
+#: tutor/student-public-profile.php:117
+msgid "Students"
+msgstr ""
+
+#: tutor/student-public-profile.php:136
+msgid "Courses Enrolled"
+msgstr ""
+
+#: tutor/student-public-profile.php:138
+msgid "Course Enrolled"
+msgstr ""
+
+#: woocommerce/cart/mini-cart.php:19
+msgid "Your Cart"
+msgstr ""
+
+#: woocommerce/cart/mini-cart.php:64
+msgid "Remove this item"
+msgstr ""
+
+#: woocommerce/cart/mini-cart.php:80
+msgid "No products in the cart."
+msgstr ""
+
+#: woocommerce/cart/mini-cart.php:88
+msgid "Subtotal"
+msgstr ""
+
+#: woocommerce/cart/mini-cart.php:94
+msgid "Checkout"
+msgstr ""
+
+#: woocommerce/checkout/form-checkout.php:26
+msgid "You must be logged in to checkout."
+msgstr ""
+
+#: woocommerce/checkout/form-checkout.php:58
+msgid "Your order"
+msgstr ""
+
+#: woocommerce/global/breadcrumb.php:73
+msgid "Products tagged &ldquo;"
+msgstr ""
+
+#: woocommerce/global/breadcrumb.php:101 woocommerce/global/breadcrumb.php:203
+msgid "Search results for &ldquo;"
+msgstr ""
+
+#: woocommerce/global/breadcrumb.php:207
+msgid "Posts tagged &ldquo;"
+msgstr ""
+
+#: woocommerce/global/breadcrumb.php:212
+msgid "Author:"
+msgstr ""
+
+#: woocommerce/global/quantity-input.php:18
+msgid "Qty"
+msgstr ""
+
+#: woocommerce/loop/sale-flash.php:16
+msgid "Sale!"
+msgstr ""
+
+#: woocommerce/single-product/meta.php:14
+msgid "n/a"
+msgstr ""
+
+#: woocommerce/single-product/meta.php:22
+msgid "<span class=\"title\">SKU:</span>"
+msgstr ""
+
+#: woocommerce/single-product/meta.php:26
+msgid "<span class=\"title\">Category:</span>"
+msgid_plural "<span class=\"title\">Categories:</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce/single-product/meta.php:28
+msgid "<span class=\"title\">Tag:</span>"
+msgid_plural "<span class=\"title\">Tags:</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce/single-product/rating.php:27
+msgid "Rated %s out of 5"
+msgstr ""
+
+#: woocommerce/single-product/rating.php:29
+msgid "out of %s5%s"
+msgstr ""
+
+#: woocommerce/single-product/rating.php:30
+msgid "based on %s customer rating"
+msgid_plural "based on %s customer ratings"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce/single-product/rating.php:33
+msgid "%s customer review"
+msgid_plural "%s customer reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce/single-product/sale-flash.php:16
+msgid "Sale"
+msgstr ""
+
+#: woocommerce/single-product/tabs/additional-information.php:17
+msgid "Additional Information"
+msgstr ""
+
+#: woocommerce/single-product/tabs/description.php:14
+msgid "Product Description"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "Zilom"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "https://themesgavias.com/wp/zilom/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"The 2021 theme for WordPress is a fully responsive theme that looks great on "
+"any device."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Gaviasthemes Team"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://gaviasthemes.com/"
+msgstr ""

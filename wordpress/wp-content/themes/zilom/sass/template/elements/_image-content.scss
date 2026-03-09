@@ -1,0 +1,418 @@
+.gsc-image-content{
+  	&.skin-v1{
+	 	text-align: center;
+	 	position: relative;
+	 	margin: 0 auto 30px;
+	 	padding-right: 50px;
+	 	padding-left: 20px;
+	 	max-width: 700px;
+	 	@media(max-width: 1400px){
+	 		padding-right: 10px;
+	 	}
+	 	.images{
+	 		> div{
+				position: relative;
+				overflow: hidden;
+				width: calc(50% - 5px);
+				float: left;
+			  	border-radius: 10px;
+				img{
+			  		transition: all 6s;
+			  		&:hover{
+			  			@include scale(1.2);
+			  		}
+				}
+	 		}
+		 	.image-first{
+				margin-right: 5px;
+			}
+			.image-second{
+				margin-left: 5px;
+			}
+		}
+	 	.box-content{
+	 		position: absolute;
+	 		right: 0;
+	 		bottom: 20px;
+	 		background: $white;
+	 		padding: 28px 30px 16px;
+	 		max-width: 280px;
+	 		border-radius: 10px;
+	 		z-index: 11;
+	 		box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.07);
+	 		text-align: left;
+	 		@include media-breakpoint-down(lg){
+	 			padding: 20px;
+	 		}
+	 		@include media-breakpoint-down(md){
+	 			padding: 10px 10px 5px;
+	 		}
+	 		@media(max-width: 410px){
+	 			display: none;
+	 		}
+	 		.content-inner{
+	 			display: flex; 
+	 			align-items: center;
+	 			.icon{
+	 				i{
+	 					font-size: 62px;
+	 					color: $theme-color;
+	 				}
+	 				svg{
+	 					width: 62px;
+	 					fill: $theme-color;
+	 				}
+	 			}
+				.title{
+		 			font-size: 16px;
+		 			margin: 0;
+		 			padding-left: 18px;
+				}
+			}
+	 	}
+	 	.line-color{
+	 		position: absolute;
+	 		top: 30px;
+	 		bottom: 30px;
+	 		left: 0;
+	 		width: 20px;
+	 		background: $theme-color;
+	 		border-radius: 10px 0 0 10px;
+	 	}
+	 	.link-overlay{
+	 		position: absolute;
+	 		@include size(100%, 100%);
+	 		top: 0;
+	 		left: 0;
+	 		z-index: 11;
+	 	}
+		&:hover{
+			.image{
+			  	img{
+				 	@include scale(1.1);
+			  	}
+			}
+			.box-content{
+				.title{
+					span{
+						background-size: 100% 2px; 
+					}
+				}
+			}
+		}
+  	}
+
+  	&.skin-v2{
+	 	position: relative;
+	 	margin: 0 auto 30px;
+	 	border-radius: 10px;
+	 	overflow: hidden;
+	 	max-width: 780px;
+	 	.box-content{
+			text-align: center;
+    		position: absolute;
+    		top: 60px;
+    		bottom: 60px;
+    		left: 0;
+    		width: 60px;
+    		background: $theme-color;
+    		border-radius: 0 10px 10px 0;
+    		@include media-breakpoint-down(lg){
+    			top: 30px;
+    			bottom: 30px;
+    		} 
+    		@include media-breakpoint-down(md){
+    			top: 10px;
+    			bottom: 10px;
+    		}
+    		.title{
+		    	writing-mode: vertical-rl;
+				text-orientation: mixed;
+				font-size: 14px;
+		    	color: $white;
+		    	height: 100%; 
+		    	padding: 10px 20px;
+		    	margin: 0;
+		    	text-transform: uppercase;
+		    	font-weight: 600;
+		    	letter-spacing: 1px; 
+		    	@include rotate(-180deg);
+			}
+ 		}
+  	}
+
+  	&.skin-v3{
+	 	position: relative;
+	 	text-align: left;
+	 	max-width: 600px;
+	 	margin: 0 auto 20px;
+	 	.image{
+			position: relative;
+			overflow: hidden;
+			text-align: center;
+			border-radius: 50%;
+			img{
+		  		border-radius: 50%;
+			}
+	 	}
+	 	.shape-1{
+	 		position: absolute;
+    		top: 120px;
+    		left: -41px;
+    		height: 95px;
+    		width: 95px;
+    		background-color: $theme-color-2;
+    		border-radius: 50%;
+    		animation-name: shapeMover;
+    		animation-duration: 10s;
+    		animation-timing-function: linear;
+    		animation-delay: 2s;
+    		animation-iteration-count: infinite;
+    		perspective: 100px;
+    		transform-origin: center center;
+	 	}
+	 	.shape-2{
+	 		position: absolute;
+	    	bottom: -60px;
+	    	right: 57px;
+	    	height: 180px;
+	    	width: 180px;
+	    	background-color: $theme-color;
+	    	border-radius: 50%;
+	    	z-index: -1;
+	    	animation-name: shapeMover;
+	    	animation-duration: 10s;
+	    	animation-timing-function: linear;
+	    	animation-delay: 2s;
+	    	animation-iteration-count: infinite;
+	    	perspective: 100px;
+	    	transform-origin: center center;
+	 	}
+  	}
+
+  	&.skin-v4{
+	 	text-align: center;
+	 	position: relative;
+	 	max-width: 600px;
+	 	margin: 0 auto 30px;
+	 	padding-left: 100px;
+	 	overflow: hidden;
+	 	img{
+	  		transition: all 5s;
+		}
+	 	.image{
+			position: relative;
+			.image-inner{
+				overflow: hidden;
+				border-radius: 10px;
+			}
+			.line-color{
+			  	width: 20px;
+			  	position: absolute;
+			  	top: 30px;
+			  	bottom: 300px;
+			  	border-radius: 10px 0 0 10px;
+			  	right: 100%;
+			  	z-index: 9;
+			  	background: $theme-color;
+	 		} 
+			&:hover{
+			  	img{
+				 	@include scale(1.1);
+			  	}
+			}
+		}
+	 	.image-second{
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			z-index: 11;
+			width: 260px;
+			max-width: 55%;
+			@include media-breakpoint-down(md){
+				bottom: 0;
+			} 
+			.image-second-inner{
+			  	overflow: hidden;
+			  	border-radius: 10px;
+			}
+		 	&:hover{
+			  	img{
+				 	@include scale(1.1);
+			  	}
+			}
+	 	}
+  	}
+
+  	&.skin-v5{
+	 	position: relative;
+	 	max-width: 680px;
+	 	margin: 0 auto 30px;
+	 	padding-right: 70px;
+	 	padding-bottom: 30px;
+	 	@include media-breakpoint-down(xl){ 
+	 		padding-right: 30px;
+	 	}
+	 	@media(max-width: 380px){
+	 		padding-bottom: 0;
+	 		padding-right: 0;
+	 	}
+	 	.image{
+			position: relative;
+			border-radius: 10px;
+			overflow: hidden;
+			img{
+		  		transition: all 5s;
+			}
+		}
+		.box-content{
+			max-width: 80%;
+			width: 350px;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			z-index: 11;
+			border-radius: 10px;
+			background: $theme-color;
+			padding: 30px 30px;
+			@include media-breakpoint-down(xl){ 
+				padding: 30px 20px;
+			}
+			@media(max-width: 380px){
+				max-width: 100%;
+				width: 100%;
+				position: relative;
+				margin-top: -15px;
+			}
+		 	.title{
+		 		color: $white;
+		 		font-size: 22px;
+		 		margin: 0;
+				@include media-breakpoint-down(xl){ 
+					font-size: 20px;
+				}
+		 	}
+		 	.desc{
+		 		margin-top: 15px;
+		 		font-size: 16px;
+		 		line-height: 28px;
+		 		color: rgba(255, 255, 255, 0.8);
+		 		@include media-breakpoint-down(xl){ 
+					font-size: 14px;
+					line-height: 22px;
+				}
+		 	}
+		}
+
+		&:hover{
+		  	.image img{
+			 	@include scale(1.1);
+		  	}
+		}
+  	}
+  	&.skin-v6{
+	 	position: relative;
+	 	text-align: left;
+	 	max-width: 500px;
+	 	margin: 0 auto 30px;
+	 	.box-content{
+	 		position: relative;
+	 		margin-bottom: 30px;
+	 		&:after{
+	 			content: '';
+	 			@include size(100%, 1px);
+	 			background: $black;
+	 			position: absolute;
+	 			bottom: -5px;
+	 			left: 0;
+	 			z-index: 1;
+	 		}
+	 		.content-inner{
+	 			position: relative;
+	 			z-index: 11;
+	 			padding: 55px 60px 60px;
+	 			text-align: center;
+	 			@include media-breakpoint-down(lg){
+	 				padding: 45px 20px 50px;
+	 			}
+	 			.title{
+	 				margin: 0 0 30px; 
+	 				a{
+	 					color: $white;
+	 				}
+	 			}
+	 			.desc{
+	 				color: #9d9d9d;
+	 				.medium{
+	 					color: $white;
+	 					display: block;
+	 					margin-top: 30px;
+	 					font-size: 22px;
+	 					font-weight: 700;
+	 				}
+	 			}
+	 			.read-more{
+	 				padding-top: 5px;
+	 			}
+	 		}
+	 		.bg-image{
+	 			position: absolute;
+	 			top: 0;
+	 			left: 0;
+	 			@include size(100%, 100%);
+	 			z-index: 1;
+	 			background-size: cover;
+	 			background-position: center center;
+	 			&:after{
+	 				content: '';
+	 				width: 100%;
+	 				height: 100%;
+	 				background: rgba(0, 0, 0, 0.85);
+	 				position: absolute;
+	 				top: 0;
+	 				left: 0;
+	 				z-index: 2;
+	 			}
+	 		}
+	 	}
+  	}
+
+  	&.skin-v7{
+	   position: relative;
+	   margin-bottom: 30px;
+	   text-align: left;
+	   padding: 30px 45px;
+	   border: 1px solid $border-color;
+	   border-radius: 10px;
+	   @include media-breakpoint-down(lg){
+	      padding: 30px 20px;
+	   }
+	   .image{
+	      position: relative;
+	      overflow: hidden;
+	      text-align: center;
+	      img{
+	        	@include transition(all 3s);
+	      }
+	   }  
+	   .box-content{
+	      background: $white;
+	      z-index: 1;
+	      @include transition(all 0.35s); 
+	      text-align: center;
+	      .title{
+	        	margin: 20px 0 0;
+	        	font-size: 20px;
+	        	color: $black;
+	        	line-height: 32px;
+	      }
+	      .desc{
+	        	margin-top: 25px;
+	        	color: $body-color;
+	      }
+	      .read-more{
+	        	margin-top: 28px;
+	      }
+	   }
+	}
+}

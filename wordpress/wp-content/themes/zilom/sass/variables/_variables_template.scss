@@ -1,0 +1,35 @@
+@import "../bootstrap/functions";
+@import "../bootstrap/variables";
+
+//Fonts
+// --------------------------------------------------
+$font-second               : 'reey' !default;
+// Colors
+$white                     : #ffffff !default;
+$nocolor                   : transparent !default;
+$theme-color               : var(--#{$variable-prefix}theme-color) !default;
+$theme-color-2             : #FFD45F !default;
+$border-color              : #E0E2E9 !default; 
+$bg-gray                   : #F1F2F6 !default;
+$bg-input                  : #FFF !default; 
+$color-gray                : #737373 !default;
+
+$footer-bg-color           : var(--#{$variable-prefix}footer-bg-color) !default;
+$footer-color              : var(--#{$variable-prefix}footer-color) !default;
+$footer-color-link         : var(--#{$variable-prefix}footer-color-link) !default;
+$footer-color-link-hover   : var(--#{$variable-prefix}footer-color-link-hover) !default;
+// Variables
+// --------------------------------------------------
+$image-theme-path-base  :'../images/' !default;
+$font-path              : '../fonts/';
+$woo-font-path          : '../fonts/woocommerce/' !default;
+
+$icon-font              : 'Font Awesome 5 Free' !default;
+
+//Color Skins Widget
+$widget-blue               : #0068AA !default;
+$widget-orange             : #EB5B00 !default;
+$widget-green              : #00884F !default;
+$widget-pink               : #ED1F58 !default;
+$widget-brown              : #4B393D !default;
+$widget-cornflower-blue    : #00A3DB !default;

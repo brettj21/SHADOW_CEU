@@ -1,0 +1,68 @@
+.gva-element-gva-gallery{
+	.gallery-item{
+		position: relative;
+		margin-bottom: 30px;
+		border-radius: 10px;
+		overflow: hidden;
+		.photo-gallery{
+			@include size(100%, 100%);
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 111;
+			cursor: crosshair;
+		}
+		.image-content{
+			position: absolute;
+			@include size(100%, 100%);
+			top: 0;
+			left: 0;
+			z-index: 1; 
+			opacity: 0;
+			transition: all 0.35s;
+			&:after{
+				content: '';
+				@include size(100%, 100%);
+				position: absolute;
+				top: 0; 
+				left: 0;
+				z-index: 11;
+				background: $black;
+				opacity: 0.8;
+			}
+			.content-inner{
+				position: relative;
+				z-index: 99;
+				text-align: center;
+				top: 50%;
+				left: 0;
+				width: 100%;
+				transform: translateY(-50%);
+				padding: 0 15px;
+				.title{
+					margin: 0 0 15px;
+					font-size: 24px;
+					color: $white;
+				}
+				.sub-title{
+					font-family: $font-second;
+					font-size: 30px;
+					color: $white;
+					font-weight: 400;
+				}
+			}
+		}
+		&:hover{
+			.image-content{
+				opacity: 1;
+			}
+		}
+	}
+	.owl-item.center{
+		.gallery-item{
+			.image-content{
+				opacity: 1;
+			}
+		}
+	}
+}

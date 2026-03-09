@@ -1,0 +1,102 @@
+.gsc-pricing{
+	transition: all 0.35s;
+  	&.style-1, &.style-2{
+	 	background: $white;
+	 	padding: 55px 40px 60px;
+	 	position: relative;
+	 	background: #000000;
+	 	box-shadow: 0px 10px 30px 0px rgba(65, 80, 138, 0.1);
+	 	@include media-breakpoint-down(md){
+			padding: 60px 30px 40px;
+			max-width: 500px; 
+			margin: 0 auto;
+	 	}
+	 	@include media-breakpoint-down(sm){
+	 		padding-left: 15px;
+	 		padding-right: 15px;
+
+	 	}
+		.content-inner{
+			max-width: 260px;
+			margin: 0 auto;
+			.plan-price{
+			  	padding-bottom: 25px;
+			  	text-align: center;
+			  	color: $white;
+			  	font-size: 1px;
+			  	border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+			  	.plan-price-inner{
+			  		.currency{
+			  			font-size: 26px;
+			  			position: relative;
+			  			top: -12px;
+			  		}
+			  		.price{
+					 	line-height: 1;
+					 	margin-bottom: 10px;
+					 	font-weight: 400;
+					 	font-size: 46px;
+					 	@include media-breakpoint-down(md){
+							font-size: 42px;
+					 	}
+				  	}
+				  	.interval{ 
+					 	font-size: 12px;
+					 	text-transform: uppercase;
+					 	font-weight: 500;
+					 	letter-spacing: 1px;
+				  	}
+				}
+			}
+			.title{
+			  	color: $white;
+			  	font-size: 20px;
+			  	text-align: center;
+			  	font-weight: 500;
+			  	margin: 35px 0 6px;
+			}
+			.plan-list{
+			  	list-style-type: none;
+			  	border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+			  	padding: 20px 0 30px;
+			  	text-align: center;
+			  	font-size: 16px;
+			  	li{
+				 	position: relative;
+				 	padding: 5px 20px 5px 0;
+				 	color: #9d9d9d;
+				 	line-height: 24px;
+			  	}
+			}
+			.pricing-action{
+			  	padding-top: 30px;
+			  	text-align: center;
+			}
+		}
+		&:hover{
+			box-shadow: 0px 20px 20px 0px rgba(63, 56, 54, 0.04);
+	 	}
+  	}
+  	&.style-2{
+  		transform: scale(0.92, 0.92);
+  		background: #222222;
+  		@media(max-width: 767px){
+  			transform: scale(1, 1);
+  		}
+  	}
+} 
+
+.hover-z-index{
+	@media(max-width: 767px){
+		position: relative!important;
+		margin-top: 30px;
+	}
+	@media(min-width: 768px){
+		&:hover{
+			z-index: 11!important;
+			.gsc-pricing{
+	  			transform: scale(0.96, 0.96)!important;
+			}
+		}
+	}
+} 

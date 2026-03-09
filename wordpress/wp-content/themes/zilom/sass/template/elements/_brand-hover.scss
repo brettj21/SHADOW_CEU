@@ -1,0 +1,72 @@
+.gsc-brand-hover{
+   .brand-item{
+      .brand-item-content{
+         background: $white;
+         text-align: center;
+         margin-bottom: 30px;
+         padding: 30px 20px;
+         position: relative;
+         transition: all 0.35s;
+         &:after{
+            content: '';
+            background: url('#{$image-theme-path-base}brand-pattern.png') repeat-x bottom center transparent;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 30px;
+            opacity: 0;
+         }
+         &:before{
+            content: '';
+            width: 0;
+            height: 1px;
+            background: $theme-color;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            z-index: 1;
+            transition: all 0.35s;
+         }
+         .brand-image{
+            position: relative;
+            z-index: 10;
+         }
+         &.brand-hover{
+            .brand-image-hover{
+               position: absolute;
+               top: 0;
+               left: 0;
+               @include size(100%, 100%);
+               z-index: 1;
+               padding: 30px 20px;
+            }
+            &:hover, &.active{
+               background: $theme-color;
+               &:after{
+                  opacity: 1;
+               }
+               &:before{
+                  width: 100%;
+               }
+               .brand-image{
+                  z-index: 1;
+                  opacity: 0;
+               }
+               .brand-image-hover{
+                  z-index: 11;
+                  opacity: 1;
+               }
+            }
+         }
+         .link-overlay{
+            position: absolute;
+            @include size(100%, 100%);
+            top: 0;
+            left: 0;
+            z-index: 12;
+         }
+      }
+   }
+} 

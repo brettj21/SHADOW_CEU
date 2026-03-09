@@ -1,0 +1,27 @@
+.gva-brand-carousel{
+	.brand-item-content{
+		text-align: center;
+	  	transition: all 0.35s;
+	  	padding: 10px 10px;
+		img{
+	  		opacity: 0.5;
+	  		transition: all 0.35s;
+		}
+		&:hover{
+	  		img{
+		 		opacity: 1;
+		 		animation: beat 1.5s ease 0s infinite;
+	  		}
+		}
+  	}
+  	.owl-item{
+	  	&.center{
+	  		.brand-item-content{
+	  			img{
+			 		opacity: 1;
+			 		animation: beat 1.5s ease 0s infinite;
+		  		}
+	  		}
+	  	}
+	}
+}  

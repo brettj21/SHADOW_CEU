@@ -1,0 +1,69 @@
+.service-item{
+   position: relative;
+   background: $white;
+   overflow: hidden;
+   transition: all 0.5s ease;
+   margin-bottom: 30px;
+   &.style-1{
+      .service-item-content{
+         position: relative;
+         z-index: 2;
+         text-align: center;
+         .service-content{
+            padding: 35px 30px 30px;
+            transition: all 0.35s;
+            .title{
+               font-size: 18px;
+               margin: 0 0 10px;
+            }
+            .desc{
+               padding-bottom: 10px;
+            }
+            .read-more{
+               a{
+                  font-size: 11px;
+               }
+            }
+         }
+      }
+      .link-overlay{
+         position: absolute;
+         @include size(100%, 100%);
+         top: 0;
+         left: 0;
+         z-index: 11;
+      }
+      &:hover{
+         .service-item-content{
+            .service-content{
+               background: $theme-color;
+               .title{
+                  color: $white;
+               }
+               .desc{
+                  color: rgba(255, 255, 255, 0.8);
+               }
+               .read-more a{
+                  color: $white;
+                  &:before{
+                     color: $white;
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+
+.active{
+   .service-item{
+      &.style-1{
+         box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.07);
+      }
+   }
+}
+.active.center{
+   .service-item{
+      
+   }
+}

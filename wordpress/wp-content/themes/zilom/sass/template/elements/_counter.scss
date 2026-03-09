@@ -1,0 +1,134 @@
+.milestone-block {
+  	position: relative;
+  	.milestone-content{
+	 	.milestone-number-inner{
+			.symbol{
+		  		&.after{
+			 		margin-left: -5px;
+		  		}
+		  		&.before{
+			 		margin-right: -5px;
+		  		}
+			}
+	 	}
+  	}
+  	.link-overlay{
+	 	position: absolute;
+	 	@include size(100%, 100%);
+	 	top: 0;
+	 	left: 0;
+	 	z-index: 11;
+  	}
+  	&.style-1{
+  		text-align: center;
+  		.milestone-icon{
+  			margin-bottom: 5px;
+  			.icon{
+  				i{
+  					font-size: 64px;
+  					color: $black;
+  				}
+  				svg{
+  					width: 64px;
+  					fill: $black;
+  				}
+  			}
+  		}
+  		.milestone-content{
+  			.milestone-number-inner{
+  				font-size: 24px;
+  				color: $black;
+  				font-weight: 700;
+  			}
+  			.milestone-text{
+  				font-size: 16px;
+  				font-weight: 500;
+  				margin-top: 10px;
+  			}
+  		}
+  	}
+ 	&.style-2{
+	 	.box-content{
+			position: relative;
+			display: table;
+			.milestone-icon{
+		  		display: block;
+		  		line-height: 1;
+		  		display: table-cell;
+		  		vertical-align: middle;
+		  		.icon{
+			 		color: $theme-color;
+			 		svg{
+						fill: $theme-color;
+			 		}
+		  		}
+			}
+			.milestone-content{
+		  		display: table-cell;
+		  		text-align: left;
+		  		.milestone-number-inner{
+			 		font-size: 32px;
+			 		line-height: 1;
+			 		color: $black;
+               margin-bottom: 6px;
+               font-weight: 700;
+			 		@include media-breakpoint-down(md){
+						font-size: 30px;
+			 		}
+		  		}
+		  		.milestone-text{
+			 		font-size: 18px;
+               color: $body-color;
+		  		}
+			}
+	 	}
+  	} 
+  	&.style-3{
+	 	text-align: center;
+	 	background: #0D0F13;
+	 	padding: 38px 20px 30px;
+	 	border-radius: 10px;
+	 	overflow: hidden;
+  		.milestone-icon{
+  			margin-bottom: 8px;
+  			.icon{
+  				display: inline-block;
+  				i{
+  					font-size: 64px;
+  					color: $theme-color;
+  				}
+  				svg{
+  					width: 64px;
+  					fill: $theme-color;
+
+  				}
+  			}
+  		}
+  		.milestone-content{
+  			.milestone-number-inner{
+  				font-size: 24px;
+  				color: $black;
+  				font-weight: 700;
+  				line-height: 1;
+  			}
+  			.milestone-text{
+  				font-size: 16px;
+            padding-top: 5px;
+  			}
+  		}
+		&:hover{
+			.milestone-icon{
+			  	.icon{
+					animation: beat 1.5s ease 0s infinite; 
+			  	}
+			}
+		}
+	}
+  	&:hover{
+	 	.milestone-icon{
+			.icon{
+				animation: beat 1.5s ease 0s infinite;
+			}
+	 	}
+  	}
+}
