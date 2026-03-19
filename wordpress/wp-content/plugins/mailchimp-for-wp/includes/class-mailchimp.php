@@ -6,7 +6,7 @@
 class MC4WP_MailChimp
 {
     /**
-     * @var string
+     * @var mixed
      */
     public $error_code = '';
 
@@ -25,7 +25,7 @@ class MC4WP_MailChimp
      * @param bool $update_existing Update information if this email is already on list?
      * @param bool $replace_interests Replace interest groupings, only if update_existing is true.
      *
-     * @return object
+     * @return null|object
      * @throws Exception
      */
     public function list_subscribe($list_id, $email_address, array $args = [], $update_existing = false, $replace_interests = true)
@@ -416,6 +416,7 @@ class MC4WP_MailChimp
 
         // collect all lists in separate HTTP requests
         do {
+            $data = null;
             try {
                 $data = $client->get(
                     '/lists',
@@ -445,7 +446,7 @@ class MC4WP_MailChimp
                 // break on other errors, like "API key missing"etc.
                 break;
             }
-        } while ($data->total_items >= $offset);
+        } while ($data && $data->total_items >= $offset);
 
         // key by list ID
         $lists = [];
@@ -525,7 +526,7 @@ class MC4WP_MailChimp
         /**
          * Filters the total subscriber_count for the given List ID's.
          *
-         * @param string $count
+         * @param float|int $count
          * @param array $list_ids
          *
          * @since 2.0

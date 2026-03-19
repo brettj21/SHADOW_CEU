@@ -1,5 +1,7 @@
 <?php
 
+// TODO (March 2027): Remove the "unsubscribe" action and related code in this class, as well as the "action" config setting, since the unsubscribe form type is no longer supported as of version 4.11.2.
+
 /**
  * Class MC4WP_Form
  *
@@ -7,7 +9,6 @@
  *
  * To get a form instance, use `mc4wp_get_form( $id );` where `$id` is the post ID.
  *
- * @access public
  * @since 3.0
  */
 class MC4WP_Form
@@ -195,7 +196,7 @@ class MC4WP_Form
     /**
      * @param string $element_id
      * @param array $config
-     * @return MC4WP_Form_element
+     * @return MC4WP_Form_Element
      */
     public function get_element($element_id = 'mc4wp-form', array $config = [])
     {
