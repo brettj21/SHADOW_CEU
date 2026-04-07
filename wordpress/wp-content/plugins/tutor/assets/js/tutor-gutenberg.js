@@ -1,12 +1,12 @@
-(()=>{"use strict";var t={};/************************************************************************/// The module cache
+(()=>{"use strict";var t={};// The module cache
 var r={};// The require function
 function e(n){// Check if module is in cache
 var o=r[n];if(o!==undefined){return o.exports}// Create a new module (and put it into the cache)
 var a=r[n]={exports:{}};// Execute the module function
 t[n](a,a.exports,e);// Return the exports of the module
-return a.exports}/************************************************************************/// webpack/runtime/rspack_version
-(()=>{e.rv=()=>"1.4.11"})();// webpack/runtime/rspack_unique_id
-(()=>{e.ruid="bundler=rspack@1.4.11"})();/************************************************************************/;// CONCATENATED MODULE: external "wp.i18n"
+return a.exports}// webpack/runtime/rspack_version
+(()=>{e.rv=()=>"1.6.4"})();// webpack/runtime/rspack_unique_id
+(()=>{e.ruid="bundler=rspack@1.6.4"})();// CONCATENATED MODULE: external "wp.i18n"
 const n=wp.i18n;// CONCATENATED MODULE: ./assets/react/gutenberg/custom-button.js
 /**
  * Add custom button on Gutenberg header to open Tutor frontend

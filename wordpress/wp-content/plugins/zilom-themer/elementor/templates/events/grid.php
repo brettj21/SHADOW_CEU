@@ -22,7 +22,9 @@
 					  	$post->post_count = $query->post_count;
 					  	echo '<div class="item-columns">';
                      set_query_var( 'image_size', $settings['image_size'] );
-                     get_template_part('tribe-events/list/single', $settings['style'] );
+                     $this->zilom_get_template_part('tribe-events/list/single', $settings['style'], array(
+							  'thumbnail_size' => $settings['image_size']
+							));
 					  	echo '</div>';
 					}
 				?>

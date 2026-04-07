@@ -11,7 +11,7 @@
 						<span class="title-cart"><i class="flaticon-shopping-cart"></i></span>
 						<span class="mini-cart-items">
 							<?php 
-								if(!is_admin()){
+								if( !is_admin() && (function_exists('WC') && WC()->cart) ){
 							 		echo WC()->cart->get_cart_contents_count(); 
 							 	}else{
 							 		echo '1';

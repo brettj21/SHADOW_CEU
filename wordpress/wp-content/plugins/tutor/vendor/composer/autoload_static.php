@@ -4,10 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit631a460b6010ba6d03c73cfd415f87ca
+class ComposerStaticInit393f7dbca26c39b6641c0f30851cde2c
 {
     public static $prefixLengthsPsr4 = array (
-        'T' => 
+        'T' =>
         array (
             'Tutor\\Traits\\' => 13,
             'Tutor\\TemplateImport\\' => 21,
@@ -22,39 +22,39 @@ class ComposerStaticInit631a460b6010ba6d03c73cfd415f87ca
     );
 
     public static $prefixDirsPsr4 = array (
-        'Tutor\\Traits\\' => 
+        'Tutor\\Traits\\' =>
         array (
             0 => __DIR__ . '/../..' . '/traits',
         ),
-        'Tutor\\TemplateImport\\' => 
+        'Tutor\\TemplateImport\\' =>
         array (
             0 => __DIR__ . '/../..' . '/template-import',
         ),
-        'Tutor\\PaymentGateways\\' => 
+        'Tutor\\PaymentGateways\\' =>
         array (
             0 => __DIR__ . '/../..' . '/ecommerce/PaymentGateways',
         ),
-        'Tutor\\Models\\' => 
+        'Tutor\\Models\\' =>
         array (
             0 => __DIR__ . '/../..' . '/models',
         ),
-        'Tutor\\Migrations\\' => 
+        'Tutor\\Migrations\\' =>
         array (
             0 => __DIR__ . '/../..' . '/migrations',
         ),
-        'Tutor\\Helpers\\' => 
+        'Tutor\\Helpers\\' =>
         array (
             0 => __DIR__ . '/../..' . '/helpers',
         ),
-        'Tutor\\Ecommerce\\' => 
+        'Tutor\\Ecommerce\\' =>
         array (
             0 => __DIR__ . '/../..' . '/ecommerce',
         ),
-        'Tutor\\Cache\\' => 
+        'Tutor\\Cache\\' =>
         array (
             0 => __DIR__ . '/../..' . '/cache',
         ),
-        'TUTOR\\' => 
+        'TUTOR\\' =>
         array (
             0 => __DIR__ . '/../..' . '/classes',
         ),
@@ -67,9 +67,9 @@ class ComposerStaticInit631a460b6010ba6d03c73cfd415f87ca
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit631a460b6010ba6d03c73cfd415f87ca::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit631a460b6010ba6d03c73cfd415f87ca::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit631a460b6010ba6d03c73cfd415f87ca::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit393f7dbca26c39b6641c0f30851cde2c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit393f7dbca26c39b6641c0f30851cde2c::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit393f7dbca26c39b6641c0f30851cde2c::$classMap;
 
         }, null, ClassLoader::class);
     }
