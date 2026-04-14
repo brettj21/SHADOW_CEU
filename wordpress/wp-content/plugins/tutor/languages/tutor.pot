@@ -2,23 +2,23 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Tutor LMS 3.9.8\n"
+"Project-Id-Version: Tutor LMS 3.9.9\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tutor\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-01T08:11:36+00:00\n"
+"POT-Creation-Date: 2026-04-13T11:36:19+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: tutor\n"
 
 #. Plugin Name of the plugin
 #: tutor.php
-#: classes/Admin.php:125
-#: classes/Admin.php:126
-#: classes/Admin.php:725
+#: classes/Admin.php:181
+#: classes/Admin.php:182
+#: classes/Admin.php:781
 #: classes/Gutenberg.php:144
 msgid "Tutor LMS"
 msgstr ""
@@ -56,9 +56,9 @@ msgstr ""
 #: classes/Ajax.php:166
 #: classes/Ajax.php:508
 #: classes/Ajax.php:587
-#: classes/Course.php:1997
-#: classes/Course.php:2254
-#: classes/Instructor.php:325
+#: classes/Course.php:1998
+#: classes/Course.php:2255
+#: classes/Instructor.php:331
 #: classes/Quiz.php:889
 #: classes/Q_And_A.php:220
 msgid "Access Denied"
@@ -73,7 +73,7 @@ msgid "Group multiple courses to sell together."
 msgstr ""
 
 #: classes/Addons.php:239
-#: models/OrderModel.php:307
+#: models/OrderModel.php:310
 msgid "Subscription"
 msgstr ""
 
@@ -304,18 +304,32 @@ msgid "Integrate H5P to add interactivity and engagement to your courses."
 msgstr ""
 
 #. translators: %s: version name
-#: classes/Admin.php:78
+#: classes/Admin.php:79
 #, php-format
 msgid "You're currently using Tutor LMS %s. To ensure stability, please do not use it on a live site."
 msgstr ""
 
-#: classes/Admin.php:81
-#: assets/js/tutor.js:2501
-#: assets/js/tutor.js:2506
+#: classes/Admin.php:82
+#: assets/js/tutor.js:2630
+#: assets/js/tutor.js:2635
 msgid "Warning!"
 msgstr ""
 
-#: classes/Admin.php:109
+#: classes/Admin.php:105
+msgid "Be the First to Try Tutor LMS 4.0 Beta!"
+msgstr ""
+
+#. translators: 1: opening anchor tag, 2: closing anchor tag
+#: classes/Admin.php:111
+#, php-format
+msgid "Explore the upcoming features of Tutor LMS 4.0, test the experience, and help us improve with your valuable %1$sfeedback%2$s."
+msgstr ""
+
+#: classes/Admin.php:135
+msgid "Try now"
+msgstr ""
+
+#: classes/Admin.php:165
 #: assets/js/tutor-course-builder.js:7770
 #: assets/js/tutor-course-builder.js:8066
 #: assets/js/tutor-course-builder.js:8099
@@ -332,8 +346,8 @@ msgstr ""
 msgid "Pro"
 msgstr ""
 
-#: classes/Admin.php:142
-#: classes/Admin.php:143
+#: classes/Admin.php:198
+#: classes/Admin.php:199
 #: classes/Course_List.php:78
 #: classes/Post_types.php:101
 #: templates/archive-course-init.php:132
@@ -362,36 +376,36 @@ msgstr ""
 msgid "Courses"
 msgstr ""
 
-#: classes/Admin.php:151
+#: classes/Admin.php:207
 #: assets/js/tutor-course-builder.js:4710
 msgid "Course Builder"
 msgstr ""
 
-#: classes/Admin.php:159
-#: classes/Admin.php:160
+#: classes/Admin.php:215
+#: classes/Admin.php:216
 #: views/pages/course-list.php:262
 #: assets/js/tutor-course-builder.js:12646
 msgid "Categories"
 msgstr ""
 
-#: classes/Admin.php:166
-#: classes/Admin.php:167
+#: classes/Admin.php:222
+#: classes/Admin.php:223
 #: classes/Post_types.php:195
 #: templates/single/course/tags.php:18
 #: assets/js/tutor-course-builder.js:12654
 msgid "Tags"
 msgstr ""
 
-#: classes/Admin.php:178
-#: classes/Admin.php:179
+#: classes/Admin.php:234
+#: classes/Admin.php:235
 #: classes/Students_List.php:76
 #: templates/public-profile.php:137
 #: views/pages/students.php:98
 msgid "Students"
 msgstr ""
 
-#: classes/Admin.php:187
-#: classes/Admin.php:188
+#: classes/Admin.php:243
+#: classes/Admin.php:244
 #: classes/Announcements.php:65
 #: classes/Options_V2.php:1502
 #: classes/Utils.php:9116
@@ -400,8 +414,8 @@ msgstr ""
 msgid "Announcements"
 msgstr ""
 
-#: classes/Admin.php:197
-#: classes/Admin.php:198
+#: classes/Admin.php:253
+#: classes/Admin.php:254
 #: classes/Quiz_Attempts_List.php:85
 #: classes/Utils.php:9412
 #: templates/dashboard.php:54
@@ -409,7 +423,7 @@ msgstr ""
 msgid "Quiz Attempts"
 msgstr ""
 
-#: classes/Admin.php:205
+#: classes/Admin.php:261
 #: classes/Options_V2.php:1391
 #: classes/Utils.php:9111
 #: templates/dashboard.php:54
@@ -417,46 +431,46 @@ msgstr ""
 msgid "Q&A"
 msgstr ""
 
-#: classes/Admin.php:206
+#: classes/Admin.php:262
 msgid "Q&A "
 msgstr ""
 
-#: classes/Admin.php:216
-#: classes/Admin.php:217
+#: classes/Admin.php:272
+#: classes/Admin.php:273
 #: assets/js/tutor-course-builder.js:12691
 msgid "Instructors"
 msgstr ""
 
-#: classes/Admin.php:224
-#: classes/Admin.php:225
+#: classes/Admin.php:280
+#: classes/Admin.php:281
 #: classes/Withdraw_Requests_List.php:54
 msgid "Withdraw Requests"
 msgstr ""
 
-#: classes/Admin.php:238
-#: classes/Admin.php:239
+#: classes/Admin.php:294
+#: classes/Admin.php:295
 #: views/pages/addons.php:28
 #: views/template-import/templates.php:23
 #: views/template-import/templates.php:40
 msgid "Themes"
 msgstr ""
 
-#: classes/Admin.php:246
-#: classes/Admin.php:247
+#: classes/Admin.php:302
+#: classes/Admin.php:303
 #: assets/js/tutor-addon-list.js:3335
 msgid "Addons"
 msgstr ""
 
-#: classes/Admin.php:254
-#: classes/Admin.php:255
+#: classes/Admin.php:310
+#: classes/Admin.php:311
 #: views/options/tools.php:16
 #: views/pages/tools.php:14
 msgid "Tools"
 msgstr ""
 
-#: classes/Admin.php:262
-#: classes/Admin.php:263
-#: classes/Admin.php:674
+#: classes/Admin.php:318
+#: classes/Admin.php:319
+#: classes/Admin.php:730
 #: classes/Utils.php:2928
 #: templates/dashboard/notifications/profile-completion.php:22
 #: templates/dashboard/settings.php:13
@@ -471,17 +485,17 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: classes/Admin.php:272
-#: classes/Admin.php:273
-#: classes/Admin.php:669
+#: classes/Admin.php:328
+#: classes/Admin.php:329
+#: classes/Admin.php:725
 #: views/pages/feature-promotion.php:22
 #: assets/js/tutor-addon-list.js:5035
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: classes/Admin.php:341
+#: classes/Admin.php:397
 #: classes/Tutor_Setup.php:110
-#: ecommerce/CheckoutController.php:175
+#: ecommerce/CheckoutController.php:176
 #: ecommerce/Settings.php:407
 #: ecommerce/Settings.php:437
 #: ecommerce/Tax.php:61
@@ -500,21 +514,21 @@ msgstr ""
 #: assets/js/tutor-front.js:2661
 #: assets/js/tutor-front.js:2703
 #: assets/js/tutor-front.js:2860
-#: assets/js/tutor-setup.js:1215
-#: assets/js/tutor-setup.js:1241
-#: assets/js/tutor.js:2163
-#: assets/js/tutor.js:2189
-#: assets/js/tutor.js:2807
+#: assets/js/tutor-setup.js:1344
+#: assets/js/tutor-setup.js:1370
+#: assets/js/tutor.js:2292
+#: assets/js/tutor.js:2318
+#: assets/js/tutor.js:2936
 msgid "Success"
 msgstr ""
 
-#: classes/Admin.php:440
+#: classes/Admin.php:496
 #: classes/Tools_V2.php:318
 #: views/options/template/tutor_pages.php:15
 msgid "Tutor Pages"
 msgstr ""
 
-#: classes/Admin.php:441
+#: classes/Admin.php:497
 #: classes/Tools_V2.php:103
 #: templates/dashboard/purchase_history.php:115
 #: templates/dashboard/withdraw.php:233
@@ -539,29 +553,29 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: classes/Admin.php:589
+#: classes/Admin.php:645
 #: includes/tutor-template-functions.php:1612
 #: templates/permission-denied.php:25
 #: templates/single/lesson/required-enroll.php:15
 msgid "Permission Denied"
 msgstr ""
 
-#: classes/Admin.php:695
+#: classes/Admin.php:751
 msgid "Documentation"
 msgstr ""
 
-#: classes/Admin.php:700
+#: classes/Admin.php:756
 msgid "Get Support"
 msgstr ""
 
 #. translators: %s: plugin name
-#: classes/Admin.php:724
+#: classes/Admin.php:780
 #, php-format
 msgid "If you like %1$s please leave us a %2$s rating. A huge thanks in advance!"
 msgstr ""
 
-#: classes/Admin.php:844
-#: classes/Admin.php:847
+#: classes/Admin.php:900
+#: classes/Admin.php:903
 msgid "Edit with Course Builder"
 msgstr ""
 
@@ -626,7 +640,7 @@ msgstr ""
 #: assets/js/tutor.js:206
 #: assets/js/tutor.js:380
 #: assets/js/tutor.js:384
-#: assets/js/tutor.js:2339
+#: assets/js/tutor.js:2468
 msgid "Something Went Wrong!"
 msgstr ""
 
@@ -697,6 +711,8 @@ msgstr ""
 #: classes/Utils.php:3072
 #: classes/Withdraw_Requests_List.php:89
 #: includes/translate-text.php:41
+#: models/OrderModel.php:296
+#: models/OrderModel.php:329
 #: models/UserModel.php:95
 #: templates/dashboard/dashboard.php:153
 #: templates/dashboard/my-courses.php:55
@@ -737,7 +753,7 @@ msgstr ""
 #: views/fragments/announcement-list.php:88
 #: views/fragments/announcement-list.php:164
 #: views/fragments/announcement-list.php:217
-#: views/modal/review.php:39
+#: views/modal/review.php:40
 #: views/options/template/common/modal-confirm.php:38
 #: views/pages/instructors.php:385
 #: views/pages/tools/manage-tokens.php:130
@@ -813,7 +829,7 @@ msgstr ""
 #: classes/Course_List.php:188
 #: includes/translate-text.php:145
 #: models/CouponModel.php:206
-#: models/OrderModel.php:293
+#: models/OrderModel.php:295
 #: templates/dashboard/dashboard.php:154
 #: views/pages/course-list.php:181
 #: assets/js/tutor-coupon.js:6309
@@ -957,17 +973,11 @@ msgstr ""
 msgid "Product not found"
 msgstr ""
 
-#: classes/Course.php:1707
+#: classes/Course.php:1709
 msgid "Sorting order is required"
 msgstr ""
 
-#: classes/Course.php:1712
-#: classes/Course.php:1723
-#: classes/Frontend.php:107
-msgid "Access Denied!"
-msgstr ""
-
-#: classes/Course.php:1754
+#: classes/Course.php:1755
 #: templates/loop/course-price-edd.php:80
 #: templates/loop/course-price-tutor.php:84
 #: templates/loop/course-price-woocommerce.php:77
@@ -975,61 +985,61 @@ msgstr ""
 msgid "Fully Booked"
 msgstr ""
 
-#: classes/Course.php:1980
+#: classes/Course.php:1981
 msgid "Topic title is required!"
 msgstr ""
 
-#: classes/Course.php:1982
+#: classes/Course.php:1983
 #: classes/Lesson.php:268
 #: ecommerce/BillingController.php:168
 msgid "Invalid inputs"
 msgstr ""
 
-#: classes/Course.php:2020
+#: classes/Course.php:2021
 msgid "Topic updated successfully!"
 msgstr ""
 
-#: classes/Course.php:2025
+#: classes/Course.php:2026
 msgid "Topic created successfully!"
 msgstr ""
 
-#: classes/Course.php:2071
+#: classes/Course.php:2072
 msgid "Topic deleted successfully!"
 msgstr ""
 
-#: classes/Course.php:2093
+#: classes/Course.php:2094
 msgid "Please Sign In first"
 msgstr ""
 
-#: classes/Course.php:2107
-#: classes/Course.php:3039
+#: classes/Course.php:2108
+#: classes/Course.php:3040
 msgid "You do not have permission to enroll in this course"
 msgstr ""
 
-#: classes/Course.php:2154
+#: classes/Course.php:2155
 #: classes/Lesson.php:413
 msgid "Please Sign-In"
 msgstr ""
 
-#: classes/Course.php:2158
+#: classes/Course.php:2159
 msgid "User is not enrolled in course"
 msgstr ""
 
-#: classes/Course.php:2263
+#: classes/Course.php:2264
 msgid "Only main instructor can delete this course"
 msgstr ""
 
-#: classes/Course.php:2284
+#: classes/Course.php:2285
 msgid "Course has been trashed successfully "
 msgstr ""
 
-#: classes/Course.php:2470
+#: classes/Course.php:2471
 #: classes/Options_V2.php:1258
 #: assets/js/tutor-course-builder.js:13455
 msgid "Difficulty Level"
 msgstr ""
 
-#: classes/Course.php:2471
+#: classes/Course.php:2472
 #: classes/Options_V2.php:1399
 #: classes/Options_V2.php:1407
 #: classes/Options_V2.php:1415
@@ -1047,61 +1057,61 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
-#: classes/Course.php:2474
+#: classes/Course.php:2475
 #: assets/js/tutor-course-builder.js:13457
 msgid "Course difficulty level"
 msgstr ""
 
-#: classes/Course.php:2804
+#: classes/Course.php:2805
 msgid "Complete all lessons to mark this course as complete"
 msgstr ""
 
-#: classes/Course.php:2875
+#: classes/Course.php:2876
 msgid "quiz"
 msgid_plural "quizzes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: classes/Course.php:2876
+#: classes/Course.php:2877
 msgid "assignment"
 msgid_plural "assignments"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %1$s: number of quiz/assignment pass required; %2$s: quiz/assignment string
-#: classes/Course.php:2880
-#: classes/Course.php:2885
+#: classes/Course.php:2881
+#: classes/Course.php:2886
 #, php-format
 msgid "You have to pass %1$s %2$s to complete this course."
 msgstr ""
 
 #. translators: %1$s: number of quiz pass required; %2$s: quiz string; %3$s: number of assignment pass required; %4$s: assignment string
-#: classes/Course.php:2890
+#: classes/Course.php:2891
 #, php-format
 msgid "You have to pass %1$s %2$s and %3$s %4$s to complete this course."
 msgstr ""
 
-#: classes/Course.php:2987
+#: classes/Course.php:2988
 msgid "Invalid Course ID or Access Denied."
 msgstr ""
 
-#: classes/Course.php:3033
+#: classes/Course.php:3034
 msgid "This course is password protected"
 msgstr ""
 
-#: classes/Course.php:3056
+#: classes/Course.php:3057
 msgid "Please purchase the course before enrolling"
 msgstr ""
 
-#: classes/Course.php:3062
+#: classes/Course.php:3063
 msgid "Enrollment successfully done!"
 msgstr ""
 
-#: classes/Course.php:3064
+#: classes/Course.php:3065
 msgid "Enrollment failed, please try again!"
 msgstr ""
 
-#: classes/Course.php:3067
+#: classes/Course.php:3068
 msgid "Invalid course ID"
 msgstr ""
 
@@ -1303,32 +1313,36 @@ msgstr ""
 msgid "Password Reset Request for %s"
 msgstr ""
 
+#: classes/Frontend.php:107
+msgid "Access Denied!"
+msgstr ""
+
 #: classes/Instructor.php:92
-#: classes/Instructor.php:247
+#: classes/Instructor.php:253
 #: classes/Student.php:65
 msgid "First name field is required"
 msgstr ""
 
 #: classes/Instructor.php:93
-#: classes/Instructor.php:248
+#: classes/Instructor.php:254
 #: classes/Student.php:66
 msgid "Last name field is required"
 msgstr ""
 
 #: classes/Instructor.php:94
-#: classes/Instructor.php:249
+#: classes/Instructor.php:255
 #: classes/Student.php:67
 msgid "E-Mail field is required"
 msgstr ""
 
 #: classes/Instructor.php:95
-#: classes/Instructor.php:250
+#: classes/Instructor.php:256
 #: classes/Student.php:68
 msgid "User Name field is required"
 msgstr ""
 
 #: classes/Instructor.php:96
-#: classes/Instructor.php:251
+#: classes/Instructor.php:257
 #: classes/Student.php:69
 msgid "Password field is required"
 msgstr ""
@@ -1338,30 +1352,35 @@ msgstr ""
 msgid "Password Confirmation field is required"
 msgstr ""
 
-#: classes/Instructor.php:119
-#: classes/Instructor.php:264
-#: classes/Student.php:90
+#: classes/Instructor.php:104
+#: classes/Student.php:76
+msgid "Please accept the Terms and Conditions to continue"
+msgstr ""
+
+#: classes/Instructor.php:125
+#: classes/Instructor.php:270
+#: classes/Student.php:96
 msgid "Valid E-Mail is required"
 msgstr ""
 
-#: classes/Instructor.php:122
-#: classes/Instructor.php:252
-#: classes/Instructor.php:267
-#: classes/Student.php:93
+#: classes/Instructor.php:128
+#: classes/Instructor.php:258
+#: classes/Instructor.php:273
+#: classes/Student.php:99
 #: views/pages/instructors.php:360
 msgid "Your passwords should match each other. Please recheck."
 msgstr ""
 
-#: classes/Instructor.php:214
+#: classes/Instructor.php:220
 msgid "Already applied for instructor"
 msgstr ""
 
-#: classes/Instructor.php:222
+#: classes/Instructor.php:228
 #: classes/Template.php:263
 msgid "Permission denied"
 msgstr ""
 
-#: classes/Instructor.php:308
+#: classes/Instructor.php:314
 msgid "Instructor has been added successfully"
 msgstr ""
 
@@ -3067,8 +3086,8 @@ msgstr ""
 #: assets/js/tutor-order-details.js:519
 #: assets/js/tutor-payment-settings.js:519
 #: assets/js/tutor-tax-settings.js:519
-#: assets/js/tutor.js:2683
-#: assets/js/tutor.js:2688
+#: assets/js/tutor.js:2812
+#: assets/js/tutor.js:2817
 msgid "Error"
 msgstr ""
 
@@ -3095,7 +3114,7 @@ msgid "Permission Denied!"
 msgstr ""
 
 #: classes/Reviews.php:60
-#: classes/Student.php:308
+#: classes/Student.php:314
 #: template-import/TemplateImporter.php:77
 #: template-import/TemplateImporter.php:166
 #: template-import/TemplateImporter.php:195
@@ -3121,31 +3140,31 @@ msgstr ""
 msgid "Please %s to view this page"
 msgstr ""
 
-#: classes/Student.php:221
+#: classes/Student.php:227
 msgid "Profile Updated"
 msgstr ""
 
-#: classes/Student.php:291
+#: classes/Student.php:297
 msgid "Incorrect Previous Password"
 msgstr ""
 
-#: classes/Student.php:294
+#: classes/Student.php:300
 msgid "New Password Required"
 msgstr ""
 
-#: classes/Student.php:297
+#: classes/Student.php:303
 msgid "Confirm Password Required"
 msgstr ""
 
-#: classes/Student.php:300
+#: classes/Student.php:306
 msgid "New password and confirm password does not matched"
 msgstr ""
 
-#: classes/Student.php:305
+#: classes/Student.php:311
 msgid "Password Changed"
 msgstr ""
 
-#: classes/Student.php:334
+#: classes/Student.php:340
 msgid "Social Profile Updated"
 msgstr ""
 
@@ -3828,7 +3847,7 @@ msgstr ""
 
 #: classes/Utils.php:7358
 #: includes/translate-text.php:69
-#: models/OrderModel.php:291
+#: models/OrderModel.php:293
 #: templates/dashboard/purchase_history.php:213
 #: assets/js/tutor-order-details.js:9690
 msgid "Completed"
@@ -4013,7 +4032,7 @@ msgstr ""
 #: assets/js/tutor-payment-settings.js:1959
 #: assets/js/tutor-tax-settings.js:1949
 #: assets/js/tutor-tax-settings.js:1955
-#: assets/js/tutor.js:2688
+#: assets/js/tutor.js:2817
 msgid "Something went wrong"
 msgstr ""
 
@@ -4286,23 +4305,23 @@ msgstr ""
 msgid "Course remove failed."
 msgstr ""
 
-#: ecommerce/CheckoutController.php:199
+#: ecommerce/CheckoutController.php:200
 msgid "You're already enrolled in this course."
 msgstr ""
 
-#: ecommerce/CheckoutController.php:200
+#: ecommerce/CheckoutController.php:201
 msgid "Start learning!"
 msgstr ""
 
-#: ecommerce/CheckoutController.php:225
+#: ecommerce/CheckoutController.php:226
 msgid "You are already enrolled in the following courses. Please remove those from your cart and continue."
 msgstr ""
 
-#: ecommerce/CheckoutController.php:227
+#: ecommerce/CheckoutController.php:228
 msgid "You are already enrolled in the following course. Please remove that from your cart and continue."
 msgstr ""
 
-#: ecommerce/CheckoutController.php:230
+#: ecommerce/CheckoutController.php:231
 #: templates/loop/add-to-cart-tutor.php:31
 #: templates/loop/course-in-cart.php:18
 #: templates/single/course/add-to-cart-tutor.php:72
@@ -4312,70 +4331,85 @@ msgid "View Cart"
 msgstr ""
 
 #. translators: %1$s: tax amount %2$s: included text or empty string.
-#: ecommerce/CheckoutController.php:481
+#: ecommerce/CheckoutController.php:482
 #, php-format
 msgid "Tax: %1$s%2$s"
 msgstr ""
 
 #. translators: %1$s: tax amount %2$s: included text or empty string.
-#: ecommerce/CheckoutController.php:481
+#: ecommerce/CheckoutController.php:482
 msgid " included"
 msgstr ""
 
-#: ecommerce/CheckoutController.php:573
+#: ecommerce/CheckoutController.php:588
 msgid "Invalid order"
 msgstr ""
 
-#: ecommerce/CheckoutController.php:623
+#: ecommerce/CheckoutController.php:638
 msgid "Invalid cart items"
 msgstr ""
 
-#: ecommerce/CheckoutController.php:630
-#: ecommerce/CheckoutController.php:1090
+#. translators: %s is the course title.
+#: ecommerce/CheckoutController.php:643
+#, php-format
+msgid "Invalid item: %s"
+msgstr ""
+
+#: ecommerce/CheckoutController.php:651
+#: ecommerce/CheckoutController.php:654
+msgid "Invalid plan"
+msgstr ""
+
+#: ecommerce/CheckoutController.php:657
+msgid "Invalid order type"
+msgstr ""
+
+#: ecommerce/CheckoutController.php:669
+#: ecommerce/CheckoutController.php:1129
 msgid "Billing information update failed!"
 msgstr ""
 
-#: ecommerce/CheckoutController.php:638
-#: ecommerce/CheckoutController.php:1099
+#: ecommerce/CheckoutController.php:677
+#: ecommerce/CheckoutController.php:1138
 msgid "Billing info save failed!"
 msgstr ""
 
-#: ecommerce/CheckoutController.php:645
+#: ecommerce/CheckoutController.php:684
 msgid "Select a payment method"
 msgstr ""
 
 #. translators: wp error message.
-#: ecommerce/CheckoutController.php:678
+#: ecommerce/CheckoutController.php:717
 #, php-format
 msgctxt "guest checkout"
 msgid "Order placement failed. %s"
 msgstr ""
 
-#: ecommerce/CheckoutController.php:729
-#: ecommerce/CheckoutController.php:1034
+#: ecommerce/CheckoutController.php:768
+#: ecommerce/CheckoutController.php:1073
 msgid "Failed to place order!"
 msgstr ""
 
 #. translators: %s: tax rate
-#: ecommerce/CheckoutController.php:819
+#: ecommerce/CheckoutController.php:858
 #, php-format
 msgid "Tax (%s)"
 msgstr ""
 
-#: ecommerce/CheckoutController.php:869
-#: ecommerce/CheckoutController.php:1120
+#: ecommerce/CheckoutController.php:908
+#: ecommerce/CheckoutController.php:1159
 msgid "Order not found!"
 msgstr ""
 
-#: ecommerce/CheckoutController.php:1042
+#: ecommerce/CheckoutController.php:1081
 msgid "Your order has been placed successfully!"
 msgstr ""
 
-#: ecommerce/CheckoutController.php:1063
+#: ecommerce/CheckoutController.php:1102
 msgid "Please log in first"
 msgstr ""
 
-#: ecommerce/CheckoutController.php:1124
+#: ecommerce/CheckoutController.php:1163
 msgid "Invalid order ID!"
 msgstr ""
 
@@ -5085,7 +5119,7 @@ msgid "Wrong"
 msgstr ""
 
 #: includes/translate-text.php:73
-#: models/OrderModel.php:290
+#: models/OrderModel.php:292
 #: assets/js/tutor-order-details.js:9686
 msgid "Incomplete"
 msgstr ""
@@ -5093,7 +5127,7 @@ msgstr ""
 #: includes/translate-text.php:81
 #: includes/translate-text.php:85
 #: includes/translate-text.php:97
-#: models/OrderModel.php:292
+#: models/OrderModel.php:294
 #: models/UserModel.php:95
 #: templates/dashboard/purchase_history.php:229
 #: assets/js/tutor-order-details.js:9694
@@ -5111,25 +5145,25 @@ msgid "Trial"
 msgstr ""
 
 #: includes/translate-text.php:121
-#: models/OrderModel.php:325
+#: models/OrderModel.php:328
 msgid "Partially Refunded"
 msgstr ""
 
 #: includes/translate-text.php:125
-#: models/OrderModel.php:324
+#: models/OrderModel.php:327
 #: templates/dashboard/purchase_history.php:225
 #: assets/js/tutor-order-details.js:8661
 msgid "Refunded"
 msgstr ""
 
 #: includes/translate-text.php:129
-#: models/OrderModel.php:322
+#: models/OrderModel.php:325
 #: assets/js/tutor-order-details.js:8665
 msgid "Unpaid"
 msgstr ""
 
 #: includes/translate-text.php:133
-#: models/OrderModel.php:321
+#: models/OrderModel.php:324
 #: templates/course-filter/filters.php:16
 #: assets/js/tutor-course-builder.js:12114
 #: assets/js/tutor-order-details.js:8649
@@ -5137,7 +5171,7 @@ msgid "Paid"
 msgstr ""
 
 #: includes/translate-text.php:137
-#: models/OrderModel.php:323
+#: models/OrderModel.php:326
 #: assets/js/tutor-admin.js:1132
 #: assets/js/tutor-admin.js:1234
 #: assets/js/tutor-admin.js:1240
@@ -5167,15 +5201,15 @@ msgstr ""
 #: assets/js/tutor-front.js:2869
 #: assets/js/tutor-front.js:2872
 #: assets/js/tutor-order-details.js:8653
-#: assets/js/tutor-setup.js:1366
-#: assets/js/tutor-setup.js:1369
-#: assets/js/tutor.js:2314
-#: assets/js/tutor.js:2317
-#: assets/js/tutor.js:2738
-#: assets/js/tutor.js:2741
-#: assets/js/tutor.js:2810
-#: assets/js/tutor.js:2813
-#: assets/js/tutor.js:2816
+#: assets/js/tutor-setup.js:1495
+#: assets/js/tutor-setup.js:1498
+#: assets/js/tutor.js:2443
+#: assets/js/tutor.js:2446
+#: assets/js/tutor.js:2867
+#: assets/js/tutor.js:2870
+#: assets/js/tutor.js:2939
+#: assets/js/tutor.js:2942
+#: assets/js/tutor.js:2945
 msgid "Failed"
 msgstr ""
 
@@ -5518,67 +5552,67 @@ msgstr ""
 msgid "Comment"
 msgstr ""
 
-#: models/OrderModel.php:306
+#: models/OrderModel.php:309
 msgid "Single Order"
 msgstr ""
 
-#: models/OrderModel.php:308
+#: models/OrderModel.php:311
 msgid "Renewal"
 msgstr ""
 
-#: models/OrderModel.php:405
+#: models/OrderModel.php:409
 msgid "Failed to insert order items"
 msgstr ""
 
 #. translators: %s: username
-#: models/OrderModel.php:1479
+#: models/OrderModel.php:1483
 msgid "Order marked as cancelled"
 msgstr ""
 
 #. translators: %s: username
-#: models/OrderModel.php:1479
+#: models/OrderModel.php:1483
 #, php-format
 msgid "Order marked as cancelled by %s"
 msgstr ""
 
 #. translators: %s: username
-#: models/OrderModel.php:1482
+#: models/OrderModel.php:1486
 msgid "Order marked as completed"
 msgstr ""
 
 #. translators: %s: username
-#: models/OrderModel.php:1482
+#: models/OrderModel.php:1486
 #, php-format
 msgid "Order marked as completed by %s"
 msgstr ""
 
 #. translators: %s: username
-#: models/OrderModel.php:1485
+#: models/OrderModel.php:1489
 msgid "Order marked as incomplete"
 msgstr ""
 
 #. translators: %s: username
-#: models/OrderModel.php:1485
+#: models/OrderModel.php:1489
 #, php-format
 msgid "Order marked as incomplete by %s"
 msgstr ""
 
 #. translators: %s: username
-#: models/OrderModel.php:1488
+#: models/OrderModel.php:1492
 msgid "Order marked as trash"
 msgstr ""
 
 #. translators: %s: username
-#: models/OrderModel.php:1488
+#: models/OrderModel.php:1492
 #, php-format
 msgid "Order marked as trash by %s"
 msgstr ""
 
-#: models/OrderModel.php:1859
+#: models/OrderModel.php:1863
 msgid "Payment Is Pending Due To Gateway Processing."
 msgstr ""
 
-#: models/OrderModel.php:2133
+#: models/OrderModel.php:2137
 #: templates/dashboard/purchase_history.php:284
 msgid "Pay"
 msgstr ""
@@ -5934,10 +5968,10 @@ msgstr ""
 #: views/elements/filters.php:207
 #: views/elements/list-filters.php:105
 #: views/elements/list-filters.php:181
-#: assets/js/tutor.js:1386
-#: assets/js/tutor.js:1501
-#: assets/js/tutor.js:1608
-#: assets/js/tutor.js:1659
+#: assets/js/tutor.js:1515
+#: assets/js/tutor.js:1630
+#: assets/js/tutor.js:1737
+#: assets/js/tutor.js:1788
 msgid "Loading..."
 msgstr ""
 
@@ -6447,17 +6481,16 @@ msgstr ""
 msgid "Password Confirmation"
 msgstr ""
 
-#: templates/dashboard/instructor/registration.php:160
-#: templates/dashboard/registration.php:161
-msgid "By signing up, I agree with the website's"
+#: templates/dashboard/instructor/registration.php:166
+msgid "By signing up, you agree to the"
 msgstr ""
 
-#: templates/dashboard/instructor/registration.php:160
-#: templates/dashboard/registration.php:161
+#: templates/dashboard/instructor/registration.php:166
+#: templates/dashboard/registration.php:167
 msgid "Terms and Conditions"
 msgstr ""
 
-#: templates/dashboard/instructor/registration.php:165
+#: templates/dashboard/instructor/registration.php:174
 msgid "Register as instructor"
 msgstr ""
 
@@ -6510,6 +6543,31 @@ msgstr ""
 msgid "Cancel Submission"
 msgstr ""
 
+#: templates/dashboard/my-courses.php:312
+#: templates/dashboard/reviews/given-reviews.php:97
+#: templates/dashboard/withdraw.php:137
+#: templates/modal/alert.php:24
+#: templates/modal/confirm.php:27
+#: views/course-share.php:30
+#: views/elements/bulk-confirm-popup.php:18
+#: views/elements/common-confirm-popup.php:21
+#: views/fragments/announcement-list.php:42
+#: views/fragments/announcement-list.php:121
+#: views/fragments/announcement-list.php:204
+#: views/modal/review.php:18
+#: views/options/template/common/modal-confirm.php:18
+#: views/pages/instructors.php:285
+#: views/pages/instructors.php:413
+#: views/pages/tools/manage-tokens.php:85
+#: views/pages/tools/manage-tokens.php:150
+#: views/pages/withdraw_requests.php:346
+#: views/pages/withdraw_requests.php:397
+#: views/qna/qna-table.php:168
+#: assets/js/tutor-course-builder.js:6148
+msgid "Close"
+msgstr ""
+
+#: templates/dashboard/my-courses.php:318
 #: templates/dashboard/my-courses.php:321
 msgid "Delete This Course?"
 msgstr ""
@@ -6609,7 +6667,11 @@ msgstr ""
 msgid "Reply"
 msgstr ""
 
-#: templates/dashboard/registration.php:166
+#: templates/dashboard/registration.php:167
+msgid "By signing up, you agree to the "
+msgstr ""
+
+#: templates/dashboard/registration.php:175
 msgid "Register"
 msgstr ""
 
@@ -6631,7 +6693,7 @@ msgstr ""
 
 #: templates/dashboard/reviews/edit-review-form.php:25
 #: templates/dashboard/reviews/given-reviews.php:122
-#: views/modal/review.php:42
+#: views/modal/review.php:43
 msgid "Update Review"
 msgstr ""
 
@@ -6640,13 +6702,17 @@ msgid "Course: "
 msgstr ""
 
 #: templates/dashboard/reviews/given-reviews.php:102
-#: views/modal/review.php:22
+#: views/modal/review.php:23
 msgid "How would you rate this course?"
 msgstr ""
 
 #: templates/dashboard/reviews/given-reviews.php:103
-#: views/modal/review.php:23
+#: views/modal/review.php:24
 msgid "Select Rating"
+msgstr ""
+
+#: templates/dashboard/reviews/given-reviews.php:115
+msgid "Update your review"
 msgstr ""
 
 #: templates/dashboard/reviews/given-reviews.php:137
@@ -7008,7 +7074,7 @@ msgstr ""
 #: assets/js/tutor-order-details.js:8076
 #: assets/js/tutor-tax-settings.js:6452
 #: assets/js/tutor-tax-settings.js:9597
-#: assets/js/tutor.js:1632
+#: assets/js/tutor.js:1761
 msgid "Apply"
 msgstr ""
 
@@ -7299,8 +7365,8 @@ msgstr ""
 #: templates/shortcode/instructor-filter.php:77
 #: templates/single/course/course-content.php:41
 #: views/options/template/color_picker.php:106
-#: assets/js/tutor-setup.js:708
-#: assets/js/tutor.js:999
+#: assets/js/tutor-setup.js:837
+#: assets/js/tutor.js:1128
 msgid "Show More"
 msgstr ""
 
@@ -7474,6 +7540,10 @@ msgstr ""
 msgid "Describe what you're trying to achieve and where you're getting stuck"
 msgstr ""
 
+#: templates/single/password-protected.php:25
+msgid "Back to course list"
+msgstr ""
+
 #: templates/single/password-protected.php:34
 msgid "Course is locked"
 msgstr ""
@@ -7641,6 +7711,14 @@ msgstr ""
 msgid "Page Link"
 msgstr ""
 
+#: views/course-share.php:41
+msgid "Course Link"
+msgstr ""
+
+#: views/course-share.php:42
+msgid "Copy link"
+msgstr ""
+
 #: views/course-share.php:48
 msgid "Share On Social Media"
 msgstr ""
@@ -7779,7 +7857,7 @@ msgstr ""
 msgid "Are you sure you want to delete this Announcement permanently from the site? Please confirm your choice."
 msgstr ""
 
-#: views/fragments/announcement-list.php:336
+#: views/fragments/announcement-list.php:337
 msgid "Edit Announcement"
 msgstr ""
 
@@ -7788,14 +7866,14 @@ msgid "Upload Attachments"
 msgstr ""
 
 #: views/fragments/thumbnail-uploader.php:24
-#: assets/js/tutor-setup.js:1078
-#: assets/js/tutor.js:2026
+#: assets/js/tutor-setup.js:1207
+#: assets/js/tutor.js:2155
 msgid "Select or Upload Media Of Your Chosen Persuasion"
 msgstr ""
 
 #: views/fragments/thumbnail-uploader.php:24
-#: assets/js/tutor-setup.js:1080
-#: assets/js/tutor.js:2028
+#: assets/js/tutor-setup.js:1209
+#: assets/js/tutor.js:2157
 msgid "Use this media"
 msgstr ""
 
@@ -7860,7 +7938,15 @@ msgstr ""
 msgid "Upload"
 msgstr ""
 
-#: views/modal/review.php:35
+#: views/modal/login.php:17
+msgid "Close login dialog"
+msgstr ""
+
+#: views/modal/review.php:36
+msgid "Tell us about your own personal experience taking this course"
+msgstr ""
+
+#: views/modal/review.php:36
 msgid "Tell us about your own personal experience taking this course. Was it a good match for you?"
 msgstr ""
 
@@ -8094,6 +8180,10 @@ msgstr ""
 #: views/pages/instructors.php:154
 #: views/pages/instructors.php:204
 msgid "Commission Rate"
+msgstr ""
+
+#: views/pages/instructors.php:187
+msgid "View profile"
 msgstr ""
 
 #: views/pages/instructors.php:199
@@ -8790,7 +8880,7 @@ msgid "Instructor Feedback"
 msgstr ""
 
 #: views/quiz/instructor-feedback.php:37
-#: assets/js/tutor.js:2735
+#: assets/js/tutor.js:2864
 msgid "Updated"
 msgstr ""
 
@@ -9359,8 +9449,8 @@ msgstr ""
 #: assets/js/tutor-admin.js:2253
 #: assets/js/tutor-admin.js:2500
 #: assets/js/tutor-front.js:1567
-#: assets/js/tutor-setup.js:919
-#: assets/js/tutor.js:1867
+#: assets/js/tutor-setup.js:1048
+#: assets/js/tutor.js:1996
 msgid "Operation failed"
 msgstr ""
 
@@ -9423,20 +9513,20 @@ msgstr ""
 #: assets/js/tutor-admin.js:1824
 #: assets/js/tutor-front.js:2728
 #: assets/js/tutor-front.js:2735
-#: assets/js/tutor-setup.js:1161
-#: assets/js/tutor-setup.js:1243
-#: assets/js/tutor-setup.js:1247
+#: assets/js/tutor-setup.js:1290
+#: assets/js/tutor-setup.js:1372
+#: assets/js/tutor-setup.js:1376
 #: assets/js/tutor.js:101
 #: assets/js/tutor.js:110
 #: assets/js/tutor.js:208
 #: assets/js/tutor.js:381
 #: assets/js/tutor.js:384
-#: assets/js/tutor.js:2109
-#: assets/js/tutor.js:2191
-#: assets/js/tutor.js:2195
-#: assets/js/tutor.js:2378
-#: assets/js/tutor.js:2433
-#: assets/js/tutor.js:2527
+#: assets/js/tutor.js:2238
+#: assets/js/tutor.js:2320
+#: assets/js/tutor.js:2324
+#: assets/js/tutor.js:2507
+#: assets/js/tutor.js:2562
+#: assets/js/tutor.js:2656
 msgid "Error!"
 msgstr ""
 
@@ -10714,10 +10804,6 @@ msgstr ""
 #: assets/js/tutor-course-builder.js:5849
 #: assets/js/tutor-course-builder.js:8146
 msgid "Additional"
-msgstr ""
-
-#: assets/js/tutor-course-builder.js:6148
-msgid "Close"
 msgstr ""
 
 #: assets/js/tutor-course-builder.js:6172
@@ -12753,9 +12839,9 @@ msgstr ""
 #: assets/js/tutor-front.js:2566
 #: assets/js/tutor-front.js:2643
 #: assets/js/tutor-front.js:2745
-#: assets/js/tutor-setup.js:1346
-#: assets/js/tutor.js:2294
-#: assets/js/tutor.js:2782
+#: assets/js/tutor-setup.js:1475
+#: assets/js/tutor.js:2423
+#: assets/js/tutor.js:2911
 msgid "Something went wrong, please try again"
 msgstr ""
 
@@ -13462,37 +13548,37 @@ msgstr ""
 msgid "Add Manual Payment"
 msgstr ""
 
-#: assets/js/tutor-setup.js:561
-#: assets/js/tutor.js:852
+#: assets/js/tutor-setup.js:690
+#: assets/js/tutor.js:981
 msgid "weak"
 msgstr ""
 
-#: assets/js/tutor-setup.js:567
-#: assets/js/tutor.js:858
+#: assets/js/tutor-setup.js:696
+#: assets/js/tutor.js:987
 msgid "medium"
 msgstr ""
 
-#: assets/js/tutor-setup.js:580
-#: assets/js/tutor.js:871
+#: assets/js/tutor-setup.js:709
+#: assets/js/tutor.js:1000
 msgid "strong"
 msgstr ""
 
-#: assets/js/tutor-setup.js:702
-#: assets/js/tutor.js:993
+#: assets/js/tutor-setup.js:831
+#: assets/js/tutor.js:1122
 msgid "Show Less"
 msgstr ""
 
-#: assets/js/tutor-setup.js:1109
-#: assets/js/tutor-setup.js:1139
-#: assets/js/tutor.js:2057
-#: assets/js/tutor.js:2087
+#: assets/js/tutor-setup.js:1238
+#: assets/js/tutor-setup.js:1268
+#: assets/js/tutor.js:2186
+#: assets/js/tutor.js:2216
 msgid "Are you sure to delete?"
 msgstr ""
 
-#: assets/js/tutor-setup.js:1210
+#: assets/js/tutor-setup.js:1339
 #: assets/js/tutor.js:96
 #: assets/js/tutor.js:202
-#: assets/js/tutor.js:2158
+#: assets/js/tutor.js:2287
 msgid "Updating..."
 msgstr ""
 
@@ -13679,107 +13765,107 @@ msgstr ""
 msgid "Deleting..."
 msgstr ""
 
-#: assets/js/tutor.js:1133
+#: assets/js/tutor.js:1262
 msgid "January"
 msgstr ""
 
-#: assets/js/tutor.js:1134
+#: assets/js/tutor.js:1263
 msgid "February"
 msgstr ""
 
-#: assets/js/tutor.js:1135
+#: assets/js/tutor.js:1264
 msgid "March"
 msgstr ""
 
-#: assets/js/tutor.js:1136
+#: assets/js/tutor.js:1265
 msgid "April"
 msgstr ""
 
-#: assets/js/tutor.js:1137
+#: assets/js/tutor.js:1266
 msgid "May"
 msgstr ""
 
-#: assets/js/tutor.js:1138
+#: assets/js/tutor.js:1267
 msgid "June"
 msgstr ""
 
-#: assets/js/tutor.js:1139
+#: assets/js/tutor.js:1268
 msgid "July"
 msgstr ""
 
-#: assets/js/tutor.js:1140
+#: assets/js/tutor.js:1269
 msgid "August"
 msgstr ""
 
-#: assets/js/tutor.js:1141
+#: assets/js/tutor.js:1270
 msgid "September"
 msgstr ""
 
-#: assets/js/tutor.js:1142
+#: assets/js/tutor.js:1271
 msgid "October"
 msgstr ""
 
-#: assets/js/tutor.js:1143
+#: assets/js/tutor.js:1272
 msgid "November"
 msgstr ""
 
-#: assets/js/tutor.js:1144
+#: assets/js/tutor.js:1273
 msgid "December"
 msgstr ""
 
-#: assets/js/tutor.js:1157
+#: assets/js/tutor.js:1286
 msgid "Sun"
 msgstr ""
 
-#: assets/js/tutor.js:1158
+#: assets/js/tutor.js:1287
 msgid "Mon"
 msgstr ""
 
-#: assets/js/tutor.js:1159
+#: assets/js/tutor.js:1288
 msgid "Tue"
 msgstr ""
 
-#: assets/js/tutor.js:1160
+#: assets/js/tutor.js:1289
 msgid "Wed"
 msgstr ""
 
-#: assets/js/tutor.js:1161
+#: assets/js/tutor.js:1290
 msgid "Thu"
 msgstr ""
 
-#: assets/js/tutor.js:1162
+#: assets/js/tutor.js:1291
 msgid "Fri"
 msgstr ""
 
-#: assets/js/tutor.js:1163
+#: assets/js/tutor.js:1292
 msgid "Sat"
 msgstr ""
 
-#: assets/js/tutor.js:1514
+#: assets/js/tutor.js:1643
 msgid "Time"
 msgstr ""
 
 #. translators: %d is the number of days selected
-#: assets/js/tutor.js:1624
+#: assets/js/tutor.js:1753
 #, js-format
 msgid "%d day selected"
 msgid_plural "%d days selected"
 msgstr[0] ""
 msgstr[1] ""
 
-#: assets/js/tutor.js:1624
+#: assets/js/tutor.js:1753
 msgid "0 day selected"
 msgstr ""
 
-#: assets/js/tutor.js:2501
-#: assets/js/tutor.js:2506
+#: assets/js/tutor.js:2630
+#: assets/js/tutor.js:2635
 msgid "Empty Content not Allowed"
 msgstr ""
 
-#: assets/js/tutor.js:2732
+#: assets/js/tutor.js:2861
 msgid "Course status updated"
 msgstr ""
 
-#: assets/js/tutor.js:2741
+#: assets/js/tutor.js:2870
 msgid "Course status update failed"
 msgstr ""

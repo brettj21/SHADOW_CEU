@@ -4818,13 +4818,13 @@ r.n=e=>{var t=e&&e.__esModule?()=>e["default"]:()=>e;r.d(t,{a:t});return t}})();
 r.e=e=>{return Promise.all(Object.keys(r.f).reduce((t,n)=>{r.f[n](e,t);return t},[]))}})();// webpack/runtime/get javascript chunk filename
 (()=>{// This function allow to reference chunks
 r.u=e=>{// return url for filenames not based on template
-if(e==="639")return"js/lazy-chunks/tutor-course-builder-basic.js?ver=3.9.8";if(e==="410")return"js/lazy-chunks/tutor-course-builder-curriculum.js?ver=3.9.8";if(e==="132")return"js/lazy-chunks/tutor-course-builder-additional.js?ver=3.9.8";if(e==="456")return"js/lazy-chunks/tutor-course-builder-icon.js?ver=3.9.8";// return url for filenames based on template
+if(e==="639")return"js/lazy-chunks/tutor-course-builder-basic.js?ver=3.9.9";if(e==="410")return"js/lazy-chunks/tutor-course-builder-curriculum.js?ver=3.9.9";if(e==="132")return"js/lazy-chunks/tutor-course-builder-additional.js?ver=3.9.9";if(e==="456")return"js/lazy-chunks/tutor-course-builder-icon.js?ver=3.9.9";// return url for filenames based on template
 return""+e+".javascript"}})();// webpack/runtime/get mini-css chunk filename
 (()=>{// This function allow to reference chunks
 r.miniCssF=e=>{// return url for filenames not based on template
 // return url for filenames based on template
 return""+e+".css"}})();// webpack/runtime/get_full_hash
-(()=>{r.h=()=>"f17a846344f0862d"})();// webpack/runtime/global
+(()=>{r.h=()=>"1306d8a5b39c3479"})();// webpack/runtime/global
 (()=>{r.g=(()=>{if(typeof globalThis==="object")return globalThis;try{return this||new Function("return this")()}catch(e){if(typeof window==="object")return window}})()})();// webpack/runtime/has_own_property
 (()=>{r.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t)})();// webpack/runtime/load_script
 (()=>{var e={};var t="tutor:";// loadScript function to load a script via script tag
