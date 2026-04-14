@@ -19,8 +19,10 @@
  * @package WordPress
  */
 
-//define('WP_HOME', 'https://shadow.ceunits.com');
-//define('WP_SITEURL', 'https://shadow.ceunits.com/wordpress');
+if ( ! getenv('DOCKER_ENV') ) {
+    define('WP_HOME',    'https://shadow.ceunits.com/wordpress');
+    define('WP_SITEURL', 'https://shadow.ceunits.com/wordpress');
+}
 
 
 // ** Database settings - You can get this info from your web host ** //
