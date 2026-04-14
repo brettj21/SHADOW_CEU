@@ -15,7 +15,7 @@
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
-define('CEU_DB_HOST',     'mysql');
+define('CEU_DB_HOST',     getenv('DOCKER_ENV') ? 'mysql' : 'localhost');
 define('CEU_DB_NAME',     'CEU_DB');
 define('CEU_DB_USER',     'db31242_CEU2');
 define('CEU_DB_PASS',     'Tth3c0l0ny2055');
