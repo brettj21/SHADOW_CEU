@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /admin
-Disallow: /manage
-Disallow: /includes
-Disallow: /trainings
-Disallow: /email
