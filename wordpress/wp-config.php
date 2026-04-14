@@ -27,14 +27,19 @@
 /** The name of the database for WordPress */
 define( 'DB_NAME', '2026_CEU' );
 
+/** Docker local environment DB host override */
+if ( getenv('DOCKER_ENV') ) {
+    define( 'DB_HOST', 'mysql' );
+} else {
+    define( 'DB_HOST', 'localhost:3306' );
+}
+
 /** Database username */
 define( 'DB_USER', 'ceunits' );
 
 /** Database password */
 define( 'DB_PASSWORD', 'KvGidZtwpt6z4@~7' );
 
-/** Database hostname */
-define( 'DB_HOST', 'localhost:3306' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
