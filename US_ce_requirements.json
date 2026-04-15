@@ -1,0 +1,2755 @@
+{
+  "_metadata": {
+    "title": "Continuing Education Requirements by Profession and State",
+    "description": "CE renewal requirements for Social Workers, Psychologists, Marriage & Family Therapists, and Counselors across all 50 US states + DC",
+    "last_updated": "2025-2026",
+    "disclaimer": "Requirements change frequently. Always verify with the official state licensing board before relying on this data for compliance purposes.",
+    "sources": [
+      "allpsych.com/state-ce-requirements",
+      "psychologyjobs.com/psychology-continuing-education",
+      "aswb.org",
+      "socialworklicensemap.com",
+      "careersinpsychology.org",
+      "ce4less.com",
+      "Individual state licensing board websites"
+    ]
+  },
+  "professions": {
+    "Social Workers": {
+      "Alabama": {
+        "hours_required": 36,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "Courses must be NASW, ASWB, CSWE, or board-approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LSW", "LICSW"],
+        "board": "Alabama State Board of Social Work Examiners",
+        "board_url": "https://socialwork.alabama.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Alaska": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "2 hours in ethics",
+          "Must be relevant to social work practice"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["BSW", "MSW", "LCSW"],
+        "board": "Alaska Board of Social Work Examiners",
+        "board_url": "https://www.commerce.alaska.gov/web/cbpl/professionallicensing/boardofsocialworkexaminers.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "Arizona": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "NASW or ASWB approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Arizona Board of Behavioral Health Examiners",
+        "board_url": "https://azbbhe.us/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Arkansas": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Arkansas Social Work Licensing Board",
+        "board_url": "https://www.arkansas.gov/swlb/",
+        "notes": "Verify current requirements with state board"
+      },
+      "California": {
+        "hours_required": 36,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "6 hours in law and ethics",
+          "6 hours suicide risk assessment (one-time, first renewal after 1/1/2021)",
+          "3 hours telehealth (one-time, first renewal after 7/1/2023)",
+          "Coursework on aging and long-term care",
+          "ASWB, APA, or NBCC approved providers"
+        ],
+        "online_limit": "No specific limit",
+        "license_types": ["ASW", "LCSW"],
+        "board": "California Board of Behavioral Sciences",
+        "board_url": "https://www.bbs.ca.gov/",
+        "notes": "First renewal: 18 hours minimum. Supervision training required if supervising."
+      },
+      "Colorado": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Relevant to social work practice",
+          "Approved by NASW, ASWB, CSWE, or other recognized bodies"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LSW", "LCSW", "LSCSW"],
+        "board": "Colorado Division of Professions and Occupations",
+        "board_url": "https://dpo.colorado.gov/SocialWork",
+        "notes": "Verify current requirements with state board"
+      },
+      "Connecticut": {
+        "hours_required": 15,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "1 hour cultural competency per year",
+          "2 hours on mental health conditions of veterans (first renewal, then every 6 years)",
+          "5 hours must be in-person or synchronous online",
+          "Max 10 hours asynchronous/home study",
+          "NASW, ASWB, or CSWE approved"
+        ],
+        "online_limit": "10 hours asynchronous per year",
+        "license_types": ["LSW", "LCSW"],
+        "board": "Connecticut Department of Public Health",
+        "board_url": "https://portal.ct.gov/DPH/Practitioner-Licensing--Investigations/SocialWorker/Social-Worker-Licensure",
+        "notes": "First renewal exempt from CE requirements"
+      },
+      "Delaware": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "NASW, ASWB, or CSWE approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Delaware Board of Social Work Examiners",
+        "board_url": "https://dpr.delaware.gov/boards/socialwork/",
+        "notes": "Verify current requirements with state board"
+      },
+      "District of Columbia": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "NASW, ASWB, or CSWE approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LGSW", "LICSW", "LSW"],
+        "board": "DC Board of Social Work",
+        "board_url": "https://dchealth.dc.gov/node/149482",
+        "notes": "Verify current requirements with state board"
+      },
+      "Florida": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in HIV/AIDS",
+          "2 hours in domestic violence",
+          "2 hours in medical errors",
+          "Laws and rules course required"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LCSW", "LMSW"],
+        "board": "Florida Board of Clinical Social Work, Marriage & Family Therapy and Mental Health Counseling",
+        "board_url": "https://floridasmentalhealthprofessions.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Georgia": {
+        "hours_required": 35,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Coursework related to social work practice",
+          "NASW or board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Georgia Composite Board of Professional Counselors, Social Workers, and Marriage & Family Therapists",
+        "board_url": "https://sos.ga.gov/index.php/licensing/plb/46",
+        "notes": "Verify current requirements with state board"
+      },
+      "Hawaii": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Courses relevant to social work",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LSW", "LCSW"],
+        "board": "Hawaii Board of Social Work",
+        "board_url": "https://cca.hawaii.gov/pvl/boards/social_work/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Idaho": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Courses relevant to social work practice",
+          "NASW or board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Idaho Bureau of Occupational Licenses - Social Work",
+        "board_url": "https://ibol.idaho.gov/IBOL/BoardPage.aspx?Bureau=SWO",
+        "notes": "Verify current requirements with state board"
+      },
+      "Illinois": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "3 hours cultural competence",
+          "1 hour sexual harassment prevention training",
+          "NASW, ASWB, or CSWE approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LSW", "LCSW"],
+        "board": "Illinois Department of Professional Regulation",
+        "board_url": "https://www.idfpr.com/profs/socialworker.asp",
+        "notes": "First renewal exempt from CE. Semester hour = 15 CE hours."
+      },
+      "Indiana": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "2 hours in ethics",
+          "Courses relevant to social work"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LSW", "LCSW"],
+        "board": "Indiana Social Worker, Marriage & Family Therapist, and Mental Health Counselor Board",
+        "board_url": "https://www.in.gov/pla/2361.htm",
+        "notes": "Verify current requirements with state board"
+      },
+      "Iowa": {
+        "hours_required": 45,
+        "renewal_period_years": 3,
+        "renewal_cycle": "Triennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "NASW, ASWB, or CSWE approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LISW", "LMSW", "LBSW"],
+        "board": "Iowa Board of Social Work",
+        "board_url": "https://idph.iowa.gov/Licensure/Iowa-Board-of-Social-Work",
+        "notes": "Verify current requirements with state board"
+      },
+      "Kansas": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Courses relevant to social work",
+          "NASW or board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["BSCSW", "MSCSW", "LSCSW"],
+        "board": "Kansas Behavioral Sciences Regulatory Board",
+        "board_url": "https://ksbsrb.ks.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Kentucky": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Courses relevant to social work",
+          "NASW or board-approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LCSW", "CSW"],
+        "board": "Kentucky Board of Social Work",
+        "board_url": "https://sw.ky.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Louisiana": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Louisiana State Board of Social Work Examiners",
+        "board_url": "https://www.labswe.org/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Maine": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Relevant to social work practice",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LSW", "LCSW", "LMSW"],
+        "board": "Maine Board of Social Worker Licensure",
+        "board_url": "https://www.maine.gov/pfr/professionallicensing/professions/socialworkers/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Maryland": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW-C", "LCSW-C"],
+        "board": "Maryland Board of Social Work Examiners",
+        "board_url": "https://dhmh.maryland.gov/bsw/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Massachusetts": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (birthday-based)",
+        "specific_requirements": [
+          "Must be approved by recognized entity (CSWE, ASWB ACE, NASW)",
+          "No more than 50% from any single activity",
+          "Government social workers may be exempt"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LSW", "LICSW"],
+        "board": "Massachusetts Board of Registration of Social Workers",
+        "board_url": "https://www.mass.gov/orgs/board-of-registration-of-social-workers",
+        "notes": "Government-employed social workers exclusively in that role may be exempt"
+      },
+      "Michigan": {
+        "hours_required": 45,
+        "renewal_period_years": 3,
+        "renewal_cycle": "Triennial",
+        "specific_requirements": [
+          "5 hours in ethics",
+          "2 hours in pain and symptom management",
+          "Half of hours must be completed in-person (synchronous)"
+        ],
+        "online_limit": "Maximum 50% (22.5 hours) online/distance",
+        "license_types": ["LLBSW", "LBSW", "LLMSW", "LMSW"],
+        "board": "Michigan Board of Social Work",
+        "board_url": "https://www.michigan.gov/lara/bureau-list/bpl/occ/health-occupations/social-work",
+        "notes": "Records must be kept 4 years. No exemptions for inactive/retired practitioners."
+      },
+      "Minnesota": {
+        "hours_required": 45,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LSW", "LGSW", "LISW", "LICSW"],
+        "board": "Minnesota Board of Social Work",
+        "board_url": "https://mn.gov/boards/social-work/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Mississippi": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Mississippi Board of Examiners for Social Workers and Marriage & Family Therapists",
+        "board_url": "https://www.msswmft.com/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Missouri": {
+        "hours_required": 30,
+        "renewal_period_years": 3,
+        "renewal_cycle": "Triennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "NASW or board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Missouri State Committee for Social Workers",
+        "board_url": "https://pr.mo.gov/socialworkers.asp",
+        "notes": "Verify current requirements with state board"
+      },
+      "Montana": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Relevant to social work",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Montana Board of Social Work Examiners and Professional Counselors",
+        "board_url": "https://bsd.dli.mt.gov/license/bsd_boards/swp_board/board_page.asp",
+        "notes": "Verify current requirements with state board"
+      },
+      "Nebraska": {
+        "hours_required": 36,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Nebraska State Board of Social Work",
+        "board_url": "https://dhhs.ne.gov/Pages/Social-Work.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "Nevada": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Relevant to social work practice",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LCSW"],
+        "board": "Nevada State Board of Examiners for Social Workers",
+        "board_url": "https://socwork.nv.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "New Hampshire": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LSW", "LICSW"],
+        "board": "New Hampshire Board of Mental Health Practice",
+        "board_url": "https://www.oplc.nh.gov/mental-health",
+        "notes": "Verify current requirements with state board"
+      },
+      "New Jersey": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics or professional standards"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LSW", "LCSW"],
+        "board": "New Jersey State Board of Social Work Examiners",
+        "board_url": "https://www.njconsumeraffairs.gov/sw",
+        "notes": "Verify current requirements with state board"
+      },
+      "New Mexico": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Relevant to social work practice",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "New Mexico Social Work Examiners Board",
+        "board_url": "https://www.rld.state.nm.us/boards/Social_Work_Examiners.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "New York": {
+        "hours_required": 36,
+        "renewal_period_years": 3,
+        "renewal_cycle": "Triennial",
+        "specific_requirements": [
+          "Courses relevant to social work",
+          "NASW, ASWB, CSWE, or NYSED-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMSW", "LCSW"],
+        "board": "New York State Education Department",
+        "board_url": "https://www.op.nysed.gov/professions/licensed-master-social-worker/",
+        "notes": "Verify current requirements with state board"
+      },
+      "North Carolina": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Courses relevant to social work",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LCSWA", "LCSW"],
+        "board": "North Carolina Social Work Certification and Licensure Board",
+        "board_url": "https://www.ncswboard.org/",
+        "notes": "Verify current requirements with state board"
+      },
+      "North Dakota": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "North Dakota Board of Social Work Examiners",
+        "board_url": "https://www.ndbswe.com/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Ohio": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "NASW, ASWB, or board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LSW", "LISW", "LISW-S"],
+        "board": "Ohio Counselor, Social Worker and Marriage & Family Therapist Board",
+        "board_url": "https://cswmft.ohio.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Oklahoma": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Oklahoma State Board of Licensed Social Workers",
+        "board_url": "https://www.ok.gov/healthboard/Social_Workers/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Oregon": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Oregon State Board of Licensed Social Workers",
+        "board_url": "https://www.oregon.gov/BLSW/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Pennsylvania": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "NASW, ASWB, or board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LSW", "LCSW"],
+        "board": "Pennsylvania State Board of Social Workers, Marriage and Family Therapists and Professional Counselors",
+        "board_url": "https://www.dos.pa.gov/ProfessionalLicensing/BoardsCommissions/SocialWorkersMarriageFamilyTherapistsProfessionalCounselors/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Rhode Island": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LCSW"],
+        "board": "Rhode Island Division of Professional Regulation",
+        "board_url": "https://health.ri.gov/licenses/detail.php?id=231",
+        "notes": "Verify current requirements with state board"
+      },
+      "South Carolina": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LISW-AP", "LISW-CP"],
+        "board": "South Carolina Board of Social Work Examiners",
+        "board_url": "https://llr.sc.gov/sw/",
+        "notes": "Verify current requirements with state board"
+      },
+      "South Dakota": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "South Dakota Board of Social Work Examiners",
+        "board_url": "https://dss.sd.gov/licensingboards/swexaminers.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "Tennessee": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "2 hours in ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Tennessee Board of Social Worker Licensure",
+        "board_url": "https://www.tn.gov/health/health-program-areas/health-professional-boards/social-worker/social-worker.html",
+        "notes": "Verify current requirements with state board"
+      },
+      "Texas": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "6 hours ethics (3 must be from approved ethics provider)",
+          "Human trafficking course (one-time initially, then each renewal)",
+          "NASW, ASWB, or board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Texas State Board of Social Worker Examiners",
+        "board_url": "https://www.hhs.texas.gov/about-hhs/leadership-structure/advisory-committees/texas-state-board-social-worker-examiners",
+        "notes": "Verify current requirements with state board"
+      },
+      "Utah": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "2 hours in ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LCSW", "LCSSW"],
+        "board": "Utah Division of Professional Licensing - Social Work",
+        "board_url": "https://dopl.utah.gov/licensing/social_work.html",
+        "notes": "Verify current requirements with state board"
+      },
+      "Vermont": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "2 hours in ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LICSW"],
+        "board": "Vermont Office of Professional Regulation - Social Workers",
+        "board_url": "https://sos.vermont.gov/social-workers/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Virginia": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (even years)",
+        "specific_requirements": [
+          "LCSWs: 6 hours ethics; LSWs/LMSWs: 3 hours ethics",
+          "Category I (formal): 20 hours for LCSW, 10 hours for LSW",
+          "Board-approved providers"
+        ],
+        "online_limit": "Max 10 hours Category II for LCSW",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Virginia Board of Social Work",
+        "board_url": "https://www.dhp.virginia.gov/Boards/SocialWork/",
+        "notes": "LCSWs: 30 hours; LMSWs/LBSWs: 15 hours. Renewal in even years."
+      },
+      "Washington": {
+        "hours_required": 32,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (annual for associates)",
+        "specific_requirements": [
+          "6 hours in professional ethics and law",
+          "2 hours in professional roles and boundaries",
+          "2 hours health equity training",
+          "6 hours suicide assessment, treatment, and management (WAC 246-809-615)"
+        ],
+        "online_limit": "No limit on distance learning",
+        "license_types": ["SWA", "LSWAA", "LSWAIC", "LICSW"],
+        "board": "Washington State Department of Health - Social Work",
+        "board_url": "https://doh.wa.gov/licenses-permits-and-certificates/professions-new-renew-or-update/social-worker-and-social-worker-associate",
+        "notes": "Associates: 16 hours annually. Applicants for new license need 36 hours before issuance."
+      },
+      "West Virginia": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LGSW", "LCSW"],
+        "board": "West Virginia Board of Social Work",
+        "board_url": "https://www.wvsocialworkboard.org/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Wisconsin": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Wisconsin Social Work Examining Board",
+        "board_url": "https://dsps.wi.gov/Pages/Professions/SocialWorker/Default.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "Wyoming": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LBSW", "LMSW", "LCSW"],
+        "board": "Wyoming Mental Health Professions Licensing Board",
+        "board_url": "https://mhplb.wyo.gov/",
+        "notes": "Verify current requirements with state board"
+      }
+    },
+    "Psychologists": {
+      "Alabama": {
+        "hours_required": 20,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "No specific topics required",
+          "APA or APA-equivalent programs required",
+          "Up to 6 hours can carry over to next year"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Alabama Board of Examiners in Psychology",
+        "board_url": "http://www.psychology.state.al.us/"
+      },
+      "Alaska": {
+        "hours_required": 20,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "APA or other national mental health organization approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Alaska Board of Psychologist and Psychological Associate Examiners",
+        "board_url": "https://www.commerce.alaska.gov/web/cbpl/professionallicensing/boardofpsychologists.aspx"
+      },
+      "Arizona": {
+        "hours_required": 60,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "40 hours Category I (formal instruction)",
+          "4 hours in ethics",
+          "4 hours in child abuse or domestic violence training",
+          "20 hours Category II (self-study, presentations, publications)",
+          "Category I must be APA, state-sponsored, or accredited"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Arizona Board of Psychologist Examiners",
+        "board_url": "https://psychboard.az.gov/"
+      },
+      "Arkansas": {
+        "hours_required": 20,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "APA or other national mental health organization approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Arkansas Psychology Board",
+        "board_url": "http://www.psychologyboard.arkansas.gov/"
+      },
+      "California": {
+        "hours_required": 36,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "4 hours in laws and ethics",
+          "4 hours cultural diversity/social justice",
+          "Per CPD (Continuing Professional Development) model as of 1/1/2024",
+          "APA, CMA, ACCMA, or CA Psychological Association approved"
+        ],
+        "online_limit": "Max 27 hours (75%) distance/independent learning",
+        "board": "California Board of Psychology",
+        "board_url": "https://www.psychology.ca.gov/"
+      },
+      "Colorado": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Professional development courses"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Colorado State Board of Psychologist Examiners",
+        "board_url": "https://dpo.colorado.gov/PsychExaminers"
+      },
+      "Connecticut": {
+        "hours_required": 10,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "No specific required topics",
+          "APA, university, or professional organization approved",
+          "Max 5 hours online"
+        ],
+        "online_limit": "5 hours online maximum",
+        "board": "Connecticut Board of Examiners of Psychologists",
+        "board_url": "https://portal.ct.gov/DPH/Practitioner-Licensing--Investigations/Psychologist/Psychologist-Licensure"
+      },
+      "Delaware": {
+        "hours_required": 50,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (renewal 8/1 odd years)",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "APA sponsorship or equivalent"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Delaware Board of Examiners of Psychologists",
+        "board_url": "http://dpr.delaware.gov/boards/psychology/"
+      },
+      "District of Columbia": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "2 hours LGBTQ",
+          "3 hours public health priorities (10% requirement)",
+          "At least 15 hours live/synchronous program",
+          "APA approved"
+        ],
+        "online_limit": "Max 15 hours asynchronous",
+        "board": "DC Board of Psychology",
+        "board_url": "https://dchealth.dc.gov/node/149382"
+      },
+      "Florida": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "2 hours medical errors",
+          "3 hours ethics and Florida law",
+          "2 hours domestic violence (every third renewal / 6 years)"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Florida Board of Psychology",
+        "board_url": "http://floridaspsychology.gov/"
+      },
+      "Georgia": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "6 hours ethics at a personally attended workshop",
+          "3 hours psychopharmacology",
+          "3 hours diversity (first CE renewal)",
+          "APA or other approved sponsorship"
+        ],
+        "online_limit": "Max 16 hours online",
+        "board": "Georgia Board of Examiners of Psychologists",
+        "board_url": "https://sos.ga.gov/index.php/licensing/plb/44"
+      },
+      "Hawaii": {
+        "hours_required": 18,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (renewal 6/30 even years)",
+        "specific_requirements": [
+          "APA or state psychological association approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Hawaii Board of Psychology",
+        "board_url": "https://cca.hawaii.gov/pvl/boards/psychology/"
+      },
+      "Idaho": {
+        "hours_required": 20,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "4 hours ethics/standards/laws every 3 years",
+          "APA or other approved",
+          "Max 6 hours non-accredited or self-study",
+          "Up to 20 hours carry over to next year"
+        ],
+        "online_limit": "Max 10 hours online per year",
+        "board": "Idaho Board of Psychologist Examiners",
+        "board_url": "https://ibol.idaho.gov/IBOL/BoardPage.aspx?Bureau=PSY"
+      },
+      "Illinois": {
+        "hours_required": 24,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "APA or other approved"
+        ],
+        "online_limit": "Max 18 hours online",
+        "board": "Illinois Psychologists Licensing Board",
+        "board_url": "http://www.idfpr.com/profs/psych.asp"
+      },
+      "Indiana": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "No specific topics required",
+          "Home study must have APA or similar sponsorship"
+        ],
+        "online_limit": "Max 10 hours home study",
+        "board": "Indiana State Psychology Board",
+        "board_url": "http://www.in.gov/pla/psych.htm"
+      },
+      "Iowa": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (renewal 7/1 even years)",
+        "specific_requirements": [
+          "6 hours ethics, Iowa laws/rules, or risk management (2nd renewal and after)",
+          "APA approval accepted but not required"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Iowa Board of Psychology",
+        "board_url": "http://idph.iowa.gov/Licensure/Iowa-Board-of-Psychology"
+      },
+      "Kansas": {
+        "hours_required": 50,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (renewal June 30 even years)",
+        "specific_requirements": [
+          "3 hours in ethics",
+          "6 hours diagnosis and treatment",
+          "National or regional accreditation required"
+        ],
+        "online_limit": "Max 40 hours directed self-study; max 12 hours non-directed self-study",
+        "board": "Kansas Behavioral Sciences Regulatory Board",
+        "board_url": "https://ksbsrb.ks.gov/"
+      },
+      "Kentucky": {
+        "hours_required": 39,
+        "renewal_period_years": 3,
+        "renewal_cycle": "Triennial",
+        "specific_requirements": [
+          "3 hours ethics or risk management",
+          "APA or other listed professional organization approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Kentucky State Board of Psychology",
+        "board_url": "http://psy.ky.gov/Pages/default.aspx"
+      },
+      "Louisiana": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (odd licenses odd years, even licenses even years)",
+        "specific_requirements": [
+          "2 hours ethics or forensics"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Louisiana State Board of Examiners of Psychologists",
+        "board_url": "http://www.lsbep.org/"
+      },
+      "Maine": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "3 hours supervision (if performing supervision)",
+          "APA or other listed"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Maine Board of Examiners of Psychologists",
+        "board_url": "https://www.maine.gov/pfr/professionallicensing/professions/psychologists/"
+      },
+      "Maryland": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours laws, ethics, or risk management",
+          "APA or other listed"
+        ],
+        "online_limit": "Max 20 hours independent study",
+        "board": "Maryland Board of Examiners of Psychologists",
+        "board_url": "https://health.maryland.gov/bpsy/"
+      },
+      "Massachusetts": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "No specific required topics",
+          "No sponsorship requirements",
+          "No online limits specified"
+        ],
+        "online_limit": "No specific limit",
+        "board": "Massachusetts Board of Registration of Psychologists",
+        "board_url": "https://www.mass.gov/orgs/board-of-registration-of-psychologists"
+      },
+      "Michigan": {
+        "hours_required": 0,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "No continuing education required by state law"
+        ],
+        "online_limit": "N/A",
+        "board": "Michigan Board of Psychology",
+        "board_url": "https://www.michigan.gov/lara/bureau-list/bpl/occ/health-occupations/psychology"
+      },
+      "Minnesota": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "No online limit",
+          "APA courses automatically approved; accreditation not strictly required"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Minnesota Board of Psychology",
+        "board_url": "https://mn.gov/boards/psychology/"
+      },
+      "Mississippi": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (renewal 7/1 odd years)",
+        "specific_requirements": [
+          "2 hours ethics or legal issues",
+          "APA or board-approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Mississippi Board of Psychology",
+        "board_url": "https://www.psychologyboard.ms.gov/"
+      },
+      "Missouri": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board approved providers",
+          "Refer to Missouri Committee of Psychologists for current details"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Missouri Committee of Psychologists",
+        "board_url": "https://pr.mo.gov/psychologists.asp"
+      },
+      "Montana": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethical practice or risk management",
+          "6 hours suicide assessment, treatment, and management (within year after licensing, then every 6 years)",
+          "APA or other options available"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Montana Board of Psychologists",
+        "board_url": "https://bsd.dli.mt.gov/license/bsd_boards/psy_board/board_page.asp"
+      },
+      "Nebraska": {
+        "hours_required": 24,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (ending January 1 of odd years)",
+        "specific_requirements": [
+          "Refer to Nebraska Board for detailed requirements"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Nebraska Board of Examiners of Psychologists",
+        "board_url": "https://dhhs.ne.gov/Pages/Psychology.aspx"
+      },
+      "Nevada": {
+        "hours_required": 24,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (renewal 1/1 odd years)",
+        "specific_requirements": [
+          "No specific topics required",
+          "No formal sponsorship required"
+        ],
+        "online_limit": "Max 15 hours online",
+        "board": "Nevada Board of Psychological Examiners",
+        "board_url": "https://psyexam.nv.gov/"
+      },
+      "New Hampshire": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "30 hours Category A (seminars, workshops, etc.)",
+          "3 hours ethics",
+          "Max 10 hours Category B (other education)",
+          "APA or professional association approved"
+        ],
+        "online_limit": "Max 20 hours home study",
+        "board": "New Hampshire Board of Psychology",
+        "board_url": "https://www.oplc.nh.gov/psychologists-and-associates"
+      },
+      "New Jersey": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board approved providers",
+          "Refer to NJ Board for current details"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "New Jersey Board of Psychological Examiners",
+        "board_url": "https://www.njconsumeraffairs.gov/psy"
+      },
+      "New Mexico": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "15 hours Category I minimum",
+          "4 hours cultural diversity",
+          "5 hours ethics",
+          "Prescribing psychologists: 60 hours total, 40 in psychopharmacology"
+        ],
+        "online_limit": "Max 11 hours online",
+        "board": "New Mexico Board of Psychologist Examiners",
+        "board_url": "https://www.rld.state.nm.us/boards/Psychologist_Examiners.aspx"
+      },
+      "New York": {
+        "hours_required": 36,
+        "renewal_period_years": 3,
+        "renewal_cycle": "Triennial (birthday-based)",
+        "specific_requirements": [
+          "3 hours professional ethics including NY laws and rules",
+          "3 hours psychopharmacology",
+          "3 hours diversity (first renewal)",
+          "3 hours on appropriate professional boundaries"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "New York State Office of the Professions: Psychology",
+        "board_url": "http://www.op.nysed.gov/prof/psych/"
+      },
+      "North Carolina": {
+        "hours_required": 18,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethical and legal issues",
+          "Min 9 hours Category A (formally organized, including online)",
+          "Category B: other activities"
+        ],
+        "online_limit": "No specific limit for online (counts as Category A)",
+        "board": "North Carolina Psychology Board",
+        "board_url": "http://www.ncpsychologyboard.org/"
+      },
+      "North Dakota": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours supervision credit",
+          "APA, CPA, or other listed boards/associations"
+        ],
+        "online_limit": "Max 20 hours online",
+        "board": "North Dakota Board of Psychologist Examiners",
+        "board_url": "https://ndsbpe.org/"
+      },
+      "Ohio": {
+        "hours_required": 23,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (renewal 8/31 even years)",
+        "specific_requirements": [
+          "4 hours professional conduct, ethics, or culture/ethnic identity",
+          "APA or other accredited"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Ohio Board of Psychology",
+        "board_url": "https://psychology.ohio.gov/"
+      },
+      "Oklahoma": {
+        "hours_required": 20,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "Refer to Oklahoma Board for current details"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Oklahoma Board of Examiners of Psychologists",
+        "board_url": "http://www.ok.gov/OSBEP/"
+      },
+      "Oregon": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "4 hours ethics or Oregon state laws and rules",
+          "7 hours pain management (once in career)",
+          "No sponsorship/accreditation formally required"
+        ],
+        "online_limit": "No specific limit",
+        "board": "Board of Psychologist Examiners - Oregon",
+        "board_url": "https://www.oregon.gov/obpe/"
+      },
+      "Pennsylvania": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "APA or board-approved",
+          "Max 10 hours carry over"
+        ],
+        "online_limit": "Max 15 hours home study",
+        "board": "Pennsylvania State Board of Psychology",
+        "board_url": "https://www.dos.pa.gov/ProfessionalLicensing/BoardsCommissions/Psychology/"
+      },
+      "Rhode Island": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Refer to Rhode Island Board for current details"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Rhode Island Board of Psychology",
+        "board_url": "https://health.ri.gov/licenses/detail.php?id=221"
+      },
+      "South Carolina": {
+        "hours_required": 24,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "12 hours minimum Category A (formally organized)",
+          "Category A must be accredited or sponsored"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "South Carolina Board of Examiners in Psychology",
+        "board_url": "https://llr.sc.gov/psych/"
+      },
+      "South Dakota": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Refer to SD Board for current details"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "South Dakota Board of Psychologist Examiners",
+        "board_url": "https://dss.sd.gov/licensingboards/psych.aspx"
+      },
+      "Tennessee": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Refer to Tennessee Board for current details",
+          "APA or state association sponsored"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Tennessee Board of Examiners of Psychology",
+        "board_url": "https://www.tn.gov/health/health-program-areas/health-professional-boards/psych-board.html"
+      },
+      "Texas": {
+        "hours_required": 20,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "3 hours ethics, Board Rule of Conduct, or personal responsibility",
+          "3 hours cultural diversity",
+          "Min 10 hours from APA, state association, or other listed"
+        ],
+        "online_limit": "Max 10 hours from non-accredited or other activities",
+        "board": "Texas State Board of Examiners of Psychologists",
+        "board_url": "https://www.tsbep.texas.gov/"
+      },
+      "Utah": {
+        "hours_required": 48,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "6 hours ethics/law",
+          "Max 6 hours clinical reading",
+          "Must be APA approved"
+        ],
+        "online_limit": "Max 18 hours online (APA only)",
+        "board": "Utah Division of Professional Licensing - Psychology",
+        "board_url": "https://dopl.utah.gov/licensing/psychology.html"
+      },
+      "Vermont": {
+        "hours_required": 60,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "6 hours minimum in ethics",
+          "No more than 30 hours on single topic",
+          "Max 24 hours individual/online activities",
+          "APA or Vermont Psychological Association pre-approved"
+        ],
+        "online_limit": "Max 24 hours individual activities including online",
+        "board": "Vermont Board of Psychological Examiners",
+        "board_url": "https://sos.vermont.gov/psychological-examiners/"
+      },
+      "Virginia": {
+        "hours_required": 14,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "1.5 hours ethics, standards, or laws",
+          "Minimum 6 hours face-to-face"
+        ],
+        "online_limit": "Max 8 hours online per year",
+        "board": "Virginia Board of Psychology",
+        "board_url": "https://www.dhp.virginia.gov/Boards/Psychology/"
+      },
+      "Washington": {
+        "hours_required": 60,
+        "renewal_period_years": 3,
+        "renewal_cycle": "Triennial",
+        "specific_requirements": [
+          "4 hours ethics",
+          "6 hours suicide prevention (from Model List, required once every 6 years)",
+          "Jurisprudence exam CE (new requirement as of Aug 14, 2025)",
+          "APA, APA Division, state board, or other professional organization"
+        ],
+        "online_limit": "No limit on distance learning",
+        "board": "Washington State Department of Health - Psychologist",
+        "board_url": "https://doh.wa.gov/licenses-permits-and-certificates/professions-new-renew-or-update/psychologist"
+      },
+      "West Virginia": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "2 hours mental health conditions for veterans (starting 2017)",
+          "10 hours from APA or NASP providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "West Virginia Board of Examiners of Psychologists",
+        "board_url": "https://www.wvpsychbd.org/"
+      },
+      "Wisconsin": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (renewal 9/30 odd years)",
+        "specific_requirements": [
+          "Board approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Wisconsin Psychology Examining Board",
+        "board_url": "https://dsps.wi.gov/Pages/Professions/Psychologist/Default.aspx"
+      },
+      "Wyoming": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (renewal June 30)",
+        "specific_requirements": [
+          "Min 10 hours APA or NASP programs",
+          "Up to 20 hours board-approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "board": "Wyoming Board of Psychology",
+        "board_url": "https://plboards.state.wy.us/psychology/"
+      }
+    },
+    "Marriage & Family Therapists": {
+      "Alabama": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "AAMFT or board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Alabama Board of Examiners in Counseling",
+        "board_url": "https://abec.alabama.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Alaska": {
+        "hours_required": 36,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "AAMFT or board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Alaska Board of Marital and Family Therapy",
+        "board_url": "https://www.commerce.alaska.gov/web/cbpl/professionallicensing/boardofmaritalandfamilytherapy.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "Arizona": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "AAMFT or board-approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Arizona Board of Behavioral Health Examiners",
+        "board_url": "https://azbbhe.us/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Arkansas": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Arkansas Board of Examiners in Counseling",
+        "board_url": "https://abec.arkansas.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "California": {
+        "hours_required": 36,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "6 hours law and ethics",
+          "6 hours suicide risk assessment and intervention (one-time requirement, first renewal after 1/1/2021)",
+          "3 hours telehealth law and ethics (one-time, first renewal after 7/1/2023)",
+          "7 hours HIV/AIDS (first renewal only)",
+          "ASWB, APA, or NBCC approved (recognized by CA BBS)"
+        ],
+        "online_limit": "No specific limit for licensed MFTs",
+        "license_types": ["AMFT", "LMFT"],
+        "board": "California Board of Behavioral Sciences",
+        "board_url": "https://www.bbs.ca.gov/",
+        "notes": "Supervision training: 6 hours in 2-year period before supervising and each renewal period when supervising"
+      },
+      "Colorado": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "AAMFT or board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Colorado Division of Professions and Occupations - MFT",
+        "board_url": "https://dpo.colorado.gov/MFT",
+        "notes": "Verify current requirements with state board"
+      },
+      "Connecticut": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Connecticut Department of Public Health - MFT",
+        "board_url": "https://portal.ct.gov/DPH/Practitioner-Licensing--Investigations/MFT/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Delaware": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Delaware Board of Mental Health and Chemical Dependency Professionals",
+        "board_url": "https://dpr.delaware.gov/boards/mentalhealth/",
+        "notes": "Verify current requirements with state board"
+      },
+      "District of Columbia": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "DC Board of Marriage and Family Therapy",
+        "board_url": "https://dchealth.dc.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Florida": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours in HIV/AIDS",
+          "2 hours domestic violence",
+          "2 hours medical errors",
+          "Laws and rules course"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Florida Board of Clinical Social Work, MFT and Mental Health Counseling",
+        "board_url": "https://floridasmentalhealthprofessions.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Georgia": {
+        "hours_required": 35,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Georgia Composite Board",
+        "board_url": "https://sos.ga.gov/index.php/licensing/plb/46",
+        "notes": "Verify current requirements with state board"
+      },
+      "Hawaii": {
+        "hours_required": 20,
+        "renewal_period_years": 3,
+        "renewal_cycle": "Triennial",
+        "specific_requirements": [
+          "AAMFT or board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Hawaii Department of Commerce and Consumer Affairs - MFT",
+        "board_url": "https://cca.hawaii.gov/pvl/programs/mental-health/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Idaho": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Idaho Bureau of Occupational Licenses - Counselor/MFT",
+        "board_url": "https://ibol.idaho.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Illinois": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "CE not required for first renewal",
+          "AAMFT or board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Illinois Department of Professional Regulation - MFT",
+        "board_url": "https://www.idfpr.com/profs/mft.asp",
+        "notes": "First renewal exempt from CE"
+      },
+      "Indiana": {
+        "hours_required": 36,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Indiana Behavioral Health and Human Services Licensing Board",
+        "board_url": "https://www.in.gov/pla/2361.htm",
+        "notes": "Verify current requirements with state board"
+      },
+      "Iowa": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "AAMFT or board-approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Iowa Board of Behavioral Science",
+        "board_url": "https://idph.iowa.gov/ibse",
+        "notes": "Verify current requirements with state board"
+      },
+      "Kansas": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Kansas Behavioral Sciences Regulatory Board",
+        "board_url": "https://ksbsrb.ks.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Kentucky": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Kentucky Board of Licensure of Marriage and Family Therapists",
+        "board_url": "https://mft.ky.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Louisiana": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Louisiana Licensed Professional Counselors Board of Examiners",
+        "board_url": "https://www.lpcboard.org/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Maine": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LCMFT"],
+        "board": "Maine Board of Counseling Professionals Licensure",
+        "board_url": "https://www.maine.gov/pfr/professionallicensing/professions/counselors/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Maryland": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LCMFT"],
+        "board": "Maryland Board of Professional Counselors and Therapists",
+        "board_url": "https://health.maryland.gov/bpct/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Massachusetts": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Massachusetts Board of Allied Mental Health and Human Services Professions",
+        "board_url": "https://www.mass.gov/orgs/board-of-allied-mental-health-and-human-services-professions",
+        "notes": "Verify current requirements with state board"
+      },
+      "Michigan": {
+        "hours_required": 30,
+        "renewal_period_years": 3,
+        "renewal_cycle": "Triennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Michigan Board of Counseling",
+        "board_url": "https://www.michigan.gov/lara/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Minnesota": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Minnesota Board of Marriage and Family Therapy",
+        "board_url": "https://mn.gov/boards/marriage-family-therapy/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Mississippi": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Mississippi Board of Examiners for Social Workers and MFTs",
+        "board_url": "https://www.msswmft.com/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Missouri": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Missouri State Committee for Professional Counselors",
+        "board_url": "https://pr.mo.gov/counselors.asp",
+        "notes": "Verify current requirements with state board"
+      },
+      "Montana": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Montana Board of Social Work Examiners and Professional Counselors",
+        "board_url": "https://bsd.dli.mt.gov/license/bsd_boards/swp_board/board_page.asp",
+        "notes": "Verify current requirements with state board"
+      },
+      "Nebraska": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["PLMHP", "LIMHP"],
+        "board": "Nebraska Department of Health and Human Services - MFT",
+        "board_url": "https://dhhs.ne.gov/Pages/LMHP.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "Nevada": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Nevada Board of Examiners for Marriage and Family Therapists",
+        "board_url": "https://marriage.nv.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "New Hampshire": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "New Hampshire Board of Mental Health Practice",
+        "board_url": "https://www.oplc.nh.gov/mental-health",
+        "notes": "Verify current requirements with state board"
+      },
+      "New Jersey": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "New Jersey State Board of Marriage and Family Therapy Examiners",
+        "board_url": "https://www.njconsumeraffairs.gov/mft",
+        "notes": "Verify current requirements with state board"
+      },
+      "New Mexico": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "New Mexico Counseling and Therapy Practice Board",
+        "board_url": "https://www.rld.state.nm.us/boards/Counseling_and_Therapy_Practice.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "New York": {
+        "hours_required": 36,
+        "renewal_period_years": 3,
+        "renewal_cycle": "Triennial",
+        "specific_requirements": [
+          "Max 12 hours self-study in any 36 months",
+          "NYSED-approved providers"
+        ],
+        "online_limit": "Max 12 hours self-study per triennial period",
+        "license_types": ["LMFT"],
+        "board": "New York State Education Department - MFT",
+        "board_url": "https://www.op.nysed.gov/professions/marriage-and-family-therapists/"
+      },
+      "North Carolina": {
+        "hours_required": 20,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "North Carolina Marriage and Family Therapy Licensure Board",
+        "board_url": "https://ncmftlb.org/",
+        "notes": "Verify current requirements with state board"
+      },
+      "North Dakota": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "North Dakota Board of Counselor Examiners",
+        "board_url": "https://www.ndbce.org/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Ohio": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["IMFT", "LMFT"],
+        "board": "Ohio Counselor, Social Worker and MFT Board",
+        "board_url": "https://cswmft.ohio.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Oklahoma": {
+        "hours_required": 21,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Oklahoma State Board of Behavioral Health Licensure",
+        "board_url": "https://www.ok.gov/behavioralhealth/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Oregon": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Oregon Board of Licensed Professional Counselors and Therapists",
+        "board_url": "https://www.oregon.gov/oblpct/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Pennsylvania": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Pennsylvania State Board of Social Workers, MFTs and Professional Counselors",
+        "board_url": "https://www.dos.pa.gov/ProfessionalLicensing/BoardsCommissions/SocialWorkersMarriageFamilyTherapistsProfessionalCounselors/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Rhode Island": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Rhode Island Division of Professional Regulation - MFT",
+        "board_url": "https://health.ri.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "South Carolina": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "South Carolina Board of Examiners for Licensure of Professional Counselors, MFTs and Psychoeducational Specialists",
+        "board_url": "https://llr.sc.gov/counselors/",
+        "notes": "Verify current requirements with state board"
+      },
+      "South Dakota": {
+        "hours_required": 32,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "South Dakota Board of Examiners for Counselors and MFTs",
+        "board_url": "https://dss.sd.gov/licensingboards/counselor.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "Tennessee": {
+        "hours_required": 10,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual (calendar year)",
+        "specific_requirements": [
+          "3 hours ethics per year",
+          "CE cycle: January 1 to December 31",
+          "Those holding dual license: 30 hours per 2 years"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Tennessee Board for LPC, LMFT and Licensed Clinical Pastoral Therapists",
+        "board_url": "https://www.tn.gov/health/health-program-areas/health-professional-boards/pcmft-board.html",
+        "notes": "Dual license holders: 30 hours/2 years. Triple license: 40 hours/2 years."
+      },
+      "Texas": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "Human trafficking awareness (each renewal)",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT-Associate", "LMFT"],
+        "board": "Texas State Board of Examiners of Marriage and Family Therapists",
+        "board_url": "https://bhec.texas.gov/texas-state-board-of-examiners-of-marriage-and-family-therapists/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Utah": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["AMFT", "LMFT"],
+        "board": "Utah Division of Professional Licensing - MFT",
+        "board_url": "https://dopl.utah.gov/licensing/marriage_family_therapy.html",
+        "notes": "Verify current requirements with state board"
+      },
+      "Vermont": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Vermont Office of Professional Regulation - MFT",
+        "board_url": "https://sos.vermont.gov/marriage-and-family-therapists/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Virginia": {
+        "hours_required": 30,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["RMFT", "LMFT"],
+        "board": "Virginia Board of Counseling",
+        "board_url": "https://www.dhp.virginia.gov/Boards/Counseling/",
+        "notes": "Annual renewal with annual CE requirement"
+      },
+      "Washington": {
+        "hours_required": 36,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (annual for associates)",
+        "specific_requirements": [
+          "6 hours professional ethics and law",
+          "2 hours professional roles and boundaries",
+          "2 hours health equity training",
+          "6 hours suicide assessment, treatment, and management",
+          "Applicants for new license: 36 hours before issuance including 6 in law and ethics"
+        ],
+        "online_limit": "No limit on distance learning (asynchronous must have comprehension tests)",
+        "license_types": ["MFTA", "LMFTA", "LMFT"],
+        "board": "Washington State Department of Health - MFT",
+        "board_url": "https://doh.wa.gov/licenses-permits-and-certificates/professions-new-renew-or-update/marriage-and-family-therapist"
+      },
+      "West Virginia": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "West Virginia Board of Mental Health Counselors and Marriage and Family Therapists",
+        "board_url": "https://www.wvbmhcmft.org/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Wisconsin": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "4 hours ethics and professional boundaries",
+          "AAMFT, NASW, or board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Wisconsin Marriage and Family Therapist Section",
+        "board_url": "https://dsps.wi.gov/Pages/Professions/MFT/Default.aspx",
+        "notes": "First renewal exempt from CE"
+      },
+      "Wyoming": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMFT"],
+        "board": "Wyoming Mental Health Professions Licensing Board",
+        "board_url": "https://mhplb.wyo.gov/",
+        "notes": "Verify current requirements with state board"
+      }
+    },
+    "Counselors": {
+      "Alabama": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC"],
+        "board": "Alabama Board of Examiners in Counseling",
+        "board_url": "https://abec.alabama.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Alaska": {
+        "hours_required": 36,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC"],
+        "board": "Alaska Board of Professional Counselors",
+        "board_url": "https://www.commerce.alaska.gov/web/cbpl/professionallicensing/boardofprofessionalcounselors.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "Arizona": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LAC", "LPC"],
+        "board": "Arizona Board of Behavioral Health Examiners",
+        "board_url": "https://azbbhe.us/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Arkansas": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["NCC", "LPC"],
+        "board": "Arkansas Board of Examiners in Counseling",
+        "board_url": "https://abec.arkansas.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "California": {
+        "hours_required": 36,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "6 hours law and ethics",
+          "6 hours suicide risk assessment (one-time, first renewal after 1/1/2021)",
+          "3 hours telehealth law and ethics (one-time, first renewal after 7/1/2023)",
+          "ASWB, APA, or NBCC approved"
+        ],
+        "online_limit": "No specific limit for licensed LPCCs",
+        "license_types": ["APCC", "LPCC"],
+        "board": "California Board of Behavioral Sciences",
+        "board_url": "https://www.bbs.ca.gov/",
+        "notes": "First renewal: 18 hours minimum. California title is LPCC."
+      },
+      "Colorado": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPCC", "LPC"],
+        "board": "Colorado Division of Professions and Occupations - Counselors",
+        "board_url": "https://dpo.colorado.gov/Counselors",
+        "notes": "Verify current requirements with state board"
+      },
+      "Connecticut": {
+        "hours_required": 15,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC"],
+        "board": "Connecticut Department of Public Health - Professional Counselors",
+        "board_url": "https://portal.ct.gov/DPH/Practitioner-Licensing--Investigations/ProfessionalCounselor/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Delaware": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LGPC", "LPCA", "LPC"],
+        "board": "Delaware Board of Mental Health and Chemical Dependency Professionals",
+        "board_url": "https://dpr.delaware.gov/boards/mentalhealth/",
+        "notes": "Verify current requirements with state board"
+      },
+      "District of Columbia": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["PCC", "LPC"],
+        "board": "DC Board of Professional Counseling",
+        "board_url": "https://dchealth.dc.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Florida": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours HIV/AIDS",
+          "2 hours domestic violence",
+          "2 hours medical errors",
+          "Laws and rules course"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["RMHCI", "LMHC"],
+        "board": "Florida Board of Clinical Social Work, MFT and Mental Health Counseling",
+        "board_url": "https://floridasmentalhealthprofessions.gov/",
+        "notes": "Florida title is LMHC. Verify current requirements."
+      },
+      "Georgia": {
+        "hours_required": 35,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["APC", "LPC"],
+        "board": "Georgia Composite Board",
+        "board_url": "https://sos.ga.gov/index.php/licensing/plb/46",
+        "notes": "Verify current requirements with state board"
+      },
+      "Hawaii": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPCC"],
+        "board": "Hawaii Department of Commerce and Consumer Affairs - Mental Health Counselor",
+        "board_url": "https://cca.hawaii.gov/pvl/programs/mental-health/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Idaho": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC"],
+        "board": "Idaho Bureau of Occupational Licenses - Professional Counselors",
+        "board_url": "https://ibol.idaho.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Illinois": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "CE not required for first renewal",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC", "LCPC"],
+        "board": "Illinois Department of Professional Regulation - Counselors",
+        "board_url": "https://www.idfpr.com/profs/procouns.asp",
+        "notes": "First renewal exempt from CE"
+      },
+      "Indiana": {
+        "hours_required": 36,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMHCA", "LMHC"],
+        "board": "Indiana Behavioral Health and Human Services Licensing Board",
+        "board_url": "https://www.in.gov/pla/2361.htm",
+        "notes": "Indiana title is LMHC. Verify current requirements."
+      },
+      "Iowa": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMHC"],
+        "board": "Iowa Board of Behavioral Science",
+        "board_url": "https://idph.iowa.gov/ibse",
+        "notes": "Verify current requirements with state board"
+      },
+      "Kansas": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LCPC", "LCP"],
+        "board": "Kansas Behavioral Sciences Regulatory Board",
+        "board_url": "https://ksbsrb.ks.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Kentucky": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPCA", "LPC"],
+        "board": "Kentucky Board of Licensed Professional Counselors",
+        "board_url": "https://lpc.ky.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Louisiana": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC-Associate", "LPC"],
+        "board": "Louisiana Licensed Professional Counselors Board",
+        "board_url": "https://www.lpcboard.org/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Maine": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LCPC"],
+        "board": "Maine Board of Counseling Professionals Licensure",
+        "board_url": "https://www.maine.gov/pfr/professionallicensing/professions/counselors/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Maryland": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LGPC", "LCPC"],
+        "board": "Maryland Board of Professional Counselors and Therapists",
+        "board_url": "https://health.maryland.gov/bpct/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Massachusetts": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMHC"],
+        "board": "Massachusetts Board of Allied Mental Health and Human Services Professions",
+        "board_url": "https://www.mass.gov/orgs/board-of-allied-mental-health-and-human-services-professions",
+        "notes": "Massachusetts title is LMHC. Verify current requirements."
+      },
+      "Michigan": {
+        "hours_required": 30,
+        "renewal_period_years": 3,
+        "renewal_cycle": "Triennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC"],
+        "board": "Michigan Board of Counseling",
+        "board_url": "https://www.michigan.gov/lara/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Minnesota": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (first 4 years: 60 grad credits or 40 CE)",
+        "specific_requirements": [
+          "All CE must be counseling-related",
+          "Board-approved"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC", "LPCC"],
+        "board": "Minnesota Board of Behavioral Health and Therapy",
+        "board_url": "https://mn.gov/boards/behavioral-health/",
+        "notes": "First 4 years: 60 grad credits and/or 40 CE units. After 4 years: 40 CE every 2 years."
+      },
+      "Mississippi": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC"],
+        "board": "Mississippi Board of Examiners for Licensed Professional Counselors",
+        "board_url": "https://www.lpc.ms.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Missouri": {
+        "hours_required": 30,
+        "renewal_period_years": 3,
+        "renewal_cycle": "Triennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC"],
+        "board": "Missouri State Committee for Professional Counselors",
+        "board_url": "https://pr.mo.gov/counselors.asp",
+        "notes": "Verify current requirements with state board"
+      },
+      "Montana": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LCPC"],
+        "board": "Montana Board of Social Work Examiners and Professional Counselors",
+        "board_url": "https://bsd.dli.mt.gov/license/bsd_boards/swp_board/board_page.asp",
+        "notes": "Verify current requirements with state board"
+      },
+      "Nebraska": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["PLMHP", "LIMHP"],
+        "board": "Nebraska Department of Health and Human Services - Mental Health",
+        "board_url": "https://dhhs.ne.gov/Pages/LMHP.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "Nevada": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["CPC", "LCPC"],
+        "board": "Nevada Board of Examiners for Marriage and Family Therapists and Clinical Professional Counselors",
+        "board_url": "https://marriage.nv.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "New Hampshire": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LCMHC"],
+        "board": "New Hampshire Board of Mental Health Practice",
+        "board_url": "https://www.oplc.nh.gov/mental-health",
+        "notes": "Verify current requirements with state board"
+      },
+      "New Jersey": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC"],
+        "board": "New Jersey State Board of Professional Counselors and Therapists",
+        "board_url": "https://www.njconsumeraffairs.gov/pc",
+        "notes": "Verify current requirements with state board"
+      },
+      "New Mexico": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPCC"],
+        "board": "New Mexico Counseling and Therapy Practice Board",
+        "board_url": "https://www.rld.state.nm.us/boards/Counseling_and_Therapy_Practice.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "New York": {
+        "hours_required": 36,
+        "renewal_period_years": 3,
+        "renewal_cycle": "Triennial",
+        "specific_requirements": [
+          "Board-approved NYSED providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LMHC"],
+        "board": "New York State Education Department - Mental Health Counselor",
+        "board_url": "https://www.op.nysed.gov/professions/mental-health-counselors/",
+        "notes": "New York title is LMHC. Verify current requirements."
+      },
+      "North Carolina": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LCMHCA", "LCMHC"],
+        "board": "North Carolina Board of Licensed Clinical Mental Health Counselors",
+        "board_url": "https://www.ncblcmhc.org/",
+        "notes": "Verify current requirements with state board"
+      },
+      "North Dakota": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPCC"],
+        "board": "North Dakota Board of Counselor Examiners",
+        "board_url": "https://www.ndbce.org/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Ohio": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "3 hours ethics",
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["PCC", "LPCC"],
+        "board": "Ohio Counselor, Social Worker and MFT Board",
+        "board_url": "https://cswmft.ohio.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Oklahoma": {
+        "hours_required": 20,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC"],
+        "board": "Oklahoma State Board of Behavioral Health Licensure",
+        "board_url": "https://www.ok.gov/behavioralhealth/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Oregon": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["MHCA", "LPC"],
+        "board": "Oregon Board of Licensed Professional Counselors and Therapists",
+        "board_url": "https://www.oregon.gov/oblpct/",
+        "notes": "Transitioning to biennial renewals in 2025. Verify CE amounts."
+      },
+      "Pennsylvania": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (renewal March 31 odd years)",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC"],
+        "board": "Pennsylvania State Board of Social Workers, MFTs and Professional Counselors",
+        "board_url": "https://www.dos.pa.gov/ProfessionalLicensing/BoardsCommissions/SocialWorkersMarriageFamilyTherapistsProfessionalCounselors/",
+        "notes": "60 semester hours required for initial licensure."
+      },
+      "Rhode Island": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LCMHC"],
+        "board": "Rhode Island Department of Health - Mental Health Counselors",
+        "board_url": "https://health.ri.gov/",
+        "notes": "Verify current requirements with state board"
+      },
+      "South Carolina": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC-A", "LPC"],
+        "board": "South Carolina Board of Examiners for Professional Counselors, MFTs and Psychoeducational Specialists",
+        "board_url": "https://llr.sc.gov/counselors/",
+        "notes": "Verify current requirements with state board"
+      },
+      "South Dakota": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC-MH"],
+        "board": "South Dakota Board of Examiners for Counselors and MFTs",
+        "board_url": "https://dss.sd.gov/licensingboards/counselor.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "Tennessee": {
+        "hours_required": 10,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual (calendar year)",
+        "specific_requirements": [
+          "3 hours ethics",
+          "CE cycle: January 1 to December 31"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["MHSP", "LPC"],
+        "board": "Tennessee Board for LPC, LMFT, and Licensed Clinical Pastoral Therapists",
+        "board_url": "https://www.tn.gov/health/health-program-areas/health-professional-boards/pcmft-board.html",
+        "notes": "Dual license holders: 30 hours/2 years. Triple license: 40 hours/2 years."
+      },
+      "Texas": {
+        "hours_required": 24,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "6 hours ethics",
+          "3 hours distinct populations and competency",
+          "At least half (12 hours) from approved provider list per 681.140(f)",
+          "Human trafficking course (each renewal)",
+          "Jurisprudence exam (each renewal, counts as 1 ethics hour)"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC-Associate", "LPC"],
+        "board": "Texas State Board of Examiners of Professional Counselors",
+        "board_url": "https://bhec.texas.gov/texas-state-board-of-examiners-of-professional-counselors/",
+        "notes": "Supervisor: additional 6 hours in supervision per renewal"
+      },
+      "Utah": {
+        "hours_required": 40,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["ACMHC", "CMHC"],
+        "board": "Utah Division of Professional Licensing - Mental Health Counselors",
+        "board_url": "https://dopl.utah.gov/licensing/mental_health_counselor.html",
+        "notes": "Utah title is CMHC. Verify current requirements."
+      },
+      "Vermont": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LCMHC"],
+        "board": "Vermont Office of Professional Regulation - Mental Health Counselors",
+        "board_url": "https://sos.vermont.gov/mental-health-counselors/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Virginia": {
+        "hours_required": 30,
+        "renewal_period_years": 1,
+        "renewal_cycle": "Annual",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["Resident", "LPC"],
+        "board": "Virginia Board of Counseling",
+        "board_url": "https://www.dhp.virginia.gov/Boards/Counseling/",
+        "notes": "Annual renewal. Verify current CE hours with board."
+      },
+      "Washington": {
+        "hours_required": 36,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial (annual for associates)",
+        "specific_requirements": [
+          "6 hours professional ethics and law",
+          "2 hours professional roles and boundaries",
+          "2 hours health equity training",
+          "6 hours suicide assessment, treatment, and management"
+        ],
+        "online_limit": "No limit on distance learning",
+        "license_types": ["MHCA", "LMHCA", "LMHC"],
+        "board": "Washington State Department of Health - Mental Health Counselors",
+        "board_url": "https://doh.wa.gov/licenses-permits-and-certificates/professions-new-renew-or-update/mental-health-counselor"
+      },
+      "West Virginia": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC"],
+        "board": "West Virginia Board of Examiners in Counseling",
+        "board_url": "https://www.wvbec.org/",
+        "notes": "Verify current requirements with state board"
+      },
+      "Wisconsin": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["LPC"],
+        "board": "Wisconsin Examining Board of Marriage and Family Therapists, Professional Counselors and Social Workers",
+        "board_url": "https://dsps.wi.gov/Pages/Professions/ProfessionalCounselor/Default.aspx",
+        "notes": "Verify current requirements with state board"
+      },
+      "Wyoming": {
+        "hours_required": 30,
+        "renewal_period_years": 2,
+        "renewal_cycle": "Biennial",
+        "specific_requirements": [
+          "Board-approved providers"
+        ],
+        "online_limit": "No specific limit mentioned",
+        "license_types": ["PLPC", "LPC"],
+        "board": "Wyoming Mental Health Professions Licensing Board",
+        "board_url": "https://mhplb.wyo.gov/",
+        "notes": "Verify current requirements with state board"
+      }
+    }
+  }
+}
