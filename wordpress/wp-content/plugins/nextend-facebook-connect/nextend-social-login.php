@@ -20,7 +20,7 @@ require_once(NSL_PATH . '/compat.php');
 
 class NextendSocialLogin {
 
-    public static $version = '3.1.23';
+    public static $version = '3.1.25';
 
     public static $nslPROMinVersion = '3.1.23';
 
@@ -321,7 +321,7 @@ class NextendSocialLogin {
 
         do_action('nsl_start');
 
-        load_plugin_textdomain('nextend-facebook-connect', false, basename(dirname(__FILE__)) . '/languages/');
+        add_action('init', 'NextendSocialLogin::loadPluginTextDomain');
 
         Notices::init();
 
@@ -587,6 +587,10 @@ class NextendSocialLogin {
         }
 
         return $terms;
+    }
+
+    public static function loadPluginTextDomain() {
+        load_plugin_textdomain('nextend-facebook-connect', false, basename(dirname(__FILE__)) . '/languages/');
     }
 
     public static function fixSocialRabbit() {

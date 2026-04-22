@@ -4,7 +4,7 @@
 Plugin Name: MC4WP: Mailchimp for WordPress
 Plugin URI: https://www.mc4wp.com/#utm_source=wp-plugin&utm_medium=mailchimp-for-wp&utm_campaign=plugins-page
 Description: Mailchimp for WordPress by ibericode. Adds various highly effective sign-up methods to your site.
-Version: 4.12.1
+Version: 4.12.2
 Author: ibericode
 Author URI: https://www.ibericode.com/
 Text Domain: mailchimp-for-wp
@@ -45,7 +45,7 @@ add_action('plugins_loaded', function () {
     }
 
     // bootstrap the core plugin
-    define('MC4WP_VERSION', '4.12.1');
+    define('MC4WP_VERSION', '4.12.2');
     define('MC4WP_PLUGIN_DIR', __DIR__);
     define('MC4WP_PLUGIN_FILE', __FILE__);
 
@@ -66,6 +66,9 @@ add_action('plugins_loaded', function () {
     $form_manager->add_hooks();
     $mc4wp['forms'] = $form_manager;
 
+    // campaign archive
+    ( new MC4WP_Campaign_Archive() )->add_hooks();
+
     // integration core
     $integration_manager = new MC4WP_Integration_Manager();
     $integration_manager->add_hooks();
@@ -85,6 +88,15 @@ add_action('plugins_loaded', function () {
             (new MC4WP_Admin($admin_tools, $messages))->add_hooks();
             (new MC4WP_Forms_Admin($messages))->add_hooks();
             (new MC4WP_Integration_Admin($integration_manager, $messages))->add_hooks();
+        }
+    }
+
+    // Initialize tracking pixel on frontend
+    if (! is_admin()) {
+        $opts = mc4wp_get_options();
+        if (! empty($opts['tracking_pixel_id'])) {
+            $tracking_pixel = new MC4WP_Tracking_Pixel($opts['tracking_pixel_id']);
+            $tracking_pixel->add_hooks();
         }
     }
 

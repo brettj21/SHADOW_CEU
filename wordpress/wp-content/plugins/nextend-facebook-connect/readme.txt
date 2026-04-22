@@ -3,8 +3,8 @@ Contributors: nextendweb
 Tags: social login, facebook, google, twitter, x, linkedin, register, login, social, nextend facebook connect, social sign in
 Donate link: https://www.facebook.com/nextendweb
 Requires at least: 4.9
-Tested up to: 6.9.1
-Stable tag: 3.1.23
+Tested up to: 6.9.4
+Stable tag: 3.1.25
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -124,6 +124,11 @@ Using the Pro Addon you can set where the login buttons should appear on the Reg
 4. The Settings page of the Facebook provider.
 
 == Changelog ==
+
+= 3.1.25 =
+* Fix: load_plugin_textdomain() will be called on the init action instead of plugins_loaded, as suggested by the WordPress documentation
+* Improvement: Pro Addon updater improvements.
+
 
 = 3.1.23 =
 * Improvement: Increased the minimum required PHP version to 7.4.
