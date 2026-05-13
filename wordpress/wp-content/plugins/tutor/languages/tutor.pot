@@ -2,23 +2,23 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Tutor LMS 3.9.9\n"
+"Project-Id-Version: Tutor LMS 3.9.10\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tutor\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-13T11:36:19+00:00\n"
+"POT-Creation-Date: 2026-04-29T05:45:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: tutor\n"
 
 #. Plugin Name of the plugin
 #: tutor.php
-#: classes/Admin.php:181
-#: classes/Admin.php:182
-#: classes/Admin.php:781
+#: classes/Admin.php:125
+#: classes/Admin.php:126
+#: classes/Admin.php:708
 #: classes/Gutenberg.php:144
 msgid "Tutor LMS"
 msgstr ""
@@ -304,32 +304,18 @@ msgid "Integrate H5P to add interactivity and engagement to your courses."
 msgstr ""
 
 #. translators: %s: version name
-#: classes/Admin.php:79
+#: classes/Admin.php:78
 #, php-format
 msgid "You're currently using Tutor LMS %s. To ensure stability, please do not use it on a live site."
 msgstr ""
 
-#: classes/Admin.php:82
+#: classes/Admin.php:81
 #: assets/js/tutor.js:2630
 #: assets/js/tutor.js:2635
 msgid "Warning!"
 msgstr ""
 
-#: classes/Admin.php:105
-msgid "Be the First to Try Tutor LMS 4.0 Beta!"
-msgstr ""
-
-#. translators: 1: opening anchor tag, 2: closing anchor tag
-#: classes/Admin.php:111
-#, php-format
-msgid "Explore the upcoming features of Tutor LMS 4.0, test the experience, and help us improve with your valuable %1$sfeedback%2$s."
-msgstr ""
-
-#: classes/Admin.php:135
-msgid "Try now"
-msgstr ""
-
-#: classes/Admin.php:165
+#: classes/Admin.php:109
 #: assets/js/tutor-course-builder.js:7770
 #: assets/js/tutor-course-builder.js:8066
 #: assets/js/tutor-course-builder.js:8099
@@ -346,8 +332,8 @@ msgstr ""
 msgid "Pro"
 msgstr ""
 
-#: classes/Admin.php:198
-#: classes/Admin.php:199
+#: classes/Admin.php:142
+#: classes/Admin.php:143
 #: classes/Course_List.php:78
 #: classes/Post_types.php:101
 #: templates/archive-course-init.php:132
@@ -376,101 +362,93 @@ msgstr ""
 msgid "Courses"
 msgstr ""
 
-#: classes/Admin.php:207
+#: classes/Admin.php:151
 #: assets/js/tutor-course-builder.js:4710
 msgid "Course Builder"
 msgstr ""
 
-#: classes/Admin.php:215
-#: classes/Admin.php:216
+#: classes/Admin.php:159
+#: classes/Admin.php:160
 #: views/pages/course-list.php:262
 #: assets/js/tutor-course-builder.js:12646
 msgid "Categories"
 msgstr ""
 
-#: classes/Admin.php:222
-#: classes/Admin.php:223
+#: classes/Admin.php:166
+#: classes/Admin.php:167
 #: classes/Post_types.php:195
 #: templates/single/course/tags.php:18
 #: assets/js/tutor-course-builder.js:12654
 msgid "Tags"
 msgstr ""
 
-#: classes/Admin.php:234
-#: classes/Admin.php:235
+#: classes/Admin.php:178
+#: classes/Admin.php:179
 #: classes/Students_List.php:76
 #: templates/public-profile.php:137
 #: views/pages/students.php:98
 msgid "Students"
 msgstr ""
 
-#: classes/Admin.php:243
-#: classes/Admin.php:244
+#: classes/Admin.php:187
+#: classes/Admin.php:188
 #: classes/Announcements.php:65
 #: classes/Options_V2.php:1502
-#: classes/Utils.php:9116
-#: classes/Utils.php:9402
+#: classes/Utils.php:9111
+#: classes/Utils.php:9397
 #: views/fragments/announcement-list.php:253
 msgid "Announcements"
 msgstr ""
 
-#: classes/Admin.php:253
-#: classes/Admin.php:254
+#: classes/Admin.php:197
+#: classes/Admin.php:198
 #: classes/Quiz_Attempts_List.php:85
-#: classes/Utils.php:9412
+#: classes/Utils.php:9407
 #: templates/dashboard.php:54
 #: templates/dashboard/quiz-attempts.php:31
 msgid "Quiz Attempts"
 msgstr ""
 
-#: classes/Admin.php:261
+#: classes/Admin.php:205
 #: classes/Options_V2.php:1391
-#: classes/Utils.php:9111
+#: classes/Utils.php:9106
 #: templates/dashboard.php:54
 #: assets/js/tutor-course-builder.js:13501
 msgid "Q&A"
 msgstr ""
 
-#: classes/Admin.php:262
+#: classes/Admin.php:206
 msgid "Q&A "
 msgstr ""
 
-#: classes/Admin.php:272
-#: classes/Admin.php:273
+#: classes/Admin.php:216
+#: classes/Admin.php:217
 #: assets/js/tutor-course-builder.js:12691
 msgid "Instructors"
 msgstr ""
 
-#: classes/Admin.php:280
-#: classes/Admin.php:281
+#: classes/Admin.php:224
+#: classes/Admin.php:225
 #: classes/Withdraw_Requests_List.php:54
 msgid "Withdraw Requests"
 msgstr ""
 
-#: classes/Admin.php:294
-#: classes/Admin.php:295
-#: views/pages/addons.php:28
-#: views/template-import/templates.php:23
-#: views/template-import/templates.php:40
-msgid "Themes"
-msgstr ""
-
-#: classes/Admin.php:302
-#: classes/Admin.php:303
+#: classes/Admin.php:238
+#: classes/Admin.php:239
 #: assets/js/tutor-addon-list.js:3335
 msgid "Addons"
 msgstr ""
 
-#: classes/Admin.php:310
-#: classes/Admin.php:311
+#: classes/Admin.php:246
+#: classes/Admin.php:247
 #: views/options/tools.php:16
 #: views/pages/tools.php:14
 msgid "Tools"
 msgstr ""
 
-#: classes/Admin.php:318
-#: classes/Admin.php:319
-#: classes/Admin.php:730
+#: classes/Admin.php:254
+#: classes/Admin.php:255
+#: classes/Admin.php:657
 #: classes/Utils.php:2928
 #: templates/dashboard/notifications/profile-completion.php:22
 #: templates/dashboard/settings.php:13
@@ -485,15 +463,15 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: classes/Admin.php:328
-#: classes/Admin.php:329
-#: classes/Admin.php:725
+#: classes/Admin.php:264
+#: classes/Admin.php:265
+#: classes/Admin.php:652
 #: views/pages/feature-promotion.php:22
 #: assets/js/tutor-addon-list.js:5035
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: classes/Admin.php:397
+#: classes/Admin.php:324
 #: classes/Tutor_Setup.php:110
 #: ecommerce/CheckoutController.php:176
 #: ecommerce/Settings.php:407
@@ -522,13 +500,13 @@ msgstr ""
 msgid "Success"
 msgstr ""
 
-#: classes/Admin.php:496
+#: classes/Admin.php:423
 #: classes/Tools_V2.php:318
 #: views/options/template/tutor_pages.php:15
 msgid "Tutor Pages"
 msgstr ""
 
-#: classes/Admin.php:497
+#: classes/Admin.php:424
 #: classes/Tools_V2.php:103
 #: templates/dashboard/purchase_history.php:115
 #: templates/dashboard/withdraw.php:233
@@ -553,29 +531,29 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: classes/Admin.php:645
+#: classes/Admin.php:572
 #: includes/tutor-template-functions.php:1612
 #: templates/permission-denied.php:25
 #: templates/single/lesson/required-enroll.php:15
 msgid "Permission Denied"
 msgstr ""
 
-#: classes/Admin.php:751
+#: classes/Admin.php:678
 msgid "Documentation"
 msgstr ""
 
-#: classes/Admin.php:756
+#: classes/Admin.php:683
 msgid "Get Support"
 msgstr ""
 
 #. translators: %s: plugin name
-#: classes/Admin.php:780
+#: classes/Admin.php:707
 #, php-format
 msgid "If you like %1$s please leave us a %2$s rating. A huge thanks in advance!"
 msgstr ""
 
-#: classes/Admin.php:900
-#: classes/Admin.php:903
+#: classes/Admin.php:827
+#: classes/Admin.php:830
 msgid "Edit with Course Builder"
 msgstr ""
 
@@ -1389,7 +1367,7 @@ msgstr ""
 #: classes/Tutor_Setup.php:338
 #: classes/Tutor_Setup.php:471
 #: classes/Tutor_Setup.php:540
-#: classes/Utils.php:9377
+#: classes/Utils.php:9372
 #: templates/dashboard/question-answer.php:63
 msgid "Instructor"
 msgstr ""
@@ -2153,7 +2131,7 @@ msgid "Toggle to show instructor info"
 msgstr ""
 
 #: classes/Options_V2.php:1384
-#: classes/Utils.php:9457
+#: classes/Utils.php:9452
 #: templates/dashboard/wishlist.php:23
 #: templates/single/course/lead-info.php:102
 msgid "Wishlist"
@@ -2333,7 +2311,7 @@ msgid "Ocean"
 msgstr ""
 
 #: classes/Options_V2.php:1627
-#: classes/Utils.php:8992
+#: classes/Utils.php:8987
 msgid "Custom"
 msgstr ""
 
@@ -3115,9 +3093,6 @@ msgstr ""
 
 #: classes/Reviews.php:60
 #: classes/Student.php:314
-#: template-import/TemplateImporter.php:77
-#: template-import/TemplateImporter.php:166
-#: template-import/TemplateImporter.php:195
 #: assets/js/tutor-addon-list.js:4844
 #: assets/js/tutor-admin.js:1409
 #: assets/js/tutor-admin.js:1412
@@ -3423,22 +3398,22 @@ msgstr ""
 msgid "Your server does not support the %s functions - this is required for better character encoding. Some fallbacks will be used instead for it."
 msgstr ""
 
-#: classes/Tutor.php:1051
+#: classes/Tutor.php:1058
 msgid "Tutor Instructor"
 msgstr ""
 
-#: classes/Tutor.php:1151
-#: classes/Utils.php:9432
+#: classes/Tutor.php:1158
+#: classes/Utils.php:9427
 #: templates/dashboard.php:48
 #: templates/dashboard/dashboard.php:136
 msgid "Dashboard"
 msgstr ""
 
-#: classes/Tutor.php:1160
+#: classes/Tutor.php:1167
 msgid "Student Registration"
 msgstr ""
 
-#: classes/Tutor.php:1169
+#: classes/Tutor.php:1176
 msgid "Instructor Registration"
 msgstr ""
 
@@ -3882,131 +3857,131 @@ msgstr ""
 msgid "Set Withdraw Method"
 msgstr ""
 
-#: classes/Utils.php:8842
+#: classes/Utils.php:8837
 msgid "Try adjusting your filters."
 msgstr ""
 
-#: classes/Utils.php:8856
+#: classes/Utils.php:8851
 msgid "Try using different keywords."
 msgstr ""
 
-#: classes/Utils.php:8987
+#: classes/Utils.php:8982
 msgid "All Time"
 msgstr ""
 
-#: classes/Utils.php:8988
+#: classes/Utils.php:8983
 #: templates/dashboard/purchase_history.php:47
 msgid "Today"
 msgstr ""
 
-#: classes/Utils.php:8989
+#: classes/Utils.php:8984
 msgid "Last 30 Days"
 msgstr ""
 
-#: classes/Utils.php:8990
+#: classes/Utils.php:8985
 msgid "Last 90 Days"
 msgstr ""
 
-#: classes/Utils.php:8991
+#: classes/Utils.php:8986
 msgid "Last 365 Days"
 msgstr ""
 
-#: classes/Utils.php:9103
+#: classes/Utils.php:9098
 #: assets/js/tutor-course-builder.js:3974
 msgid "Course Info"
 msgstr ""
 
-#: classes/Utils.php:9107
-#: classes/Utils.php:9444
+#: classes/Utils.php:9102
+#: classes/Utils.php:9439
 #: templates/dashboard/reviews.php:28
 #: templates/dashboard/reviews/given-reviews.php:27
 msgid "Reviews"
 msgstr ""
 
-#: classes/Utils.php:9356
+#: classes/Utils.php:9351
 #: templates/single/lesson/sidebar_question_and_answer.php:43
 msgid "No Data Available in this Section"
 msgstr ""
 
-#: classes/Utils.php:9357
+#: classes/Utils.php:9352
 msgid "No Data Found from your Search/Filter"
 msgstr ""
 
-#: classes/Utils.php:9382
+#: classes/Utils.php:9377
 #: views/elements/create-course-empty-state.php:25
 msgid "Create Course"
 msgstr ""
 
-#: classes/Utils.php:9387
+#: classes/Utils.php:9382
 msgid "Create Bundle"
 msgstr ""
 
-#: classes/Utils.php:9392
+#: classes/Utils.php:9387
 #: templates/dashboard.php:48
 #: templates/dashboard/dashboard.php:338
 #: templates/dashboard/my-courses.php:75
 msgid "My Courses"
 msgstr ""
 
-#: classes/Utils.php:9407
+#: classes/Utils.php:9402
 #: templates/dashboard/withdraw.php:57
 msgid "Withdrawals"
 msgstr ""
 
-#: classes/Utils.php:9436
+#: classes/Utils.php:9431
 #: templates/dashboard/my-profile.php:65
 msgid "My Profile"
 msgstr ""
 
-#: classes/Utils.php:9440
+#: classes/Utils.php:9435
 #: templates/dashboard/dashboard.php:166
 #: templates/dashboard/enrolled-courses.php:25
 msgid "Enrolled Courses"
 msgstr ""
 
-#: classes/Utils.php:9448
+#: classes/Utils.php:9443
 #: templates/dashboard/my-quiz-attempts.php:35
 msgid "My Quiz Attempts"
 msgstr ""
 
-#: classes/Utils.php:9463
+#: classes/Utils.php:9458
 #: templates/dashboard/purchase_history.php:77
 #: templates/dashboard/purchase_history.php:98
 msgid "Order History"
 msgstr ""
 
-#: classes/Utils.php:9470
+#: classes/Utils.php:9465
 #: templates/dashboard/question-answer.php:53
 #: templates/single/course/enrolled/question_and_answer.php:114
 #: views/pages/question_answer.php:74
 msgid "Question & Answer"
 msgstr ""
 
-#: classes/Utils.php:9548
+#: classes/Utils.php:9543
 msgid "HTML 5 (mp4)"
 msgstr ""
 
-#: classes/Utils.php:9552
+#: classes/Utils.php:9547
 msgid "External URL"
 msgstr ""
 
-#: classes/Utils.php:9556
+#: classes/Utils.php:9551
 msgid "YouTube"
 msgstr ""
 
-#: classes/Utils.php:9560
+#: classes/Utils.php:9555
 msgid "Vimeo"
 msgstr ""
 
-#: classes/Utils.php:9564
+#: classes/Utils.php:9559
 msgid "Embedded"
 msgstr ""
 
-#: classes/Utils.php:9568
+#: classes/Utils.php:9563
 msgid "Shortcode"
 msgstr ""
 
-#: classes/Utils.php:10265
+#: classes/Utils.php:10260
 #: assets/js/tutor-addon-list.js:1944
 #: assets/js/tutor-addon-list.js:1950
 #: assets/js/tutor-coupon.js:1802
@@ -4036,86 +4011,86 @@ msgstr ""
 msgid "Something went wrong"
 msgstr ""
 
-#: classes/Utils.php:10270
+#: classes/Utils.php:10265
 msgid "You are not authorzied to perform this action"
 msgstr ""
 
-#: classes/Utils.php:10271
+#: classes/Utils.php:10266
 msgid "Nonce not matched. Action failed!"
 msgstr ""
 
-#: classes/Utils.php:10272
+#: classes/Utils.php:10267
 msgid "Invalid request"
 msgstr ""
 
-#: classes/Utils.php:10273
+#: classes/Utils.php:10268
 msgid "Authentication failed"
 msgstr ""
 
-#: classes/Utils.php:10274
+#: classes/Utils.php:10269
 msgid "Authorization required"
 msgstr ""
 
-#: classes/Utils.php:10275
+#: classes/Utils.php:10270
 msgid "Requested resource not found"
 msgstr ""
 
-#: classes/Utils.php:10276
+#: classes/Utils.php:10271
 msgid "Internal server error"
 msgstr ""
 
-#: classes/Utils.php:10277
+#: classes/Utils.php:10272
 msgid "Request timed out"
 msgstr ""
 
-#: classes/Utils.php:10278
+#: classes/Utils.php:10273
 msgid "Access to this resource is forbidden"
 msgstr ""
 
-#: classes/Utils.php:10279
+#: classes/Utils.php:10274
 msgid "HTTP method not allowed"
 msgstr ""
 
-#: classes/Utils.php:10280
+#: classes/Utils.php:10275
 msgid "Too many requests"
 msgstr ""
 
-#: classes/Utils.php:10281
+#: classes/Utils.php:10276
 msgid "Validation error"
 msgstr ""
 
-#: classes/Utils.php:10282
+#: classes/Utils.php:10277
 msgid "Database operation failed"
 msgstr ""
 
-#: classes/Utils.php:10283
+#: classes/Utils.php:10278
 msgid "Requested file not found"
 msgstr ""
 
-#: classes/Utils.php:10284
+#: classes/Utils.php:10279
 msgid "Unsupported media type"
 msgstr ""
 
-#: classes/Utils.php:10330
+#: classes/Utils.php:10325
 msgid "Gutenberg"
 msgstr ""
 
-#: classes/Utils.php:10345
+#: classes/Utils.php:10340
 msgid "Droip"
 msgstr ""
 
-#: classes/Utils.php:10363
+#: classes/Utils.php:10358
 msgid "Elementor"
 msgstr ""
 
-#: classes/Utils.php:10391
+#: classes/Utils.php:10386
 #: assets/js/tutor-course-builder.js:13846
 #: assets/js/tutor-course-builder.js:26753
 msgid "Classic Editor"
 msgstr ""
 
 #. translators: %s: timestamp
-#: classes/Utils.php:10483
+#: classes/Utils.php:10478
 #, php-format
 msgid "%s left"
 msgstr ""
@@ -5758,51 +5733,6 @@ msgstr ""
 
 #: restapi/REST_Topic.php:81
 msgid "Topic not found for given course ID"
-msgstr ""
-
-#: template-import/TemplateImporter.php:64
-#: template-import/TemplateImporter.php:180
-msgid "Permission denied!"
-msgstr ""
-
-#: template-import/TemplateImporter.php:73
-msgid "Required plugin info missing!"
-msgstr ""
-
-#: template-import/TemplateImporter.php:137
-msgid "Plugin installation error!"
-msgstr ""
-
-#: template-import/TemplateImporter.php:142
-msgid "Plugin installed successfully!"
-msgstr ""
-
-#: template-import/TemplateImporter.php:153
-msgid "Theme installation error!"
-msgstr ""
-
-#: template-import/TemplateImporter.php:158
-msgid "Error: while activating theme!"
-msgstr ""
-
-#: template-import/TemplateImporter.php:161
-msgid "Theme installed and activated successfully."
-msgstr ""
-
-#: template-import/TemplateImporter.php:163
-msgid "Plugin or theme nothing installed!"
-msgstr ""
-
-#: template-import/TemplateImporter.php:190
-msgid "Content imported"
-msgstr ""
-
-#: template-import/TemplateImporter.php:192
-msgid "Content importing error!"
-msgstr ""
-
-#: template-import/TemplateImporter.php:240
-msgid "Successfully fetched!"
 msgstr ""
 
 #: templates/course-embed.php:95
@@ -8038,6 +7968,10 @@ msgstr ""
 msgid "Plugins"
 msgstr ""
 
+#: views/pages/addons.php:28
+msgid "Themes"
+msgstr ""
+
 #: views/pages/addons.php:56
 msgctxt "addon-last-checked"
 msgid "Last checked"
@@ -8882,33 +8816,6 @@ msgstr ""
 #: views/quiz/instructor-feedback.php:37
 #: assets/js/tutor.js:2864
 msgid "Updated"
-msgstr ""
-
-#: views/template-import/templates-list.php:36
-#: views/template-import/templates.php:108
-#: assets/js/tutor-import-export.js:8580
-#: assets/js/tutor-import-export.js:8820
-msgid "Import"
-msgstr ""
-
-#: views/template-import/templates-list.php:55
-msgid "Coming soon"
-msgstr ""
-
-#: views/template-import/templates-list.php:68
-msgid "No template available."
-msgstr ""
-
-#: views/template-import/templates.php:25
-msgid "Leverage the collection of magnificent Tutor starter templates to make a jump start."
-msgstr ""
-
-#: views/template-import/templates.php:87
-msgid "Choose your color palette and continue with your design"
-msgstr ""
-
-#: views/template-import/templates.php:102
-msgid "Include Tutor LMS demo courses"
 msgstr ""
 
 #: assets/js/tutor-addon-list.js:523
@@ -13176,6 +13083,11 @@ msgstr ""
 
 #: assets/js/tutor-import-export.js:8551
 msgid "Note: Only lessons, quizzes, and assignments will be uploaded to the Content Bank."
+msgstr ""
+
+#: assets/js/tutor-import-export.js:8580
+#: assets/js/tutor-import-export.js:8820
+msgid "Import"
 msgstr ""
 
 #: assets/js/tutor-import-export.js:8678

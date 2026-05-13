@@ -10,7 +10,6 @@ class ComposerStaticInit393f7dbca26c39b6641c0f30851cde2c
         'T' =>
         array (
             'Tutor\\Traits\\' => 13,
-            'Tutor\\TemplateImport\\' => 21,
             'Tutor\\PaymentGateways\\' => 22,
             'Tutor\\Models\\' => 13,
             'Tutor\\Migrations\\' => 17,
@@ -25,10 +24,6 @@ class ComposerStaticInit393f7dbca26c39b6641c0f30851cde2c
         'Tutor\\Traits\\' =>
         array (
             0 => __DIR__ . '/../..' . '/traits',
-        ),
-        'Tutor\\TemplateImport\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/template-import',
         ),
         'Tutor\\PaymentGateways\\' =>
         array (

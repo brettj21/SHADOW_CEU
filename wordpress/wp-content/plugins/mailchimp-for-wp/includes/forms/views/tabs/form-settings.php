@@ -1,3 +1,5 @@
+<?php defined('ABSPATH') or exit; ?>
+
 <h2><?php echo esc_html__('Form Settings', 'mailchimp-for-wp'); ?></h2>
 
 <div class="mc4wp-margin-m"></div>
@@ -14,7 +16,10 @@
         // loop through lists
         if (empty($lists)) {
             ?>
-            <td colspan="2"><?php echo sprintf(wp_kses(__('No audiences found, <a href="%s">are you connected to Mailchimp</a>?', 'mailchimp-for-wp'), [ 'a' => [ 'href' => [] ] ]), admin_url('admin.php?page=mailchimp-for-wp')); ?></td>
+            <td colspan="2"><?php
+                // translators: %s is the URL to the Mailchimp for WordPress settings page.
+                echo sprintf(wp_kses(__('No audiences found, <a href="%s">are you connected to Mailchimp</a>?', 'mailchimp-for-wp'), [ 'a' => [ 'href' => [] ] ]), esc_url(admin_url('admin.php?page=mailchimp-for-wp')));
+            ?></td>
             <?php
         } else {
             ?>
@@ -164,6 +169,7 @@
     <tr valign="top">
         <th scope="row"><label for="mc4wp_form_redirect"><?php echo esc_html__('Redirect to URL after successful sign-ups', 'mailchimp-for-wp'); ?></label></th>
         <td>
+            <?php // translators: %s is an example URL, e.g. https://example.com/thank-you/. ?>
             <input type="text" class="widefat" name="mc4wp_form[settings][redirect]" id="mc4wp_form_redirect" placeholder="<?php echo sprintf(esc_attr__('Example: %s', 'mailchimp-for-wp'), esc_attr(site_url('/thank-you/'))); ?>" value="<?php echo esc_attr($opts['redirect']); ?>" />
             <p class="description">
                 <?php echo wp_kses(__('Leave empty or enter <code>0</code> for no redirect. Otherwise, use complete (absolute) URLs, including <code>http://</code>.', 'mailchimp-for-wp'), [ 'code' => [] ]); ?>

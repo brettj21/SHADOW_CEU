@@ -3,8 +3,8 @@ Contributors: Ibericode, DvanKooten, hchouhan, lapzor
 Donate link: https://www.mc4wp.com/contribute/#utm_source=wp-plugin-repo&utm_medium=mailchimp-for-wp&utm_campaign=donate-link
 Tags: mailchimp, subscribe, email, newsletter, form
 Requires at least: 4.6
-Tested up to: 6.9.1
-Stable tag: 4.12.2
+Tested up to: 7.0
+Stable tag: 4.12.5
 License: GPL-3.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 7.4
@@ -187,6 +187,20 @@ The plugin provides various filter and action hooks that allow you to modify or 
 9. Settings page for e-commerce integration with Mailchimp. Requires [Mailchimp for WordPress Premium](https://www.mc4wp.com/).
 
 == Changelog ==
+
+
+#### 4.12.5 - May 8, 2026
+
+- Fix fatal error on plugin activation in some cases when wp_rand() returns a value below 10 for the minute part. Thanks [Tim Carr](https://www.wpzinc.com/)!
+
+
+#### 4.12.3 - May 5, 2026
+
+- Improved Mailchimp Site Tracking Pixel support. Site is now automatically discovered or registered in Mailchimp when feature is enabled.
+- Sign-up attempts for integrations are now processed asynchronously (via a scheduled event).
+- Ensure mc4wp_refresh_mailchimp_lists is scheduled in site's local timezone.
+- Added missing translator comments to all translatable strings.
+- General code hardening and minor improvements as reported by the Plugin Check tool.
 
 
 #### 4.12.2 - Apr 20, 2026
@@ -1103,32 +1117,7 @@ Please note that installing this update requires you to also update any add-ons 
 
 **Improvements**
 
-- Add `$args` parameter to `API::get_lists_activity` method. Relates to the [Mailchimp Activity](https://wordpress.org/plugins/mc4wp-activity/) plugin.
-
-
-#### 4.0.10 - December 6, 2016
-
-**Improvements**
-
-- You can now enable or disable debug logging from the "Other" settings page.
-- No longer using deprecated function in Contact Form 7, thanks to [stodorovic](https://github.com/stodorovic).
-- Improved UI for adding hidden interest groupings fields to a form.
-
-
-#### 4.0.9 - November 23, 2016
-
-**Fixes**
-
-- Issue with escaped HTML when using form tags introduced by previous update.
-
-
-#### 4.0.8 - November 23, 2016
-
-**Improvements**
-
-- Improved handling of large debug logs.
-- Improved error messages when writing exceptions to debug log.
-- Show notice when form is missing ...
+- Add `$args` parameter ...
 
 == Upgrade Notice ==
 

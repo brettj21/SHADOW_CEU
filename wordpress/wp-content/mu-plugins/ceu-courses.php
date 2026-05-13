@@ -131,6 +131,7 @@ add_shortcode('ceu_courses', function($atts) {
     }
 
     $placeholder = 'https://shadow.ceunits.com/wordpress/wp-content/uploads/2026/01/CEUnits.com-Courses-Image-300x300-4.jpg';
+    $img_root = 'https://shadow.ceunits.com/wordpress/wp-content/uploads/course/';
 
     // Build topic ID → name map for data attributes
     $topic_map = [];
@@ -178,7 +179,7 @@ add_shortcode('ceu_courses', function($atts) {
                 <div class="ceu-card" data-topics="<?php echo esc_attr($c['topic_ids']); ?>">
 
                     <div class="ceu-card-image">
-                        <img src="<?php echo esc_url($placeholder); ?>" alt="<?php echo esc_attr($c['title']); ?>" loading="lazy" />
+                        <img src="<?php echo $img_root . $c['training_id']; ?>.jpg" alt="<?php echo esc_attr($c['title']); ?>" loading="lazy" />
                         <div class="ceu-card-badge">
                             <?php if ($c['cost'] > 0): ?>
                                 $<?php echo number_format((float)$c['cost'], 2); ?>

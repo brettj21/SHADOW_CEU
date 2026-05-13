@@ -1,5 +1,8 @@
 <?php
 
+defined('ABSPATH') or exit;
+
+
 $opts = $opts ?? [];
 $opts = true === is_array($opts) ?
     $opts :
@@ -33,6 +36,7 @@ if ('1' === $enabled) {
     <?php
 }
 $procaptcha_api = MC4WP_Procaptcha::get_instance();
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Captcha provider returns required widget markup.
 echo $procaptcha_api->print_captcha_element(true, true);
 ?>
 

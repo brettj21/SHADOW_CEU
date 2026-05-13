@@ -24,7 +24,9 @@ class MC4WP_Form
      */
     public static function throw_not_found_exception($post_id)
     {
+        // translators: %d is the form post ID.
         $message = sprintf(__('There is no form with ID %d, perhaps it was deleted?', 'mailchimp-for-wp'), $post_id);
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception text is not direct output and is escaped at render time.
         throw new Exception($message);
     }
 
@@ -302,7 +304,7 @@ class MC4WP_Form
             }
 
             // run final value through gettext filter to allow translation of stored setting values
-            $messages[ $key ] = __($message_text, 'mailchimp-for-wp');
+            $messages[ $key ] = __($message_text, 'mailchimp-for-wp'); // phpcs:ignore
         }
 
         return $messages;

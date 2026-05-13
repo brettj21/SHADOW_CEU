@@ -4,7 +4,7 @@
 Plugin Name: MC4WP: Mailchimp for WordPress
 Plugin URI: https://www.mc4wp.com/#utm_source=wp-plugin&utm_medium=mailchimp-for-wp&utm_campaign=plugins-page
 Description: Mailchimp for WordPress by ibericode. Adds various highly effective sign-up methods to your site.
-Version: 4.12.2
+Version: 4.12.5
 Author: ibericode
 Author URI: https://www.ibericode.com/
 Text Domain: mailchimp-for-wp
@@ -45,7 +45,7 @@ add_action('plugins_loaded', function () {
     }
 
     // bootstrap the core plugin
-    define('MC4WP_VERSION', '4.12.2');
+    define('MC4WP_VERSION', '4.12.5');
     define('MC4WP_PLUGIN_DIR', __DIR__);
     define('MC4WP_PLUGIN_FILE', __FILE__);
 
@@ -94,8 +94,16 @@ add_action('plugins_loaded', function () {
     // Initialize tracking pixel on frontend
     if (! is_admin()) {
         $opts = mc4wp_get_options();
-        if (! empty($opts['tracking_pixel_id'])) {
-            $tracking_pixel = new MC4WP_Tracking_Pixel($opts['tracking_pixel_id']);
+
+        // Determine the site ID: prefer new auto-connected value, fall back to legacy manual ID
+        $site_id = ! empty($opts['tracking_pixel_site_id']) ? $opts['tracking_pixel_site_id'] : ($opts['tracking_pixel_id'] ?? '');
+
+        if (
+            (! empty($opts['tracking_pixel_enabled']) || ! empty($opts['tracking_pixel_id']))
+            && ! empty($site_id)
+            && ! MC4WP_Tracking_Pixel::is_premium_ecommerce_pixel_active()
+        ) {
+            $tracking_pixel = new MC4WP_Tracking_Pixel($site_id);
             $tracking_pixel->add_hooks();
         }
     }
@@ -106,8 +114,10 @@ add_action('plugins_loaded', function () {
 
 // schedule the action hook to refresh the stored Mailchimp lists on a daily basis
 register_activation_hook(__FILE__, function () {
-    $time_string = sprintf('tomorrow %d:%d am', rand(0, 7), rand(0, 59));
-    wp_schedule_event(strtotime($time_string), 'daily', 'mc4wp_refresh_mailchimp_lists');
+    $timezone = wp_timezone();
+    $datetime = new DateTimeImmutable('tomorrow', $timezone);
+    $datetime = $datetime->setTime(wp_rand(0, 6), wp_rand(0, 59));
+    wp_schedule_event($datetime->getTimestamp(), 'daily', 'mc4wp_refresh_mailchimp_lists');
 });
 
 // remove scheduled hook when plugin is deactivated
