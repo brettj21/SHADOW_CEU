@@ -174,3 +174,41 @@ add_filter('wp_nav_menu_items', function ($items, $args) {
 
     return $items;
 }, 10, 2);
+
+// ─── Login Form: Fix Injected Email Field Validation ─────────────────────────
+// Third-party plugins (MailChimp for WP, NSL, etc.) hook into woocommerce_login_form
+// and login_form actions and inject type="email" required inputs. When those
+// fields are empty, WooCommerce's JS validation blocks the login button with
+// "Please enter an email address." This script strips required from any email
+// input inside a login/register form that is not the primary credential field,
+// and adds novalidate to the register form so it doesn't interfere with login.
+
+add_action('wp_footer', function () {
+    ?>
+    <script>
+    (function () {
+        document.addEventListener('DOMContentLoaded', function () {
+            // Silence the register form so clicking Login doesn't validate it.
+            var regForm = document.querySelector('.woocommerce-form-register');
+            if (regForm) regForm.setAttribute('novalidate', '');
+
+            // Remove required from any injected type="email" inputs inside login forms.
+            // The real credential field (name="username" / name="log") is type="text",
+            // so stripping required from ALL type="email" inputs is safe here.
+            [
+                '.woocommerce-form-login',
+                '#tutor-login-form',
+                '.login',
+            ].forEach(function (sel) {
+                var form = document.querySelector(sel);
+                if (!form) return;
+                form.querySelectorAll('input[type="email"]').forEach(function (el) {
+                    el.removeAttribute('required');
+                    el.removeAttribute('aria-required');
+                });
+            });
+        });
+    })();
+    </script>
+    <?php
+});
