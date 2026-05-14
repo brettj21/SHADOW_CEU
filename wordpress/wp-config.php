@@ -34,7 +34,7 @@ define( 'DB_USER', 'ceunits' );
 define( 'DB_PASSWORD', 'KvGidZtwpt6z4@~7' );
 
 /** Database hostname */
-define( 'DB_HOST', 'localhost:3306' );
+define( 'DB_HOST', getenv( 'MYSQL_HOST' ) ?: 'localhost:3306' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
