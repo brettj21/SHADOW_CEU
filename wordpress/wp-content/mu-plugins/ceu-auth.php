@@ -184,26 +184,30 @@ add_filter('wp_nav_menu_items', function ($items, $args) {
 // and adds novalidate to the register form so it doesn't interfere with login.
 
 add_action('wp_footer', function () {
+    if (!is_page('login')) return;
     ?>
     <script>
     (function () {
+        // Stop CF7 real-time (SWV) validation on the login page.
+        // CF7 fires "Please enter an email address." on blur via its change
+        // listener — novalidate alone does not suppress this. Intercepting
+        // the change event in capture phase prevents CF7's listener from running.
+        document.querySelectorAll('.wpcf7 > form').forEach(function (form) {
+            form.setAttribute('novalidate', '');
+            form.addEventListener('change', function (e) {
+                e.stopImmediatePropagation();
+            }, true);
+        });
+
         var loginForm = document.querySelector('#ajax-login-form');
         if (!loginForm) return;
 
-        // Suppress browser validation on CF7 forms so they don't block the page.
-        document.querySelectorAll('.wpcf7 > form').forEach(function (form) {
-            form.setAttribute('novalidate', '');
-        });
-
-        // The CF7 register form's submit button overlaps the login button in the
-        // page layout. Intercept clicks on CF7 submit buttons (capture phase,
-        // before any form submit is generated). If login credentials are filled,
-        // block the click entirely and trigger the actual login form instead.
-        // Empty credentials = genuine register attempt, let CF7 submit normally.
+        // If the zilom login form is present, intercept clicks on any other
+        // form's submit button. When login credentials are filled, block the
+        // click and trigger the actual login instead.
         document.addEventListener('click', function (e) {
             var btn = e.target.closest('input[type="submit"], button[type="submit"]');
-            if (!btn) return;
-            if (!btn.form || btn.form === loginForm) return; // ignore login btn itself
+            if (!btn || !btn.form || btn.form === loginForm) return;
 
             var username = (loginForm.querySelector('#username') || {}).value || '';
             var password = (loginForm.querySelector('#password') || {}).value || '';
@@ -213,7 +217,7 @@ add_action('wp_footer', function () {
                 e.stopImmediatePropagation();
                 loginForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
             }
-        }, true); // capture phase — fires before the click reaches the button
+        }, true);
     })();
     </script>
     <?php
