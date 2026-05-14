@@ -187,44 +187,31 @@ add_action('wp_footer', function () {
     ?>
     <script>
     (function () {
-        // Capture invalid events before the browser shows any UI.
-        // Suppresses validation on any type="email" input that lives inside a
-        // form which also has a password field (i.e. login / register forms).
-        // This is bulletproof regardless of when the injected input appears.
-        document.addEventListener('invalid', function (e) {
-            var el = e.target;
-            if (el.type !== 'email') return;
-            var form = el.closest('form');
-            if (form && form.querySelector('input[type="password"]')) {
-                e.preventDefault();
-            }
-        }, true); // capture phase — fires before browser validation UI
+        if (!document.querySelector('#ajax-login-form')) return;
 
-        function fixLoginForms() {
-            [
-                '.woocommerce-form-login',
-                '.woocommerce-form-register',
-                '#tutor-login-form',
-                '.login',
-            ].forEach(function (sel) {
-                var form = document.querySelector(sel);
-                if (form) form.setAttribute('novalidate', '');
-            });
+        // When the login button is clicked, CF7 forms on the same page fire
+        // their own submit (overlapping layout). Track the click so we can
+        // block only CF7 submissions triggered by the login button — not
+        // submissions triggered by the register form's own submit button.
+        var loginClicked = false;
 
-            document.querySelectorAll('input[type="email"]').forEach(function (el) {
-                var form = el.closest('form');
-                if (form && form.querySelector('input[type="password"]')) {
-                    el.removeAttribute('required');
-                    el.removeAttribute('aria-required');
+        var loginBtn = document.querySelector('#ajax-login-form input[type="submit"]');
+        if (loginBtn) {
+            loginBtn.addEventListener('click', function () {
+                loginClicked = true;
+                setTimeout(function () { loginClicked = false; }, 500);
+            }, true);
+        }
+
+        document.querySelectorAll('.wpcf7 > form').forEach(function (form) {
+            form.setAttribute('novalidate', '');
+            form.addEventListener('submit', function (e) {
+                if (loginClicked) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
                 }
-            });
-        }
-
-        fixLoginForms();
-
-        if (window.MutationObserver) {
-            new MutationObserver(fixLoginForms).observe(document.body, { childList: true, subtree: true });
-        }
+            }, true);
+        });
     })();
     </script>
     <?php
