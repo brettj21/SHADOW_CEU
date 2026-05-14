@@ -196,23 +196,24 @@ add_action('wp_footer', function () {
         });
 
         // The CF7 register form's submit button overlaps the login button in the
-        // page layout. When the user clicks "Log In", the CF7 form fires instead
-        // of the zilom login form. Intercept every non-login submit: if login
-        // credentials are already filled in, block the other form and trigger
-        // the actual login instead. If credentials are empty the user is
-        // genuinely submitting the other form (e.g. register), so let it through.
-        document.addEventListener('submit', function (e) {
-            if (e.target === loginForm) return; // login form itself — leave alone
+        // page layout. Intercept clicks on CF7 submit buttons (capture phase,
+        // before any form submit is generated). If login credentials are filled,
+        // block the click entirely and trigger the actual login form instead.
+        // Empty credentials = genuine register attempt, let CF7 submit normally.
+        document.addEventListener('click', function (e) {
+            var btn = e.target.closest('input[type="submit"], button[type="submit"]');
+            if (!btn) return;
+            if (!btn.form || btn.form === loginForm) return; // ignore login btn itself
 
-            var username = loginForm.querySelector('#username') ? loginForm.querySelector('#username').value.trim() : '';
-            var password = loginForm.querySelector('#password') ? loginForm.querySelector('#password').value.trim() : '';
+            var username = (loginForm.querySelector('#username') || {}).value || '';
+            var password = (loginForm.querySelector('#password') || {}).value || '';
 
-            if (username && password) {
+            if (username.trim() && password.trim()) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 loginForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
             }
-        }, true); // capture phase — fires before CF7's own submit handler
+        }, true); // capture phase — fires before the click reaches the button
     })();
     </script>
     <?php
