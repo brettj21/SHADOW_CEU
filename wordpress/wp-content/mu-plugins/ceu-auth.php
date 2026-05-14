@@ -187,31 +187,32 @@ add_action('wp_footer', function () {
     ?>
     <script>
     (function () {
-        if (!document.querySelector('#ajax-login-form')) return;
+        var loginForm = document.querySelector('#ajax-login-form');
+        if (!loginForm) return;
 
-        // When the login button is clicked, CF7 forms on the same page fire
-        // their own submit (overlapping layout). Track the click so we can
-        // block only CF7 submissions triggered by the login button — not
-        // submissions triggered by the register form's own submit button.
-        var loginClicked = false;
-
-        var loginBtn = document.querySelector('#ajax-login-form input[type="submit"]');
-        if (loginBtn) {
-            loginBtn.addEventListener('click', function () {
-                loginClicked = true;
-                setTimeout(function () { loginClicked = false; }, 500);
-            }, true);
-        }
-
+        // Suppress browser validation on CF7 forms so they don't block the page.
         document.querySelectorAll('.wpcf7 > form').forEach(function (form) {
             form.setAttribute('novalidate', '');
-            form.addEventListener('submit', function (e) {
-                if (loginClicked) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
-                }
-            }, true);
         });
+
+        // The CF7 register form's submit button overlaps the login button in the
+        // page layout. When the user clicks "Log In", the CF7 form fires instead
+        // of the zilom login form. Intercept every non-login submit: if login
+        // credentials are already filled in, block the other form and trigger
+        // the actual login instead. If credentials are empty the user is
+        // genuinely submitting the other form (e.g. register), so let it through.
+        document.addEventListener('submit', function (e) {
+            if (e.target === loginForm) return; // login form itself — leave alone
+
+            var username = loginForm.querySelector('#username') ? loginForm.querySelector('#username').value.trim() : '';
+            var password = loginForm.querySelector('#password') ? loginForm.querySelector('#password').value.trim() : '';
+
+            if (username && password) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                loginForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+            }
+        }, true); // capture phase — fires before CF7's own submit handler
     })();
     </script>
     <?php
