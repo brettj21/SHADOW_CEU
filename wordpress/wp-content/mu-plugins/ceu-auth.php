@@ -187,9 +187,20 @@ add_action('wp_footer', function () {
     ?>
     <script>
     (function () {
+        // Capture invalid events before the browser shows any UI.
+        // Suppresses validation on any type="email" input that lives inside a
+        // form which also has a password field (i.e. login / register forms).
+        // This is bulletproof regardless of when the injected input appears.
+        document.addEventListener('invalid', function (e) {
+            var el = e.target;
+            if (el.type !== 'email') return;
+            var form = el.closest('form');
+            if (form && form.querySelector('input[type="password"]')) {
+                e.preventDefault();
+            }
+        }, true); // capture phase — fires before browser validation UI
+
         function fixLoginForms() {
-            // Add novalidate to all login/register forms so browser and WC JS
-            // validation don't block submission on injected hidden email fields.
             [
                 '.woocommerce-form-login',
                 '.woocommerce-form-register',
@@ -200,8 +211,6 @@ add_action('wp_footer', function () {
                 if (form) form.setAttribute('novalidate', '');
             });
 
-            // Strip required from any type="email" input inside a form that also
-            // has a password field — safely targets login/register forms only.
             document.querySelectorAll('input[type="email"]').forEach(function (el) {
                 var form = el.closest('form');
                 if (form && form.querySelector('input[type="password"]')) {
@@ -211,10 +220,8 @@ add_action('wp_footer', function () {
             });
         }
 
-        // Run immediately — wp_footer is already at the bottom of <body>.
         fixLoginForms();
 
-        // MutationObserver catches inputs injected after page load (e.g. NSL, MailChimp).
         if (window.MutationObserver) {
             new MutationObserver(fixLoginForms).observe(document.body, { childList: true, subtree: true });
         }
