@@ -187,27 +187,37 @@ add_action('wp_footer', function () {
     ?>
     <script>
     (function () {
-        document.addEventListener('DOMContentLoaded', function () {
-            // Silence the register form so clicking Login doesn't validate it.
-            var regForm = document.querySelector('.woocommerce-form-register');
-            if (regForm) regForm.setAttribute('novalidate', '');
-
-            // Remove required from any injected type="email" inputs inside login forms.
-            // The real credential field (name="username" / name="log") is type="text",
-            // so stripping required from ALL type="email" inputs is safe here.
+        function fixLoginForms() {
+            // Add novalidate to all login/register forms so browser and WC JS
+            // validation don't block submission on injected hidden email fields.
             [
                 '.woocommerce-form-login',
+                '.woocommerce-form-register',
                 '#tutor-login-form',
                 '.login',
             ].forEach(function (sel) {
                 var form = document.querySelector(sel);
-                if (!form) return;
-                form.querySelectorAll('input[type="email"]').forEach(function (el) {
+                if (form) form.setAttribute('novalidate', '');
+            });
+
+            // Strip required from any type="email" input inside a form that also
+            // has a password field — safely targets login/register forms only.
+            document.querySelectorAll('input[type="email"]').forEach(function (el) {
+                var form = el.closest('form');
+                if (form && form.querySelector('input[type="password"]')) {
                     el.removeAttribute('required');
                     el.removeAttribute('aria-required');
-                });
+                }
             });
-        });
+        }
+
+        // Run immediately — wp_footer is already at the bottom of <body>.
+        fixLoginForms();
+
+        // MutationObserver catches inputs injected after page load (e.g. NSL, MailChimp).
+        if (window.MutationObserver) {
+            new MutationObserver(fixLoginForms).observe(document.body, { childList: true, subtree: true });
+        }
     })();
     </script>
     <?php
