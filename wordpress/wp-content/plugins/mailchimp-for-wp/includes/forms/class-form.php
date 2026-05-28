@@ -411,7 +411,7 @@ class MC4WP_Form
 
         if (empty($errors)) {
             // validate email field
-            if (empty($this->data['EMAIL']) || ! is_email($this->data['EMAIL'])) {
+            if (false === mc4wp_is_email($this->data['EMAIL'])) {
                 $errors[] = 'invalid_email';
             }
 
@@ -517,8 +517,12 @@ class MC4WP_Form
         $ignored_field_names = apply_filters('mc4wp_form_ignored_field_names', $ignored_field_names, $form);
 
         foreach ($data as $key => $value) {
+            if (! is_string($key) || strlen($key) > 191) {
+                continue;
+            }
+
             // skip fields in ignored field names
-            if ($key[0] === '_' || in_array($key, $ignored_field_names, true)) {
+            if ($key === '' || $key[0] === '_' || in_array($key, $ignored_field_names, true)) {
                 continue;
             }
 

@@ -65,19 +65,12 @@ defined('ABSPATH') or exit;
 
                 <div class="mc4wp-margin-m">
                     <h3><?php echo esc_html__('Site Tracking Pixel', 'mailchimp-for-wp'); ?></h3>
-                    <?php if (MC4WP_Tracking_Pixel::is_premium_ecommerce_pixel_active()) : ?>
-                        <p class="description">
-                            <?php echo wp_kses(
-                                __('<strong>Note:</strong> Site tracking is currently managed by the <strong>MC4WP Premium E-Commerce</strong> integration. You do not need to configure it here.', 'mailchimp-for-wp'),
-                                ['strong' => []]
-                            ); ?>
-                        </p>
-                    <?php else : ?>
                     <table class="form-table">
                         <tr>
                             <th><label for="mc4wp-tracking-pixel-enabled"><?php echo esc_html__('Enable Site Tracking', 'mailchimp-for-wp'); ?></label></th>
                             <td>
                                 <label>
+                                    <input type="hidden" name="mc4wp[tracking_pixel_enabled]" value="0" />
                                     <input type="checkbox" id="mc4wp-tracking-pixel-enabled" name="mc4wp[tracking_pixel_enabled]" value="1" <?php checked(true, ! empty($opts['tracking_pixel_enabled'])); ?> />
                                     <?php echo esc_html__('Load the Mailchimp Site Tracking Pixel on all frontend pages.', 'mailchimp-for-wp'); ?>
                                 </label>
@@ -96,7 +89,6 @@ defined('ABSPATH') or exit;
                             </td>
                         </tr>
                     </table>
-                    <?php endif; ?>
                 </div>
 
 

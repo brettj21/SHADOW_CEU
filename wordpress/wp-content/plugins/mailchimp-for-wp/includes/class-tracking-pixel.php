@@ -55,17 +55,11 @@ class MC4WP_Tracking_Pixel
         }
 
         $opts = mc4wp_get_options();
-
-        if (! empty($opts['tracking_pixel_script_url'])) {
-            $url = $opts['tracking_pixel_script_url'];
-        } else if (! empty($opts['tracking_pixel_id'])) {
-            // BC: support legacy tracking_pixel_id for users who configured it before this auto-connect feature
-            $url = sprintf('https://chimpstatic.com/mcjs-connected/js/users/%s.js', $opts['tracking_pixel_id']);
-        } else {
+        if (empty($opts['tracking_pixel_script_url'])) {
             return;
         }
 
-        wp_enqueue_script('mc4wp-mailchimp-site-tracking-pixel', $url, [], MC4WP_VERSION, [
+        wp_enqueue_script('mc4wp-mailchimp-site-tracking-pixel', $opts['tracking_pixel_script_url'], [], MC4WP_VERSION, [
             'strategy' => 'defer',
         ]);
     }
@@ -190,18 +184,5 @@ class MC4WP_Tracking_Pixel
         }
 
         return 'mc4wp-' . sanitize_title(get_bloginfo('name')) . '-' . get_current_blog_id();
-    }
-
-    /**
-     * Returns true if the MC4WP Premium e-commerce integration is already
-     * managing the tracking pixel (mcjs script), so we avoid injecting a
-     * duplicate script on the frontend.
-     *
-     * @return bool
-     */
-    public static function is_premium_ecommerce_pixel_active(): bool
-    {
-        $ecommerce_settings = get_option('mc4wp_ecommerce', []);
-        return ! empty($ecommerce_settings['load_mcjs_script']);
     }
 }

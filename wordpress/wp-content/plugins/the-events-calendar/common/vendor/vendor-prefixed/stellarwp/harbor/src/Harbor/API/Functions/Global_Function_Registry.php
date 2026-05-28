@@ -6,7 +6,6 @@ use TEC\Common\LiquidWeb\Harbor\Admin\Feature_Manager_Page;
 use TEC\Common\LiquidWeb\Harbor\API\Functions\Actions\Display_Legacy_License_Page_Notice;
 use TEC\Common\LiquidWeb\Harbor\API\Functions\Actions\Register_Submenu;
 use TEC\Common\LiquidWeb\Harbor\Config;
-use TEC\Common\LiquidWeb\Harbor\Consent\Consent_Repository;
 use TEC\Common\LiquidWeb\Harbor\Features\Manager;
 use TEC\Common\LiquidWeb\Harbor\Licensing\Repositories\License_Repository;
 use TEC\Common\LiquidWeb\Harbor\Site\Data;
@@ -153,20 +152,6 @@ class Global_Function_Registry {
 					self::debug_log_throwable( $e, 'Error getting site domain' );
 
 					return '';
-				}
-			}
-		);
-
-		\_lw_harbor_global_function_registry(
-			'lw_harbor_has_consent',
-			$version,
-			static function (): bool {
-				try {
-					return Config::get_container()->get( Consent_Repository::class )->has_consent();
-				} catch ( Throwable $e ) {
-					self::debug_log_throwable( $e, 'Error checking consent state' );
-
-					return false;
 				}
 			}
 		);

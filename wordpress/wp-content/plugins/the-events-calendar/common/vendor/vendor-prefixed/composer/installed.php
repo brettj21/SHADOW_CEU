@@ -4,7 +4,7 @@
     'name' => 'the-events-calendar/tribe-common',
     'pretty_version' => 'dev-main',
     'version' => 'dev-main',
-    'reference' => '99b9966d6f98169495b5ab1f4a853f11fe91465a',
+    'reference' => 'cc86eeea03a21cc188e09ff197c58f3de8890543',
     'type' => 'wordpress-plugin',
     'install_path' => __DIR__ . '/../',
     'aliases' => 
@@ -184,9 +184,9 @@
     ),
     'stellarwp/harbor' => 
     array (
-      'pretty_version' => 'v1.1.0',
-      'version' => '1.1.0.0',
-      'reference' => '97c3a17758b03f90980c34c661a7dd119c6c307f',
+      'pretty_version' => 'v1.2.0',
+      'version' => '1.2.0.0',
+      'reference' => 'f22783d0d79597d5b1acf6cce73e6f3ddb701334',
       'type' => 'library',
       'install_path' => __DIR__ . '/../stellarwp/harbor',
       'aliases' => 

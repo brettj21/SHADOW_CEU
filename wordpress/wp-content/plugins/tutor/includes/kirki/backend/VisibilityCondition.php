@@ -431,6 +431,18 @@ class VisibilityCondition
 				array(
 					array(
 						'source'        => TDE_APP_PREFIX,
+						'value'         => 'is_monetization_enabled',
+						'title'         => 'Monetization Enabled',
+						'operator_type' => 'boolean_operators',
+					),
+					array(
+						'source'        => TDE_APP_PREFIX,
+						'value'         => 'is_subscription_enabled',
+						'title'         => 'Subscription Enabled',
+						'operator_type' => 'boolean_operators',
+					),
+					array(
+						'source'        => TDE_APP_PREFIX,
 						'value'         => 'is_paid',
 						'title'         => 'Paid',
 						'operator_type' => 'boolean_operators',
@@ -973,10 +985,19 @@ class VisibilityCondition
 					$course_price = tutor_utils()->get_raw_course_price($course_id);
 					return $course_price->sale_price != 0;
 				}
+			case 'is_monetization_enabled': {
+				$monetization = tutor_utils()->get_option('monetize_by', false);
+				return ('free' === $monetization || empty($monetization)) ? false : true;
+			}
+			case 'is_subscription_enabled': {
+				$is_subscription_enabled = tutor_utils()->is_addon_enabled('subscription');
+				return $is_subscription_enabled;
+			}
 			case 'purchase_options': {
-					$selling_option = Course::get_selling_option($course_id);
-					return $selling_option;
-				}
+				$selling_option = Course::get_selling_option($course_id);
+				return $selling_option;
+			}
+
 			case 'average_rating': {
 					$average_rating = self::get_course_meta($field, $course_id, $options);
 					$average_rating = floatval(str_replace(',', '', $average_rating));

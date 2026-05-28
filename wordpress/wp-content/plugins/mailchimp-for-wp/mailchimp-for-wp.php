@@ -4,7 +4,7 @@
 Plugin Name: MC4WP: Mailchimp for WordPress
 Plugin URI: https://www.mc4wp.com/#utm_source=wp-plugin&utm_medium=mailchimp-for-wp&utm_campaign=plugins-page
 Description: Mailchimp for WordPress by ibericode. Adds various highly effective sign-up methods to your site.
-Version: 4.12.5
+Version: 4.12.6
 Author: ibericode
 Author URI: https://www.ibericode.com/
 Text Domain: mailchimp-for-wp
@@ -45,7 +45,7 @@ add_action('plugins_loaded', function () {
     }
 
     // bootstrap the core plugin
-    define('MC4WP_VERSION', '4.12.5');
+    define('MC4WP_VERSION', '4.12.6');
     define('MC4WP_PLUGIN_DIR', __DIR__);
     define('MC4WP_PLUGIN_FILE', __FILE__);
 
@@ -74,6 +74,8 @@ add_action('plugins_loaded', function () {
     $integration_manager->add_hooks();
     $mc4wp['integrations'] = $integration_manager;
 
+    $opts = mc4wp_get_options();
+
     // Initialize admin section of plugin
     if (is_admin()) {
         $admin_tools = new MC4WP_Admin_Tools();
@@ -89,22 +91,10 @@ add_action('plugins_loaded', function () {
             (new MC4WP_Forms_Admin($messages))->add_hooks();
             (new MC4WP_Integration_Admin($integration_manager, $messages))->add_hooks();
         }
-    }
-
-    // Initialize tracking pixel on frontend
-    if (! is_admin()) {
-        $opts = mc4wp_get_options();
-
-        // Determine the site ID: prefer new auto-connected value, fall back to legacy manual ID
-        $site_id = ! empty($opts['tracking_pixel_site_id']) ? $opts['tracking_pixel_site_id'] : ($opts['tracking_pixel_id'] ?? '');
-
-        if (
-            (! empty($opts['tracking_pixel_enabled']) || ! empty($opts['tracking_pixel_id']))
-            && ! empty($site_id)
-            && ! MC4WP_Tracking_Pixel::is_premium_ecommerce_pixel_active()
-        ) {
-            $tracking_pixel = new MC4WP_Tracking_Pixel($site_id);
-            $tracking_pixel->add_hooks();
+    } else {
+        // Initialize tracking pixel on frontend
+        if (! empty($opts['tracking_pixel_enabled']) && !empty($opts['tracking_pixel_site_id'])) {
+            (new MC4WP_Tracking_Pixel($opts['tracking_pixel_site_id']))->add_hooks();
         }
     }
 

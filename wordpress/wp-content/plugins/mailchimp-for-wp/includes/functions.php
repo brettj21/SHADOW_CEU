@@ -240,7 +240,12 @@ function mc4wp_get_request_ip_address()
 }
 
 /**
- * Strips all HTML tags from all values in a mixed variable, then trims the result.
+ * Performs opinionated sanitization of all string values inside the passed value.
+ * - Strips all tags
+ * - Strips slashes
+ * - Trims whitespace
+ * - Decodes HTML entities
+ * - Limits string values to 1024 bytes
  *
  * @access public
  * @param mixed $value
@@ -249,22 +254,46 @@ function mc4wp_get_request_ip_address()
  */
 function mc4wp_sanitize_deep($value)
 {
-    if (is_scalar($value)) {
-        // strip all HTML tags & whitespace
-        $value = trim(wp_strip_all_tags($value));
+    return map_deep($value, static function ($value) {
+        if (is_string($value)) {
+            // strip tags
+            $value = wp_strip_all_tags($value);
 
-        // convert &amp; back to &
-        $value = html_entity_decode($value, ENT_NOQUOTES);
-    } elseif (is_array($value)) {
-        $value = array_map('mc4wp_sanitize_deep', $value);
-    } elseif (is_object($value)) {
-        $vars = get_object_vars($value);
-        foreach ($vars as $key => $data) {
-            $value->{$key} = mc4wp_sanitize_deep($data);
+            // strip slashes
+            $value = stripslashes($value);
+
+            // trim whitespace
+            $value = trim($value);
+
+            // convert &amp; back to &
+            $value = html_entity_decode($value, ENT_NOQUOTES);
+
+            // limit value to 1024 characters
+            // see https://mailchimp.com/help/manage-audience-signup-form-fields/#Limits_for_audience_fields
+            $value = substr($value, 0, 1024);
         }
+
+        return $value;
+    });
+}
+
+/**
+ * Returns true if (and only if) the value is a valid RFC 822 email address
+ *
+ * @param mixed $value
+ * @return bool
+ */
+function mc4wp_is_email($value): bool
+{
+    if (! is_string($value) || $value === '') {
+        return false;
     }
 
-    return $value;
+    if (strlen($value) > 320) {
+        return false;
+    }
+
+    return filter_var($value, FILTER_VALIDATE_EMAIL) !== false;
 }
 
 /**
@@ -442,36 +471,74 @@ function _mc4wp_use_sslverify()
  */
 function mc4wp_obfuscate_string($string)
 {
-    if (strlen($string) <= 2) {
+    if (false === is_string($string) || $string === '') {
         return $string;
     }
+
     $length = strlen($string);
-    $keep   = floor(strlen($string) / 3);
-    $keep   = min($keep, 4);
+    if ($length <= 2) {
+        return $string;
+    }
+    $keep   = (int) floor($length / 3);
+    $keep   = (int) min($keep, 4);
     return substr($string, 0, $keep) . str_repeat('*', $length - ($keep * 2)) . substr($string, -$keep);
 }
 
 /**
+ * @param array $m
+ * @return string
  * @internal
  * @ignore
  */
 function _mc4wp_obfuscate_email_addresses_callback($m)
 {
-    $one   = $m[1] . str_repeat('*', strlen($m[2]));
-    $two   = $m[3] . str_repeat('*', strlen($m[4]));
-    $three = $m[5];
-    return sprintf('%s@%s.%s', $one, $two, $three);
+    return mc4wp_obfuscate_string($m[1]) . '@' . mc4wp_obfuscate_string($m[2]);
 }
 
 /**
  * Obfuscates email addresses in a string.
  *
- * @param $string String possibly containing email address
+ * @param string $string String possibly containing email address
  * @return string
  */
 function mc4wp_obfuscate_email_addresses($string)
 {
-    return preg_replace_callback('/([\w\.]{1,4})([\w\.]*)\@(\w{1,2})(\w*)\.(\w+)/', '_mc4wp_obfuscate_email_addresses_callback', $string);
+    return preg_replace_callback('/([A-Z0-9._%+-]{1,64})@([A-Z0-9.-]{1,253}\.[A-Z]{2,63})/i', '_mc4wp_obfuscate_email_addresses_callback', $string);
+}
+
+/**
+ * Truncates a debug log message to a reasonable maximum size.
+ *
+ * @param string $message
+ * @return string
+ */
+function mc4wp_truncate_log_message($message)
+{
+    /**
+     * Filters the maximum length of a debug log message in bytes.
+     *
+     * Return 0 or a negative value to disable truncation.
+     *
+     * @param int $max_length Maximum message length in bytes.
+     */
+    $max_length = (int) apply_filters('mc4wp_debug_log_message_max_length', 8192);
+
+    if ($max_length <= 0) {
+        return $message;
+    }
+
+    $length = strlen($message);
+    if ($length <= $max_length) {
+        return $message;
+    }
+
+    $suffix = sprintf('... [truncated, original length: %d bytes]', $length);
+
+    if (strlen($suffix) >= $max_length) {
+        return substr($message, 0, $max_length);
+    }
+
+    return substr($message, 0, $max_length - strlen($suffix)) . $suffix;
 }
 
 /**

@@ -51,7 +51,7 @@ class CreateDuplicate {
 			'post_status'           => 'draft',
 			'post_title'            => $title,
 			'post_type'             => $post->post_type,
-			'post_name'             => $post->post_name,
+			'post_name'             => $post->post_name . '-copy',
 			'post_date'             => $post->post_date,
 			'post_date_gmt'         => get_gmt_from_date( $post->post_date ),
 		);

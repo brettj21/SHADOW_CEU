@@ -15,12 +15,13 @@ class Harbor {
 	 *
 	 * @var string
 	 */
-	public const VERSION = '1.1.0';
+	public const VERSION = '1.2.0';
 
 	/**
 	 * Initializes the service provider.
 	 *
 	 * @since 1.0.0
+	 * @since 1.2.0 - Moves the initialization of the container to the init hook.
 	 *
 	 * @throws RuntimeException If the container has not been configured.
 	 *
@@ -38,7 +39,6 @@ class Harbor {
 		$container->bind( ContainerInterface::class, $container );
 		$container->singleton( View\Provider::class );
 		$container->singleton( Site\Data::class );
-		$container->singleton( Consent\Provider::class );
 		$container->singleton( Admin\Provider::class );
 		$container->singleton( Legacy\Provider::class );
 		$container->singleton( Features\Provider::class );
@@ -49,19 +49,35 @@ class Harbor {
 		$container->singleton( API\Functions\Provider::class );
 		$container->singleton( CLI\Provider::class );
 		$container->singleton( Cron\Provider::class );
+		$container->singleton( Premium_Plugin_Registry::class );
 
-		$container->get( View\Provider::class )->register();
-		$container->get( Consent\Provider::class )->register();
-		$container->get( Admin\Provider::class )->register();
-		$container->get( Legacy\Provider::class )->register();
-		$container->get( Features\Provider::class )->register();
-		$container->get( Http\Provider::class )->register();
-		$container->get( Licensing\Provider::class )->register();
-		$container->get( Portal\Provider::class )->register();
-		$container->get( API\REST\V1\Provider::class )->register();
+		// API\Functions\Provider owns loading global-functions.php and registering
+		// the user-facing global function callbacks. Run it synchronously here -
+		// before register_instance_hooks() - so _lw_harbor_instance_registry() is
+		// defined when this instance registers itself into the cross-instance registry.
 		$container->get( API\Functions\Provider::class )->register();
-		$container->get( CLI\Provider::class )->register();
-		$container->get( Cron\Provider::class )->register();
+
+		if ( $container->get( Premium_Plugin_Registry::class )->any() ) {
+			$container->get( View\Provider::class )->register();
+			$container->get( Admin\Provider::class )->register();
+			$container->get( Legacy\Provider::class )->register();
+			$container->get( Features\Provider::class )->register();
+			$container->get( Http\Provider::class )->register();
+			$container->get( Licensing\Provider::class )->register();
+			$container->get( Portal\Provider::class )->register();
+			$container->get( API\REST\V1\Provider::class )->register();
+			$container->get( CLI\Provider::class )->register();
+			$container->get( Cron\Provider::class )->register();
+
+			/**
+			 * Fires when Harbor is loaded.
+			 *
+			 * @since 1.2.0
+			 *
+			 * @return void
+			 */
+			do_action( 'lw_harbor/loaded' );
+		}
 
 		static::register_instance_hooks();
 	}
