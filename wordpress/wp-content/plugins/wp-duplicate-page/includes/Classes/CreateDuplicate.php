@@ -35,6 +35,11 @@ class CreateDuplicate {
 			if ( '' === $title ) {
 				$title = __( 'Untitled', 'wp-duplicate-page' );
 			}
+		} else {
+			$title = trim( $post->post_title );
+			if ( '' === $title ) {
+				$title = __( 'Untitled', 'wp-duplicate-page' );
+			}
 		}
 
 		$newPost = array(
@@ -51,7 +56,7 @@ class CreateDuplicate {
 			'post_status'           => 'draft',
 			'post_title'            => $title,
 			'post_type'             => $post->post_type,
-			'post_name'             => $post->post_name . '-copy',
+			'post_name'             => $this->generateUniqueSlug( $post->post_name . '-copy', $post->post_type, $post->post_parent ),
 			'post_date'             => $post->post_date,
 			'post_date_gmt'         => get_gmt_from_date( $post->post_date ),
 		);
@@ -64,6 +69,25 @@ class CreateDuplicate {
 		}
 
 		return $newPostId;
+	}
+
+	private function generateUniqueSlug( string $baseSlug, string $postType, int $postParent ): string {
+		$slug   = $baseSlug;
+		$suffix = 2;
+		$args   = array(
+			'name'           => $slug,
+			'post_type'      => $postType,
+			'post_parent'    => $postParent,
+			'post_status'    => 'any',
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'no_found_rows'  => true,
+		);
+		while ( ! empty( get_posts( $args ) ) ) {
+			$slug         = $baseSlug . '-' . $suffix++;
+			$args['name'] = $slug;
+		}
+		return $slug;
 	}
 
 	public function createDuplicateOrderHPOS( $originalOrder ) {

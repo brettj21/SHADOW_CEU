@@ -9,12 +9,13 @@ function zilom_themer_import_sample( $demo_active_import , $demo_directory_path 
 	reset( $demo_active_import );
 	$current_key = key( $demo_active_import );
 
-	if ( class_exists( 'RevSlider' ) ) {
+	if ( class_exists( 'RevSliderSliderImport' ) ) {
+		$importer = new RevSliderSliderImport();
 		$wbc_sliders_array = array( 'slider-1.zip', 'slider-2.zip' );
-		$slider = new RevSlider();
 		foreach ($wbc_sliders_array as $s) {
-			if ( file_exists( zilom_themer_path_demo_content() . 'main/'. $s ) ) {
-				$slider->importSliderFromPost( true, true, zilom_themer_path_demo_content().'main/'.$s );
+			if(file_exists( zilom_themer_path_demo_content() . 'main/'. $s )){
+				$filepath = zilom_themer_path_demo_content().'main/'. $s;
+				$response = $importer->import_slider(true, $filepath, false, false, true);
 			}
 		}
 	}

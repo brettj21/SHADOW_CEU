@@ -156,19 +156,29 @@ add_shortcode('ceu_courses', function($atts) {
 
         <div class="ceu-toolbar">
             <span class="ceu-count-label"><?php echo count($courses); ?> Courses</span>
-            <?php if (!empty($topics)): ?>
-                <div class="ceu-filter-wrap">
-                    <label for="ceu-topic-select">Filter by Category:</label>
-                    <select id="ceu-topic-select" class="ceu-topic-select">
-                        <option value="">All Categories</option>
-                        <?php foreach ($topics as $t): ?>
-                            <option value="<?php echo esc_attr($t['ID']); ?>">
-                                <?php echo esc_html($t['TOPIC']); ?> (<?php echo (int)$t['course_count']; ?>)
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
+            <div class="ceu-toolbar-right">
+                <?php if (!empty($topics)): ?>
+                    <div class="ceu-filter-wrap">
+                        <label for="ceu-topic-select">Filter by Category:</label>
+                        <select id="ceu-topic-select" class="ceu-topic-select">
+                            <option value="">All Categories</option>
+                            <?php foreach ($topics as $t): ?>
+                                <option value="<?php echo esc_attr($t['ID']); ?>">
+                                    <?php echo esc_html($t['TOPIC']); ?> (<?php echo (int)$t['course_count']; ?>)
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                <?php endif; ?>
+                <div class="ceu-view-toggle">
+                    <button id="ceu-btn-grid" class="ceu-view-btn active" title="Grid view" aria-pressed="true">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="7" height="7"/><rect x="9" y="0" width="7" height="7"/><rect x="0" y="9" width="7" height="7"/><rect x="9" y="9" width="7" height="7"/></svg>
+                    </button>
+                    <button id="ceu-btn-list" class="ceu-view-btn" title="List view (no images)" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="1" width="16" height="2"/><rect x="0" y="7" width="16" height="2"/><rect x="0" y="13" width="16" height="2"/></svg>
+                    </button>
                 </div>
-            <?php endif; ?>
+            </div>
         </div>
 
         <div class="ceu-grid">
@@ -234,10 +244,29 @@ add_shortcode('ceu_courses', function($atts) {
         /* ── Toolbar ── */
         .ceu-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
         .ceu-count-label { font-size: 0.9em; color: #666; }
+        .ceu-toolbar-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
         .ceu-filter-wrap { display: flex; align-items: center; gap: 8px; }
         .ceu-filter-wrap label { font-size: 0.88em; color: #444; white-space: nowrap; }
         .ceu-topic-select { font-size: 0.88em; padding: 7px 12px; border: 1px solid #c8d0dc; border-radius: 4px; color: #333; background: #fff; cursor: pointer; min-width: 220px; }
         .ceu-topic-select:focus { outline: none; border-color: #244271; box-shadow: 0 0 0 2px rgba(36,66,113,0.15); }
+
+        /* ── View toggle buttons ── */
+        .ceu-view-toggle { display: flex; gap: 4px; }
+        .ceu-view-btn { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; padding: 0; border: 1px solid #c8d0dc; border-radius: 4px; background: #fff; color: #777; cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s; }
+        .ceu-view-btn:hover { background: #f0f4f9; color: #244271; border-color: #244271; }
+        .ceu-view-btn.active { background: #244271; color: #fff; border-color: #244271; }
+
+        /* ── List view ── */
+        .ceu-section.ceu-list-mode .ceu-grid { grid-template-columns: 1fr; gap: 10px; }
+        .ceu-section.ceu-list-mode .ceu-card { flex-direction: row; align-items: stretch; }
+        .ceu-section.ceu-list-mode .ceu-card-image { display: none; }
+        .ceu-section.ceu-list-mode .ceu-card-body { padding: 12px 16px; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+        .ceu-section.ceu-list-mode .ceu-card-title { flex: 1 1 300px; font-size: 0.88em; margin: 0; }
+        .ceu-section.ceu-list-mode .ceu-card-author { margin: 0; flex: 0 0 auto; }
+        .ceu-section.ceu-list-mode .ceu-card-meta { margin: 0; }
+        .ceu-section.ceu-list-mode .ceu-card-links { margin: 0; }
+        .ceu-section.ceu-list-mode .ceu-course-detail { flex: 0 0 100%; margin: 4px 0 0; }
+        .ceu-section.ceu-list-mode .ceu-btn-read { margin-top: 0; flex-shrink: 0; }
 
         /* ── Grid ── */
         .ceu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -273,12 +302,30 @@ add_shortcode('ceu_courses', function($atts) {
             .ceu-grid { grid-template-columns: 1fr; }
             .ceu-card-image img { height: 200px; }
             .ceu-toolbar { flex-direction: column; align-items: flex-start; }
+            .ceu-toolbar-right { width: 100%; }
             .ceu-topic-select { width: 100%; min-width: unset; }
         }
     </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            var section  = document.querySelector('.ceu-section');
+            var btnGrid  = document.getElementById('ceu-btn-grid');
+            var btnList  = document.getElementById('ceu-btn-list');
+
+            if (btnGrid && btnList && section) {
+                btnGrid.addEventListener('click', function() {
+                    section.classList.remove('ceu-list-mode');
+                    btnGrid.classList.add('active');    btnGrid.setAttribute('aria-pressed', 'true');
+                    btnList.classList.remove('active'); btnList.setAttribute('aria-pressed', 'false');
+                });
+                btnList.addEventListener('click', function() {
+                    section.classList.add('ceu-list-mode');
+                    btnList.classList.add('active');    btnList.setAttribute('aria-pressed', 'true');
+                    btnGrid.classList.remove('active'); btnGrid.setAttribute('aria-pressed', 'false');
+                });
+            }
+
             document.querySelectorAll('.ceu-toggle-link').forEach(function(link) {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();

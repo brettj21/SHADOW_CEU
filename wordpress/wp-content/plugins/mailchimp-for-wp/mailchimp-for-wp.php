@@ -4,7 +4,7 @@
 Plugin Name: MC4WP: Mailchimp for WordPress
 Plugin URI: https://www.mc4wp.com/#utm_source=wp-plugin&utm_medium=mailchimp-for-wp&utm_campaign=plugins-page
 Description: Mailchimp for WordPress by ibericode. Adds various highly effective sign-up methods to your site.
-Version: 4.12.6
+Version: 4.13.0
 Author: ibericode
 Author URI: https://www.ibericode.com/
 Text Domain: mailchimp-for-wp
@@ -45,7 +45,7 @@ add_action('plugins_loaded', function () {
     }
 
     // bootstrap the core plugin
-    define('MC4WP_VERSION', '4.12.6');
+    define('MC4WP_VERSION', '4.13.0');
     define('MC4WP_PLUGIN_DIR', __DIR__);
     define('MC4WP_PLUGIN_FILE', __FILE__);
 
@@ -54,10 +54,9 @@ add_action('plugins_loaded', function () {
     require __DIR__ . '/includes/default-filters.php';
 
     /**
-     * @global MC4WP_Container $GLOBALS['mc4wp']
-     * @name $mc4wp
+     * @var MC4WP_Container $mc4wp
      */
-    $mc4wp        = mc4wp();
+    $mc4wp        = mc4wp_get_container();
     $mc4wp['api'] = 'mc4wp_get_api_v3';
     $mc4wp['log'] = 'mc4wp_get_debug_log';
 

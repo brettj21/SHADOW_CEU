@@ -5,11 +5,14 @@ Tags: duplicate page, duplicate post, clone post, clone page, backup
 Requires at least: 4.0
 Requires PHP: 5.3
 Tested up to: 7.0
-Stable tag: 1.8.2
+Stable tag: 1.8.3
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
+Duplicate pages, posts, and custom post types with one click. Create templates, preserve content states, and speed up workflows.
+
 == Description ==
+
 **Clone WordPress page, post, custom post types**
 
 This plugin adds an option to duplicate a page, a post, or any custom post type items. 
@@ -18,7 +21,7 @@ It's a plug and play & super easy to use.
 
 We hate distraction, so we created a page/post copy plugin with a simple interface. When you hover over a post or a page in the Pages or Posts list, you’ll be able to select **Duplicate** to create a duplicate version.
 
-Like this plugin? Check out **[FileBird](https://1.envato.market/qb0Vb)** - another great plugin to make your WordPress life much easier.
+Like this plugin? Check out **[FileBird](https://ninjateam.org/wordpress-media-library-folders/)** - a great media manager plugin to make your WordPress life much easier. Good news: it creates a folder system for pages, posts, and custom post types, too!
 
 ###⚡️ FEATURES
 **WP Duplicate Page is built to optimize dashboard appearance and drive positive impact for your WordPress admin workflow productivity:**
@@ -78,6 +81,10 @@ Yes, it's completely free of charge. WP Duplicate Page comes with all the featur
 2. Duplicate button
 
 == Changelog ==
+
+= Jun 1, 2026 - Version 1.8.3 =
+- Improved: Check and append number to existing original-slug-copy
+- Improved: Complement plugins panel
 
 = May 21, 2026 - Version 1.8.2 =
 - Improved: Duplicate post gets a new unique slug as original-slug-copy

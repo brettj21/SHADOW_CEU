@@ -8,8 +8,8 @@ defined('ABSPATH') or exit;
  *
  * _Example:_
  *
- * $forms = mc4wp('forms');
- * $api = mc4wp('api');
+ * $forms = mc4wp_get_service('forms');
+ * $api = mc4wp_get_service('api');
  *
  * When no service parameter is given, the entire container will be returned.
  *
@@ -18,21 +18,40 @@ defined('ABSPATH') or exit;
  *
  * @param null|string $service (optional)
  * @return mixed
- *
  * @throws Exception when service is not found
+ * @deprecated Use mc4wp_get_container() or mc4wp_get_service() instead.
  */
 function mc4wp($service = null)
 {
-    static $mc4wp = null;
-    if (null === $mc4wp) {
-        $mc4wp = new MC4WP_Container();
-    }
-
+    $container = mc4wp_get_container();
     if (null !== $service) {
-        return $mc4wp->get($service);
+        return $container->get($service);
     }
+    return $container;
+}
 
-    return $mc4wp;
+/**
+ * @since 4.13
+ * @return MC4WP_Container
+ */
+function mc4wp_get_container(): MC4WP_Container
+{
+    static $container;
+    if (null === $container) {
+        $container = new MC4WP_Container();
+    }
+    return $container;
+}
+
+/**
+ * @since 4.13
+ * @param string $service
+ * @return mixed
+ * @throws Exception when service is not found
+ */
+function mc4wp_get_service(string $service)
+{
+    return mc4wp_get_container()->get($service);
 }
 
 /**
@@ -157,26 +176,17 @@ function mc4wp_get_debug_log()
  * Get URL to a file inside the plugin directory
  *
  * @since 4.8.3
- * @param string $path
- * @return string
  */
-function mc4wp_plugin_url($path)
+function mc4wp_plugin_url(string $path): string
 {
-    static $base = null;
-    if ($base === null) {
-        $base = plugins_url('/', MC4WP_PLUGIN_FILE);
-    }
-
-    return $base . $path;
+    return plugins_url($path, MC4WP_PLUGIN_FILE);
 }
 
 
 /**
- * Get current URL (full)
- *
- * @return string
+ * Get absolute URL for current request
  */
-function mc4wp_get_request_url()
+function mc4wp_get_request_url(): string
 {
     global $wp;
 
@@ -190,19 +200,15 @@ function mc4wp_get_request_url()
 
     // concatenate request url to home url
     $url = home_url($site_request_uri);
-    $url = trailingslashit($url);
-
-    return esc_url($url);
+    return trailingslashit($url);
 }
 
 /**
- * Get current URL path.
- *
- * @return string
+ * Get relative URL path for current request
  */
-function mc4wp_get_request_path()
+function mc4wp_get_request_path(): string
 {
-    return $_SERVER['REQUEST_URI'];
+    return (string) ($_SERVER['REQUEST_URI'] ?? '');
 }
 
 /**
@@ -281,7 +287,6 @@ function mc4wp_sanitize_deep($value)
  * Returns true if (and only if) the value is a valid RFC 822 email address
  *
  * @param mixed $value
- * @return bool
  */
 function mc4wp_is_email($value): bool
 {
