@@ -28,31 +28,57 @@ if ( ! class_exists( 'YaymailWCSettingsEmailColumn' ) ) {
 				if ( ! function_exists( 'WC' ) || defined( 'YAYMAIL_VERSION' ) ) {
 					return;
 				}
+				// User dismissed the column via "No, thanks" — register nothing.
+				// To restore: delete_option( 'yaymail_wc_settings_email_column_hidden' ).
+				if ( get_option( 'yaymail_wc_settings_email_column_hidden' ) ) {
+					return;
+				}
                 add_action( 'admin_footer', array( $this, 'add_script' ) );
 				add_filter( 'woocommerce_email_setting_columns', array( $this, 'woocommerce_email_setting_columns' ) );
 				add_action( 'woocommerce_email_setting_column_yaymail_cs', array( $this, 'woocommerce_email_setting_column_yaymail_cs' ) );
 				add_action( 'wp_ajax_yaymail_wc_settings_install_activate', array( $this, 'ajax_install_activate_yaymail' ) );
+				add_action( 'wp_ajax_yaymail_wc_settings_dismiss_column', array( $this, 'ajax_dismiss_column' ) );
 			});
 		}
 
 		public function add_script(){
 			if ( function_exists( 'get_current_screen' ) ) {
 				$screen = get_current_screen();
-				if ( ! in_array( $screen->id, array( 'woocommerce_page_wc-settings', 'woocommerce_page_wc-addons' ) ) ) {
+				if ( ! $screen || ! in_array( $screen->id, array( 'woocommerce_page_wc-settings', 'woocommerce_page_wc-addons' ) ) ) {
 					return;
 				}
 			} else {
 				return;
 			}
-			wp_enqueue_script( 'yaymail-wc-settings-email-colum', $this->plugin_dir_url . 'assets/js/script.js', array( 'jquery' ), '1.0', true );
+			wp_enqueue_script( 'yaymail-wc-settings-email-column', $this->plugin_dir_url . 'assets/js/script.js', array( 'jquery' ), '1.4.0', true );
+			wp_enqueue_style( 'yaymail-wc-settings-email-column', $this->plugin_dir_url . 'assets/css/style.css', array(), '1.4.0' );
+
+			// State-aware modal copy: an already-installed (but inactive) plugin only needs activating.
+			$is_installed = (bool) $this->get_yaymail_plugin_file();
+			if ( $is_installed ) {
+				$confirm_heading = __( 'Try YayMail?', 'filebird' );
+				$confirm_body    = __( 'Activate the YayMail plugin.', 'filebird' );
+				$confirm_button  = __( 'Activate Now', 'filebird' );
+				$help_text       = __( 'Drag and drop to design your emails. This will activate the YayMail plugin.', 'filebird' );
+			} else {
+				$confirm_heading = __( 'Try YayMail?', 'filebird' );
+				$confirm_body    = __( 'Install & activate the free YayMail plugin from WordPress.org to start customizing.', 'filebird' );
+				$confirm_button  = __( 'Install Now', 'filebird' );
+				$help_text       = __( 'Drag and drop to design your emails. This will install the YayMail plugin from WordPress.org', 'filebird' );
+			}
+
 			wp_localize_script(
-				'yaymail-wc-settings-email-colum',
+				'yaymail-wc-settings-email-column',
 				'yaymailWCSettingsEmailColumn',
 				array(
 					'nonce'              => $this->nonce,
-					'is_installed'       => (bool) $this->get_yaymail_plugin_file(),
 					'yaymailUrl'         => admin_url( 'admin.php?page=yaymail-settings#/email-templates' ),
-					'helpText'			 => __( 'Drag and drop to design your emails. This will install the YayMail plugin from WordPress.org', 'filebird' )					
+					'helpText'			 => $help_text,
+					'confirmHeading'     => $confirm_heading,
+					'confirmBody'        => $confirm_body,
+					'confirmInstall'     => $confirm_button,
+					'confirmCancel'      => __( 'No, thanks', 'filebird' ),
+					'yaymailPluginUrl'   => esc_url( 'https://wordpress.org/plugins/yaymail/' )
 				)
 			);
 			?>
@@ -63,8 +89,12 @@ if ( ! class_exists( 'YaymailWCSettingsEmailColumn' ) ) {
 		}
 
 		/**
-		 * Returns the plugin file path (e.g. "yaymail/yaymail.php") if YayMail is
-		 * installed, or false if it is not.
+		 * Returns the plugin file path (e.g. "yaymail-pro/yaymail-pro.php") of an
+		 * installed YayMail variant, or false if none is installed.
+		 *
+		 * Detection is by plugin FOLDER name across known YayMail slugs, preferring
+		 * Pro. This is more robust than matching a single main-file name, since the
+		 * variants ship different main files.
 		 */
 		private function get_yaymail_plugin_file( $reset = false ) {
 			static $cache = null;
@@ -77,12 +107,23 @@ if ( ! class_exists( 'YaymailWCSettingsEmailColumn' ) ) {
 			if ( ! function_exists( 'get_plugins' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/plugin.php';
 			}
+
+			// Folder slugs in preference order: Pro first, then free, then legacy.
+			$known_slugs = array( 'yaymail-pro', 'yaymail', 'email-customizer-for-woocommerce' );
+
+			// Map folder slug => plugin file for every installed plugin.
+			$by_folder = array();
+			foreach ( get_plugins() as $plugin_file => $plugin_data ) {
+				$folder = dirname( $plugin_file ); // "." when a single-file plugin (no folder).
+				if ( '.' !== $folder && ! isset( $by_folder[ $folder ] ) ) {
+					$by_folder[ $folder ] = $plugin_file;
+				}
+			}
+
 			$cache = false;
-			$all_plugins = get_plugins();
-			foreach ( $all_plugins as $plugin_file => $plugin_data ) {
-				$text_domain = isset( $plugin_data['TextDomain'] ) ? strtolower( $plugin_data['TextDomain'] ) : '';
-				if ( basename( $plugin_file ) === 'yaymail.php' && $text_domain === 'yaymail' ) {
-					$cache = $plugin_file;
+			foreach ( $known_slugs as $slug ) {
+				if ( isset( $by_folder[ $slug ] ) ) {
+					$cache = $by_folder[ $slug ];
 					break;
 				}
 			}
@@ -117,6 +158,20 @@ if ( ! class_exists( 'YaymailWCSettingsEmailColumn' ) ) {
 			if ( is_wp_error( $result ) ) {
 				wp_send_json_error( array( 'message' => $result->get_error_message() ) );
 			}
+
+			wp_send_json_success();
+		}
+
+		/**
+		 * Persist the user's "No, thanks" dismissal so the column stops rendering.
+		 */
+		public function ajax_dismiss_column() {
+			if ( ! function_exists( 'current_user_can' ) || ! current_user_can( 'manage_woocommerce' ) ) {
+				wp_send_json_error( array( 'message' => __( 'You do not have permission to change this setting.', 'filebird' ) ) );
+			}
+			check_ajax_referer( 'yaymail_wc_settings_email_column', 'nonce', true );
+
+			update_option( 'yaymail_wc_settings_email_column_hidden', 1, false );
 
 			wp_send_json_success();
 		}
@@ -170,7 +225,7 @@ if ( ! class_exists( 'YaymailWCSettingsEmailColumn' ) ) {
 		}
 		public function woocommerce_email_setting_column_yaymail_cs( $email ) {
 			?>
-			<td>
+			<td class="wc-email-settings-table-yaymail_cs">
 				<a href="#" class="button yaymail-wc-settings-install-yaymail"><?php esc_html_e( 'Customize this email', 'filebird' ); ?></a>
 			</td>
 			<?php

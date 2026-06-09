@@ -150,6 +150,11 @@ add_shortcode('ceu_courses', function($atts) {
     }
     unset($c);
 
+    // Defined once outside the loop; no <div> in allowlist so stray </div> can't break card structure
+    $safe_tags = ['p' => [], 'br' => [], 'ul' => [], 'ol' => [], 'li' => [],
+        'strong' => [], 'b' => [], 'em' => [], 'i' => [],
+        'a' => ['href' => [], 'target' => []], 'span' => ['style' => []]];
+
     ob_start();
     ?>
     <div class="ceu-section">
@@ -219,17 +224,17 @@ add_shortcode('ceu_courses', function($atts) {
 
                         <?php if ($c['description']): ?>
                             <div id="ceu-desc-<?php echo $i; ?>" class="ceu-course-detail" style="display:none;">
-                                <?php echo wp_kses_post($c['description']); ?>
+                                <?php echo force_balance_tags(wp_kses($c['description'], $safe_tags)); ?>
                             </div>
                         <?php endif; ?>
 
                         <?php if ($c['objectives']): ?>
                             <div id="ceu-obj-<?php echo $i; ?>" class="ceu-course-detail" style="display:none;">
-                                <?php echo wp_kses_post($c['objectives']); ?>
+                                <?php echo force_balance_tags(wp_kses($c['objectives'], $safe_tags)); ?>
                             </div>
                         <?php endif; ?>
 
-                        <a href="#" class="ceu-btn-read">Read Training</a>
+                        <a href="<?php echo $c['training_id']; ?>" class="ceu-btn-read">Read Training</a>
                     </div>
 
                 </div>
@@ -275,8 +280,8 @@ add_shortcode('ceu_courses', function($atts) {
         .ceu-card.ceu-hidden { display: none; }
 
         /* image */
-        .ceu-card-image { position: relative; overflow: hidden; }
-        .ceu-card-image img { width: 100%; height: 160px; object-fit: cover; display: block; }
+        .ceu-card-image { position: relative; overflow: hidden !important; height: 160px !important; max-height: 160px !important; flex: 0 0 160px; background: #e8edf3; }
+        .ceu-card-image img { display: block !important; width: 100% !important; height: 160px !important; max-height: 160px !important; object-fit: cover !important; }
         .ceu-card-badge { position: absolute; top: 10px; right: 10px; background: #48B4E2; color: #fff; font-size: 14px; font-weight: 700; padding: 3px 9px; border-radius: 3px; }
 
         /* body */
@@ -300,7 +305,6 @@ add_shortcode('ceu_courses', function($atts) {
         @media (max-width: 600px) {
             .ceu-section { padding: 0 14px; }
             .ceu-grid { grid-template-columns: 1fr; }
-            .ceu-card-image img { height: 200px; }
             .ceu-toolbar { flex-direction: column; align-items: flex-start; }
             .ceu-toolbar-right { width: 100%; }
             .ceu-topic-select { width: 100%; min-width: unset; }
@@ -440,22 +444,9 @@ add_action('wp_footer', function() {
 });
 
 // ─── Elementor gva-posts interceptor ─────────────────────────────────────────
-// On profession pages, hooks into the widget's output buffer to replace it
-// with CEU_DB courses. gva-posts uses include() inside render() which bypasses
-// the render_content filter, so we use before/after render hooks instead.
-
-add_action('elementor/widget/before_render_content', function($widget) {
-    if ($widget->get_name() !== 'gva-posts') return;
-
-    $post_id         = get_queried_object_id() ?: get_the_ID();
-    $profession_slug = get_post_field('post_name', $post_id);
-    $professions     = unserialize(CEU_PROFESSIONS);
-
-    if (!isset($professions[$profession_slug])) return;
-
-    $widget->add_render_attribute('_ceu_profession', 'data-ceu', $profession_slug);
-    ob_start();
-});
+// Elementor wraps all widget rendering in its own ob_start/ob_get_clean before
+// applying render_content, so the filter receives the full widget output
+// regardless of how the widget renders internally.
 
 add_filter('elementor/widget/render_content', function($content, $widget) {
     if ($widget->get_name() !== 'gva-posts') return $content;
@@ -466,7 +457,6 @@ add_filter('elementor/widget/render_content', function($content, $widget) {
 
     if (!isset($professions[$profession_slug])) return $content;
 
-    if (ob_get_level() > 0) ob_end_clean();
     return do_shortcode('[ceu_courses profession="' . esc_attr($profession_slug) . '"]');
 }, 10, 2);
 
