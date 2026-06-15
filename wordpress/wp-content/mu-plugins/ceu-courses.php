@@ -191,7 +191,7 @@ add_shortcode('ceu_courses', function($atts) {
                 <div class="ceu-card" data-topics="<?php echo esc_attr($c['topic_ids']); ?>">
 
                     <div class="ceu-card-image">
-                        <img src="<?php echo $img_root . $c['training_id']; ?>.jpg" alt="<?php echo esc_attr($c['title']); ?>" loading="lazy" />
+                        <a href="<?php echo $c['training_id']; ?>/<?php echo sanitize_title($c['title']); ?>/"><img src="<?php echo $img_root . $c['training_id']; ?>.jpg" alt="<?php echo esc_attr($c['title']); ?>" loading="lazy" /></a>
                         <div class="ceu-card-badge">
                             <?php if ($c['cost'] > 0): ?>
                                 $<?php echo number_format((float)$c['cost'], 2); ?>
@@ -202,11 +202,11 @@ add_shortcode('ceu_courses', function($atts) {
                     </div>
 
                     <div class="ceu-card-body">
-                        <h3 class="ceu-card-title"><?php echo esc_html($c['title']); ?></h3>
+                        <h3 class="ceu-card-title"><?php echo stripcslashes(esc_html($c['title'])); ?></h3>
 
                         <?php if ($c['author']): ?>
-                            <p class="ceu-card-author">By: <?php echo esc_html($c['author']);
-                                if ($c['author_license']) echo ', ' . esc_html($c['author_license']); ?></p>
+                            <!--<p class="ceu-card-author">By: <?php echo esc_html($c['author']);
+                                if ($c['author_license']) echo ', ' . esc_html($c['author_license']); ?></p> -->
                         <?php endif; ?>
 
                         <div class="ceu-card-meta">
@@ -234,7 +234,7 @@ add_shortcode('ceu_courses', function($atts) {
                             </div>
                         <?php endif; ?>
 
-                        <a href="<?php echo $c['training_id']; ?>" class="ceu-btn-read">Read Training</a>
+                        <a href="<?php echo $c['training_id']; ?>/<?php echo sanitize_title($c['title']); ?>/" class="ceu-btn-read">Read Training</a>
                     </div>
 
                 </div>

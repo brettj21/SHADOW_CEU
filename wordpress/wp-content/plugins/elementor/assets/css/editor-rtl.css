@@ -1434,6 +1434,9 @@ body.elementor-panel-loading #elementor-panel-state-loading {
   inset-inline-end: 5px;
   color: var(--e-a-color-txt);
 }
+.elementor-panel .elementor-element[data-library-element-type=e-birthday-easter-egg] .icon {
+  color: #C00BB9;
+}
 .elementor-panel .elementor-element:hover, .elementor-panel .elementor-element:focus {
   background-color: var(--e-a-bg-hover);
   border-color: var(--e-a-border-color-bold);
@@ -8376,5 +8379,15 @@ label.e-scrubbing-over {
 }
 .e-ui-state--document-direction-mode__row-reverse [class^=eicon-flex]:not(.eicon-wrap):not(.eicon-nowrap):not(.eicon-grow):is(.eicon-justify-start-h, .eicon-justify-end-h, .eicon-order-start, .eicon-order-end), .e-ui-state--document-direction-mode__row-reverse [class*=" eicon-flex"]:not(.eicon-wrap):not(.eicon-nowrap):not(.eicon-grow):is(.eicon-justify-start-h, .eicon-justify-end-h, .eicon-order-start, .eicon-order-end) {
   transform: rotate(calc(var(--is-ltr) * 180deg));
+}
+
+.elementor-editor-active .embed-media-settings .setting.caption {
+  display: none;
+}
+.elementor-editor-active .embed-media-settings .setting.align {
+  display: none;
+}
+.elementor-editor-active .embed-media-settings fieldset.setting-group {
+  display: none;
 }
 /*# sourceMappingURL=editor-rtl.css.map */

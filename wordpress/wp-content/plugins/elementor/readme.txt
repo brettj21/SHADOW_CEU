@@ -4,7 +4,7 @@ Tags: page builder, editor, landing page, drag-and-drop, elementor,
 Requires at least: 6.8
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 4.1.1
+Stable tag: 4.1.3
 Beta tag: 4.1.0-beta3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -354,6 +354,19 @@ You can also add a new language via [translate.wordpress.org](https://go.element
 6. **Motion Effects** - Add entrance animations and transitions to any element in your website to captivate visitors.
 
 == Changelog ==
+
+= 4.1.3 - 2026-06-10 =
+
+* Fix: Cloud Library screenshot errors could prevent users from saving templates locally
+
+= 4.1.2 - 2026-06-08 =
+
+* Tweak: Improved Global Classes usage tracking for safer deletion - Atomic Editor
+* Fix: Image with Lightbox inherits default button styles - Atomic Editor
+* Fix: Image settings are not saved when using Insert from URL - Atomic Editor
+* Fix: Media attachments may be requested too many times in the Editor - Atomic Editor
+* Fix: Pages using Global Classes may fail to publish or show missing styles on the live site - Atomic Editor
+* Fix: Editor context may not sync correctly when navigating between documents
 
 = 4.1.1 - 2026-05-27 =
 

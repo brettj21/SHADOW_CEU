@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Tutor LMS 3.9.11\n"
+"Project-Id-Version: Tutor LMS 3.9.12\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tutor\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-20T12:13:04+00:00\n"
+"POT-Creation-Date: 2026-06-08T12:07:59+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: tutor\n"
@@ -3981,7 +3981,7 @@ msgstr ""
 msgid "Shortcode"
 msgstr ""
 
-#: classes/Utils.php:10260
+#: classes/Utils.php:10262
 #: assets/js/tutor-addon-list.js:1944
 #: assets/js/tutor-addon-list.js:1950
 #: assets/js/tutor-coupon.js:1802
@@ -4011,86 +4011,86 @@ msgstr ""
 msgid "Something went wrong"
 msgstr ""
 
-#: classes/Utils.php:10265
+#: classes/Utils.php:10267
 msgid "You are not authorzied to perform this action"
 msgstr ""
 
-#: classes/Utils.php:10266
+#: classes/Utils.php:10268
 msgid "Nonce not matched. Action failed!"
 msgstr ""
 
-#: classes/Utils.php:10267
+#: classes/Utils.php:10269
 msgid "Invalid request"
 msgstr ""
 
-#: classes/Utils.php:10268
+#: classes/Utils.php:10270
 msgid "Authentication failed"
 msgstr ""
 
-#: classes/Utils.php:10269
+#: classes/Utils.php:10271
 msgid "Authorization required"
 msgstr ""
 
-#: classes/Utils.php:10270
+#: classes/Utils.php:10272
 msgid "Requested resource not found"
 msgstr ""
 
-#: classes/Utils.php:10271
+#: classes/Utils.php:10273
 msgid "Internal server error"
 msgstr ""
 
-#: classes/Utils.php:10272
+#: classes/Utils.php:10274
 msgid "Request timed out"
 msgstr ""
 
-#: classes/Utils.php:10273
+#: classes/Utils.php:10275
 msgid "Access to this resource is forbidden"
 msgstr ""
 
-#: classes/Utils.php:10274
+#: classes/Utils.php:10276
 msgid "HTTP method not allowed"
 msgstr ""
 
-#: classes/Utils.php:10275
+#: classes/Utils.php:10277
 msgid "Too many requests"
 msgstr ""
 
-#: classes/Utils.php:10276
+#: classes/Utils.php:10278
 msgid "Validation error"
 msgstr ""
 
-#: classes/Utils.php:10277
+#: classes/Utils.php:10279
 msgid "Database operation failed"
 msgstr ""
 
-#: classes/Utils.php:10278
+#: classes/Utils.php:10280
 msgid "Requested file not found"
 msgstr ""
 
-#: classes/Utils.php:10279
+#: classes/Utils.php:10281
 msgid "Unsupported media type"
 msgstr ""
 
-#: classes/Utils.php:10325
+#: classes/Utils.php:10327
 msgid "Gutenberg"
 msgstr ""
 
-#: classes/Utils.php:10340
+#: classes/Utils.php:10342
 msgid "Droip"
 msgstr ""
 
-#: classes/Utils.php:10358
+#: classes/Utils.php:10360
 msgid "Elementor"
 msgstr ""
 
-#: classes/Utils.php:10386
+#: classes/Utils.php:10388
 #: assets/js/tutor-course-builder.js:13846
 #: assets/js/tutor-course-builder.js:26753
 msgid "Classic Editor"
 msgstr ""
 
 #. translators: %s: timestamp
-#: classes/Utils.php:10478
+#: classes/Utils.php:10480
 #, php-format
 msgid "%s left"
 msgstr ""
@@ -5352,7 +5352,7 @@ msgstr ""
 msgid "file not exists"
 msgstr ""
 
-#: includes/tutor-general-functions.php:1620
+#: includes/tutor-general-functions.php:1621
 #: templates/single/course/add-to-cart-tutor.php:54
 msgid "Incl. tax"
 msgstr ""

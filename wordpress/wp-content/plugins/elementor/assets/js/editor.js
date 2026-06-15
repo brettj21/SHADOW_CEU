@@ -39901,6 +39901,17 @@ PanelElementsLayoutView = Marionette.LayoutView.extend({
         atomicFormPromotion: true
       });
     });
+    jQuery.each(elementor.config.birthdayEasterEggWidgets || [], function (index, widget) {
+      elementsCollection.add({
+        name: widget.name,
+        title: widget.title,
+        widgetType: widget.name,
+        icon: widget.icon,
+        categories: JSON.parse(widget.categories),
+        editable: false,
+        birthdayEasterEgg: true
+      });
+    });
     if (elementor.config.integrationWidgets) {
       var injectionPoint = elementsCollection.findIndex({
         widgetType: 'image-carousel'
@@ -40257,7 +40268,7 @@ module.exports = Marionette.ItemView.extend({
   template: '#tmpl-elementor-element-library-element',
   className: function className() {
     var className = 'elementor-element-wrapper';
-    if (!this.isEditable() && !this.isAtomicFormPromotion()) {
+    if (!this.isEditable() && !this.isAtomicFormPromotion() && !this.isBirthdayEasterEgg()) {
       className += ' elementor-element--promotion';
     }
     if (this.isIntegration()) {
@@ -40267,7 +40278,7 @@ module.exports = Marionette.ItemView.extend({
   },
   events: function events() {
     var events = {};
-    if (!this.isEditable()) {
+    if (!this.isEditable() && !this.isBirthdayEasterEgg()) {
       events.mousedown = 'onMouseDown';
     }
     return events;
@@ -40296,9 +40307,22 @@ module.exports = Marionette.ItemView.extend({
   isAtomicFormPromotion: function isAtomicFormPromotion() {
     return !!this.model.get('atomicFormPromotion');
   },
+  isBirthdayEasterEgg: function isBirthdayEasterEgg() {
+    return !!this.model.get('birthdayEasterEgg');
+  },
   onRender: function onRender() {
     var _this = this;
-    if (!elementor.userCan('design') || !this.isEditable()) {
+    if (!elementor.userCan('design')) {
+      return;
+    }
+    if (this.isBirthdayEasterEgg()) {
+      this.ui.element.on('click', function () {
+        return _this.openBirthdayEasterEgg();
+      });
+      this.bindBirthdayEasterEggDrag();
+      return;
+    }
+    if (!this.isEditable()) {
       return;
     }
     this.ui.element.on('click', function () {
@@ -40315,6 +40339,27 @@ module.exports = Marionette.ItemView.extend({
       },
       groups: ['elementor-element']
     });
+  },
+  bindBirthdayEasterEggDrag: function bindBirthdayEasterEggDrag() {
+    var _this2 = this;
+    this.ui.element.html5Draggable({
+      onDragStart: function onDragStart() {
+        elementor.channels.editor.reply('element:dragged', null);
+        elementor.channels.panelElements.reply('element:selected', _this2).trigger('element:drag:start');
+      },
+      onDragEnd: function onDragEnd() {
+        elementor.channels.panelElements.trigger('element:drag:end');
+        _this2.openBirthdayEasterEgg();
+      },
+      groups: ['elementor-element']
+    });
+  },
+  openBirthdayEasterEgg: function openBirthdayEasterEgg() {
+    document.dispatchEvent(new CustomEvent('birthday-easter-egg:open', {
+      detail: {
+        target: this.el
+      }
+    }));
   },
   onMouseDown: function onMouseDown(event) {
     if (this.isAtomicFormPromotion()) {
@@ -56333,6 +56378,60 @@ var PromotionBehavior = exports["default"] = /*#__PURE__*/function (_Marionette$
 
 /***/ }),
 
+/***/ "../modules/promotions/assets/js/editor/hooks/block-birthday-easter-egg-drop.js":
+/*!**************************************************************************************!*\
+  !*** ../modules/promotions/assets/js/editor/hooks/block-birthday-easter-egg-drop.js ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = exports.BIRTHDAY_EASTER_EGG_WIDGET_NAME = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
+function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+var BIRTHDAY_EASTER_EGG_WIDGET_NAME = exports.BIRTHDAY_EASTER_EGG_WIDGET_NAME = 'e-birthday-easter-egg';
+var BlockBirthdayEasterEggDrop = exports["default"] = /*#__PURE__*/function (_$e$modules$hookData$) {
+  function BlockBirthdayEasterEggDrop() {
+    (0, _classCallCheck2.default)(this, BlockBirthdayEasterEggDrop);
+    return _callSuper(this, BlockBirthdayEasterEggDrop, arguments);
+  }
+  (0, _inherits2.default)(BlockBirthdayEasterEggDrop, _$e$modules$hookData$);
+  return (0, _createClass2.default)(BlockBirthdayEasterEggDrop, [{
+    key: "getCommand",
+    value: function getCommand() {
+      return 'preview/drop';
+    }
+  }, {
+    key: "getId",
+    value: function getId() {
+      return 'block-birthday-easter-egg-drop';
+    }
+  }, {
+    key: "getConditions",
+    value: function getConditions(args) {
+      var _args$model;
+      return BIRTHDAY_EASTER_EGG_WIDGET_NAME === ((_args$model = args.model) === null || _args$model === void 0 ? void 0 : _args$model.widgetType);
+    }
+  }, {
+    key: "apply",
+    value: function apply() {
+      return false;
+    }
+  }]);
+}($e.modules.hookData.Dependency);
+
+/***/ }),
+
 /***/ "../modules/promotions/assets/js/editor/module.js":
 /*!********************************************************!*\
   !*** ../modules/promotions/assets/js/editor/module.js ***!
@@ -56352,6 +56451,7 @@ var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtim
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
+var _blockBirthdayEasterEggDrop = _interopRequireDefault(__webpack_require__(/*! ./hooks/block-birthday-easter-egg-drop */ "../modules/promotions/assets/js/editor/hooks/block-birthday-easter-egg-drop.js"));
 var _behavior = _interopRequireDefault(__webpack_require__(/*! ./behavior */ "../modules/promotions/assets/js/editor/behavior.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
@@ -56367,6 +56467,7 @@ var Module = exports["default"] = /*#__PURE__*/function (_elementorModules$edi) 
       if (!this.hasPromotionWidgets() && !this.hasIntegrationWidgets()) {
         return;
       }
+      new _blockBirthdayEasterEggDrop.default().register();
       elementor.hooks.addFilter('element/view', function (DefaultView, model) {
         var _config$promotionWidg, _config$integrationWi;
         var widgetType = model.get('widgetType');
