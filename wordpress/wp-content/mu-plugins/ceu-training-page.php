@@ -299,6 +299,8 @@ add_filter('the_content', function ($content) {
     $img_url  = WP_CONTENT_URL . '/uploads/course/' . $training_id_int . '.jpg';
     $has_img  = file_exists($img_path);
 
+    $user = maybe_unserialize(get_user_meta(get_current_user_id(), '_ceu_row', true));
+
     $course_data = [
         'TRAINING_ID'  => $training['TRAINING_ID'],
         'post_test_id' => $training['post_test_id'],
@@ -329,6 +331,223 @@ add_filter('the_content', function ($content) {
     $desc         = force_balance_tags(wp_kses($desc, $safe_tags));
     $obj          = force_balance_tags(wp_kses($obj, $safe_tags));
     $source       = force_balance_tags(wp_kses($source, $safe_tags));
+
+    // ── Post-test result overlay ──────────────────────────────────────────────
+    $show_overlay   = false;
+    $overlay_html   = '';
+    if (!empty($_SESSION['passed']) && is_array($_SESSION['passed'])
+        && (int) $_SESSION['passed']['tid'] === $training_id_int) {
+
+        $r        = $_SESSION['passed'];
+        $is_pass  = $r['passing'] === '1';
+        $is_free  = (float) ($r['cost'] ?? 0) === 0.0;
+        unset($_SESSION['passed']); // consume immediately so refresh doesn't re-show
+
+        $show_overlay = true;
+
+        ob_start();
+        $headline   = $is_pass ? 'Congratulations, You Passed!' : 'Sorry, You Did Not Pass.';
+        $icon_color = $is_pass ? '#2e7d32' : '#c62828';
+        $icon_svg   = $is_pass
+            ? '<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>'
+            : '<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>';
+        ?>
+        <style>
+            #ceu-result-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:99998;display:none;align-items:center;justify-content:center}
+            #ceu-result-backdrop.ceu-overlay-open{display:flex}
+            #ceu-result-card{background:#fff;border-radius:14px;padding:40px 36px 32px;max-width:460px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;font-family:"Helvetica",sans-serif}
+            #ceu-result-card .ceu-ov-icon{color:<?php echo $icon_color ?>;margin-bottom:14px}
+            #ceu-result-card .ceu-ov-headline{font-size:22px;font-weight:700;color:#183E7D;margin:0 0 22px}
+            #ceu-result-card .ceu-ov-rows{text-align:left;border-top:1px solid #e0e6f0;padding-top:18px;margin-bottom:24px}
+            #ceu-result-card .ceu-ov-row{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid #f0f4f8;font-size:15px}
+            #ceu-result-card .ceu-ov-row:last-child{border-bottom:none}
+            #ceu-result-card .ceu-ov-label{color:#666;font-weight:400}
+            #ceu-result-card .ceu-ov-val{color:#111;font-weight:700;text-align:right;max-width:260px}
+            #ceu-result-card .ceu-ov-actions{display:flex;flex-direction:column;gap:10px}
+            #ceu-result-card .ceu-ov-btn{display:block;padding:13px 24px;border-radius:7px;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer;border:none;letter-spacing:.3px;transition:background .15s,color .15s}
+            #ceu-result-card .ceu-ov-btn-primary{background:#183E7D;color:#fff}
+            #ceu-result-card .ceu-ov-btn-primary:hover{background:#4B9ADE;color:#fff}
+            #ceu-result-card .ceu-ov-btn-secondary{background:#f0f4f9;color:#183E7D}
+            #ceu-result-card .ceu-ov-btn-secondary:hover{background:#dce6f5;color:#183E7D}
+            #ceu-result-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;color:#999;cursor:pointer;line-height:1;padding:4px 8px}
+            #ceu-result-close:hover{color:#333}
+        </style>
+
+        <div id="ceu-result-backdrop">
+            <div id="ceu-result-card" role="dialog" aria-modal="true" aria-label="Post test result">
+                <button id="ceu-result-close" aria-label="Close">&times;</button>
+                <div class="ceu-ov-icon"><?php echo $icon_svg ?></div>
+                <p class="ceu-ov-headline"><?php echo esc_html($headline) ?></p>
+                <div class="ceu-ov-rows">
+                    <div class="ceu-ov-row">
+                        <span class="ceu-ov-label">Training</span>
+                        <span class="ceu-ov-val"><?php echo esc_html(stripslashes($r['training_title'])) ?></span>
+                    </div>
+                    <div class="ceu-ov-row">
+                        <span class="ceu-ov-label">Your Score</span>
+                        <span class="ceu-ov-val"><?php echo esc_html($r['score']) ?>%</span>
+                    </div>
+                    <div class="ceu-ov-row">
+                        <span class="ceu-ov-label">CE Credit Hours</span>
+                        <span class="ceu-ov-val"><?php echo esc_html($r['credits'] + 0) ?></span>
+                    </div>
+                    <?php if ($is_pass): ?>
+                        <div class="ceu-ov-row">
+                            <span class="ceu-ov-label">Cost</span>
+                            <span class="ceu-ov-val"><?php echo $is_free ? 'Free' : '$' . esc_html(number_format((float)$r['cost'], 2)) ?></span>
+                        </div>
+                    <?php endif ?>
+                </div>
+                <div class="ceu-ov-actions">
+                    <?php if ($is_pass): ?>
+                        <?php if ($is_free): ?>
+                            <a href="<?php echo esc_url(home_url('/user')) ?>" class="ceu-ov-btn ceu-ov-btn-primary">
+                                View My Certificate
+                            </a>
+                        <?php else: ?>
+                            <button type="button" class="ceu-ov-btn ceu-ov-btn-primary" id="ceu-ov-cart-btn"
+                                data-tid="<?php echo (int) $r['tid'] ?>"
+                                data-title="<?php echo esc_attr(stripslashes($r['training_title'])) ?>"
+                                data-cost="<?php echo esc_attr(number_format((float) $r['cost'], 2)) ?>">
+                                Add to Cart
+                            </button>
+                        <?php endif ?>
+                        <button type="button" class="ceu-ov-btn ceu-ov-btn-secondary" id="ceu-ov-close-btn">Close</button>
+                    <?php else: ?>
+                        <button type="button" class="ceu-ov-btn ceu-ov-btn-primary" id="ceu-ov-retake-btn">Retake Post Test</button>
+                        <button type="button" class="ceu-ov-btn ceu-ov-btn-secondary" id="ceu-ov-close-btn">Close</button>
+                    <?php endif ?>
+                </div>
+            </div>
+        </div>
+        <script>
+            (function () {
+                var backdrop = document.getElementById('ceu-result-backdrop');
+                function openOverlay()  { backdrop.classList.add('ceu-overlay-open'); }
+                function closeOverlay() { backdrop.classList.remove('ceu-overlay-open'); }
+
+                // Auto-open on load
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', openOverlay);
+                } else {
+                    openOverlay();
+                }
+
+                // Close button(s)
+                document.getElementById('ceu-result-close').addEventListener('click', closeOverlay);
+                var closeBtn = document.getElementById('ceu-ov-close-btn');
+                if (closeBtn) closeBtn.addEventListener('click', closeOverlay);
+
+                // Add to Cart button
+                var cartBtn = document.getElementById('ceu-ov-cart-btn');
+                if (cartBtn) {
+                    cartBtn.addEventListener('click', function () {
+                        var tid   = cartBtn.dataset.tid;
+                        var title = cartBtn.dataset.title;
+                        var cost  = parseFloat(cartBtn.dataset.cost) || 0;
+
+                        // Read current cart cookie (pipe-separated training IDs)
+                        var existing = '';
+                        document.cookie.split(';').forEach(function (c) {
+                            var p = c.trim();
+                            if (p.startsWith('cart=')) existing = decodeURIComponent(p.slice(5));
+                        });
+
+                        // Add tid if not already in cart
+                        var ids = existing ? existing.split('|').filter(Boolean) : [];
+                        var alreadyIn = ids.indexOf(tid) !== -1;
+                        if (!alreadyIn) {
+                            ids.push(tid);
+                            var exp = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toUTCString();
+                            document.cookie = 'cart=' + encodeURIComponent(ids.join('|')) + '; path=/; expires=' + exp;
+                        }
+
+                        // Update nav count badge
+                        var countEl = document.querySelector('.mini-cart-items');
+                        var newCount = alreadyIn ? (parseInt((countEl || {}).textContent, 10) || ids.length) : ids.length;
+                        if (countEl) countEl.textContent = newCount;
+
+                        // Inject item into the mini cart dropdown (matches ceu-cart.php ceu_cart_html structure)
+                        var contentEl = document.querySelector('.minicart-content');
+                        if (contentEl) {
+                            var newItem = '<li class="ceu-mc-item">'
+                                + '<div class="ceu-mc-item-body">'
+                                + '<span class="ceu-mc-item-title">' + title + '</span>'
+                                + '<span class="ceu-mc-item-price">$' + cost.toFixed(2) + '</span>'
+                                + '</div>'
+                                + '<button class="ceu-mc-remove" data-ceu-remove="' + tid + '" title="Remove from cart">'
+                                + '<i class="fas fa-trash-alt"></i></button>'
+                                + '</li>';
+
+                            var existingList = contentEl.querySelector('.ceu-mc-list');
+                            if (existingList && !alreadyIn) {
+                                existingList.insertAdjacentHTML('beforeend', newItem);
+                                // Update subtotal and badge
+                                var subtotalEl = contentEl.querySelector('.ceu-mc-subtotal strong');
+                                if (subtotalEl) {
+                                    var prev = parseFloat(subtotalEl.textContent.replace(/[^0-9.]/g, '')) || 0;
+                                    subtotalEl.textContent = '$' + (prev + cost).toFixed(2);
+                                }
+                                var badgeEl = contentEl.querySelector('.ceu-mc-badge');
+                                if (badgeEl) {
+                                    badgeEl.textContent = newCount + (newCount === 1 ? ' course' : ' courses');
+                                }
+                            } else {
+                                // Was empty or missing — build full cart
+                                var cartUrl    = '<?php echo esc_js(home_url('/cart/')) ?>';
+                                var checkoutUrl = '<?php echo esc_js(home_url('/checkout/')) ?>';
+                                var countLabel  = newCount + (newCount === 1 ? ' course' : ' courses');
+                                contentEl.innerHTML = '<div class="ceu-mc">'
+                                    + '<div class="ceu-mc-header">'
+                                    + '<i class="flaticon-shopping-cart ceu-mc-icon"></i>'
+                                    + '<span class="ceu-mc-title">Your Cart</span>'
+                                    + '<span class="ceu-mc-badge">' + countLabel + '</span>'
+                                    + '</div>'
+                                    + '<ul class="ceu-mc-list">' + newItem + '</ul>'
+                                    + '<div class="ceu-mc-footer">'
+                                    + '<div class="ceu-mc-subtotal"><span>Subtotal</span><strong>$' + cost.toFixed(2) + '</strong></div>'
+                                    + '<a href="' + cartUrl + '" class="ceu-mc-btn ceu-mc-btn-ghost">View Cart</a>'
+                                    + '<a href="' + checkoutUrl + '" class="ceu-mc-btn ceu-mc-btn-primary">Proceed to Checkout &rarr;</a>'
+                                    + '</div></div>';
+                            }
+                        }
+
+                        // Confirm state then close overlay
+                        cartBtn.textContent = 'Added to Cart ✓';
+                        cartBtn.disabled = true;
+                        setTimeout(closeOverlay, 1500);
+                    });
+                }
+
+                // Retake: close overlay then open + scroll to post test
+                var retakeBtn = document.getElementById('ceu-ov-retake-btn');
+                if (retakeBtn) {
+                    retakeBtn.addEventListener('click', function () {
+                        closeOverlay();
+                        // Small delay so the fade doesn't fight the scroll
+                        setTimeout(function () {
+                            var tabTitle   = document.querySelector('#PostTest .elementor-tab-title');
+                            var tabContent = document.getElementById('ceu-tab-content-2');
+                            if (tabTitle && tabContent) {
+                                tabTitle.classList.add('elementor-active');
+                                tabTitle.setAttribute('aria-expanded', 'true');
+                                tabContent.style.display = 'block';
+                            }
+                            var el = document.getElementById('PostTest');
+                            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 200);
+                    });
+                }
+
+                // Click backdrop to close
+                backdrop.addEventListener('click', function (e) {
+                    if (e.target === backdrop) closeOverlay();
+                });
+            })();
+        </script>
+        <?php
+        $overlay_html = ob_get_clean();
+    }
 
     ob_start(); ?>
     <style>
@@ -444,7 +663,9 @@ add_filter('the_content', function ($content) {
                             .ceu-post-test .ceu-submit-btn:hover{background:#4B9ADE}
                             .ceu-post-test .ceu-submit-btn:disabled{background:#999;cursor:not-allowed}
                         </style>
-                        <form action="/process/forms" method="post" name="postTestForm" class="ceu-post-test">
+                        <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" name="postTestForm" class="ceu-post-test">
+                            <input type="hidden" name="action" value="ceu_score_post_v2">
+                            <input type="hidden" name="back_url" value="<?php echo esc_url(home_url('/' . $profession_slug . '/' . $training_id_int . '/' . sanitize_title($course_title) . '/')); ?>">
                             <p class="ceu-q-count"><strong><?php echo count($questions); ?> Questions</strong></p>
                             <?php $y = 1; foreach ($questions as $qid => $q): ?>
                                 <div class="ceu-q-block">
@@ -454,10 +675,16 @@ add_filter('the_content', function ($content) {
                                     </div>
                                     <div class="ceu-q-choices">
                                         <?php foreach ($q['choices'] as $i => $c):
+                                            if($user['ID'] == '100039' && $c['is_correct'] == '1') {
+                                                $selected = 'checked';
+                                            } else {
+                                                $selected = '';
+                                            }
+
                                             $letter = chr(97 + $i);
                                             ?>
                                             <label>
-                                                <input type="radio" name="<?php echo esc_attr($qid); ?>" value="<?php echo esc_attr($c['choice_id']); ?>">
+                                                <input type="radio" name="<?php echo esc_attr($qid); ?>" value="<?php echo esc_attr($c['choice_id']); ?>" <?php echo $selected ?>>
                                                 <span><?php echo esc_html($letter . '. ' . $c['choice_text']); ?></span>
                                             </label>
                                         <?php endforeach; ?>
@@ -465,7 +692,6 @@ add_filter('the_content', function ($content) {
                                 </div>
                                 <?php $y++; endforeach; ?>
                             <input type="hidden" name="course" value="<?php echo $course_json; ?>">
-                            <input type="hidden" name="todo" value="score_post_v2">
                             <div class="ceu-submit-wrap">
                                 <button type="submit" class="ceu-submit-btn" onclick="this.disabled=true;this.form.submit();">SUBMIT</button>
                             </div>
@@ -554,5 +780,262 @@ add_filter('the_content', function ($content) {
         }
     </script>
     <?php
-    return ob_get_clean();
+    return $overlay_html . ob_get_clean();
 }, 10);
+
+// ─── Post Test Submission Handler ────────────────────────────────────────────
+// Mirrors score_post_v2 from CEU/process/forms.php.
+// Wired via WordPress's admin-post.php endpoint (same pattern as ceu_do_login).
+
+function ceu_do_score_post_v2() {
+    if (!session_id()) session_start();
+
+    // Must be a logged-in CEU user
+    if (!ceu_is_logged_in()) {
+        wp_safe_redirect(home_url('/login/'));
+        exit;
+    }
+
+    // Validate back_url stays on this host; fall back to home
+    $back_url   = esc_url_raw($_POST['back_url'] ?? '');
+    $back_host  = wp_parse_url($back_url, PHP_URL_HOST);
+    $home_host  = wp_parse_url(home_url(), PHP_URL_HOST);
+    if (!$back_url || $back_host !== $home_host) {
+        $back_url = home_url('/');
+    }
+
+    $ceu_row = maybe_unserialize(get_user_meta(get_current_user_id(), '_ceu_row', true));
+    if (!$ceu_row) {
+        wp_safe_redirect(home_url('/'));
+        exit;
+    }
+
+    $uid        = (int) $ceu_row['ID'];
+    $state      = $ceu_row['STATE'] ?? '';
+    $email      = $ceu_row['EMAIL'] ?? '';
+    $pro_slug   = $ceu_row['PROFESSION'] ?? '';
+
+    $professions = unserialize(CEU_PROFESSIONS);
+    if ($pro_slug === 'livingworks' && ($_POST['livingworks_course'] ?? '') === 'yes') {
+        $profession_id = 7;
+    } elseif (isset($professions[$pro_slug])) {
+        $profession_id = (int) $professions[$pro_slug];
+    } else {
+        $profession_id = 0;
+    }
+
+    $training = json_decode(stripslashes($_POST['course'] ?? ''), true);
+    if (!$training || empty($training['TRAINING_ID'])) {
+        wp_safe_redirect(home_url('/'));
+        exit;
+    }
+
+    $tid          = (int) $training['TRAINING_ID'];
+    $post_test_id = (int) $training['post_test_id'];
+    $passing_pct  = (float) $training['PASSING'] * 100;
+
+    $db = ceu_db_connect();
+    if (!$db) {
+        wp_safe_redirect(home_url('/'));
+        exit;
+    }
+
+    // Fetch correct choice_id per question_id
+    $stmt = $db->prepare(
+        "SELECT q.id AS question_id, c.id AS choice_id
+         FROM CEU_questions q
+         JOIN CEU_question_choices c ON q.id = c.question_id
+         WHERE q.test_id = ? AND c.is_correct = 1
+         ORDER BY q.id"
+    );
+    $stmt->bind_param('i', $post_test_id);
+    $stmt->execute();
+    $rows = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    $correct_map = [];
+    foreach ($rows as $r) {
+        $correct_map[$r['question_id']] = $r['choice_id'];
+    }
+
+    $question_count = count($correct_map);
+    if ($question_count === 0) {
+        wp_safe_redirect(home_url('/'));
+        exit;
+    }
+
+    // Score submitted answers; build answer string for storage on fail
+    $score         = 0;
+    $answer_string = '';
+    $post_data     = $_POST;
+    foreach ($correct_map as $qid => $correct_choice_id) {
+        $submitted = $post_data[$qid] ?? null;
+        if ((string) $submitted === (string) $correct_choice_id) {
+            $score++;
+        }
+        $answer_string .= $qid . '-' . (int) $submitted . '|';
+    }
+
+    $final_score  = round($score / $question_count * 100, 2);
+    $is_passing   = $final_score >= $passing_pct;
+
+    $arr = [
+        'tid'            => $tid,
+        'score'          => $final_score,
+        'training_title' => $training['TITLE_ALT'] ?? '',
+        'profession_id'  => $profession_id,
+        'email'          => $email,
+        'state'          => $state,
+        'credits'        => $training['CREDIT'] ?? '',
+        'uid'            => $uid,
+        'cost'           => $training['COST'] ?? '0',
+        'passing'        => $is_passing ? '1' : '0',
+    ];
+
+    // ── Upsert into CEU_TRAININGS_TAKEN ──────────────────────────────────────
+    $check = $db->prepare("SELECT ID FROM CEU_TRAININGS_TAKEN WHERE TRAINING_ID = ? AND USER_ID = ?");
+    $check->bind_param('ii', $tid, $uid);
+    $check->execute();
+    $exists = $check->get_result()->num_rows > 0;
+    $check->close();
+
+    $now = date('Y-m-d H:i:s');
+    if (!$exists) {
+        $ins = $db->prepare(
+            "INSERT INTO CEU_TRAININGS_TAKEN
+             (TRAINING_ID, TRAINING_TITLE, PROFESSION_ID, STATE, USER_ID, CREDITS, SCORE, PASSING, DATE_COMPLETED)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        );
+        $ins->bind_param(
+            'isisissss',
+            $tid,
+            $arr['training_title'],
+            $profession_id,
+            $state,
+            $uid,
+            $arr['credits'],
+            $final_score,
+            $arr['passing'],
+            $now
+        );
+        $ins->execute();
+        $insert_status = $ins->affected_rows;
+        $ins->close();
+    } else {
+        $upd = $db->prepare(
+            "UPDATE CEU_TRAININGS_TAKEN
+             SET SCORE = ?, PASSING = ?, DATE_COMPLETED = ?
+             WHERE USER_ID = ? AND TRAINING_ID = ? AND PROFESSION_ID = ? AND PASSING = 0"
+        );
+        $upd->bind_param('sssiii', $final_score, $arr['passing'], $now, $uid, $tid, $profession_id);
+        $upd->execute();
+        $insert_status = $upd->affected_rows;
+        $upd->close();
+    }
+
+    if ($is_passing) {
+        // Delete any saved in-progress submission
+        $del = $db->prepare("DELETE FROM CEU_POST_TEST_RESULTS WHERE USER_ID = ? AND TRAINING_ID = ?");
+        $del->bind_param('ii', $uid, $post_test_id);
+        $del->execute();
+        $del->close();
+
+        // Refresh CEU session from DB so user page reflects new state
+        $user_stmt = $db->prepare("SELECT * FROM CEU_USER WHERE ID = ?");
+        $user_stmt->bind_param('i', $uid);
+        $user_stmt->execute();
+        $fresh_ceu = $user_stmt->get_result()->fetch_assoc();
+        $user_stmt->close();
+        if ($fresh_ceu) {
+            $_SESSION['session_data'] = [$fresh_ceu];
+            update_user_meta(get_current_user_id(), '_ceu_row', maybe_serialize($fresh_ceu));
+        }
+
+        $_SESSION['passed'] = $arr;
+
+        // Free course: issue cert immediately
+        if ((float) $arr['cost'] === 0.0) {
+            $cert = $db->prepare(
+                "INSERT INTO CEU_CERTIFICATES
+                 (TRAINING_ID, TRAINING_TITLE, DATE_COMPLETED, PROFESSION_ID, STATE, USER_ID, CREDITS, SCORE)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+            );
+            $cert->bind_param('isssisss', $tid, $arr['training_title'], $now, $profession_id, $state, $uid, $arr['credits'], $final_score);
+            $cert->execute();
+            $cert->close();
+
+            $rm = $db->prepare("DELETE FROM CEU_TRAININGS_TAKEN WHERE USER_ID = ? AND TRAINING_ID = ?");
+            $rm->bind_param('ii', $uid, $tid);
+            $rm->execute();
+            $rm->close();
+        }
+
+        session_write_close();
+        wp_safe_redirect($back_url);
+        exit;
+    }
+
+    // ── Failing ───────────────────────────────────────────────────────────────
+
+    // Save answer string so user can resume
+    $save = $db->prepare(
+        "INSERT INTO CEU_POST_TEST_RESULTS (USER_ID, TRAINING_ID, TRAINING_ANSWERS, SCORE, DATE_TAKEN)
+         VALUES (?, ?, ?, ?, ?)
+         ON DUPLICATE KEY UPDATE TRAINING_ANSWERS = VALUES(TRAINING_ANSWERS),
+                                 SCORE = VALUES(SCORE),
+                                 DATE_TAKEN = VALUES(DATE_TAKEN)"
+    );
+    $save->bind_param('iisss', $uid, $post_test_id, $answer_string, $final_score, $now);
+    $save->execute();
+    $save->close();
+
+    // Psychologist 3-attempt cap
+    if ($pro_slug === 'psychologist') {
+        $track = $db->prepare(
+            "SELECT SCORE_1, DATE_1, SCORE_2, DATE_2, SCORE_3, DATE_3
+             FROM CEU_TRAINING_TRACKING WHERE USER_ID = ? AND TRAINING_ID = ?"
+        );
+        $track->bind_param('ii', $uid, $tid);
+        $track->execute();
+        $row = $track->get_result()->fetch_assoc();
+        $track->close();
+
+        if ($row === null) {
+            $t = $db->prepare(
+                "INSERT INTO CEU_TRAINING_TRACKING (USER_ID, TRAINING_ID, SCORE_1, DATE_1)
+                 VALUES (?, ?, ?, ?)"
+            );
+            $t->bind_param('iiss', $uid, $tid, $final_score, $now);
+            $t->execute();
+            $t->close();
+        } elseif (empty($row['SCORE_2'])) {
+            $t = $db->prepare(
+                "UPDATE CEU_TRAINING_TRACKING SET SCORE_2 = ?, DATE_2 = ?
+                 WHERE USER_ID = ? AND TRAINING_ID = ?"
+            );
+            $t->bind_param('ssii', $final_score, $now, $uid, $tid);
+            $t->execute();
+            $t->close();
+        } elseif (empty($row['SCORE_3'])) {
+            $t = $db->prepare(
+                "UPDATE CEU_TRAINING_TRACKING SET SCORE_3 = ?, DATE_3 = ?
+                 WHERE USER_ID = ? AND TRAINING_ID = ?"
+            );
+            $t->bind_param('ssii', $final_score, $now, $uid, $tid);
+            $t->execute();
+            $t->close();
+        }
+    }
+
+    $_SESSION['passed'] = $arr;
+
+    session_write_close();
+    wp_safe_redirect($back_url);
+    exit;
+}
+
+add_action('admin_post_ceu_score_post_v2',        'ceu_do_score_post_v2');
+add_action('admin_post_nopriv_ceu_score_post_v2', function () {
+    wp_safe_redirect(home_url('/login/'));
+    exit;
+});

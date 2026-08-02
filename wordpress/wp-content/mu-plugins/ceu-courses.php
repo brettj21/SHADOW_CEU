@@ -32,6 +32,13 @@ define('CEU_PROFESSIONS', serialize([
     'counselor-addiction' => 6,
 ]));
 
+// Professions whose listing page should open pre-filtered to a specific category.
+// The value is matched case-insensitively against the topic/category label, so it
+// keeps working even if the underlying topic ID changes.
+define('CEU_DEFAULT_CATEGORY', serialize([
+    'livingworks' => 'LivingWorks',
+]));
+
 // ─── DB Connection ────────────────────────────────────────────────────────────
 
 function ceu_db_connect() {
@@ -150,6 +157,29 @@ add_shortcode('ceu_courses', function($atts) {
     }
     unset($c);
 
+    // Pre-selected category for this profession's listing page (e.g. LivingWorks).
+    // Resolve the configured label to a topic ID present in this profession's topics.
+    $default_topic_id = '';
+    $default_map      = unserialize(CEU_DEFAULT_CATEGORY);
+    if (isset($default_map[$slug])) {
+        $needle = strtolower($default_map[$slug]);
+        foreach ($topics as $t) {
+            if (strpos(strtolower($t['TOPIC']), $needle) !== false) {
+                $default_topic_id = (string) $t['ID'];
+                break;
+            }
+        }
+    }
+
+    // How many courses are visible under the initial filter (for the count label).
+    $initial_visible = 0;
+    foreach ($courses as $c) {
+        if ($default_topic_id === '' ||
+            in_array($default_topic_id, explode(',', $c['topic_ids']), true)) {
+            $initial_visible++;
+        }
+    }
+
     // Defined once outside the loop; no <div> in allowlist so stray </div> can't break card structure
     $safe_tags = ['p' => [], 'br' => [], 'ul' => [], 'ol' => [], 'li' => [],
         'strong' => [], 'b' => [], 'em' => [], 'i' => [],
@@ -160,7 +190,7 @@ add_shortcode('ceu_courses', function($atts) {
     <div class="ceu-section">
 
         <div class="ceu-toolbar">
-            <span class="ceu-count-label"><?php echo count($courses); ?> Courses</span>
+            <span class="ceu-count-label"><?php echo $initial_visible; ?> Course<?php echo $initial_visible !== 1 ? 's' : ''; ?></span>
             <div class="ceu-toolbar-right">
                 <?php if (!empty($topics)): ?>
                     <div class="ceu-filter-wrap">
@@ -168,7 +198,7 @@ add_shortcode('ceu_courses', function($atts) {
                         <select id="ceu-topic-select" class="ceu-topic-select">
                             <option value="">All Categories</option>
                             <?php foreach ($topics as $t): ?>
-                                <option value="<?php echo esc_attr($t['ID']); ?>">
+                                <option value="<?php echo esc_attr($t['ID']); ?>" <?php selected($default_topic_id, (string) $t['ID']); ?>>
                                     <?php echo esc_html($t['TOPIC']); ?> (<?php echo (int)$t['course_count']; ?>)
                                 </option>
                             <?php endforeach; ?>
@@ -188,7 +218,9 @@ add_shortcode('ceu_courses', function($atts) {
 
         <div class="ceu-grid">
             <?php foreach ($courses as $i => $c): ?>
-                <div class="ceu-card" data-topics="<?php echo esc_attr($c['topic_ids']); ?>">
+                <?php $card_hidden = ($default_topic_id !== '' &&
+                    !in_array($default_topic_id, explode(',', $c['topic_ids']), true)); ?>
+                <div class="ceu-card<?php echo $card_hidden ? ' ceu-hidden' : ''; ?>" data-topics="<?php echo esc_attr($c['topic_ids']); ?>">
 
                     <div class="ceu-card-image">
                         <a href="<?php echo $c['training_id']; ?>/<?php echo sanitize_title($c['title']); ?>/"><img src="<?php echo $img_root . $c['training_id']; ?>.jpg" alt="<?php echo esc_attr($c['title']); ?>" loading="lazy" /></a>
