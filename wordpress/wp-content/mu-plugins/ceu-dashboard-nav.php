@@ -18,16 +18,30 @@
  * For CUSTOM items in the HEADER DROPDOWN, add Font Awesome CSS below —
  * Font Awesome is already loaded on the site.
  *
- * Available keys (all default Tutor LMS items):
- *   index            → Dashboard
- *   my-profile       → My Profile
- *   enrolled-courses → Enrolled Courses
- *   reviews          → Reviews
- *   my-quiz-attempts → My Quiz Attempts
- *   purchase_history → Order History
- *   question-answer  → Question & Answer
- *   settings         → Settings
- *   logout           → Logout
+ * TUTOR 4.0 BREAKING CHANGE (upgraded from 3.9.12 — Aug 2026)
+ * ──────────────────────────────────────────────────────────
+ * Tutor 4.0 rewrote the dashboard nav. The old keys this file used to target
+ * are gone, which silently blanked the whole dropdown:
+ *
+ *   3.9.12 key        → 4.0 status
+ *   index             → still 'index' (now titled "Home")
+ *   my-profile        → moved under hidden 'account' page (account/profile)
+ *   enrolled-courses  → renamed 'courses'
+ *   reviews           → moved under 'account' page
+ *   my-quiz-attempts  → gone (instructor-only 'quiz-attempts')
+ *   purchase_history  → gone (now account/billing)
+ *   question-answer   → replaced by 'discussions'
+ *   wishlist          → REMOVED FROM TUTOR CORE entirely
+ *   settings          → moved under 'account' page; 'bottom_nav_items' filter deleted
+ *   logout            → same, no longer a nav item
+ *
+ * Tutor 4.0 now ships only: index, courses, discussions (+ hidden account,
+ * retrieve-password). So rather than patching individual keys, section 1
+ * discards Tutor's list and declares the dropdown outright.
+ *
+ * Slugs below are deliberately the OLD pre-4.0 names — the Zilom theme already
+ * styles .tutor-dashboard-menu-{slug} a::before for each, so the original
+ * icons keep working with no extra CSS.
  */
 
 // ── 1. Modify the nav items ───────────────────────────────────────────────────
@@ -39,62 +53,45 @@
 add_filter('tutor_dashboard/nav_ui_items', function ($items) {
     if (!function_exists('ceu_is_logged_in') || !ceu_is_logged_in()) return $items;
 
-    // Items to REMOVE
-    $remove = [
-        'index',
-        'reviews',
-        //'enrolled-courses',
-        'purchase_history',
-        'my-quiz-attempts',
-        'question-answer',
+    // Settings now lives at {dashboard}/account/settings in Tutor 4.0.
+    $settings_url = class_exists('\TUTOR\Dashboard')
+        ? \TUTOR\Dashboard::get_account_page_url('settings')
+        : home_url('/dashboard/account/settings/');
+
+    // THE DROPDOWN — declared outright, in display order.
+    //
+    // 'title' → link text
+    // 'url'   → honoured by BOTH renderers: the theme header dropdown
+    //           (themes/zilom/templates/parts/header-mobile.php) and Tutor's own
+    //           dashboard sidebar. Set it here; no JS rewriting needed.
+    // 'icon'  → Tutor 4.0 SVG icon name (see classes/Icon.php constants). Used by
+    //           the dashboard sidebar. The header dropdown uses the theme's CSS
+    //           icons keyed off the slug instead.
+    //
+    // To add an item, add an entry. If you use a slug the theme has no icon CSS
+    // for, add a Font Awesome rule in section 4 below.
+    return [
+        'my-profile' => [
+            'title' => 'My Profile',
+            'url'   => home_url('/user/'),
+            'icon'  => 'user-circle',
+        ],
+        'enrolled-courses' => [
+            'title' => 'My Certificates',
+            'url'   => home_url('/user-2/'),
+            'icon'  => 'certificate',
+        ],
+        'settings' => [
+            'title' => 'Settings',
+            'url'   => $settings_url,
+            'icon'  => 'setting',
+        ],
+        'logout' => [
+            'title' => 'Logout',
+            'url'   => home_url('/logout/'),
+            'icon'  => 'logout',
+        ],
     ];
-    foreach ($remove as $key) {
-        unset($items[$key]);
-    }
-
-    // Items to RENAME (keep existing icon)
-    $rename = [
-        //'index'            => 'My Dashboard',
-        'enrolled-courses' => 'My Certificates',
-        //'purchase_history' => 'My Certificates',
-    ];
-    foreach ($rename as $key => $label) {
-        if (isset($items[$key])) {
-            if (is_array($items[$key])) {
-                $items[$key]['title'] = $label;
-            } else {
-                $items[$key] = $label;
-            }
-        }
-    }
-
-    // Custom items — insert before Settings/Logout
-    // Each entry: 'slug' => ['title' => '...', 'icon' => 'tutor-icon-...']
-    // The slug becomes the li class: tutor-dashboard-menu-{slug}
-    // Add Font Awesome CSS for each custom icon in section 2 below.
-    $custom = [
-        // 'ceu-certificates' => [
-        //     'title' => 'My Certificates',
-        //     'icon'  => 'tutor-icon-bookmark-bold', // Tutor icon, or add FA CSS below
-        // ],
-        // 'ceu-support' => [
-        //     'title' => 'Support',
-        //     'icon'  => 'tutor-icon-question',
-        // ],
-    ];
-
-    if (!empty($custom)) {
-        $settings_pos = array_search('settings', array_keys($items));
-        if ($settings_pos !== false) {
-            $before = array_slice($items, 0, $settings_pos, true);
-            $after  = array_slice($items, $settings_pos, null, true);
-            $items  = array_merge($before, $custom, $after);
-        } else {
-            $items = array_merge($items, $custom);
-        }
-    }
-
-    return $items;
 });
 
 // ── 2. Custom icons via Font Awesome CSS ──────────────────────────────────────
@@ -104,22 +101,20 @@ add_filter('tutor_dashboard/nav_ui_items', function ($items) {
 // Example for 'ceu-certificates' using fa-certificate (\f0a3)
 // and 'ceu-support' using fa-headset (\f590).
 
-// ── 3. Override individual dropdown item URLs ─────────────────────────────────
-// Tutor builds each href as base_url + key — there is no per-item filter.
-// We capture the rendered header HTML and do string replacements before output.
+// ── 3. Client-side URL fallback ───────────────────────────────────────────────
+// Rewrites dropdown hrefs in the browser, matched by the li class
+// (.tutor-dashboard-menu-{slug}).
 //
-// Add the items you want to change to $url_map below.
-// Keys match the Tutor slug (same keys used in sections 1 and 2).
-// Leave $url_map empty to skip URL overriding entirely.
-
-$url_map = [
-    //'index'            => home_url('/user/'),             // My Dashboard
-    'my-profile'       => home_url('/user/'),     // My Profile
-    'enrolled-courses' => home_url('/user-2/'),  // My Courses
-    'logout'           => home_url('/logout/'),
-    //purchase_history' => home_url('/user-2/'),      // Purchase History
-    // 'settings'         => home_url('/user/settings/'),    // Settings
-];
+// Since the Tutor 4.0 rebuild this is NO LONGER needed for the dropdown itself —
+// every item sets its URL directly via the 'url' key in section 1, and both
+// renderers honour it. $url_map is therefore empty on purpose.
+//
+// The script still runs, because its other job is live: cleaning Tutor's ugly
+// ?page_id=N hrefs into clean slug URLs elsewhere on the page.
+//
+// Only add entries here for links you cannot reach from the section 1 filter.
+// Keys are Tutor slugs, values are the final URL.
+$url_map = [];
 
 // Fix Tutor dropdown URLs via JavaScript — targets li classes directly so it
 // works regardless of how get_permalink() generates the ugly ?page_id= URL.
