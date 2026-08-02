@@ -9,7 +9,14 @@ add_action('wp_footer', function () {
     $path = trim(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH), '/');
     if (basename($path) !== 'user-2') return;
 
-    $user_id = isset($_COOKIE['ceu']) ? (int) $_COOKIE['ceu'] : 0;
+    // Identity must come from the verified WP session, never from the 'ceu'
+    // cookie — that value is client-controlled, so trusting it let anyone read
+    // another user's CE records just by editing the cookie in devtools.
+    // ceu_is_logged_in() and the _ceu_id meta are both set by ceu-auth.php only
+    // after a successful CEU login.
+    if (!function_exists('ceu_is_logged_in') || !ceu_is_logged_in()) return;
+
+    $user_id = (int) get_user_meta(get_current_user_id(), '_ceu_id', true);
     if (!$user_id || !function_exists('ceu_db_connect')) return;
 
     $db = ceu_db_connect();
