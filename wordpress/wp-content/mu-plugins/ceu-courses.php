@@ -238,7 +238,7 @@ add_shortcode('ceu_courses', function($atts) {
 
                         <?php if ($c['author']): ?>
                             <!--<p class="ceu-card-author">By: <?php echo esc_html($c['author']);
-                                if ($c['author_license']) echo ', ' . esc_html($c['author_license']); ?></p> -->
+                            if ($c['author_license']) echo ', ' . esc_html($c['author_license']); ?></p> -->
                         <?php endif; ?>
 
                         <div class="ceu-card-meta">

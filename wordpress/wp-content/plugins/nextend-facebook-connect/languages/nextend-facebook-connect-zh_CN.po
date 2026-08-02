@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: nextend-facebook-connect\n"
-"POT-Creation-Date: 2026-02-23 09:55+0100\n"
-"PO-Revision-Date: 2026-02-23 09:55+0100\n"
+"POT-Creation-Date: 2026-07-28 09:20+0200\n"
+"PO-Revision-Date: 2026-07-28 09:20+0200\n"
 "Last-Translator: \n"
 "Language-Team: nextend-facebook-connect\n"
 "Language: zh_CN\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: "
@@ -121,8 +121,14 @@ msgstr "授权成功"
 msgid "Deactivate completed."
 msgstr "取消授权."
 
+msgid "(no title)"
+msgstr ""
+
 msgid "Settings"
 msgstr "设置"
+
+msgid "Analyze & Repair"
+msgstr ""
 
 #, php-format
 msgid "Unexpected response: %s"
@@ -659,6 +665,21 @@ msgstr "喜欢"
 msgid "Loved it"
 msgstr "大爱"
 
+msgid "Rate 1 star"
+msgstr ""
+
+msgid "Rate 2 stars"
+msgstr ""
+
+msgid "Rate 3 stars"
+msgstr ""
+
+msgid "Rate 4 stars"
+msgstr ""
+
+msgid "Rate 5 stars"
+msgstr ""
+
 msgid "Please Leave a Review"
 msgstr "请留下一个评论"
 
@@ -671,6 +692,9 @@ msgstr ""
 
 msgid "Ok, you deserve it"
 msgstr "好吧，你应得的"
+
+msgid "Close review box"
+msgstr ""
 
 #, fuzzy
 #| msgid "Registration Form"
@@ -988,6 +1012,11 @@ msgstr "注册"
 msgid "None"
 msgstr ""
 
+#, fuzzy
+#| msgid "Register"
+msgid "Clear - Page for register flow"
+msgstr "注册"
+
 msgid ""
 "This setting is used when you request additional data from the users (such "
 "as email address) and to display the Terms and conditions."
@@ -1006,6 +1035,9 @@ msgid ""
 msgstr ""
 
 msgid "OAuth redirect uri proxy page"
+msgstr ""
+
+msgid "Clear - OAuth redirect uri proxy page"
 msgstr ""
 
 msgid ""
@@ -2069,21 +2101,18 @@ msgstr "客户端密码"
 msgid "Audience"
 msgstr ""
 
-msgid ""
-"Accounts in any organizational directory (Any Azure AD directory - "
-"Multitenant)"
+msgid "Multiple Entra ID tenants"
 msgstr ""
 
-msgid ""
-"Accounts in any organizational directory (Any Azure AD directory - "
-"Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)"
+msgid "Any Entra ID Tenant + Personal Microsoft accounts"
 msgstr ""
 
-msgid "Personal Microsoft accounts only"
-msgstr ""
+#, fuzzy
+#| msgid "Social accounts"
+msgid "Personal accounts only"
+msgstr "社交账号"
 
-msgid ""
-"Only users in an organizational directory from a particular Azure AD tenant:"
+msgid "Single tenant only - Default Directory with Azure AD tenant:"
 msgstr ""
 
 #, php-format

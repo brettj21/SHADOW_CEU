@@ -20,7 +20,9 @@ class RWMB_Switch_Field extends RWMB_Input_Field {
 	 */
 	public static function html( $meta, $field ) {
 		$attributes = self::get_attributes( $field, 1 );
-		$output     = sprintf(
+
+		// Notes: allow to use HTML for on/off labels.
+		$output = sprintf(
 			'<label class="rwmb-switch-label rwmb-switch-label--' . esc_attr( $field['style'] ) . '">
 				<input %s %s>
 				<div class="rwmb-switch-status">

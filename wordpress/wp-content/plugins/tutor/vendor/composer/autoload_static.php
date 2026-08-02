@@ -14,7 +14,9 @@ class ComposerStaticInit393f7dbca26c39b6641c0f30851cde2c
             'Tutor\\Models\\' => 13,
             'Tutor\\Migrations\\' => 17,
             'Tutor\\Helpers\\' => 14,
+            'Tutor\\GDPR\\' => 11,
             'Tutor\\Ecommerce\\' => 16,
+            'Tutor\\Components\\' => 17,
             'Tutor\\Cache\\' => 12,
             'TUTOR\\' => 6,
         ),
@@ -41,9 +43,17 @@ class ComposerStaticInit393f7dbca26c39b6641c0f30851cde2c
         array (
             0 => __DIR__ . '/../..' . '/helpers',
         ),
+        'Tutor\\GDPR\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/GDPR',
+        ),
         'Tutor\\Ecommerce\\' =>
         array (
             0 => __DIR__ . '/../..' . '/ecommerce',
+        ),
+        'Tutor\\Components\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/components',
         ),
         'Tutor\\Cache\\' =>
         array (

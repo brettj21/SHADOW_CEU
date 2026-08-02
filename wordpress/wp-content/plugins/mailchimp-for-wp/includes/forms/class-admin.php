@@ -1,6 +1,6 @@
 <?php
 
-defined('ABSPATH') or exit;
+defined('ABSPATH') || exit;
 
 
 /**
@@ -148,7 +148,13 @@ class MC4WP_Forms_Admin
      */
     public function process_add_form()
     {
-        $form_data    = $_POST['mc4wp_form'];
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce check is done in action dispatcher
+        $request = $_POST;
+        if (! isset($request['mc4wp_form'])) {
+            wp_nonce_ays('add_form');
+        }
+
+        $form_data    = $request['mc4wp_form'];
         $form_content = include MC4WP_PLUGIN_DIR . '/config/default-form-content.php';
 
         // Fix for MultiSite stripping KSES for roles other than administrator
@@ -168,9 +174,6 @@ class MC4WP_Forms_Admin
             update_post_meta($form_id, '_mc4wp_settings', $form_data['settings']);
         }
 
-        // set default form ID
-        $this->set_default_form_id($form_id);
-
         $this->messages->flash(__('Form saved.', 'mailchimp-for-wp'));
         $edit_form_url = mc4wp_get_edit_form_url($form_id);
         wp_redirect($edit_form_url);
@@ -179,7 +182,9 @@ class MC4WP_Forms_Admin
 
     /**
      * Saves a form to the database
+     *
      * @param int $form_id
+     * @param array $data The form data. Expects slashed content.
      * @return int
      */
     private function save_form($form_id, array $data)
@@ -237,7 +242,7 @@ class MC4WP_Forms_Admin
         $raw_data = $data;
 
         // strip <form> tags from content
-        $data['content'] = preg_replace('/<\/?form(.|\s)*?>/i', '', $data['content']);
+        $data['content'] = preg_replace('/<\/?form\b[^>]{0,1024}>/i', '', $data['content']);
 
         // replace lowercased name="name" to prevent 404
         $data['content'] = str_ireplace(' name=\"name\"', ' name=\"NAME\"', $data['content']);
@@ -284,35 +289,20 @@ class MC4WP_Forms_Admin
      */
     public function process_save_form()
     {
-        // save global settings (if submitted)
-        if (isset($_POST['mc4wp']) && is_array($_POST['mc4wp'])) {
-            $options = get_option('mc4wp', []);
-            $posted  = $_POST['mc4wp'];
-            foreach ($posted as $key => $value) {
-                $options[$key] = trim($value);
-            }
-            update_option('mc4wp', $options);
+        // phpcs:disable WordPress.Security.NonceVerification.Missing -- nonce is handled in action dispatcher
+        if (! isset($_POST['mc4wp_form_id']) || ! isset($_POST['mc4wp_form'])) {
+            wp_nonce_ays('save_form');
         }
 
         // update form, settings and messages
         $form_id   = (int) $_POST['mc4wp_form_id'];
+
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- wp_insert_post expects slashed data
         $form_data = $_POST['mc4wp_form'];
 
         $this->save_form($form_id, $form_data);
-        $this->set_default_form_id($form_id);
         $this->messages->flash(__('Form saved.', 'mailchimp-for-wp'));
-    }
-
-    /**
-     * @param int $form_id
-     */
-    private function set_default_form_id($form_id)
-    {
-        $default_form_id = get_option('mc4wp_default_form_id', 0);
-
-        if (empty($default_form_id)) {
-            update_option('mc4wp_default_form_id', $form_id);
-        }
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
 
     /**
@@ -372,7 +362,7 @@ class MC4WP_Forms_Admin
         }
 
         if (headers_sent()) {
-            echo sprintf('<meta http-equiv="refresh" content="0;url=%s" />', esc_url($redirect_url));
+            printf('<meta http-equiv="refresh" content="0;url=%s" />', esc_url($redirect_url));
         } else {
             wp_redirect($redirect_url);
         }
@@ -387,7 +377,7 @@ class MC4WP_Forms_Admin
      */
     public function show_forms_page()
     {
-        $view = ! empty($_GET['view']) ? $_GET['view'] : '';
+        $view = ! empty($_GET['view']) ? wp_unslash($_GET['view']) : '';
 
         /**
          * @ignore
@@ -421,14 +411,8 @@ class MC4WP_Forms_Admin
         }
 
         $opts       = $form->settings;
-        $active_tab = isset($_GET['tab']) ? trim($_GET['tab']) : 'fields';
-
-        $form_preview_url = add_query_arg(
-            [
-                'mc4wp_preview_form' => $form_id,
-            ],
-            site_url('/', 'admin')
-        );
+        $active_tab = isset($_GET['tab']) ? wp_unslash($_GET['tab']) : 'fields';
+        $form_preview_url = add_query_arg(['mc4wp_preview_form' => $form_id], site_url('/', 'admin'));
 
         require __DIR__ . '/views/edit-form.php';
     }
@@ -451,7 +435,7 @@ class MC4WP_Forms_Admin
      *
      * @since 3.0
      * @internal
-     * @param $tab
+     * @param string $tab
      * @return string
      */
     public function tab_url($tab)

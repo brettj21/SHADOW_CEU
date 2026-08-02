@@ -1,6 +1,19 @@
 Changelog
 =========
 
+= 4.13.1 =
+
+_Release date: Jun 22, 2026_
+
+- Forms: Improve handling of pasted `<form>` wrapper tags in form content.
+- Forms: Remove `mc4wp_default_form_id` option. We now default to first available form.
+- Forms: Improve the `{email}` dynamic content tag by detecting common lowercase email field names.
+- Misc: Adhere to DB, Security, I18n sniffs from WordPress Coding Standards.
+- Misc: Prevent direct access to plugin configuration files.
+- Misc: Remove the plugin review request from the footer of plugin admin pages.
+- Security: Add Patchstack vulnerability disclosure instructions to the plugin FAQ and security policy.
+
+
 = 4.13.0 =
 
 _Release date: Jun 1, 2026_
@@ -20,7 +33,7 @@ _Release date: May 26, 2026_
 - Fix Site Tracking Pixel setting not being saved when disabling it.
 - Improve accessibility of generated form fields by wrapping inputs in labels and using fieldsets for checkbox and radio fields.
 - Improve validation and sanitization of submitted form data.
-- Improve debug log safety by truncating overly long messages and improving email address obfuscation.
+- Improve debug log safety by truncating overly long messages and improving email address obfuscation. Thanks [Jack Feldcher](https://github.com/jjf404)!
 
 
 = 4.12.5 =

@@ -1,13 +1,13 @@
 <?php
 
 if (isset($_GET['provider'])) {
-    $providerID = $_GET['provider'];
+    $providerID = sanitize_key($_GET['provider']);
 
     if (isset(NextendSocialLogin::$allowedProviders[$providerID])) {
         $provider = NextendSocialLogin::$allowedProviders[$providerID];
         ?>
         <div class="nsl-admin-content">
-            <h1>Debug: <?php echo $provider->getLabel(); ?></h1>
+            <h1><?php _e('Debug', 'nextend-facebook-connect'); ?>: <?php echo $provider->getLabel(); ?></h1>
 
             <?php
 

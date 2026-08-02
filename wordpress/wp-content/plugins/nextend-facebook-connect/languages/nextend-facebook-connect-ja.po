@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nextend-facebook-connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-23 09:54+0100\n"
-"PO-Revision-Date: 2026-02-23 09:54+0100\n"
+"POT-Creation-Date: 2026-07-28 09:19+0200\n"
+"PO-Revision-Date: 2026-07-28 09:19+0200\n"
 "Last-Translator: \n"
 "Language-Team: 日本語\n"
 "Language: ja\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: "
@@ -131,8 +131,14 @@ msgstr "アクティベーションが成功しました"
 msgid "Deactivate completed."
 msgstr "無効化 が完了しました。"
 
+msgid "(no title)"
+msgstr ""
+
 msgid "Settings"
 msgstr "設定"
+
+msgid "Analyze & Repair"
+msgstr ""
 
 #, php-format
 msgid "Unexpected response: %s"
@@ -655,6 +661,21 @@ msgstr "気に入った"
 msgid "Loved it"
 msgstr "愛してやまない"
 
+msgid "Rate 1 star"
+msgstr ""
+
+msgid "Rate 2 stars"
+msgstr ""
+
+msgid "Rate 3 stars"
+msgstr ""
+
+msgid "Rate 4 stars"
+msgstr ""
+
+msgid "Rate 5 stars"
+msgstr ""
+
 msgid "Please Leave a Review"
 msgstr "レビューを書いてください"
 
@@ -667,6 +688,9 @@ msgstr ""
 
 msgid "Ok, you deserve it"
 msgstr "OK、あなたはそれに値します。"
+
+msgid "Close review box"
+msgstr ""
 
 msgid "Register form"
 msgstr "登録フォーム"
@@ -943,6 +967,11 @@ msgstr "レジスタフロー用ページ"
 msgid "None"
 msgstr "なし"
 
+#, fuzzy
+#| msgid "Page for register flow"
+msgid "Clear - Page for register flow"
+msgstr "レジスタフロー用ページ"
+
 msgid ""
 "This setting is used when you request additional data from the users (such "
 "as email address) and to display the Terms and conditions."
@@ -967,6 +996,11 @@ msgstr ""
 "できません。"
 
 msgid "OAuth redirect uri proxy page"
+msgstr "OAuthリダイレクトURIプロキシページ"
+
+#, fuzzy
+#| msgid "OAuth redirect uri proxy page"
+msgid "Clear - OAuth redirect uri proxy page"
 msgstr "OAuthリダイレクトURIプロキシページ"
 
 msgid ""
@@ -2010,26 +2044,21 @@ msgstr "クライアントシークレット"
 msgid "Audience"
 msgstr "オーディエンス"
 
-msgid ""
-"Accounts in any organizational directory (Any Azure AD directory - "
-"Multitenant)"
+msgid "Multiple Entra ID tenants"
 msgstr ""
-"任意の組織ディレクトリのアカウント（任意のAzure ADディレクトリ - マルチテナン"
-"ト）"
 
-msgid ""
-"Accounts in any organizational directory (Any Azure AD directory - "
-"Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)"
-msgstr ""
-"任意の組織ディレクトリ（任意のAzure ADディレクトリ - マルチテナント）および個"
-"人のMicrosoftアカウント（例：Skype、Xbox）内のアカウント"
-
-msgid "Personal Microsoft accounts only"
+#, fuzzy
+#| msgid "Personal Microsoft accounts only"
+msgid "Any Entra ID Tenant + Personal Microsoft accounts"
 msgstr "個人のマイクロソフトアカウントのみ"
 
-msgid ""
-"Only users in an organizational directory from a particular Azure AD tenant:"
-msgstr "特定のAzure ADテナントからの組織ディレクトリのユーザーのみ。"
+#, fuzzy
+#| msgid "Personal Microsoft accounts only"
+msgid "Personal accounts only"
+msgstr "個人のマイクロソフトアカウントのみ"
+
+msgid "Single tenant only - Default Directory with Azure AD tenant:"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -2303,6 +2332,25 @@ msgstr "パスワードの確認"
 
 msgid "Username"
 msgstr "ユーザー名（ユーザーID）"
+
+#~ msgid ""
+#~ "Accounts in any organizational directory (Any Azure AD directory - "
+#~ "Multitenant)"
+#~ msgstr ""
+#~ "任意の組織ディレクトリのアカウント（任意のAzure ADディレクトリ - マルチテ"
+#~ "ナント）"
+
+#~ msgid ""
+#~ "Accounts in any organizational directory (Any Azure AD directory - "
+#~ "Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)"
+#~ msgstr ""
+#~ "任意の組織ディレクトリ（任意のAzure ADディレクトリ - マルチテナント）およ"
+#~ "び個人のMicrosoftアカウント（例：Skype、Xbox）内のアカウント"
+
+#~ msgid ""
+#~ "Only users in an organizational directory from a particular Azure AD "
+#~ "tenant:"
+#~ msgstr "特定のAzure ADテナントからの組織ディレクトリのユーザーのみ。"
 
 #, php-format
 #~ msgid "Navigate to <b>%s</b>"

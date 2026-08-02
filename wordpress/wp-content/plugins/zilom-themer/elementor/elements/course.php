@@ -544,7 +544,7 @@ class GVAElement_Course extends GVAElement_Base {
 
       $settings = wp_parse_args( $settings, $defaults );
       $cats    = $settings['category_ids'];
-      $ids     = $settings['post_ids'];
+      $ids     = trim($settings['post_ids']);
       $level   = $settings['level'];
       $price   = $settings['price'];
       $query_args = [
@@ -570,6 +570,11 @@ class GVAElement_Course extends GVAElement_Base {
          }
       }
 
+      if($ids){
+         $query_args['post__in'] = explode(",", $ids);
+         $query_args['orderby'] = 'post__in';
+     	}
+         
       $is_membership = get_tutor_option('monetize_by')=='pmpro' && tutils()->has_pmpro();
       $meta_query = array();
       if(is_array($price) && count($price) > 0){

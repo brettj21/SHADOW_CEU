@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || die();
 
 use NSL\Notices;
 use NSL\Persistent\Persistent;
@@ -20,9 +21,9 @@ require_once(NSL_PATH . '/compat.php');
 
 class NextendSocialLogin {
 
-    public static $version = '3.1.25';
+    public static $version = '3.1.26';
 
-    public static $nslPROMinVersion = '3.1.23';
+    public static $nslPROMinVersion = '3.1.26';
 
     public static $proxyPage = false;
 
@@ -307,10 +308,12 @@ class NextendSocialLogin {
             }
 
             update_option('nsl-version', self::$version, true);
-            if (!empty($_SERVER['HTTP_HOST'])) {
-                wp_redirect(set_url_scheme('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']));
+
+            $request_uri = isset($_SERVER['REQUEST_URI']) ? wp_unslash($_SERVER['REQUEST_URI']) : '';
+            if ($request_uri && 0 === strpos($request_uri, '/') && 0 !== strpos($request_uri, '//')) {
+                wp_safe_redirect($request_uri);
             } else {
-                wp_redirect(admin_url());
+                wp_safe_redirect(admin_url());
             }
             exit;
         } else if (isset($_REQUEST['repairnsl']) && current_user_can(NextendSocialLogin::getRequiredCapability()) && check_admin_referer('repairnsl')) {
@@ -720,13 +723,13 @@ class NextendSocialLogin {
         /*
          * We should run these codes only if our database table already exists.
          */
-        if ($wpdb->get_var("SHOW TABLES LIKE '" . $table_name . "'") === $table_name) {
+        if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $wpdb->esc_like($table_name))) === $table_name) {
             /**
              * In 3.0.27 we added a new column to the social_users table as autoincrement and primary key.
              * This causes an SQL error for the dbDelta() function so we need to add it beforehand.
              */
             if (version_compare($lastVersion, '3.0.26', '<=')) {
-                $row = $wpdb->get_results("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '" . DB_NAME . "' AND TABLE_NAME = '" . $table_name . "' AND COLUMN_NAME = 'social_users_id';");
+                $row = $wpdb->get_results($wpdb->prepare("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = %s AND TABLE_NAME = %s AND COLUMN_NAME = %s", DB_NAME, $table_name, 'social_users_id'));
                 if (!$row) {
                     $alterQuery = "ALTER TABLE " . $table_name . " ADD `social_users_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY;";
                     $wpdb->query($alterQuery);
@@ -738,7 +741,7 @@ class NextendSocialLogin {
                  * In version 3.0.21 we started storing the register_date, login_date and link_date with '0000-00-00 00:00:00' as default value.
                  * That value returned an invalid value error on databases where 'sql_mode' has 'NO_ZERO_DATE, NO_ZERO_IN_DATE' modes, so it prevented us from modifying our database structure.
                  */
-                $row = $wpdb->get_results("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '" . DB_NAME . "' AND TABLE_NAME = '" . $table_name . "' AND COLUMN_NAME = 'register_date';");
+                $row = $wpdb->get_results($wpdb->prepare("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = %s AND TABLE_NAME = %s AND COLUMN_NAME = %s", DB_NAME, $table_name, 'register_date'));
                 if (!empty($row)) {
                     $alterQuery = "ALTER TABLE " . $table_name . " CHANGE `register_date` `register_date` datetime DEFAULT NULL, CHANGE `login_date` `login_date` datetime DEFAULT NULL, CHANGE `link_date` `link_date` datetime DEFAULT NULL;";
                     $result     = $wpdb->query($alterQuery);
@@ -1310,6 +1313,18 @@ el.setAttribute("href",href+"redirect="+encodeURIComponent(window.location.href)
     }
 
     public static function isAllowedRedirectUrl($url) {
+
+        if (!is_string($url) || !wp_validate_redirect($url)) {
+            /**
+             * Reject invalid (non-string) values
+             *
+             * @see NSLDEV-744
+             *
+             * Also if the URL is not from an allowed host, then we should not return it for redirects
+             */
+            return false;
+        }
+
         $loginUrl = self::getLoginUrl();
 
         // If the currentUrl is the loginUrl, then we should not return it for redirects
@@ -1481,8 +1496,13 @@ el.setAttribute("href",href+"redirect="+encodeURIComponent(window.location.href)
         return Persistent::get('trackerdata');
     }
 
-    public static function getDomain() {
-        return preg_replace('/^www\./', '', parse_url(site_url(), PHP_URL_HOST));
+    public static function getDomain($removeWWW = true) {
+        $domain = wp_parse_url(site_url(), PHP_URL_HOST);
+        if ($removeWWW) {
+            preg_replace('/^www\./', '', $domain);
+        }
+
+        return $domain;
     }
 
     public static function getRegisterFlowPage() {
@@ -1509,38 +1529,38 @@ el.setAttribute("href",href+"redirect="+encodeURIComponent(window.location.href)
         return $proxyPage;
     }
 
-    public static function getExcludedPagesForRegisterFlow() {
-        $pages = get_pages();
+    private static function isPageAvailableForSetting($page_id, $currently_selected_setting_page_id): bool {
+        $page_id = (int)$page_id;
 
-        $unavailablePageIDs = [];
+        $page = get_post($page_id);
+        if ($page && $page->post_type === 'page') {
 
-        foreach ($pages as $page) {
-            $post_states = array();
-            $post_states = apply_filters('display_post_states', $post_states, $page);
+            if ($currently_selected_setting_page_id === $page_id) {
+                return true;
+            }
 
-            if (NextendSocialLogin::getRegisterFlowPage() !== $page->ID && (!empty($post_states) && ((count($post_states) === 1 && !array_intersect(self::$allowedPostStates, array_keys($post_states))) || count($post_states) > 1))) {
-                $unavailablePageIDs[] = $page->ID;
+            $post_states = apply_filters('display_post_states', array(), $page);
+
+            if (empty($post_states)) {
+                return true;
+            }
+
+            $state_keys = array_keys($post_states);
+
+            if (count($state_keys) === 1 && array_intersect(self::$allowedPostStates, $state_keys)) {
+                return true;
             }
         }
 
-        return $unavailablePageIDs;
+        return false;
     }
 
-    public static function getExcludedPagesForOauthProxyPage() {
-        $pages = get_pages();
+    public static function isPageAvailableForRegisterFlow($page_id): bool {
+        return self::isPageAvailableForSetting($page_id, self::getRegisterFlowPage());
+    }
 
-        $unavailablePageIDs = [];
-
-        foreach ($pages as $page) {
-            $post_states = array();
-            $post_states = apply_filters('display_post_states', $post_states, $page);
-
-            if (NextendSocialLogin::getProxyPage() !== $page->ID && (!empty($post_states) && ((count($post_states) === 1 && !array_intersect(self::$allowedPostStates, array_keys($post_states))) || count($post_states) > 1))) {
-                $unavailablePageIDs[] = $page->ID;
-            }
-        }
-
-        return $unavailablePageIDs;
+    public static function isPageAvailableForOauthProxyPage($page_id): bool {
+        return self::isPageAvailableForSetting($page_id, self::getProxyPage());
     }
 
     public static function is_register_allowed($isAllowed) {

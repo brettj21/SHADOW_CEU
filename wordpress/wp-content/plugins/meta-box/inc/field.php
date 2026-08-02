@@ -106,12 +106,12 @@ abstract class RWMB_Field {
 
 	protected static function label_description( array $field ): string {
 		$id = $field['id'] ? ' id="' . esc_attr( $field['id'] ) . '-label-description"' : '';
-		return $field['label_description'] ? "<p{$id} class='description'>{$field['label_description']}</p>" : '';
+		return $field['label_description'] ? "<p{$id} class='description'>" . wp_kses_post( $field['label_description'] ) . '</p>' : '';
 	}
 
 	protected static function input_description( array $field ): string {
 		$id = $field['id'] ? ' id="' . esc_attr( $field['id'] ) . '-description"' : '';
-		return $field['desc'] ? "<p{$id} class='description'>{$field['desc']}</p>" : '';
+		return $field['desc'] ? "<p{$id} class='description'>" . wp_kses_post( $field['desc'] ) . '</p>' : '';
 	}
 
 	/**
@@ -288,36 +288,37 @@ abstract class RWMB_Field {
 			];
 		}
 		$field = wp_parse_args( $field, [
-			'id'                => '',
-			'name'              => '',
-			'type'              => 'text',
-			'label_description' => '',
-			'multiple'          => false,
-			'std'               => '',
-			'desc'              => '',
-			'format'            => '',
-			'before'            => '',
-			'after'             => '',
-			'field_name'        => $field['id'] ?? '',
-			'placeholder'       => '',
-			'save_field'        => true,
+			'id'                       => '',
+			'name'                     => '',
+			'type'                     => 'text',
+			'label_description'        => '',
+			'multiple'                 => false,
+			'std'                      => '',
+			'desc'                     => '',
+			'format'                   => '',
+			'before'                   => '',
+			'after'                    => '',
+			'field_name'               => $field['id'] ?? '',
+			'placeholder'              => '',
+			'save_field'               => true,
+			'hide_from_block_bindings' => false,
 
-			'clone'             => false,
-			'min_clone'         => 0,
-			'max_clone'         => 0,
-			'sort_clone'        => false,
-			'add_button'        => __( '+ Add more', 'meta-box' ),
-			'clone_default'     => false,
-			'clone_as_multiple' => false,
-			'clone_empty_start' => false,
+			'clone'                    => false,
+			'min_clone'                => 0,
+			'max_clone'                => 0,
+			'sort_clone'               => false,
+			'add_button'               => __( '+ Add more', 'meta-box' ),
+			'clone_default'            => false,
+			'clone_as_multiple'        => false,
+			'clone_empty_start'        => false,
 
-			'class'             => '',
-			'disabled'          => false,
-			'required'          => false,
-			'autofocus'         => false,
-			'attributes'        => [],
+			'class'                    => '',
+			'disabled'                 => false,
+			'required'                 => false,
+			'autofocus'                => false,
+			'attributes'               => [],
 
-			'sanitize_callback' => null,
+			'sanitize_callback'        => null,
 		] );
 
 		// Store the original ID to run correct filters for the cloneable field.

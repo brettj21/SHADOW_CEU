@@ -406,9 +406,9 @@ add_filter('the_content', function ($content) {
                             </a>
                         <?php else: ?>
                             <button type="button" class="ceu-ov-btn ceu-ov-btn-primary" id="ceu-ov-cart-btn"
-                                data-tid="<?php echo (int) $r['tid'] ?>"
-                                data-title="<?php echo esc_attr(stripslashes($r['training_title'])) ?>"
-                                data-cost="<?php echo esc_attr(number_format((float) $r['cost'], 2)) ?>">
+                                    data-tid="<?php echo (int) $r['tid'] ?>"
+                                    data-title="<?php echo esc_attr(stripslashes($r['training_title'])) ?>"
+                                    data-cost="<?php echo esc_attr(number_format((float) $r['cost'], 2)) ?>">
                                 Add to Cart
                             </button>
                         <?php endif ?>

@@ -17,12 +17,41 @@ if ((0 < $state && $state < 5) || $state == 6) {
         <div class="nsl-box-review-label" data-star="3"><?php _e('It was ok', 'nextend-facebook-connect'); ?></div>
         <div class="nsl-box-review-label" data-star="4"><?php _e('Liked it', 'nextend-facebook-connect'); ?></div>
         <div class="nsl-box-review-label" data-star="5"><?php _e('Loved it', 'nextend-facebook-connect'); ?></div>
+
         <div class="nsl-box-review-stars-container">
-            <div class="nsl-box-review-star" data-star="1" data-href="<?php echo esc_attr(NextendSocialLoginAdmin::trackUrl('https://social-login.nextendweb.com/suggestion/', 'dashboard-review-1')); ?>"></div>
-            <div class="nsl-box-review-star" data-star="2" data-href="<?php echo esc_attr(NextendSocialLoginAdmin::trackUrl('https://social-login.nextendweb.com/suggestion/', 'dashboard-review-2')); ?>"></div>
-            <div class="nsl-box-review-star" data-star="3" data-href="<?php echo esc_attr(NextendSocialLoginAdmin::trackUrl('https://social-login.nextendweb.com/satisfaction-feedback/', 'dashboard-review-3')); ?>"></div>
-            <div class="nsl-box-review-star" data-star="4" data-href="<?php echo esc_attr(NextendSocialLoginAdmin::trackUrl('https://social-login.nextendweb.com/satisfaction-feedback/', 'dashboard-review-4')); ?>"></div>
-            <div class="nsl-box-review-star" data-star="5"></div>
+            <div tabindex="0"
+                 role="button"
+                 aria-label="<?php esc_attr_e('Rate 1 star', 'nextend-facebook-connect'); ?>"
+                 class="nsl-box-review-star"
+                 data-star="1"
+                 data-href="<?php echo esc_attr(NextendSocialLoginAdmin::trackUrl('https://social-login.nextendweb.com/suggestion/', 'dashboard-review-1')); ?>"></div>
+
+            <div tabindex="0"
+                 role="button"
+                 aria-label="<?php esc_attr_e('Rate 2 stars', 'nextend-facebook-connect'); ?>"
+                 class="nsl-box-review-star"
+                 data-star="2"
+                 data-href="<?php echo esc_attr(NextendSocialLoginAdmin::trackUrl('https://social-login.nextendweb.com/suggestion/', 'dashboard-review-2')); ?>"></div>
+
+            <div tabindex="0"
+                 role="button"
+                 aria-label="<?php esc_attr_e('Rate 3 stars', 'nextend-facebook-connect'); ?>"
+                 class="nsl-box-review-star"
+                 data-star="3"
+                 data-href="<?php echo esc_attr(NextendSocialLoginAdmin::trackUrl('https://social-login.nextendweb.com/satisfaction-feedback/', 'dashboard-review-3')); ?>"></div>
+
+            <div tabindex="0"
+                 role="button"
+                 aria-label="<?php esc_attr_e('Rate 4 stars', 'nextend-facebook-connect'); ?>"
+                 class="nsl-box-review-star"
+                 data-star="4"
+                 data-href="<?php echo esc_attr(NextendSocialLoginAdmin::trackUrl('https://social-login.nextendweb.com/satisfaction-feedback/', 'dashboard-review-4')); ?>"></div>
+
+            <div tabindex="0"
+                 role="button"
+                 aria-label="<?php esc_attr_e('Rate 5 stars', 'nextend-facebook-connect'); ?>"
+                 class="nsl-box-review-star"
+                 data-star="5"></div>
         </div>
     </div>
 <?php endif; ?>
@@ -34,8 +63,12 @@ if ((0 < $state && $state < 5) || $state == 6) {
         <a href="<?php echo esc_attr(NextendSocialLoginAdmin::trackUrl('https://nextendweb.com/redirect/nsl-review.html', 'dashboard-review-5')); ?>" target="_blank" class="button button-primary"><?php _e('Ok, you deserve it', 'nextend-facebook-connect'); ?></a>
     </div>
 
-    <div class="nsl-box-review-star-5-close"></div>
+    <div tabindex="0"
+         role="button"
+         aria-label="<?php esc_attr_e('Close review box', 'nextend-facebook-connect'); ?>"
+         class="nsl-box-review-star-5-close"></div>
 </div>
+
 <script>
     (function ($) {
         $(document).ready(function () {
@@ -47,39 +80,68 @@ if ((0 < $state && $state < 5) || $state == 6) {
                         'review_state': state,
                         '_ajax_nonce': <?php echo wp_json_encode(wp_create_nonce('nsl_save_review_state')); ?>
                     });
-                };
-            $box.find('.nsl-box-review-star').on({
-                mouseenter: function () {
-                    $box.attr('data-stars', $(this).data('star'));
                 },
-                click: function (e) {
-                    e.preventDefault();
 
-                    var star = parseInt($(this).data('star'));
+                activateStar = function ($star) {
+                    const star = parseInt($star.data('star'), 10);
                     if (star < 5) {
-                        var win = window.open($(this).data('href'), '_blank');
+
+                        const win = window.open($star.data('href'), '_blank');
 
                         $box.remove();
 
                         updateReviewState(star);
 
-                        win.focus();
+                        if (win) {
+                            win.focus();
+                        }
                     } else {
                         updateReviewState(5);
                         $box.remove();
                         $box5.css('display', '');
+                    }
+                };
+
+            $box.find('.nsl-box-review-star').on({
+                mouseenter: function () {
+                    $box.attr('data-stars', $(this).data('star'));
+                },
+                focus: function () {
+                    $box.attr('data-stars', $(this).data('star'));
+                },
+                click: function (e) {
+                    e.preventDefault();
+
+                    activateStar($(this));
+                },
+                keydown: function (e) {
+
+                    if (e.key === 'Enter') {
+
+                        e.preventDefault();
+
+                        activateStar($(this));
                     }
                 }
             });
             $box.find('.nsl-box-review-stars-container').on({
                 mouseleave: function () {
                     $box.attr('data-stars', 0);
+                },
+
+                focusout: function (e) {
+
+                    if (!$(this).find(':focus').length) {
+                        $box.attr('data-stars', 0);
+                    }
                 }
             });
 
-            $box5.find('a, .nsl-box-review-star-5-close').on('click', function () {
-                $box5.remove();
-                updateReviewState(6);
+            $box5.find('a, .nsl-box-review-star-5-close').on({
+                click: function () {
+                    $box5.remove();
+                    updateReviewState(6);
+                }
             });
         });
     })(jQuery);

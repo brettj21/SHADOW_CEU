@@ -182,7 +182,7 @@ class NextendSocialLoginAdmin {
                                     'woocommerce_dismissed' => 1
                             ));
 
-                            if (!empty($_REQUEST['redirect_to'])) {
+                            if (!empty($_REQUEST['redirect_to']) && is_string($_REQUEST['redirect_to'])) {
                                 wp_safe_redirect($_REQUEST['redirect_to']);
                                 exit;
                             }
@@ -195,6 +195,9 @@ class NextendSocialLoginAdmin {
         }
         add_action('admin_post_nextend-social-login', 'NextendSocialLoginAdmin::save_form_data');
         add_action('wp_ajax_nextend-social-login', 'NextendSocialLoginAdmin::ajax_save_form_data');
+
+        add_action('wp_ajax_nsl_search_register_flow_pages', 'NextendSocialLoginAdmin::search_register_flow_pages');
+        add_action('wp_ajax_nsl_search_oauth_proxy_pages', 'NextendSocialLoginAdmin::search_oauth_proxy_pages');
 
 
         add_action('admin_enqueue_scripts', 'NextendSocialLoginAdmin::admin_enqueue_scripts');
@@ -234,7 +237,7 @@ class NextendSocialLoginAdmin {
         if (current_user_can(NextendSocialLogin::getRequiredCapability()) && check_admin_referer('nextend-social-login')) {
             foreach ($_POST as $k => $v) {
                 if (is_string($v)) {
-                    $_POST[$k] = stripslashes($v);
+                    $_POST[$k] = wp_unslash($v);
                 }
             }
 
@@ -307,6 +310,86 @@ class NextendSocialLoginAdmin {
                     break;
             }
         }
+    }
+
+    public static function search_register_flow_pages() {
+        check_ajax_referer('nsl_search_register_flow_pages');
+
+        self::search_pages_for_setting(array(
+                'availability_callback' => array(
+                        'NextendSocialLogin',
+                        'isPageAvailableForRegisterFlow'
+                ),
+        ));
+    }
+
+    public static function search_oauth_proxy_pages() {
+        check_ajax_referer('nsl_search_oauth_proxy_pages');
+
+        self::search_pages_for_setting(array(
+                'availability_callback' => array(
+                        'NextendSocialLogin',
+                        'isPageAvailableForOauthProxyPage'
+                ),
+        ));
+    }
+
+    private static function search_pages_for_setting($args) {
+        if (!current_user_can(NextendSocialLogin::getRequiredCapability())) {
+            wp_send_json_error();
+        }
+
+        $search = isset($_GET['term']) ? sanitize_text_field(wp_unslash($_GET['term'])) : '';
+
+        $query_args = array(
+                'post_type'              => 'page',
+                'post_status'            => 'publish',
+                'posts_per_page'         => 20,
+                'fields'                 => 'ids',
+                'orderby'                => 'date',
+                'order'                  => 'DESC',
+                'no_found_rows'          => true,
+                'update_post_meta_cache' => false,
+                'update_post_term_cache' => false,
+        );
+
+
+        /**
+         * Only search when there is a search term.
+         * Otherwise show latest pages by default.
+         */
+        if ($search !== '') {
+            $query_args['s'] = $search;
+
+            // Better search result ordering when searching.
+            $query_args['orderby'] = 'title';
+            $query_args['order']   = 'ASC';
+        }
+
+        $query = new WP_Query($query_args);
+
+        $results = array();
+
+        foreach ($query->posts as $page_id) {
+
+            if (!call_user_func($args['availability_callback'], $page_id)) {
+                continue;
+            }
+
+            $title = get_the_title($page_id);
+
+            if ($title === '') {
+                $title = __('(no title)', 'nextend-facebook-connect');
+            }
+
+            $results[] = array(
+                    'id'    => $page_id,
+                    'label' => sprintf('%s (#%d)', $title, $page_id),
+                    'title' => $title,
+            );
+        }
+
+        wp_send_json($results);
     }
 
     public static function validateSettings($newData, $postedData) {
@@ -417,8 +500,18 @@ class NextendSocialLoginAdmin {
                     $newData[$key] = intval($value);
                     break;
                 case 'register-flow-page':
+                    $value = (int)$value;
+
+                    if ($value && NextendSocialLogin::isPageAvailableForRegisterFlow($value)) {
+                        $newData[$key] = $value;
+                    } else {
+                        $newData[$key] = '';
+                    }
+                    break;
                 case 'proxy-page':
-                    if (get_post($value) !== null) {
+                    $value = (int)$value;
+
+                    if ($value && NextendSocialLogin::isPageAvailableForOauthProxyPage($value)) {
                         $newData[$key] = $value;
                     } else {
                         $newData[$key] = '';
@@ -448,7 +541,7 @@ class NextendSocialLoginAdmin {
             return $links;
         }
         $settings_link   = '<a href="' . esc_url(menu_page_url('nextend-social-login', false)) . '">' . __('Settings') . '</a>';
-        $reactivate_link = sprintf('<a href="%s">%s</a>', wp_nonce_url(admin_url('admin.php?page=nextend-social-login&repairnsl=1'), 'repairnsl'), 'Analyze & Repair');
+        $reactivate_link = sprintf('<a href="%s">%s</a>', wp_nonce_url(admin_url('admin.php?page=nextend-social-login&repairnsl=1'), 'repairnsl'), __('Analyze & Repair', 'nextend-facebook-connect'));
         array_unshift($links, $settings_link, $reactivate_link);
 
         return $links;
@@ -477,6 +570,10 @@ class NextendSocialLoginAdmin {
             if (isset($_GET['view']) && $_GET['view'] == 'pro-addon') {
                 wp_enqueue_script('plugin-install');
                 wp_enqueue_script('updates');
+            }
+
+            if (isset($_GET['view']) && $_GET['view'] == 'global-settings') {
+                wp_enqueue_script('jquery-ui-autocomplete');
             }
         }
     }

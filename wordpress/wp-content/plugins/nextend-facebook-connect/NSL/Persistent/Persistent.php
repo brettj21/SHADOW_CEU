@@ -65,7 +65,7 @@ class Persistent {
 
     /**
      * @param          $user_login
-     * @param WP_User  $user
+     * @param ?WP_User $user
      */
     public function transferSessionToUser($user_login, $user = null) {
 
@@ -73,15 +73,21 @@ class Persistent {
             $user = get_user_by('login', $user_login);
         }
 
-        $newStorage = new Transient($user->ID);
-        /**
-         * $this->storage might be NULL if init action not called yet
-         */
-        if ($this->storage !== NULL) {
-            $newStorage->transferData($this->storage);
-        }
+        if ($user) {
+            $newStorage = new Transient($user->ID);
+            /**
+             * $this->storage might be NULL if init action not called yet
+             */
+            if ($this->storage !== NULL) {
+                $newStorage->transferData($this->storage);
+            }
 
-        $this->storage = $newStorage;
+            $this->storage = $newStorage;
+        } else {
+            if ($this->storage !== NULL) {
+                $this->storage->clear();
+            }
+        }
     }
 
     public static function clear() {

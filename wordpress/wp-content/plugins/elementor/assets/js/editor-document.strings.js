@@ -254,13 +254,13 @@ __( 'That didn’t work. Try duplicating one kind of element at a time.', 'eleme
 __( 'Got it', 'elementor' );
 __( 'That didn’t work. Try copying one kind of element at a time.', 'elementor' );
 __( 'Got it', 'elementor' );
+__( 'Settings', 'elementor' );
+__( 'Style', 'elementor' );
+__( 'Advanced', 'elementor' );
 __( 'Library', 'elementor' );
 __( 'template', 'elementor' );
 __( 'templates', 'elementor' );
 __( 'selected. Bulk actions available.', 'elementor' );
-__( 'Settings', 'elementor' );
-__( 'Style', 'elementor' );
-__( 'Advanced', 'elementor' );
 __( 'Become a Pro user to upload unlimited font icon folders to your website.', 'elementor' );
 __( 'Upgrade Now', 'elementor' );
 __( 'My Libraries', 'elementor' );

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: nextend-facebook-connect\n"
-"POT-Creation-Date: 2026-02-23 09:53+0100\n"
-"PO-Revision-Date: 2026-02-23 09:53+0100\n"
+"POT-Creation-Date: 2026-07-28 09:18+0200\n"
+"PO-Revision-Date: 2026-07-28 09:18+0200\n"
 "Last-Translator: Gabriel Vilaró <gabo@etereo.ch>\n"
 "Language-Team: nextend-facebook-connect\n"
 "Language: es_ES\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: "
@@ -117,8 +117,14 @@ msgstr "La autorización fue exitosa"
 msgid "Deactivate completed."
 msgstr "Desautorizar completado."
 
+msgid "(no title)"
+msgstr ""
+
 msgid "Settings"
 msgstr "Ajustes"
+
+msgid "Analyze & Repair"
+msgstr ""
 
 #, php-format
 msgid "Unexpected response: %s"
@@ -669,6 +675,21 @@ msgstr "Me gustó"
 msgid "Loved it"
 msgstr "Me encantó"
 
+msgid "Rate 1 star"
+msgstr ""
+
+msgid "Rate 2 stars"
+msgstr ""
+
+msgid "Rate 3 stars"
+msgstr ""
+
+msgid "Rate 4 stars"
+msgstr ""
+
+msgid "Rate 5 stars"
+msgstr ""
+
 msgid "Please Leave a Review"
 msgstr "Por Favor Deja una Evaluación"
 
@@ -681,6 +702,9 @@ msgstr ""
 
 msgid "Ok, you deserve it"
 msgstr "Ok, lo mereces"
+
+msgid "Close review box"
+msgstr ""
 
 #, fuzzy
 #| msgid "Register Form"
@@ -998,6 +1022,11 @@ msgstr "para Registrarse"
 msgid "None"
 msgstr ""
 
+#, fuzzy
+#| msgid "for Register"
+msgid "Clear - Page for register flow"
+msgstr "para Registrarse"
+
 msgid ""
 "This setting is used when you request additional data from the users (such "
 "as email address) and to display the Terms and conditions."
@@ -1016,6 +1045,9 @@ msgid ""
 msgstr ""
 
 msgid "OAuth redirect uri proxy page"
+msgstr ""
+
+msgid "Clear - OAuth redirect uri proxy page"
 msgstr ""
 
 msgid ""
@@ -2104,21 +2136,18 @@ msgstr "Client Secret"
 msgid "Audience"
 msgstr ""
 
-msgid ""
-"Accounts in any organizational directory (Any Azure AD directory - "
-"Multitenant)"
+msgid "Multiple Entra ID tenants"
 msgstr ""
 
-msgid ""
-"Accounts in any organizational directory (Any Azure AD directory - "
-"Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)"
+msgid "Any Entra ID Tenant + Personal Microsoft accounts"
 msgstr ""
 
-msgid "Personal Microsoft accounts only"
-msgstr ""
+#, fuzzy
+#| msgid "Social accounts"
+msgid "Personal accounts only"
+msgstr "Cuentas sociales"
 
-msgid ""
-"Only users in an organizational directory from a particular Azure AD tenant:"
+msgid "Single tenant only - Default Directory with Azure AD tenant:"
 msgstr ""
 
 #, php-format

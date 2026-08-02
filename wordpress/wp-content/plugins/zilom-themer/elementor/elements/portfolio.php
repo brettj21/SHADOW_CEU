@@ -268,12 +268,12 @@ class GVAElement_Portfolio extends GVAElement_Base{
             }
         }
 
-        if( strlen($ids) > 0 ){
-          if( is_array($ids) && count($ids) > 0 ){
+       
+         if( is_array($ids) && count($ids) > 0 ){
             $query_args['post__in'] = $ids;
             $query_args['orderby'] = 'post__in';
-          }
-        }
+         }
+        
 
         if(is_front_page()){
             $query_args['paged'] = (get_query_var('page')) ? get_query_var('page') : 1;

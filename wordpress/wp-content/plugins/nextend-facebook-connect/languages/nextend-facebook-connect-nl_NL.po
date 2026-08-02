@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: nextend-facebook-connect\n"
-"POT-Creation-Date: 2026-02-23 09:55+0100\n"
-"PO-Revision-Date: 2026-02-23 09:55+0100\n"
+"POT-Creation-Date: 2026-07-28 09:20+0200\n"
+"PO-Revision-Date: 2026-07-28 09:20+0200\n"
 "Last-Translator: Erik Molenaar <info@erikmolenaar.nl>\n"
 "Language-Team: nextend-facebook-connect\n"
 "Language: nl_NL\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: "
@@ -134,8 +134,14 @@ msgstr "De activering was succesvol"
 msgid "Deactivate completed."
 msgstr "Deactiveren voltooid."
 
+msgid "(no title)"
+msgstr ""
+
 msgid "Settings"
 msgstr "Instellingen"
+
+msgid "Analyze & Repair"
+msgstr ""
 
 #, php-format
 msgid "Unexpected response: %s"
@@ -677,6 +683,21 @@ msgstr "Vond het leuk"
 msgid "Loved it"
 msgstr "Vond het geweldig"
 
+msgid "Rate 1 star"
+msgstr ""
+
+msgid "Rate 2 stars"
+msgstr ""
+
+msgid "Rate 3 stars"
+msgstr ""
+
+msgid "Rate 4 stars"
+msgstr ""
+
+msgid "Rate 5 stars"
+msgstr ""
+
 msgid "Please Leave a Review"
 msgstr "Laat alsjeblieft een recensie achter"
 
@@ -689,6 +710,9 @@ msgstr ""
 
 msgid "Ok, you deserve it"
 msgstr "Ok, je verdient het"
+
+msgid "Close review box"
+msgstr ""
 
 msgid "Register form"
 msgstr "Registratieformulier"
@@ -977,6 +1001,11 @@ msgstr "Pagina voor registreerproces"
 msgid "None"
 msgstr "Geen"
 
+#, fuzzy
+#| msgid "Page for register flow"
+msgid "Clear - Page for register flow"
+msgstr "Pagina voor registreerproces"
+
 msgid ""
 "This setting is used when you request additional data from the users (such "
 "as email address) and to display the Terms and conditions."
@@ -1001,6 +1030,11 @@ msgstr ""
 "login/registratie plaatsvindt."
 
 msgid "OAuth redirect uri proxy page"
+msgstr "OAuth omleidings-uri proxy pagina"
+
+#, fuzzy
+#| msgid "OAuth redirect uri proxy page"
+msgid "Clear - OAuth redirect uri proxy page"
 msgstr "OAuth omleidings-uri proxy pagina"
 
 msgid ""
@@ -2092,21 +2126,18 @@ msgstr "Client Geheim"
 msgid "Audience"
 msgstr ""
 
-msgid ""
-"Accounts in any organizational directory (Any Azure AD directory - "
-"Multitenant)"
+msgid "Multiple Entra ID tenants"
 msgstr ""
 
-msgid ""
-"Accounts in any organizational directory (Any Azure AD directory - "
-"Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)"
+msgid "Any Entra ID Tenant + Personal Microsoft accounts"
 msgstr ""
 
-msgid "Personal Microsoft accounts only"
-msgstr ""
+#, fuzzy
+#| msgid "Social accounts"
+msgid "Personal accounts only"
+msgstr "Social accounts"
 
-msgid ""
-"Only users in an organizational directory from a particular Azure AD tenant:"
+msgid "Single tenant only - Default Directory with Azure AD tenant:"
 msgstr ""
 
 #, php-format

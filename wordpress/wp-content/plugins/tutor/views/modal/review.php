@@ -9,9 +9,14 @@
  * @since 1.0.0
  */
 
-$modal_id = 'tutor-review-modal-' . uniqid();
+use Tutor\Components\Modal;
+
+$is_course_details_page = tutor_utils()->is_course_details_page();
+
+$modal_id = 'tutor-review-modal-' . $course_id;
 ?>
-<form id="<?php echo esc_attr( $modal_id ); ?>" class="tutor-modal tutor-is-active tutor-course-review-popup-form" role="dialog" aria-modal="true" aria-labelledby="<?php echo esc_attr( $modal_id ); ?>-title" aria-hidden="false">
+<?php if ( $is_course_details_page ) : ?> 
+<form class="tutor-modal tutor-is-active tutor-course-review-popup-form">
 	<div class="tutor-modal-overlay"></div>
 	<div class="tutor-modal-window">
 		<div class="tutor-modal-content tutor-modal-content-white">
@@ -47,3 +52,19 @@ $modal_id = 'tutor-review-modal-' . uniqid();
 		</div>
 	</div>
 </form>
+<?php else : ?>
+
+	<?php
+	$modal_template = tutor_get_template( 'learning-area.subpages.reviews.create-review-modal' );
+	Modal::make()
+		->id( 'create-review-modal' )
+		->title( __( 'How Was Your Experience?', 'tutor' ) )
+		->subtitle( __( 'Your feedback helps others find the right course.', 'tutor' ) )
+		->template( $modal_template, array( 'clear_review_popup_data' => true ) )
+		->width( '452px' )
+		->state( 'open' )
+		->closeable( false )
+		->render();
+	?>
+
+<?php endif; ?>

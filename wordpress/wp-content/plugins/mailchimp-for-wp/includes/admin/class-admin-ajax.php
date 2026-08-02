@@ -1,6 +1,6 @@
 <?php
 
-defined('ABSPATH') or exit;
+defined('ABSPATH') || exit;
 
 
 class MC4WP_Admin_Ajax
@@ -33,6 +33,7 @@ class MC4WP_Admin_Ajax
 
     /**
      * Retrieve details (merge fields and interest categories) for one or multiple lists in Mailchimp
+     *
      * @throws MC4WP_API_Exception
      */
     public function get_list_details()
@@ -45,7 +46,7 @@ class MC4WP_Admin_Ajax
 
         $list_ids  = array_map(function ($raw) {
             return preg_replace('/[^a-z0-9]/', '', $raw);
-        }, (array) explode(',', $_GET['ids']));
+        }, (array) explode(',', wp_unslash($_GET['ids'])));
         $data      = [];
         $mailchimp = new MC4WP_MailChimp();
         foreach ($list_ids as $list_id) {

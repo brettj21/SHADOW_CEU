@@ -10,9 +10,7 @@
 
 namespace TUTOR;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 use TUTOR\Students_List;
 use TUTOR\Backend_Page_Trait;
@@ -29,6 +27,10 @@ class Instructors_List {
 	const INSTRUCTOR_LIST_PAGE       = 'tutor-instructors';
 	const INSTRUCTOR_LIST_CACHE_KEY  = 'tutor-instructors-list';
 	const INSTRUCTOR_COUNT_CACHE_KEY = 'tutor-instructors-count';
+
+	const STATUS_APPROVED = 'approved';
+	const STATUS_PENDING  = 'pending';
+	const STATUS_BLOCKED  = 'blocked';
 
 	/**
 	 * Trait for utilities
@@ -125,9 +127,10 @@ class Instructors_List {
 	 * Prepare bulk actions that will show on dropdown options
 	 *
 	 * @since 2.0.0
+	 *
 	 * @return array
 	 */
-	public function prpare_bulk_actions(): array {
+	public function prepare_bulk_actions(): array {
 		$actions = array(
 			$this->bulk_action_default(),
 			$this->bulk_action_approved(),
@@ -277,6 +280,7 @@ class Instructors_List {
 
 		update_user_meta( $instructor_id, '_tutor_instructor_status', $status );
 		update_user_meta( $instructor_id, '_tutor_instructor_approved', tutor_time() );
+		update_user_meta( $instructor_id, User::INSTRUCTOR_APPROVAL_NOTICE_META, true );
 
 		$instructor = new \WP_User( $instructor_id );
 		$instructor->add_role( tutor()->instructor_role );
@@ -299,6 +303,8 @@ class Instructors_List {
 		$instructor_id = sanitize_text_field( $instructor_id );
 		$status        = sanitize_text_field( $status );
 		update_user_meta( $instructor_id, '_tutor_instructor_status', $status );
+		// Set view as student for blocked and pending instructor.
+		update_user_meta( $instructor_id, User::VIEW_MODE_USER_META, User::VIEW_AS_STUDENT );
 		$instructor = new \WP_User( $instructor_id );
 		$instructor->remove_role( tutor()->instructor_role );
 	}

@@ -1,6 +1,6 @@
 <?php
 
-defined('ABSPATH') or exit;
+defined('ABSPATH') || exit;
 
 
 /**
@@ -182,10 +182,9 @@ class MC4WP_Procaptcha
      */
     protected function is_human_made_request()
     {
-        $token = $_POST[self::FORM_FIELD_NAME] ?? '';
-        $token = true === is_string($token) ?
-            $token :
-            '';
+        // phpcs:ignore WordPress.Security.NonceVerification -- explicitly not using a nonce here
+        $token = wp_unslash($_POST[self::FORM_FIELD_NAME] ?? '');
+        $token = true === is_string($token) ? $token : '';
 
         // bail early if the token is empty.
         if ('' === $token) {
@@ -221,8 +220,8 @@ class MC4WP_Procaptcha
             return true;
         }
 
-        $body        = wp_remote_retrieve_body($response);
-        $data        = json_decode($body, true);
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
 
         // check if Prosopo API returned a correct JSON response
         if ($data === null || !is_array($data)) {

@@ -638,6 +638,10 @@ class Utils {
 		return defined( 'ELEMENTOR_PRO_VERSION' );
 	}
 
+	public static function is_license_active(): bool {
+		return class_exists( '\ElementorPro\License\API' ) && \ElementorPro\License\API::is_license_active();
+	}
+
 	public static function is_pro_installed_and_not_active(): bool {
 		if ( ! function_exists( 'get_plugins' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -834,6 +838,12 @@ class Utils {
 		}
 
 		echo wp_kses( $text, $allowed_html );
+	}
+
+	public static function kses_post_deep( $data ) {
+		return map_deep( $data, function ( $value ) {
+			return is_string( $value ) ? wp_kses_post( $value ) : $value;
+		} );
 	}
 
 	public static function is_elementor_path( $path ) {
