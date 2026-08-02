@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nextend-facebook-connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-23 09:54+0100\n"
-"PO-Revision-Date: 2026-02-23 09:54+0100\n"
+"POT-Creation-Date: 2026-07-28 09:19+0200\n"
+"PO-Revision-Date: 2026-07-28 09:19+0200\n"
 "Last-Translator: \n"
 "Language-Team: עִבְרִית\n"
 "Language: he_IL\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: "
@@ -126,8 +126,14 @@ msgstr "ההפעלה בוצעה בהצלחה"
 msgid "Deactivate completed."
 msgstr "הכיבוי הושלם."
 
+msgid "(no title)"
+msgstr ""
+
 msgid "Settings"
 msgstr "הגדרות"
+
+msgid "Analyze & Repair"
+msgstr ""
 
 #, php-format
 msgid "Unexpected response: %s"
@@ -637,6 +643,21 @@ msgstr "אהבתי את זה"
 msgid "Loved it"
 msgstr "אהבתי"
 
+msgid "Rate 1 star"
+msgstr ""
+
+msgid "Rate 2 stars"
+msgstr ""
+
+msgid "Rate 3 stars"
+msgstr ""
+
+msgid "Rate 4 stars"
+msgstr ""
+
+msgid "Rate 5 stars"
+msgstr ""
+
 msgid "Please Leave a Review"
 msgstr "אנא השאירו חוות דעת"
 
@@ -649,6 +670,9 @@ msgstr ""
 
 msgid "Ok, you deserve it"
 msgstr "אוקי, מגיע לכם"
+
+msgid "Close review box"
+msgstr ""
 
 msgid "Register form"
 msgstr "טופס הרשמה"
@@ -922,6 +946,11 @@ msgstr "עמוד לזרימת רישום"
 msgid "None"
 msgstr "אין"
 
+#, fuzzy
+#| msgid "Page for register flow"
+msgid "Clear - Page for register flow"
+msgstr "עמוד לזרימת רישום"
+
 msgid ""
 "This setting is used when you request additional data from the users (such "
 "as email address) and to display the Terms and conditions."
@@ -943,6 +972,11 @@ msgid ""
 msgstr "%1$s לא תוכלו להגיע לדף שנבחר אלא אם תתבצע התחברות/הרשמה חברתית."
 
 msgid "OAuth redirect uri proxy page"
+msgstr "דף שרת proxy להפניה מחדש של OAuth"
+
+#, fuzzy
+#| msgid "OAuth redirect uri proxy page"
+msgid "Clear - OAuth redirect uri proxy page"
 msgstr "דף שרת proxy להפניה מחדש של OAuth"
 
 msgid ""
@@ -1960,24 +1994,21 @@ msgstr "מפתח לקוח סודי"
 msgid "Audience"
 msgstr "קהל"
 
-msgid ""
-"Accounts in any organizational directory (Any Azure AD directory - "
-"Multitenant)"
-msgstr "חשבונות בכל ספריה ארגונית (כל ספריית Azure AD - Multitenant)"
-
-msgid ""
-"Accounts in any organizational directory (Any Azure AD directory - "
-"Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)"
+msgid "Multiple Entra ID tenants"
 msgstr ""
-"חשבונות בכל ספריה ארגונית (כל ספריית Azure AD - Multitenant) וחשבונות "
-"Microsoft אישיים (כגון Skype, Xbox)"
 
-msgid "Personal Microsoft accounts only"
+#, fuzzy
+#| msgid "Personal Microsoft accounts only"
+msgid "Any Entra ID Tenant + Personal Microsoft accounts"
 msgstr "חשבונות Microsoft אישיים בלבד"
 
-msgid ""
-"Only users in an organizational directory from a particular Azure AD tenant:"
-msgstr "רק משתמשים בספריה ארגונית מדייר מסוים של Azure AD:"
+#, fuzzy
+#| msgid "Personal Microsoft accounts only"
+msgid "Personal accounts only"
+msgstr "חשבונות Microsoft אישיים בלבד"
+
+msgid "Single tenant only - Default Directory with Azure AD tenant:"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -2256,6 +2287,23 @@ msgstr "אימות סיסמה"
 
 msgid "Username"
 msgstr "שם משתמש"
+
+#~ msgid ""
+#~ "Accounts in any organizational directory (Any Azure AD directory - "
+#~ "Multitenant)"
+#~ msgstr "חשבונות בכל ספריה ארגונית (כל ספריית Azure AD - Multitenant)"
+
+#~ msgid ""
+#~ "Accounts in any organizational directory (Any Azure AD directory - "
+#~ "Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)"
+#~ msgstr ""
+#~ "חשבונות בכל ספריה ארגונית (כל ספריית Azure AD - Multitenant) וחשבונות "
+#~ "Microsoft אישיים (כגון Skype, Xbox)"
+
+#~ msgid ""
+#~ "Only users in an organizational directory from a particular Azure AD "
+#~ "tenant:"
+#~ msgstr "רק משתמשים בספריה ארגונית מדייר מסוים של Azure AD:"
 
 #, php-format
 #~ msgid "Navigate to <b>%s</b>"

@@ -3,8 +3,8 @@ Contributors: nextendweb
 Tags: social login, facebook, google, twitter, x, linkedin, register, login, social, nextend facebook connect, social sign in
 Donate link: https://www.facebook.com/nextendweb
 Requires at least: 4.9
-Tested up to: 6.9.4
-Stable tag: 3.1.25
+Tested up to: 7.0.2
+Stable tag: 3.1.26
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -124,6 +124,21 @@ Using the Pro Addon you can set where the login buttons should appear on the Reg
 4. The Settings page of the Facebook provider.
 
 == Changelog ==
+
+= 3.1.26 =
+* Improvement: Security improvements.
+* Improvement: Backend accessibility improvements.
+* Improvement: Added some previously untranslated strings to the plugin's text domain.
+* Fix: Fixed a possible memory limit error on the settings page on sites with a large number of pages. The "Page for register flow" and "OAuth redirect URI proxy page" settings now load pages on demand instead of loading every page at once.
+* Fix: Fixed a possible fatal error on PHP 8 that could occur when another plugin or theme added a function with a strict string parameter to the "login_redirect" filter and no redirect was set.
+* Fix: Non-string values passed to the "redirect" and "trackerdata" query parameters (for example as arrays) are now ignored safely instead of causing a fatal error.
+* Fix: The WordPress default login styles are now loaded on the [Page for register flow](https://social-login.nextendweb.com/documentation/settings/general-settings/#register-flow) page, so the registration form and its password field display correctly.
+* Fix: Fixed a logic issue in the after-login redirect handling.
+
+* PRO: Improvement: Security improvements.
+* PRO: Improvement: [Microsoft](https://social-login.nextendweb.com/documentation/providers/microsoft/) - updated the "Audience" option labels on the Settings page, to match Microsoft's new "Supported account types" values.
+* PRO: Fix: [Apple](https://social-login.nextendweb.com/documentation/providers/apple/) login might failed with an "Unable to validate CSRF state" error on certain sites with HTTPS. The session cookie is now sent with the SameSite=None, Secure and HttpOnly flags on HTTPS, so it is preserved during the provider's cross-site callback.
+
 
 = 3.1.25 =
 * Fix: load_plugin_textdomain() will be called on the init action instead of plugins_loaded, as suggested by the WordPress documentation

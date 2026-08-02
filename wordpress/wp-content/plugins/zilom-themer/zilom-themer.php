@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Zilom Themer
  * Description: Open Setting, Post Type, Shortcode ... for theme 
- * Version: 1.2.7
+ * Version: 1.2.8
  * Author: Gaviasthemes Team
  */
 

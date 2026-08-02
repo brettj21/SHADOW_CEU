@@ -15,7 +15,7 @@ $provider = $this->getProvider();
                 <?php
                 $loginUrls = $provider->getAllRedirectUrisForAppCreation();
                 foreach ($loginUrls as $loginUrl) {
-                    echo "<li>" . $loginUrl . "</li>";
+                    echo "<li>" . esc_url($loginUrl) . "</li>";
                 }
                 ?>
             </ul>
@@ -23,7 +23,7 @@ $provider = $this->getProvider();
         <li>
             <b>Authorized domains:</b>
             <ul class='nsl-list-disc'>
-                <li><?php echo str_replace('www.', '', $_SERVER['HTTP_HOST']); ?></li>
+                <li><?php echo NextendSocialLogin::getDomain(); ?></li>
             </ul>
         </li>
     </ul>

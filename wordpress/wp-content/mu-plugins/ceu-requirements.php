@@ -29,7 +29,14 @@ define('CEU_SLUG_TO_PROFESSION', serialize([
     'mft-lcsw'            => 'Marriage & Family Therapists',
     'mft'                 => 'Marriage & Family Therapists',
     'lcsw'                => 'Marriage & Family Therapists',
+    'livingworks'         => 'LivingWorks',
 ]));
+
+// Profession slugs that have NO state-by-state CE requirements (e.g. LivingWorks,
+// a training organization rather than a licensed profession). The state-requirements
+// widget is suppressed for these — whether embedded as a shortcode in the Elementor
+// page or added by the auto-inject below.
+define('CEU_NO_STATE_REQUIREMENTS', serialize(['livingworks']));
 
 // ─── Helper: JSON file path ───────────────────────────────────────────────────
 
@@ -68,6 +75,9 @@ add_shortcode('ceu_state_requirements', function ($atts) {
     }
 
     if (!isset($slug_to_profession[$profession_slug])) return '';
+
+    // Suppress entirely for professions with no state CE requirements (LivingWorks, etc.).
+    if (in_array($profession_slug, unserialize(CEU_NO_STATE_REQUIREMENTS), true)) return '';
 
     $json_path = ceu_req_json_path();
     if (!file_exists($json_path)) return '<p>Requirements data not found.</p>';
@@ -346,6 +356,9 @@ add_action('wp_footer', function () {
     $profession_slug = sanitize_key(basename($uri));
     $professions     = unserialize(CEU_PROFESSIONS);
     if (!isset($professions[$profession_slug])) return;
+
+    // Skip the "select your state" widget for professions with no state CE requirements.
+    if (in_array($profession_slug, unserialize(CEU_NO_STATE_REQUIREMENTS), true)) return;
 
     $html = do_shortcode('[ceu_state_requirements profession="' . esc_attr($profession_slug) . '"]');
     if (!$html) return;

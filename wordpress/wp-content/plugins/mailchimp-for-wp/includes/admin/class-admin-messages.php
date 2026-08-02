@@ -1,6 +1,6 @@
 <?php
 
-defined('ABSPATH') or exit;
+defined('ABSPATH') || exit;
 
 
 /**
@@ -32,7 +32,7 @@ class MC4WP_Admin_Messages
 
     private function load()
     {
-        if (is_null($this->bag)) {
+        if ($this->bag === null) {
             $this->bag = get_option('mc4wp_flash_messages', []);
         }
     }

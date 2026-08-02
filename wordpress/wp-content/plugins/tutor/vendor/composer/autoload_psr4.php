@@ -11,7 +11,9 @@ return array(
     'Tutor\\Models\\' => array($baseDir . '/models'),
     'Tutor\\Migrations\\' => array($baseDir . '/migrations'),
     'Tutor\\Helpers\\' => array($baseDir . '/helpers'),
+    'Tutor\\GDPR\\' => array($baseDir . '/GDPR'),
     'Tutor\\Ecommerce\\' => array($baseDir . '/ecommerce'),
+    'Tutor\\Components\\' => array($baseDir . '/components'),
     'Tutor\\Cache\\' => array($baseDir . '/cache'),
     'TUTOR\\' => array($baseDir . '/classes'),
 );

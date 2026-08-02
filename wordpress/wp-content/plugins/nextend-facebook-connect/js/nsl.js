@@ -227,18 +227,33 @@ function disableButtonInWebView(providerButtonElement) {
         providerButtonElement.setAttribute('href', '#');
 
         providerButtonElement.addEventListener('pointerdown', (e) => {
-            if (!window._nslWebViewNoticeElement) {
-                window._nslWebViewNoticeElement = document.createElement('div');
-                window._nslWebViewNoticeElement.id = "nsl-notices-fallback";
-                window._nslWebViewNoticeElement.addEventListener('pointerdown', function (e) {
-                    this.parentNode.removeChild(this);
+            const closeNotice = function () {
+                if (window._nslWebViewNoticeElement) {
+                    window._nslWebViewNoticeElement.remove();
                     window._nslWebViewNoticeElement = null;
-                });
-                const webviewNoticeHTML = '<div class="error"><p>' + scriptOptions._localizedStrings.webview_notification_text + '</p></div>';
+                }
+            };
 
-                window._nslWebViewNoticeElement.insertAdjacentHTML("afterbegin", webviewNoticeHTML);
-                document.body.appendChild(window._nslWebViewNoticeElement);
-            }
+            closeNotice();
+
+            window._nslWebViewNoticeElement = document.createElement('div');
+            window._nslWebViewNoticeElement.id = "nsl-notices-fallback";
+            window._nslWebViewNoticeElement.role = 'alert';
+            window._nslWebViewNoticeElement.ariaLive = 'assertive';
+            window._nslWebViewNoticeElement.ariaAtomic = 'true';
+
+            window._nslWebViewNoticeElement.addEventListener('pointerdown', closeNotice);
+
+            window._nslWebViewNoticeElement.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    closeNotice();
+                }
+            });
+            const webviewNoticeHTML = '<div class="error"><p>' + scriptOptions._localizedStrings.webview_notification_text + '</p></div>';
+
+            window._nslWebViewNoticeElement.insertAdjacentHTML("afterbegin", webviewNoticeHTML);
+            document.body.appendChild(window._nslWebViewNoticeElement);
         });
     }
 

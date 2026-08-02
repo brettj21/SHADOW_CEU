@@ -34,8 +34,170 @@
             });
         });
     })(jQuery);
+
+
+    function nslPageAutocomplete(selector) {
+        (function ($) {
+            $(document).ready(function () {
+
+                const field = $(selector);
+                const hidden = $(field.data("target"));
+                const clear = field.siblings(".nsl-autocomplete-clear");
+
+                if (!field.length || !hidden.length) {
+                    return;
+                }
+
+                function refreshClearButton() {
+                    clear.toggle(!!hidden.val());
+                }
+
+                function setValid(id, text) {
+                    hidden.val(id);
+                    field.val(text);
+
+                    field.data("valid-id", id);
+                    field.data("valid-text", text);
+
+                    refreshClearButton();
+                }
+
+                setValid(hidden.val(), field.val());
+
+                const cache = {};
+                field.autocomplete({
+                    source: function (request, response) {
+
+                        const term = request.term;
+
+                        if (cache[term]) {
+                            response(cache[term]);
+                            return;
+                        }
+
+                        $.ajax({
+                            url: ajaxurl,
+                            dataType: "json",
+                            data: {
+                                action: field.data("action"),
+                                term: term,
+                                _ajax_nonce: field.data("nonce")
+                            },
+                            success: function (data) {
+                                cache[term] = data;
+                                response(data);
+                            }
+                        });
+                    },
+                    minLength: 0,
+                    select: function (event, ui) {
+                        setValid(ui.item.id, ui.item.value);
+                        return false;
+                    },
+                    change: function () {
+                        if (!hidden.val()) {
+                            field.val(field.data("valid-text"));
+                            hidden.val(field.data("valid-id"));
+                        }
+                    },
+                    open: function () {
+                        field.attr('aria-expanded', 'true');
+                    },
+                    close: function () {
+                        field.attr('aria-expanded', 'false');
+                    }
+                });
+
+                field.attr({
+                    'role': 'listbox',
+                    'aria-autocomplete': 'list',
+                    'aria-expanded': 'false',
+                    'aria-owns': field.autocomplete('widget').attr('id')
+                })
+
+                field.on("focus", function () {
+                    if (!field.val()) {
+                        field.autocomplete("search", "");
+                    }
+                });
+
+                field.on("input", function () {
+                    hidden.val("");
+                    refreshClearButton();
+                });
+
+                clear.on("click", function () {
+                    setValid("", "");
+                    field.trigger("focus");
+                });
+
+                // Returns a jQuery object containing the menu element.
+                field.autocomplete('widget')
+                    .addClass('nsl-page-autocomplete')
+                    .attr('role', 'listbox')
+                    /*
+                     * Looks like Safari and VoiceOver need an `aria-selected` attribute. See ticket #33301.
+                     * The `menufocus` and `menublur` events are the same events used to add and remove
+                     * the `ui-state-focus` CSS class on the menu items. See jQuery UI Menu Widget.
+                     */
+                    .on('menufocus', function (event, ui) {
+                        ui.item.attr('aria-selected', 'true');
+                    })
+                    .on('menublur', function () {
+                        // The `menublur` event returns an object where the item is `null`,
+                        // so we need to find the active item with other means.
+                        $(this).find('[aria-selected="true"]').removeAttr('aria-selected');
+                    });
+
+                refreshClearButton();
+            });
+        })(jQuery);
+    }
+
+    nslPageAutocomplete("#register-flow-page-search");
+    nslPageAutocomplete("#oauth-redirect-uri-proxy-page-search");
 </script>
 
+<style>
+    .nsl-autocomplete-wrap {
+        position: relative;
+        display: inline-block;
+    }
+
+    .nsl-autocomplete-wrap input[type="text"] {
+        padding-right: 28px;
+    }
+
+    .nsl-autocomplete-clear {
+        position: absolute;
+        top: 50%;
+        right: 6px;
+        transform: translateY(-50%);
+
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+
+        font-size: 18px;
+        line-height: 1;
+
+        color: #777;
+
+        padding: 0;
+        margin: 0;
+
+        display: none;
+    }
+
+    .nsl-autocomplete-clear:hover {
+        color: #000;
+    }
+
+    .nsl-page-autocomplete li:has(div.ui-state-active) {
+        background-color: #1344FE;
+        color: #FFF;
+    }
+</style>
 
 <table class="form-table">
     <tbody>
@@ -72,13 +234,34 @@
         <th scope="row"><?php _e('Page for register flow', 'nextend-facebook-connect'); ?></th>
         <td>
             <?php
-            wp_dropdown_pages(array(
-                'name'             => 'register-flow-page',
-                'show_option_none' => __('None', "nextend-facebook-connect"),
-                'selected'         => $settings->get('register-flow-page'),
-                'exclude'          => NextendSocialLogin::getExcludedPagesForRegisterFlow()
-            ));
+            $selectedRegisterFlowPage      = $settings->get('register-flow-page');
+            $selectedRegisterFlowPageTitle = '';
+
+            if ($selectedRegisterFlowPage) {
+                $selectedRegisterFlowPageTitle = get_the_title($selectedRegisterFlowPage);
+            }
             ?>
+            <div class="nsl-autocomplete-wrap">
+                <input type="hidden"
+                       name="register-flow-page"
+                       id="register-flow-page"
+                       value="<?php echo esc_attr($selectedRegisterFlowPage); ?>">
+
+                <input type="text"
+                       id="register-flow-page-search"
+                       value="<?php echo esc_attr($selectedRegisterFlowPageTitle); ?>"
+                       placeholder="<?php esc_attr_e('None', 'nextend-facebook-connect'); ?>"
+                       autocomplete="off"
+                       data-target="#register-flow-page"
+                       data-action="nsl_search_register_flow_pages"
+                       data-nonce="<?php echo esc_attr(wp_create_nonce('nsl_search_register_flow_pages')); ?>">
+
+                <button type="button"
+                        class="nsl-autocomplete-clear"
+                        aria-label="<?php esc_attr_e('Clear - Page for register flow', 'nextend-facebook-connect'); ?>">
+                    &times;
+                </button>
+            </div>
             <p class="description" id="tagline-register-flow-page-1"><?php _e("This setting is used when you request additional data from the users (such as email address) and to display the Terms and conditions.", "nextend-facebook-connect"); ?></p>
             <p class="description" id="tagline-register-flow-page"><?php printf(__('%2$s First create a new page and insert the following shortcode: %1$s then select this page above', 'nextend-facebook-connect'), '<code>[nextend_social_login_register_flow]</code>', '<b>' . __("Usage:", "nextend-facebook-connect") . '</b>'); ?></p>
             <p class="description" id="tagline-register-flow-page"><?php printf(__('%1$s You won\'t be able to reach the selected page unless a social login/registration happens.', 'nextend-facebook-connect'), '<b>' . __("Important:", "nextend-facebook-connect") . '</b>'); ?></p>
@@ -87,15 +270,37 @@
     <tr>
         <th scope="row"><?php _e('OAuth redirect uri proxy page', 'nextend-facebook-connect'); ?></th>
         <td>
-
             <?php
-            wp_dropdown_pages(array(
-                'name'             => 'proxy-page',
-                'show_option_none' => __('None', "nextend-facebook-connect"),
-                'selected'         => $settings->get('proxy-page'),
-                'exclude'          => NextendSocialLogin::getExcludedPagesForOauthProxyPage()
-            ));
+
+            $selectedOAuthProxyPage      = $settings->get('proxy-page');
+            $selectedOAuthProxyPageTitle = '';
+
+            if ($selectedOAuthProxyPage) {
+                $selectedOAuthProxyPageTitle = get_the_title($selectedOAuthProxyPage);
+            }
             ?>
+            <div class="nsl-autocomplete-wrap">
+                <input type="hidden"
+                       name="proxy-page"
+                       id="oauth-redirect-uri-proxy-page"
+                       value="<?php echo esc_attr($selectedOAuthProxyPage); ?>">
+
+                <input type="text"
+                       id="oauth-redirect-uri-proxy-page-search"
+                       value="<?php echo esc_attr($selectedOAuthProxyPageTitle); ?>"
+                       placeholder="<?php esc_attr_e('None', 'nextend-facebook-connect'); ?>"
+                       autocomplete="off"
+                       data-target="#oauth-redirect-uri-proxy-page"
+                       data-action="nsl_search_oauth_proxy_pages"
+                       data-nonce="<?php echo esc_attr(wp_create_nonce('nsl_search_oauth_proxy_pages')); ?>">
+
+                <button type="button"
+                        class="nsl-autocomplete-clear"
+                        aria-label="<?php esc_attr_e('Clear - OAuth redirect uri proxy page', 'nextend-facebook-connect'); ?>">
+                    &times;
+                </button>
+            </div>
+
             <p class="description" id="tagline-proxy-page-1"><?php _e("You can use this setting when wp-login.php page is not available to handle the OAuth flow.", "nextend-facebook-connect") ?></p>
             <p class="description" id="tagline-register-flow-page"><?php printf(__('%1$s First create a new page then select this page above.', 'nextend-facebook-connect'), '<b>' . __("Usage:", "nextend-facebook-connect") . '</b>'); ?></p>
             <p class="description" id="tagline-register-flow-page"><?php printf(__('%1$s You won\'t be able to reach the selected page unless a social login/registration happens.', 'nextend-facebook-connect'), '<b>' . __("Important:", "nextend-facebook-connect") . '</b>'); ?></p>

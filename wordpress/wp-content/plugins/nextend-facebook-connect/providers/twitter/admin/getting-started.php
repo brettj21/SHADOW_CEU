@@ -25,7 +25,7 @@ $provider = $this->getProvider();
                 <?php
                 $loginUrls = $provider->getAllRedirectUrisForAppCreation();
                 foreach ($loginUrls as $loginUrl) {
-                    echo "<li>" . $loginUrl . "</li>";
+                    echo "<li>" . esc_url($loginUrl) . "</li>";
                 }
                 ?>
             </ul>
@@ -33,7 +33,7 @@ $provider = $this->getProvider();
         <li>
             <b>Website URL:</b>
             <ul class='nsl-list-disc'>
-                <li><?php echo site_url(); ?></li>
+                <li><?php echo esc_url(site_url()); ?></li>
             </ul>
         </li>
     </ul>

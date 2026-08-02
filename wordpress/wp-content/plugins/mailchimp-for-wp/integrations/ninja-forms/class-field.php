@@ -21,6 +21,7 @@ class MC4WP_Ninja_Forms_Field extends NF_Abstracts_Input
 
     /**
      * NF_Fields_Checkbox constructor.
+     *
      * @since 3.0
      */
     public function __construct()
@@ -41,6 +42,7 @@ class MC4WP_Ninja_Forms_Field extends NF_Abstracts_Input
     /**
      * Admin Form Element
      * Display the checkbox on the edit submissions area.
+     *
      * @since 3.0
      *
      * @param $id Field ID.
@@ -78,7 +80,7 @@ class MC4WP_Ninja_Forms_Field extends NF_Abstracts_Input
     {
         $errors = parent::validate($field, $data);
 
-        if (isset($field['required']) && 1 == intval($field['required']) && empty($field['value'])) {
+        if (isset($field['required']) && 1 == (int) $field['required'] && empty($field['value'])) {
             $errors['slug']    = 'required-error';
             $errors['message'] = esc_html__('This field is required.', 'mailchimp-for-wp');
         }
@@ -89,6 +91,7 @@ class MC4WP_Ninja_Forms_Field extends NF_Abstracts_Input
     /**
      * Custom Columns
      * Creates what is displayed in the columns on the submissions page.
+     *
      * @since 3.0
      *
      * @param string $value checkbox value

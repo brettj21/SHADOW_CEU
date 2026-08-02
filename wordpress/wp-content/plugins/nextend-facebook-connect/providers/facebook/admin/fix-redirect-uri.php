@@ -24,7 +24,7 @@ $this->renderFixRedirectUriHead();
             <?php
             $loginUrls = $provider->getAllRedirectUrisForAppCreation();
             foreach ($loginUrls as $loginUrl) {
-                echo "<li>" . $loginUrl . "</li>";
+                echo "<li>" . esc_url($loginUrl) . "</li>";
             }
             ?>
         </ul>

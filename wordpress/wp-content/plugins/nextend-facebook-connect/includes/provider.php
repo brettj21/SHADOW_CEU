@@ -598,7 +598,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
         $arg = array();
         if (!empty($redirectTo)) {
             $arg['redirect'] = urlencode($redirectTo);
-        } else if (!empty($_GET['redirect_to'])) {
+        } else if (!empty($_GET['redirect_to']) && is_string($_GET['redirect_to'])) {
             $arg['redirect'] = urlencode($_GET['redirect_to']);
         } else {
             $currentPageUrl = NextendSocialLogin::getCurrentPageURL();
@@ -835,12 +835,12 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
      * Store where the user logged in.
      */
     public function liveConnectRedirect() {
-        if (!empty($_GET['trackerdata']) && !empty($_GET['trackerdata_hash'])) {
+        if (!empty($_GET['trackerdata']) && is_string($_GET['trackerdata']) && !empty($_GET['trackerdata_hash']) && is_string($_GET['trackerdata_hash'])) {
             if (wp_hash($_GET['trackerdata']) === $_GET['trackerdata_hash']) {
                 Persistent::set('trackerdata', sanitize_text_field($_GET['trackerdata']));
             }
         }
-        if (!empty($_GET['redirect'])) {
+        if (!empty($_GET['redirect']) && is_string($_GET['redirect'])) {
             Persistent::set('redirect', sanitize_url($_GET['redirect']));
         }
     }
@@ -931,30 +931,19 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
         } else {
             $requested_redirect_to = Persistent::get('redirect');
 
-            if (!empty($requested_redirect_to)) {
-                if (empty($requested_redirect_to) || !NextendSocialLogin::isAllowedRedirectUrl($requested_redirect_to)) {
-                    if (!empty($_GET['redirect']) && NextendSocialLogin::isAllowedRedirectUrl($_GET['redirect'])) {
-                        $requested_redirect_to = $_GET['redirect'];
-                    } else {
-                        $requested_redirect_to = '';
-                    }
-                }
+            if (!empty($requested_redirect_to) && NextendSocialLogin::isAllowedRedirectUrl($requested_redirect_to)) {
+                $redirect_to = $requested_redirect_to;
+            } elseif (!empty($_GET['redirect'])) {
+                $get_redirect = wp_unslash($_GET['redirect']);
 
-                if (empty($requested_redirect_to)) {
-                    $redirect_to = site_url();
-                } else {
-                    $redirect_to = $requested_redirect_to;
+                if (NextendSocialLogin::isAllowedRedirectUrl($get_redirect)) {
+                    $redirect_to = $get_redirect;
                 }
+            }
+
+            if (!empty($redirect_to)) {
                 $redirect_to = wp_sanitize_redirect($redirect_to);
                 $redirect_to = wp_validate_redirect($redirect_to, site_url());
-
-                $redirect_to = $this->validateRedirect($redirect_to);
-            } else if (!empty($_GET['redirect']) && NextendSocialLogin::isAllowedRedirectUrl($_GET['redirect'])) {
-                $redirect_to = $_GET['redirect'];
-
-                $redirect_to = wp_sanitize_redirect($redirect_to);
-                $redirect_to = wp_validate_redirect($redirect_to, site_url());
-
                 $redirect_to = $this->validateRedirect($redirect_to);
             }
 

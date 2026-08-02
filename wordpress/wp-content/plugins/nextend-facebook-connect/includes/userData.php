@@ -98,6 +98,18 @@ class NextendSocialUserData {
         NextendSocialLogin::removeLoginFormAssets();
 
         if ($this->isCustomRegisterFlow) {
+            wp_enqueue_style('login');
+            /**
+             * Some styles from the enqueued files above are applied only when
+             * specific classes are present on the <body> element.
+             *
+             * @see NSLDEV-743
+             */
+            add_filter('body_class', array(
+                $this,
+                'custom_register_flow_page_body_class'
+            ));
+
             add_shortcode('nextend_social_login_register_flow', array(
                 $this,
                 'customRegisterFlowShortcode'
@@ -304,5 +316,13 @@ class NextendSocialUserData {
         $this->errors = array();
 
         echo $this->render_registration_form();
+    }
+
+    public function custom_register_flow_page_body_class($classes) {
+
+        return array_merge($classes, array(
+            'login',
+            'wp-core-ui'
+        ));
     }
 }

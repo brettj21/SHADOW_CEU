@@ -81,6 +81,26 @@ class Session extends StorageAbstract {
 
     private function setCookie($value, $expire, $secure = false) {
 
-        setcookie($this->sessionName, $value, $expire, COOKIEPATH ? COOKIEPATH : '/', COOKIE_DOMAIN, $secure);
+        $path = COOKIEPATH ? COOKIEPATH : '/';
+
+        if (is_ssl()) {
+            /**
+             * Apple Sign In uses response_mode=form_post, so its callback is a cross-site POST.
+             * A cookie without SameSite is treated as SameSite=Lax by browsers and is not sent on
+             * cross-site POST requests, which breaks OAuth state validation. SameSite=None allows
+             * the session cookie to be sent, but requires the Secure attribute.
+             */
+            setcookie($this->sessionName, $value, array(
+                'expires'  => $expire,
+                'path'     => $path,
+                'domain'   => COOKIE_DOMAIN,
+                'secure'   => true,
+                'httponly' => true,
+                'samesite' => 'None',
+            ));
+        } else {
+            // SameSite=None is not allowed without Secure, which requires HTTPS. Keep legacy behavior on HTTP.
+            setcookie($this->sessionName, $value, $expire, $path, COOKIE_DOMAIN, $secure);
+        }
     }
 }
