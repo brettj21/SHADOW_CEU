@@ -6,14 +6,14 @@
  *              CEU_DB.CEU_CERTIFICATES.
  *
  * BOTH PANELS LOAD AT ONCE — the tab buttons only show/hide the already-rendered
- * divs. No second page, no extra request. /user-2/ is retired.
+ * lists. No second page, no extra request. /user-2/ is retired.
  *
  * PLACEMENT — two ways, pick either:
  *   1. Shortcode (preferred): drop [ceu_coursework] on the /user page in
  *      Elementor, exactly where you want the block.
  *   2. Auto-inject (fallback): if the shortcode is absent, the block is written
  *      to the footer and JS moves it into the Elementor column that has no form
- *      fields. This is a guess about the layout — the shortcode is more robust.
+ *      fields.
  *
  * DEEP LINK — /user/#certificates opens with the Certificates tab active.
  * That is what the "My Certificates" dropdown item points to (ceu-dashboard-nav.php).
@@ -40,8 +40,6 @@ function ceu_coursework_data() {
     // Identity must come from the verified WP session, never from the 'ceu'
     // cookie — that value is client-controlled, so trusting it let anyone read
     // another user's CE records by editing the cookie in devtools.
-    // ceu_is_logged_in() and the _ceu_id meta are both set by ceu-auth.php only
-    // after a successful CEU login.
     if (!function_exists('ceu_is_logged_in') || !ceu_is_logged_in()) return null;
 
     $user_id = (int) get_user_meta(get_current_user_id(), '_ceu_id', true);
@@ -81,76 +79,109 @@ function ceu_coursework_html() {
     $taken = $data['taken'];
     $certs = $data['certs'];
 
-    // User name and license expiry come from the CEU session, not the DB.
+    // Name and licence expiry come from the CEU session, not the DB.
     $session  = $_SESSION['session_data'][0] ?? [];
     $name     = trim(($session['FIRST'] ?? '') . ' ' . ($session['LAST'] ?? ''));
     $lic_exp  = !empty($session['LIC_EXP']) ? $session['LIC_EXP'] : null;
     $exp_days = $lic_exp ? (int) floor((strtotime($lic_exp) - time()) / 86400) : null;
 
     $clean = fn($t) => strip_tags(str_replace(['<br>', '<br/>'], ' ', $t));
-    $fdate = fn($d)  => date('n-d-Y', strtotime($d));
+    $fdate = fn($d)  => date('M j, Y', strtotime($d));
     $fcred = fn($n)  => rtrim(rtrim(number_format((float) $n, 2), '0'), '.');
 
-    $course_card = function ($c) use ($clean, $fdate, $fcred, $exp_days) {
-        $passed = (int) $c['PASSING'] === 1;
-        $score  = (int) $c['SCORE'];
-        $label  = $passed ? 'Completed' : 'Last taken';
+    // One row = one course/certificate. Compact list, not a card grid — at 47
+    // certificates a card wall is unreadable.
+    $row = function ($c, $kind) use ($clean, $fdate, $fcred, $exp_days) {
+        $title   = $clean($c['TRAINING_TITLE']);
+        $credits = $fcred($c['CREDITS']);
+        $hours   = $credits === '1' ? 'hour' : 'hours';
 
-        $h  = '<div class="ceu-card">';
-        $h .= '<div class="ceu-card-title">' . esc_html($clean($c['TRAINING_TITLE'])) . '</div>';
-        $h .= '<div class="ceu-card-row">CE Credit Hours: ' . esc_html($fcred($c['CREDITS'])) . '</div>';
-        $h .= '<div class="ceu-card-row">' . $label . ': ' . esc_html($fdate($c['DATE_COMPLETED'])) . '</div>';
-        $h .= '<div class="ceu-card-score ' . ($passed ? 'ceu-pass' : 'ceu-fail') . '">Score ' . $score . '%</div>';
-        if ($passed && $exp_days !== null) {
-            $cls = $exp_days < 0 ? 'ceu-expired' : 'ceu-expiring';
-            $h  .= '<div class="ceu-card-row ' . $cls . '">This training expires in ' . $exp_days . ' day(s)</div>';
+        $h  = '<div class="ceu-row" data-title="' . esc_attr(strtolower($title)) . '">';
+        $h .= '<div class="ceu-row-main">';
+        $h .= '<div class="ceu-row-title">' . esc_html($title) . '</div>';
+        $h .= '<div class="ceu-row-meta">';
+        $h .= '<span>' . esc_html($credits) . ' CE ' . $hours . '</span>';
+        $h .= '<span class="ceu-sep">·</span>';
+        $h .= '<span>' . esc_html($fdate($c['DATE_COMPLETED'])) . '</span>';
+
+        if ($kind === 'taken') {
+            $passed = (int) $c['PASSING'] === 1;
+            // Expiry only matters for a course you actually passed.
+            if ($passed && $exp_days !== null && $exp_days < 90) {
+                $h .= '<span class="ceu-sep">·</span>';
+                $h .= $exp_days < 0
+                    ? '<span class="ceu-warn ceu-warn-bad">Licence expired</span>'
+                    : '<span class="ceu-warn">Expires in ' . (int) $exp_days . ' days</span>';
+            }
         }
-        $h .= '<hr class="ceu-divider">';
-        $h .= $passed
-            ? '<span class="ceu-btn">&#9679; Add to Cart</span>'
-            : '<a class="ceu-btn" href="/courses/">Retake training</a>';
-        $h .= '</div>';
+
+        $h .= '</div></div>';
+
+        $h .= '<div class="ceu-row-side">';
+        if ($kind === 'taken') {
+            $passed = (int) $c['PASSING'] === 1;
+            $score  = (int) $c['SCORE'];
+            $h .= '<span class="ceu-chip ' . ($passed ? 'ceu-chip-pass' : 'ceu-chip-fail') . '">'
+                . $score . '%</span>';
+            $h .= $passed
+                ? '<span class="ceu-action">Add to cart</span>'
+                : '<a class="ceu-action" href="/courses/">Retake</a>';
+        } else {
+            $h .= '<span class="ceu-chip ceu-chip-pass">Earned</span>';
+            $h .= '<span class="ceu-action ceu-action-primary">Download</span>';
+        }
+        $h .= '</div></div>';
+
         return $h;
     };
 
-    $cert_card = function ($c) use ($clean, $fdate, $fcred) {
-        $h  = '<div class="ceu-card">';
-        $h .= '<div class="ceu-card-title">' . esc_html($clean($c['TRAINING_TITLE'])) . '</div>';
-        $h .= '<div class="ceu-card-row">CE Credit Hours: ' . esc_html($fcred($c['CREDITS'])) . '</div>';
-        $h .= '<div class="ceu-card-row">Completed: ' . esc_html($fdate($c['DATE_COMPLETED'])) . '</div>';
-        $h .= '<div class="ceu-card-score ceu-pass">Certificate Earned</div>';
-        $h .= '<hr class="ceu-divider">';
-        $h .= '<span class="ceu-btn">&#9679; Download</span>';
-        $h .= '</div>';
-        return $h;
-    };
+    $empty = fn($msg) => '<div class="ceu-empty">' . esc_html($msg) . '</div>';
 
     ob_start();
     ?>
     <div id="ceu-coursework">
-        <?php if ($name) : ?>
-        <h2 class="ceu-heading">Certified Coursework for <?= esc_html($name) ?></h2>
-        <?php endif; ?>
-
-        <div class="ceu-tabs">
-            <button class="ceu-tab ceu-tab-active" data-target="ceu-panel-taken" data-hash="completed">
-                Completed Courses - <?= count($taken) ?>
-            </button>
-            <button class="ceu-tab" data-target="ceu-panel-certs" data-hash="certificates">
-                Certificates - <?= count($certs) ?>
-            </button>
+        <div class="ceu-head">
+            <h2 class="ceu-heading">Certified Coursework<?= $name ? ' for ' . esc_html($name) : '' ?></h2>
         </div>
 
-        <div id="ceu-panel-taken" class="ceu-panel">
-            <div class="ceu-grid">
-                <?php foreach ($taken as $c) echo $course_card($c); ?>
+        <div class="ceu-toolbar">
+            <div class="ceu-tabs" role="tablist">
+                <button type="button" class="ceu-tab ceu-tab-active" role="tab"
+                        data-target="ceu-panel-taken" data-hash="completed">
+                    Completed Courses <span class="ceu-count"><?= count($taken) ?></span>
+                </button>
+                <button type="button" class="ceu-tab" role="tab"
+                        data-target="ceu-panel-certs" data-hash="certificates">
+                    Certificates <span class="ceu-count"><?= count($certs) ?></span>
+                </button>
+            </div>
+
+            <div class="ceu-search">
+                <input type="search" id="ceu-filter" placeholder="Search by title…"
+                       autocomplete="off" aria-label="Filter coursework by title">
             </div>
         </div>
 
-        <div id="ceu-panel-certs" class="ceu-panel" style="display:none;">
-            <div class="ceu-grid">
-                <?php foreach ($certs as $c) echo $cert_card($c); ?>
+        <div id="ceu-panel-taken" class="ceu-panel" role="tabpanel">
+            <div class="ceu-list">
+                <?php
+                echo $taken
+                    ? implode('', array_map(fn($c) => $row($c, 'taken'), $taken))
+                    : $empty('No completed courses yet.');
+                ?>
             </div>
+            <div class="ceu-noresults" hidden>No courses match that search.</div>
+        </div>
+
+        <div id="ceu-panel-certs" class="ceu-panel" role="tabpanel" hidden>
+            <div class="ceu-list">
+                <?php
+                echo $certs
+                    ? implode('', array_map(fn($c) => $row($c, 'cert'), $certs))
+                    : $empty('No certificates yet.');
+                ?>
+            </div>
+            <div class="ceu-noresults" hidden>No certificates match that search.</div>
         </div>
     </div>
     <?php
@@ -189,12 +220,9 @@ add_action('wp_footer', function () {
             if (!cw) return;
 
             // ── Relocate, only when the block came from the footer fallback ────────
-            // With the shortcode, it is already in the right place — leave it alone.
             if (!<?= $placed_by_shortcode ? 'true' : 'false' ?>) {
                 var pageEl = document.querySelector('[data-elementor-type="wp-page"]');
                 if (pageEl) {
-                    // Pick the Elementor column with no form fields — on /user that is
-                    // the one beside the profile form.
                     var wraps   = Array.from(pageEl.querySelectorAll('.elementor-widget-wrap.elementor-element-populated'));
                     var certCol = wraps.find(function (w) {
                         return !w.querySelector('form, input, select, textarea');
@@ -209,17 +237,21 @@ add_action('wp_footer', function () {
                 }
             }
 
-            // ── Show/hide the panels ───────────────────────────────────────────────
-            var tabs = Array.from(cw.querySelectorAll('.ceu-tab'));
+            var tabs   = Array.from(cw.querySelectorAll('.ceu-tab'));
+            var panels = Array.from(cw.querySelectorAll('.ceu-panel'));
+            var filter = cw.querySelector('#ceu-filter');
 
+            // ── Show/hide the panels ───────────────────────────────────────────────
             function activate(tab, updateHash) {
                 if (!tab) return;
                 tabs.forEach(function (b) { b.classList.remove('ceu-tab-active'); });
-                cw.querySelectorAll('.ceu-panel').forEach(function (p) { p.style.display = 'none'; });
+                panels.forEach(function (p) { p.hidden = true; });
 
                 tab.classList.add('ceu-tab-active');
                 var panel = document.getElementById(tab.dataset.target);
-                if (panel) panel.style.display = '';
+                if (panel) panel.hidden = false;
+
+                applyFilter();
 
                 // replaceState keeps the deep link shareable without jumping the page.
                 if (updateHash && tab.dataset.hash && window.history.replaceState) {
@@ -230,6 +262,24 @@ add_action('wp_footer', function () {
             tabs.forEach(function (btn) {
                 btn.addEventListener('click', function () { activate(btn, true); });
             });
+
+            // ── Filter rows in the visible panel ───────────────────────────────────
+            function applyFilter() {
+                var q = (filter && filter.value || '').trim().toLowerCase();
+                panels.forEach(function (panel) {
+                    if (panel.hidden) return;
+                    var shown = 0;
+                    panel.querySelectorAll('.ceu-row').forEach(function (r) {
+                        var hit = !q || (r.dataset.title || '').indexOf(q) !== -1;
+                        r.hidden = !hit;
+                        if (hit) shown++;
+                    });
+                    var none = panel.querySelector('.ceu-noresults');
+                    if (none) none.hidden = !(q && shown === 0);
+                });
+            }
+
+            if (filter) filter.addEventListener('input', applyFilter);
 
             // ── Deep link: /user/#certificates opens the Certificates tab ──────────
             function openFromHash() {
@@ -251,73 +301,195 @@ add_action('wp_footer', function () {
 
     <style>
     #ceu-coursework {
+        --ceu-blue:   #2563eb;
+        --ceu-ink:    #0f172a;
+        --ceu-muted:  #64748b;
+        --ceu-line:   #e2e8f0;
+        --ceu-bg:     #f8fafc;
+
         width: 100%;
-        padding: 0;
         font-family: inherit;
+        color: var(--ceu-ink);
     }
-    .ceu-heading {
-        font-size: 2em;
+
+    /* ── Header ── */
+    #ceu-coursework .ceu-heading {
+        font-size: 1.6em;
         font-weight: 700;
-        color: #1a2e5a;
-        margin-bottom: 24px;
+        color: var(--ceu-ink);
+        margin: 0 0 20px;
+        line-height: 1.25;
     }
-    .ceu-tabs {
+
+    /* ── Toolbar: tabs + search ── */
+    #ceu-coursework .ceu-toolbar {
         display: flex;
+        align-items: center;
+        justify-content: space-between;
         gap: 16px;
-        margin-bottom: 28px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
     }
-    .ceu-tab {
-        flex: 1;
-        padding: 14px 20px;
-        border: 2px solid #d0d5dd;
+
+    /* Segmented control rather than two big outlined blocks. */
+    #ceu-coursework .ceu-tabs {
+        display: inline-flex;
+        padding: 4px;
+        background: var(--ceu-bg);
+        border: 1px solid var(--ceu-line);
         border-radius: 10px;
-        background: #fff;
-        color: #999;
-        font-size: 1em;
-        font-weight: 600;
-        cursor: pointer;
-        transition: border-color .2s, color .2s;
+        gap: 4px;
     }
-    .ceu-tab-active {
-        border-color: #3b82f6;
-        color: #3b82f6;
-    }
-    .ceu-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-    }
-    @media (max-width: 900px) {
-        .ceu-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 560px) {
-        .ceu-grid { grid-template-columns: 1fr; }
-    }
-    .ceu-card {
-        border: 2px solid #3b82f6;
-        border-radius: 12px;
-        padding: 20px;
-        background: #fff;
-        display: flex;
-        flex-direction: column;
+    #ceu-coursework .ceu-tab {
+        display: inline-flex;
+        align-items: center;
         gap: 8px;
+        padding: 8px 14px;
+        border: 0;
+        border-radius: 7px;
+        background: transparent;
+        color: var(--ceu-muted);
+        font-size: .92em;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background .15s, color .15s;
     }
-    .ceu-card-title {
-        font-size: 1.05em;
+    #ceu-coursework .ceu-tab:hover { color: var(--ceu-ink); }
+    #ceu-coursework .ceu-tab-active {
+        background: #fff;
+        color: var(--ceu-ink);
+        box-shadow: 0 1px 2px rgba(15, 23, 42, .08);
+    }
+    #ceu-coursework .ceu-count {
+        display: inline-block;
+        min-width: 20px;
+        padding: 1px 6px;
+        border-radius: 20px;
+        background: var(--ceu-line);
+        color: var(--ceu-muted);
+        font-size: .82em;
         font-weight: 700;
-        color: #3b82f6;
+        text-align: center;
+    }
+    #ceu-coursework .ceu-tab-active .ceu-count {
+        background: var(--ceu-blue);
+        color: #fff;
+    }
+
+    #ceu-coursework .ceu-search { flex: 1; min-width: 180px; max-width: 280px; }
+    #ceu-coursework #ceu-filter {
+        width: 100%;
+        padding: 9px 13px;
+        border: 1px solid var(--ceu-line);
+        border-radius: 8px;
+        background: #fff;
+        font-size: .92em;
+        font-family: inherit;
+        color: var(--ceu-ink);
+        transition: border-color .15s, box-shadow .15s;
+    }
+    #ceu-coursework #ceu-filter:focus {
+        outline: 0;
+        border-color: var(--ceu-blue);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+    }
+
+    /* ── List ── */
+    #ceu-coursework .ceu-list {
+        border: 1px solid var(--ceu-line);
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+    }
+    #ceu-coursework .ceu-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 14px 18px;
+        border-top: 1px solid var(--ceu-line);
+        transition: background .12s;
+    }
+    #ceu-coursework .ceu-row:first-child { border-top: 0; }
+    #ceu-coursework .ceu-row:hover { background: var(--ceu-bg); }
+
+    /* Themes routinely set display on bare elements, which beats the native
+       [hidden] attribute. Restate it so the panels actually hide. */
+    #ceu-coursework .ceu-row[hidden],
+    #ceu-coursework .ceu-panel[hidden],
+    #ceu-coursework .ceu-noresults[hidden] { display: none !important; }
+
+    #ceu-coursework .ceu-row-main { min-width: 0; }
+    #ceu-coursework .ceu-row-title {
+        font-size: .98em;
+        font-weight: 600;
+        color: var(--ceu-ink);
         line-height: 1.4;
     }
-    .ceu-card-row  { font-size: .95em; color: #333; line-height: 1.5; }
-    .ceu-card-score { font-size: .95em; font-weight: 600; }
-    .ceu-pass      { color: #3b82f6; }
-    .ceu-fail      { color: #ef4444; }
-    .ceu-expired   { color: #ef4444; font-size: .9em; }
-    .ceu-expiring  { color: #f97316; font-size: .9em; }
-    .ceu-divider   { border: none; border-top: 1px solid #e5e7eb; margin: 8px 0 4px; }
-    .ceu-btn       { font-size: .9em; font-weight: 600; color: #1a2e5a; text-decoration: none; cursor: pointer; }
-    .ceu-btn:hover { text-decoration: underline; }
-    @media (max-width: 640px) { .ceu-tabs { flex-direction: column; } }
+    #ceu-coursework .ceu-row-meta {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        flex-wrap: wrap;
+        margin-top: 4px;
+        font-size: .85em;
+        color: var(--ceu-muted);
+    }
+    #ceu-coursework .ceu-sep { color: #cbd5e1; }
+    #ceu-coursework .ceu-warn     { color: #b45309; font-weight: 600; }
+    #ceu-coursework .ceu-warn-bad { color: #dc2626; }
+
+    #ceu-coursework .ceu-row-side {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-shrink: 0;
+    }
+    #ceu-coursework .ceu-chip {
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: .8em;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+    #ceu-coursework .ceu-chip-pass { background: #dbeafe; color: #1d4ed8; }
+    #ceu-coursework .ceu-chip-fail { background: #fee2e2; color: #b91c1c; }
+
+    #ceu-coursework .ceu-action {
+        font-size: .88em;
+        font-weight: 600;
+        color: var(--ceu-muted);
+        text-decoration: none;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    #ceu-coursework .ceu-action:hover { color: var(--ceu-blue); text-decoration: underline; }
+    #ceu-coursework .ceu-action-primary { color: var(--ceu-blue); }
+
+    #ceu-coursework .ceu-empty,
+    #ceu-coursework .ceu-noresults {
+        padding: 32px 18px;
+        text-align: center;
+        color: var(--ceu-muted);
+        font-size: .92em;
+    }
+    #ceu-coursework .ceu-noresults {
+        border: 1px solid var(--ceu-line);
+        border-radius: 12px;
+        margin-top: 12px;
+        background: #fff;
+    }
+
+    /* ── Narrow columns ── */
+    @media (max-width: 640px) {
+        #ceu-coursework .ceu-toolbar { flex-direction: column; align-items: stretch; }
+        #ceu-coursework .ceu-tabs { justify-content: center; }
+        #ceu-coursework .ceu-search { max-width: none; }
+        #ceu-coursework .ceu-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+        #ceu-coursework .ceu-row-side { width: 100%; justify-content: space-between; }
+    }
     </style>
     <?php
 }, 20);
