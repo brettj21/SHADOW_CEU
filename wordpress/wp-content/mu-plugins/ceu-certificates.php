@@ -24,6 +24,11 @@ if (!defined('CEU_COURSEWORK_SLUG')) {
     define('CEU_COURSEWORK_SLUG', 'user');
 }
 
+// Certificate thumbnail shown against each earned certificate.
+if (!defined('CEU_CERT_IMAGE')) {
+    define('CEU_CERT_IMAGE', 'https://www.ceunits.com/images/certificate.gif');
+}
+
 // ─── Is this the coursework page? ─────────────────────────────────────────────
 
 function ceu_is_coursework_page() {
@@ -96,13 +101,17 @@ function ceu_coursework_html() {
         $credits = $fcred($c['CREDITS']);
         $hours   = $credits === '1' ? 'hour' : 'hours';
 
-        $h  = '<div class="ceu-row" data-title="' . esc_attr(strtolower($title)) . '">';
+        $h  = '<div class="ceu-row">';
         $h .= '<div class="ceu-row-main">';
         $h .= '<div class="ceu-row-title">' . esc_html($title) . '</div>';
         $h .= '<div class="ceu-row-meta">';
         $h .= '<span>' . esc_html($credits) . ' CE ' . $hours . '</span>';
         $h .= '<span class="ceu-sep">·</span>';
-        $h .= '<span>' . esc_html($fdate($c['DATE_COMPLETED'])) . '</span>';
+        // Certificates spell the date out; the completed-courses list already
+        // reads as a completion date from context.
+        $h .= $kind === 'cert'
+            ? '<span>Date completed: ' . esc_html($fdate($c['DATE_COMPLETED'])) . '</span>'
+            : '<span>' . esc_html($fdate($c['DATE_COMPLETED'])) . '</span>';
 
         if ($kind === 'taken') {
             $passed = (int) $c['PASSING'] === 1;
@@ -127,8 +136,12 @@ function ceu_coursework_html() {
                 ? '<span class="ceu-action">Add to cart</span>'
                 : '<a class="ceu-action" href="/courses/">Retake</a>';
         } else {
-            $h .= '<span class="ceu-chip ceu-chip-pass">Earned</span>';
-            $h .= '<span class="ceu-action ceu-action-primary">Download</span>';
+            // Certificate thumbnail + "click here", as on the old site.
+            $h .= '<span class="ceu-cert">';
+            $h .= '<img class="ceu-cert-img" src="' . esc_url(CEU_CERT_IMAGE) . '"'
+                . ' alt="Certificate" loading="lazy" width="72" height="54">';
+            $h .= '<span class="ceu-action ceu-action-primary">click here</span>';
+            $h .= '</span>';
         }
         $h .= '</div></div>';
 
@@ -155,11 +168,6 @@ function ceu_coursework_html() {
                     Certificates <span class="ceu-count"><?= count($certs) ?></span>
                 </button>
             </div>
-
-            <div class="ceu-search">
-                <input type="search" id="ceu-filter" placeholder="Search by title…"
-                       autocomplete="off" aria-label="Filter coursework by title">
-            </div>
         </div>
 
         <div id="ceu-panel-taken" class="ceu-panel" role="tabpanel">
@@ -170,7 +178,6 @@ function ceu_coursework_html() {
                     : $empty('No completed courses yet.');
                 ?>
             </div>
-            <div class="ceu-noresults" hidden>No courses match that search.</div>
         </div>
 
         <div id="ceu-panel-certs" class="ceu-panel" role="tabpanel" hidden>
@@ -181,7 +188,6 @@ function ceu_coursework_html() {
                     : $empty('No certificates yet.');
                 ?>
             </div>
-            <div class="ceu-noresults" hidden>No certificates match that search.</div>
         </div>
     </div>
     <?php
@@ -239,7 +245,6 @@ add_action('wp_footer', function () {
 
             var tabs   = Array.from(cw.querySelectorAll('.ceu-tab'));
             var panels = Array.from(cw.querySelectorAll('.ceu-panel'));
-            var filter = cw.querySelector('#ceu-filter');
 
             // ── Show/hide the panels ───────────────────────────────────────────────
             function activate(tab, updateHash) {
@@ -251,8 +256,6 @@ add_action('wp_footer', function () {
                 var panel = document.getElementById(tab.dataset.target);
                 if (panel) panel.hidden = false;
 
-                applyFilter();
-
                 // replaceState keeps the deep link shareable without jumping the page.
                 if (updateHash && tab.dataset.hash && window.history.replaceState) {
                     window.history.replaceState(null, '', '#' + tab.dataset.hash);
@@ -262,24 +265,6 @@ add_action('wp_footer', function () {
             tabs.forEach(function (btn) {
                 btn.addEventListener('click', function () { activate(btn, true); });
             });
-
-            // ── Filter rows in the visible panel ───────────────────────────────────
-            function applyFilter() {
-                var q = (filter && filter.value || '').trim().toLowerCase();
-                panels.forEach(function (panel) {
-                    if (panel.hidden) return;
-                    var shown = 0;
-                    panel.querySelectorAll('.ceu-row').forEach(function (r) {
-                        var hit = !q || (r.dataset.title || '').indexOf(q) !== -1;
-                        r.hidden = !hit;
-                        if (hit) shown++;
-                    });
-                    var none = panel.querySelector('.ceu-noresults');
-                    if (none) none.hidden = !(q && shown === 0);
-                });
-            }
-
-            if (filter) filter.addEventListener('input', applyFilter);
 
             // ── Deep link: /user/#certificates opens the Certificates tab ──────────
             function openFromHash() {
@@ -378,24 +363,6 @@ add_action('wp_footer', function () {
         color: #fff;
     }
 
-    #ceu-coursework .ceu-search { flex: 1; min-width: 180px; max-width: 280px; }
-    #ceu-coursework #ceu-filter {
-        width: 100%;
-        padding: 9px 13px;
-        border: 1px solid var(--ceu-line);
-        border-radius: 8px;
-        background: #fff;
-        font-size: .92em;
-        font-family: inherit;
-        color: var(--ceu-ink);
-        transition: border-color .15s, box-shadow .15s;
-    }
-    #ceu-coursework #ceu-filter:focus {
-        outline: 0;
-        border-color: var(--ceu-blue);
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
-    }
-
     /* ── List ── */
     #ceu-coursework .ceu-list {
         border: 1px solid var(--ceu-line);
@@ -418,8 +385,7 @@ add_action('wp_footer', function () {
     /* Themes routinely set display on bare elements, which beats the native
        [hidden] attribute. Restate it so the panels actually hide. */
     #ceu-coursework .ceu-row[hidden],
-    #ceu-coursework .ceu-panel[hidden],
-    #ceu-coursework .ceu-noresults[hidden] { display: none !important; }
+    #ceu-coursework .ceu-panel[hidden] { display: none !important; }
 
     #ceu-coursework .ceu-row-main { min-width: 0; }
     #ceu-coursework .ceu-row-title {
@@ -468,27 +434,37 @@ add_action('wp_footer', function () {
     #ceu-coursework .ceu-action:hover { color: var(--ceu-blue); text-decoration: underline; }
     #ceu-coursework .ceu-action-primary { color: var(--ceu-blue); }
 
-    #ceu-coursework .ceu-empty,
-    #ceu-coursework .ceu-noresults {
+    /* ── Certificate thumbnail ── */
+    #ceu-coursework .ceu-cert {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        cursor: pointer;
+    }
+    #ceu-coursework .ceu-cert-img {
+        display: block;
+        width: 72px;
+        height: auto;
+        border-radius: 3px;
+    }
+    #ceu-coursework .ceu-cert:hover .ceu-action { text-decoration: underline; }
+
+    #ceu-coursework .ceu-empty {
         padding: 32px 18px;
         text-align: center;
         color: var(--ceu-muted);
         font-size: .92em;
-    }
-    #ceu-coursework .ceu-noresults {
-        border: 1px solid var(--ceu-line);
-        border-radius: 12px;
-        margin-top: 12px;
-        background: #fff;
     }
 
     /* ── Narrow columns ── */
     @media (max-width: 640px) {
         #ceu-coursework .ceu-toolbar { flex-direction: column; align-items: stretch; }
         #ceu-coursework .ceu-tabs { justify-content: center; }
-        #ceu-coursework .ceu-search { max-width: none; }
         #ceu-coursework .ceu-row { flex-direction: column; align-items: flex-start; gap: 10px; }
         #ceu-coursework .ceu-row-side { width: 100%; justify-content: space-between; }
+        #ceu-coursework .ceu-cert { flex-direction: row; gap: 8px; align-items: center; }
+        #ceu-coursework .ceu-cert-img { width: 52px; }
     }
     </style>
     <?php
