@@ -101,17 +101,24 @@ function ceu_coursework_html() {
         $credits = $fcred($c['CREDITS']);
         $hours   = $credits === '1' ? 'hour' : 'hours';
 
+        // Both lists label their date; only the wording differs.
+        $date_label = $kind === 'cert' ? 'Date completed' : 'Date taken';
+
         $h  = '<div class="ceu-row">';
         $h .= '<div class="ceu-row-main">';
         $h .= '<div class="ceu-row-title">' . esc_html($title) . '</div>';
         $h .= '<div class="ceu-row-meta">';
-        $h .= '<span>' . esc_html($credits) . ' CE ' . $hours . '</span>';
+        // Value/label pairs — the number and the date carry the weight, the
+        // words around them stay quiet.
+        $h .= '<span class="ceu-stat">'
+            . '<span class="ceu-stat-value">' . esc_html($credits) . '</span>'
+            . '<span class="ceu-stat-label">CE ' . $hours . '</span>'
+            . '</span>';
         $h .= '<span class="ceu-sep">·</span>';
-        // Certificates spell the date out; the completed-courses list already
-        // reads as a completion date from context.
-        $h .= $kind === 'cert'
-            ? '<span>Date completed: ' . esc_html($fdate($c['DATE_COMPLETED'])) . '</span>'
-            : '<span>' . esc_html($fdate($c['DATE_COMPLETED'])) . '</span>';
+        $h .= '<span class="ceu-stat">'
+            . '<span class="ceu-stat-label">' . $date_label . '</span>'
+            . '<span class="ceu-stat-value">' . esc_html($fdate($c['DATE_COMPLETED'])) . '</span>'
+            . '</span>';
 
         if ($kind === 'taken') {
             $passed = (int) $c['PASSING'] === 1;
@@ -397,13 +404,26 @@ add_action('wp_footer', function () {
     #ceu-coursework .ceu-row-meta {
         display: flex;
         align-items: center;
-        gap: 7px;
+        gap: 9px;
         flex-wrap: wrap;
-        margin-top: 4px;
-        font-size: .85em;
+        margin-top: 6px;
+        font-size: .88em;
         color: var(--ceu-muted);
     }
     #ceu-coursework .ceu-sep { color: #cbd5e1; }
+
+    /* Credits and date read as data, not as body copy. */
+    #ceu-coursework .ceu-stat {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 5px;
+    }
+    #ceu-coursework .ceu-stat-value {
+        color: var(--ceu-ink);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+    }
+    #ceu-coursework .ceu-stat-label { color: var(--ceu-muted); }
     #ceu-coursework .ceu-warn     { color: #b45309; font-weight: 600; }
     #ceu-coursework .ceu-warn-bad { color: #dc2626; }
 
