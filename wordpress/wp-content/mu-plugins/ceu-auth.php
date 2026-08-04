@@ -540,7 +540,7 @@ add_action('wp_footer', function () {
 
             function fixRegisterLink() {
                 document.querySelectorAll('a.register-link, a.registration-popup').forEach(function (a) {
-                    a.href = 'https://shadow.ceunits.com/login-register/';
+                    a.href = <?= json_encode(home_url('/register/')) ?>;
                 });
             }
 

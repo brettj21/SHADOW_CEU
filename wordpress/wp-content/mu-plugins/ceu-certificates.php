@@ -84,9 +84,8 @@ function ceu_coursework_html() {
     $taken = $data['taken'];
     $certs = $data['certs'];
 
-    // Name and licence expiry come from the CEU session, not the DB.
+    // Licence expiry comes from the CEU session, not the DB.
     $session  = $_SESSION['session_data'][0] ?? [];
-    $name     = trim(($session['FIRST'] ?? '') . ' ' . ($session['LAST'] ?? ''));
     $lic_exp  = !empty($session['LIC_EXP']) ? $session['LIC_EXP'] : null;
     $exp_days = $lic_exp ? (int) floor((strtotime($lic_exp) - time()) / 86400) : null;
 
@@ -161,7 +160,7 @@ function ceu_coursework_html() {
     ?>
     <div id="ceu-coursework">
         <div class="ceu-head">
-            <h2 class="ceu-heading">Certified Coursework<?= $name ? ' for ' . esc_html($name) : '' ?></h2>
+            <h2 class="ceu-heading">Coursework and Certificates</h2>
         </div>
 
         <div class="ceu-toolbar">
