@@ -76,9 +76,12 @@ add_filter('tutor_dashboard/nav_ui_items', function ($items) {
             'url'   => home_url('/user/'),
             'icon'  => 'user-circle',
         ],
+        // Completed Courses and Certificates now both live on /user/ as two
+        // show/hide panels — /user-2/ is retired. The #certificates hash tells
+        // ceu-certificates.php to open the Certificates tab on arrival.
         'enrolled-courses' => [
             'title' => 'My Certificates',
-            'url'   => home_url('/user-2/'),
+            'url'   => home_url('/user/#certificates'),
             'icon'  => 'certificate',
         ],
         'settings' => [
