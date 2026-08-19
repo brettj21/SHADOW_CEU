@@ -62,8 +62,10 @@ function ceu_coursework_data() {
         while ($row = $r->fetch_assoc()) $taken[] = $row;
     }
 
+    // ID is selected so each row can link to /certificate/?cid=… — see
+    // ceu-certificate.php, which re-checks ownership before rendering.
     $certs = [];
-    $r = $db->query('SELECT TRAINING_TITLE, DATE_COMPLETED, CREDITS, STATE
+    $r = $db->query('SELECT ID, TRAINING_TITLE, DATE_COMPLETED, CREDITS, STATE
                      FROM CEU_CERTIFICATES WHERE USER_ID = ' . $user_id . '
                      ORDER BY DATE_COMPLETED DESC');
     if ($r) {
@@ -142,12 +144,19 @@ function ceu_coursework_html() {
                 ? '<span class="ceu-action">Add to cart</span>'
                 : '<a class="ceu-action" href="/courses/">Retake</a>';
         } else {
-            // Certificate thumbnail + "click here", as on the old site.
-            $h .= '<span class="ceu-cert">';
+            // Certificate thumbnail + "click here", as on the old site — now an
+            // actual link, opening the certificate in a new tab the way cert.php
+            // did. Was a bare <span> with no href and no handler: it looked
+            // clickable and did nothing.
+            $slug = defined('CEU_CERTIFICATE_SLUG') ? CEU_CERTIFICATE_SLUG : 'certificate';
+            $url  = home_url('/' . $slug . '/?cid=' . (int) $c['ID']);
+
+            $h .= '<a class="ceu-cert" href="' . esc_url($url) . '"'
+                . ' target="_blank" rel="noopener">';
             $h .= '<img class="ceu-cert-img" src="' . esc_url(CEU_CERT_IMAGE) . '"'
                 . ' alt="Certificate" loading="lazy" width="72" height="54">';
             $h .= '<span class="ceu-action ceu-action-primary">click here</span>';
-            $h .= '</span>';
+            $h .= '</a>';
         }
         $h .= '</div></div>';
 
@@ -560,12 +569,16 @@ add_action('wp_footer', function () {
     #ceu-coursework .ceu-action-primary { color: var(--ceu-blue); }
 
     /* ── Certificate thumbnail ── */
+    /* An <a> since the certificate became a real link — the theme styles anchors,
+       so colour and decoration are stated rather than inherited. */
     #ceu-coursework .ceu-cert {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 3px;
         cursor: pointer;
+        text-decoration: none;
+        color: inherit;
     }
     #ceu-coursework .ceu-cert-img {
         display: block;
