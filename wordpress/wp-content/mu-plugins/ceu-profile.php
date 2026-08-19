@@ -624,6 +624,9 @@ add_action('wp_footer', function () {
         --ceu-muted: #64748b;
         --ceu-line:  #e2e8f0;
         --ceu-bg:    #f8fafc;
+        /* The brand navy from Elementor's global kit (post-48.css) — the colour
+           of the contact card's border and icon directly below this panel. */
+        --ceu-navy:  #183e7d;
 
         font-family: inherit;
         color: var(--ceu-ink);
@@ -641,11 +644,14 @@ add_action('wp_footer', function () {
     #ceu-profile .ceu-note-bad { background: #fee2e2; color: #b91c1c; }
 
     /* ── Summary card ── */
+    /* Deliberately matched to the contact card that sits under it in the same
+       column: same navy keyline, same corner radius. A pale grey border made this
+       panel read as secondary to a card that is only support details. */
     #ceu-profile .ceu-pcard {
-        border: 1px solid var(--ceu-line);
-        border-radius: 12px;
+        border: 2px solid var(--ceu-navy);
+        border-radius: 16px;
         background: #fff;
-        padding: 18px;
+        padding: 20px;
     }
     #ceu-profile .ceu-pcard-head {
         display: flex;
@@ -659,9 +665,10 @@ add_action('wp_footer', function () {
     }
     #ceu-profile .ceu-pcard-title {
         margin: 0;
-        font-size: 1.05em;
+        font-size: 1.2em;
         font-weight: 700;
         line-height: 1.3;
+        color: var(--ceu-navy);
     }
     /* Two buttons in a narrow left column. Wrapping is on the flex line, not a
        media query: what matters is the width of the COLUMN, which a viewport
@@ -671,6 +678,16 @@ add_action('wp_footer', function () {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
+    }
+    /* Card buttons carry the brand navy; the dialog's own buttons are left alone. */
+    #ceu-profile .ceu-pcard-actions .ceu-pbtn {
+        border-color: var(--ceu-navy);
+        color: var(--ceu-navy);
+    }
+    #ceu-profile .ceu-pcard-actions .ceu-pbtn:hover {
+        background: var(--ceu-navy);
+        border-color: var(--ceu-navy);
+        color: #fff;
     }
 
     #ceu-profile .ceu-pdl { margin: 0; }
