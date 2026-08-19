@@ -700,8 +700,13 @@ add_action('wp_footer', function () {
         flex-wrap: wrap;
         gap: 8px;
     }
-    /* Card buttons carry the brand navy; the dialog's own buttons are left alone. */
+    /* Card buttons carry the brand navy and sit smaller than the dialog's own
+       buttons: in the card they are a quiet secondary action beside the heading,
+       where the dialog's Save and Cancel are the point of the screen. */
     .ceu-profile-scope .ceu-pcard-actions .ceu-pbtn {
+        padding: 5px 11px;
+        font-size: .8em;
+        border-radius: 6px;
         border-color: var(--ceu-navy);
         color: var(--ceu-navy);
     }
