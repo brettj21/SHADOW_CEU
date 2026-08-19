@@ -693,13 +693,15 @@ add_action('wp_footer', function () {
     #ceu-profile .ceu-pdl { margin: 0; }
     #ceu-profile .ceu-pitem { padding: 12px 0; border-bottom: 1px solid var(--ceu-line); }
     #ceu-profile .ceu-pitem:last-child { border-bottom: 0; padding-bottom: 0; }
+    /* The colour does the work here as much as the weight: 700 → 800 is invisible
+       in a font with no 800 face, which then falls back to 700. */
     #ceu-profile .ceu-pitem dt {
         margin: 0 0 3px;
-        font-size: .76em;
-        font-weight: 700;
-        letter-spacing: .04em;
+        font-size: .78em;
+        font-weight: 800;
+        letter-spacing: .05em;
         text-transform: uppercase;
-        color: var(--ceu-muted);
+        color: var(--ceu-navy);
     }
     #ceu-profile .ceu-pitem dd {
         margin: 0;
