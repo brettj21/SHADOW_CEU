@@ -109,6 +109,31 @@ add_action('wp_footer', function () {
     $count = count($items);
     ?>
     <style>
+        /* ── The drawer, once moved to <body> ── */
+        /* The script below re-parents .minicart-content out of the header. The
+           theme's rules for it are descendant selectors rooted at
+           .mini-cart-header, so they stop matching after the move — these restate
+           the same geometry it had (zilom/sass/woocommerce/_style.scss:393).
+           z-index is the 32-bit maximum because the theme ships 9999999999 and
+           9999999999999, which overflow and are clamped to exactly that; as the
+           last child of <body> this wins the resulting tie on document order. */
+        .ceu-cart-panel {
+            position: fixed; top: 0; bottom: 0; right: -360px;
+            width: 350px; max-width: 100%;
+            padding: 0 25px 30px;
+            background: #fff;
+            overflow-y: auto; overflow-x: hidden;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+            opacity: 0;
+            transition: all .35s;
+            z-index: 2147483647;
+        }
+        .ceu-cart-panel.ceu-cart-open { right: 0; opacity: 1; }
+        body.admin-bar .ceu-cart-panel { margin-top: 30px; }
+        @media (max-width: 991px) {
+            .ceu-cart-panel { padding-left: 15px; padding-right: 15px; }
+        }
+
         /* ── CEU Mini Cart ── */
         .ceu-mc { font-family: "Helvetica Neue", Helvetica, sans-serif; min-width: 300px; }
 
@@ -177,48 +202,58 @@ add_action('wp_footer', function () {
             var ceuCartCount = <?php echo $count ?>;
             var ceuCartHtml  = <?php echo json_encode(ceu_cart_html($items)) ?>;
 
+            // querySelectorAll, not querySelector: the theme renders a header for
+            // desktop (.header_default_screen) and another for mobile
+            // (.header_mobile_screen), each with its own cart. Filling only the
+            // first left the other showing WooCommerce's empty cart.
             function ceuUpdateNav() {
-                var countEl = document.querySelector('.mini-cart-items');
-                if (countEl) countEl.textContent = ceuCartCount;
-                var contentEl = document.querySelector('.minicart-content');
-                if (contentEl) {
-                    contentEl.innerHTML = ceuCartHtml;
-                    ceuLiftCart(contentEl);
-                }
+                document.querySelectorAll('.mini-cart-items').forEach(function (el) {
+                    el.textContent = ceuCartCount;
+                });
+                document.querySelectorAll('.minicart-content').forEach(function (panel) {
+                    panel.innerHTML = ceuCartHtml;
+                    ceuPortalCart(panel);
+                });
             }
 
-            // ── Lift the dropdown above the rest of the header ────────────────────
-            // The panel opened UNDER the top bar's user menu and social icons. It
-            // lives inside the theme's header, so whichever ancestor forms the
-            // nearest stacking context is what the top bar is really being ranked
-            // against — raising the panel alone changes nothing.
+            // ── Move the drawer out of the header ─────────────────────────────────
+            // It opened underneath the header's avatar, user name and social icons.
+            // Two earlier attempts raised z-index — on the panel, then on every
+            // positioned ancestor, at the 32-bit maximum — and neither worked. The
+            // ancestor dump says why: the drawer sits inside .header_default_screen
+            // while the elements covering it live in .header-mobile, a different
+            // branch of the same header, and .gv-sticky-wrapper (position:relative,
+            // z-index:1) is added by the theme's sticky script AFTER page load,
+            // forming a stacking context around the drawer that caps everything
+            // inside it at that level. No z-index applied inside can escape it.
             //
-            // So walk up from the panel and lift every positioned ancestor as far
-            // as the header. Only positioned elements are touched, because z-index
-            // is ignored on static ones, and nothing else about them is changed.
+            // So the drawer leaves the header entirely. It is position:fixed with
+            // top:0/bottom:0 — anchored to the viewport, not to the cart icon — so
+            // being a child of <body> changes nothing about where it appears, and
+            // there it answers to no stacking context but the root's.
             //
-            // The value is the 32-bit signed maximum, and it has to be exactly that.
-            // The theme ships rules with z-index: 9999999999 and 9999999999999
-            // (zilom/css/course.css); both overflow and the browser CLAMPS them to
-            // 2147483647. Anything below the maximum loses to them — which is what
-            // happened to a first attempt at 2147482000.
-            //
-            // The profile dialogs use this same value. Ties are broken by document
-            // order, which falls the right way for both: the cart's lifted ancestors
-            // come after the top bar within the header, and the dialogs are appended
-            // to the end of <body>, after the header.
-            var CEU_CART_LAYER = 2147483647;
+            // The theme's close handler is unaffected: it is delegated on document
+            // and reads the overlay's own parent, and the overlay stays put.
+            function ceuPortalCart(panel) {
+                if (panel.dataset.ceuPortaled) return;
 
-            function ceuLiftCart(panel) {
-                for (var el = panel; el && el !== document.body; el = el.parentElement) {
-                    var style = window.getComputedStyle(el);
-                    if (style.position === 'static') continue;
+                // Remembered because the theme opens the drawer by putting .open on
+                // this ancestor, via a descendant selector that stops matching once
+                // the panel is moved. The class is mirrored onto the panel instead.
+                var owner = panel.closest('.mini-cart-inner');
+                if (!owner) return;
 
-                    var current = parseInt(style.zIndex, 10);
-                    if (isNaN(current) || current < CEU_CART_LAYER) {
-                        el.style.zIndex = String(CEU_CART_LAYER);
-                    }
-                }
+                panel.dataset.ceuPortaled = '1';
+                panel.classList.add('ceu-cart-panel');
+                document.body.appendChild(panel);
+
+                var sync = function () {
+                    panel.classList.toggle('ceu-cart-open', owner.classList.contains('open'));
+                };
+                new MutationObserver(sync).observe(owner, {
+                    attributes: true, attributeFilter: ['class']
+                });
+                sync();
             }
 
             // Remove item: update cookie and reload so PHP re-renders the correct state
