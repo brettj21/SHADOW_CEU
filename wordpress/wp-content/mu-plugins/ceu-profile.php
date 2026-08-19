@@ -25,6 +25,12 @@
  *   - Password change is NOT here yet — see the note at the bottom of this file.
  */
 
+// Matches CEU_REGISTER_MIN_PASS in ceu-register.php — kept as its own constant so
+// this file does not depend on that one having loaded.
+if (!defined('CEU_PROFILE_MIN_PASS')) {
+    define('CEU_PROFILE_MIN_PASS', 8);
+}
+
 // ─── Reference data ───────────────────────────────────────────────────────────
 
 // PROFESSION is stored as the slug (verified against CEU_USER: 'social-workers',
@@ -133,6 +139,17 @@ function ceu_profile_html() {
     $saved  = isset($_GET['profile']) && $_GET['profile'] === 'saved';
     $failed = isset($_GET['profile']) && $_GET['profile'] === 'error';
 
+    // Password change reports through its own query arg so the two panels never
+    // claim each other's outcome.
+    $pw_messages = [
+        'saved'    => ['ok',  'Your password has been changed.'],
+        'wrong'    => ['bad', 'That current password is not right. Nothing was changed.'],
+        'mismatch' => ['bad', 'The two new passwords did not match. Nothing was changed.'],
+        'short'    => ['bad', 'Your new password must be at least ' . CEU_PROFILE_MIN_PASS . ' characters.'],
+        'error'    => ['bad', 'Sorry — your password could not be changed. Please try again.'],
+    ];
+    $pw_note = $pw_messages[$_GET['password'] ?? ''] ?? null;
+
     ob_start();
     ?>
     <div id="ceu-profile">
@@ -142,10 +159,17 @@ function ceu_profile_html() {
             <div class="ceu-note ceu-note-bad">Sorry — those changes could not be saved. Please try again.</div>
         <?php endif; ?>
 
+        <?php if ($pw_note) : ?>
+            <div class="ceu-note ceu-note-<?= esc_attr($pw_note[0]) ?>"><?= esc_html($pw_note[1]) ?></div>
+        <?php endif; ?>
+
         <div class="ceu-pcard">
             <div class="ceu-pcard-head">
                 <h2 class="ceu-pcard-title">Personal Information</h2>
-                <button type="button" class="ceu-pbtn" data-ceu-profile-open>Edit</button>
+                <div class="ceu-pcard-actions">
+                    <button type="button" class="ceu-pbtn" data-ceu-open="ceu-profile-modal">Edit</button>
+                    <button type="button" class="ceu-pbtn" data-ceu-open="ceu-password-modal">Change password</button>
+                </div>
             </div>
 
             <dl class="ceu-pdl">
@@ -187,12 +211,12 @@ function ceu_profile_html() {
 
         <!-- ── Edit dialog ── -->
         <div class="ceu-modal" id="ceu-profile-modal" hidden>
-            <div class="ceu-modal-backdrop" data-ceu-profile-close></div>
+            <div class="ceu-modal-backdrop" data-ceu-close></div>
 
             <div class="ceu-modal-box" role="dialog" aria-modal="true" aria-labelledby="ceu-modal-title">
                 <div class="ceu-modal-head">
                     <h3 id="ceu-modal-title">Edit your information</h3>
-                    <button type="button" class="ceu-modal-x" data-ceu-profile-close aria-label="Close">&times;</button>
+                    <button type="button" class="ceu-modal-x" data-ceu-close aria-label="Close">&times;</button>
                 </div>
 
                 <form class="ceu-modal-body" method="post"
@@ -287,8 +311,54 @@ function ceu_profile_html() {
                     </div>
 
                     <div class="ceu-modal-foot">
-                        <button type="button" class="ceu-pbtn ceu-pbtn-ghost" data-ceu-profile-close>Cancel</button>
+                        <button type="button" class="ceu-pbtn ceu-pbtn-ghost" data-ceu-close>Cancel</button>
                         <button type="submit" class="ceu-pbtn ceu-pbtn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- ── Change password dialog ── -->
+        <div class="ceu-modal" id="ceu-password-modal" hidden>
+            <div class="ceu-modal-backdrop" data-ceu-close></div>
+
+            <div class="ceu-modal-box ceu-modal-box-sm" role="dialog" aria-modal="true"
+                 aria-labelledby="ceu-password-title">
+                <div class="ceu-modal-head">
+                    <h3 id="ceu-password-title">Change your password</h3>
+                    <button type="button" class="ceu-modal-x" data-ceu-close aria-label="Close">&times;</button>
+                </div>
+
+                <form class="ceu-modal-body" method="post"
+                      action="<?= esc_url(admin_url('admin-post.php')) ?>">
+                    <input type="hidden" name="action" value="ceu_update_password">
+                    <input type="hidden" name="redirect_to" value="<?= esc_url(ceu_profile_return_url()) ?>">
+                    <?php wp_nonce_field('ceu_update_password', '_ceu_password_nonce'); ?>
+
+                    <div class="ceu-fgrid">
+                        <label class="ceu-field ceu-field-wide">
+                            <span>Current password</span>
+                            <input type="password" name="current_pass" required
+                                   autocomplete="current-password">
+                        </label>
+                        <label class="ceu-field ceu-field-wide">
+                            <span>New password</span>
+                            <input type="password" name="new_pass" required
+                                   minlength="<?= (int) CEU_PROFILE_MIN_PASS ?>"
+                                   autocomplete="new-password">
+                            <small class="ceu-phint">Minimum <?= (int) CEU_PROFILE_MIN_PASS ?> characters</small>
+                        </label>
+                        <label class="ceu-field ceu-field-wide">
+                            <span>Confirm new password</span>
+                            <input type="password" name="confirm_pass" required
+                                   minlength="<?= (int) CEU_PROFILE_MIN_PASS ?>"
+                                   autocomplete="new-password">
+                        </label>
+                    </div>
+
+                    <div class="ceu-modal-foot">
+                        <button type="button" class="ceu-pbtn ceu-pbtn-ghost" data-ceu-close>Cancel</button>
+                        <button type="submit" class="ceu-pbtn ceu-pbtn-primary">Change password</button>
                     </div>
                 </form>
             </div>
@@ -402,6 +472,90 @@ function ceu_do_update_profile() {
 
 add_action('admin_post_ceu_update_profile', 'ceu_do_update_profile');
 
+// ─── Change password ──────────────────────────────────────────────────────────
+// CEU_USER.PASS is sha256(password) — the same scheme ceu-auth.php authenticates
+// against and ceu-register.php writes.
+//
+// The catch is that PASS doubles as a session key: ceu-auth.php copies it into
+// the 'ceuSession' cookie at login, caches the whole row in the _ceu_row user
+// meta, and keeps a copy in $_SESSION. Writing a new PASS without refreshing all
+// three leaves the browser holding a key that no longer matches the row, which
+// legacy CEU code reads as a dead session. So this updates every copy in the
+// same request. The WordPress auth cookie is independent of PASS, so the user
+// stays logged in throughout.
+
+function ceu_do_update_password() {
+    $back = !empty($_POST['redirect_to'])
+        ? esc_url_raw($_POST['redirect_to'])
+        : ceu_profile_return_url();
+
+    // Every exit reports through ?password= so the panel can say what happened.
+    $fail = function ($why) use ($back) {
+        wp_safe_redirect(add_query_arg('password', $why, $back));
+        exit;
+    };
+
+    if (!wp_verify_nonce($_POST['_ceu_password_nonce'] ?? '', 'ceu_update_password')) $fail('error');
+    if (!function_exists('ceu_is_logged_in') || !ceu_is_logged_in())                  $fail('error');
+
+    $user_id = (int) get_user_meta(get_current_user_id(), '_ceu_id', true);
+    if (!$user_id || !function_exists('ceu_db_connect')) $fail('error');
+
+    $current = (string) ($_POST['current_pass'] ?? '');
+    $new     = (string) ($_POST['new_pass'] ?? '');
+    $confirm = (string) ($_POST['confirm_pass'] ?? '');
+
+    // Checked before touching the database, cheapest first.
+    if ($new !== $confirm)                        $fail('mismatch');
+    if (strlen($new) < CEU_PROFILE_MIN_PASS)      $fail('short');
+
+    $db = ceu_db_connect();
+    if (!$db) $fail('error');
+
+    // Prove the current password before changing it — the WordPress session
+    // alone is not enough to re-key an account.
+    $stmt = $db->prepare('SELECT PASS FROM CEU_USER WHERE ID = ? LIMIT 1');
+    if (!$stmt) $fail('error');
+    $stmt->bind_param('i', $user_id);
+    $stmt->execute();
+    $row = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+
+    if (!$row) $fail('error');
+    if (!hash_equals((string) $row['PASS'], hash('sha256', $current))) $fail('wrong');
+
+    $hash = hash('sha256', $new);
+
+    $stmt = $db->prepare('UPDATE CEU_USER SET PASS = ? WHERE ID = ?');
+    if (!$stmt) $fail('error');
+    $stmt->bind_param('si', $hash, $user_id);
+    $ok = $stmt->execute();
+    $stmt->close();
+    if (!$ok) $fail('error');
+
+    // ── Re-key the session in this same request ───────────────────────────────
+    // Same three places, and the same cookie expiry, that ceu-auth.php sets at
+    // login. Miss any one and the next page load looks logged out to legacy code.
+    $r = $db->query('SELECT * FROM CEU_USER WHERE ID = ' . $user_id . ' LIMIT 1');
+    if ($r && ($fresh = $r->fetch_assoc())) {
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            $_SESSION['session_data'] = [$fresh];
+        }
+        update_user_meta(get_current_user_id(), '_ceu_row', $fresh);
+
+        if (!headers_sent()) {
+            $exp = mktime(0, 0, 0, 12, 31, (int) date('Y') + 1);
+            setcookie('ceuSession', (string) $fresh['PASS'], $exp, '/');
+            $_COOKIE['ceuSession'] = (string) $fresh['PASS'];
+        }
+    }
+
+    wp_safe_redirect(add_query_arg('password', 'saved', $back));
+    exit;
+}
+
+add_action('admin_post_ceu_update_password', 'ceu_do_update_password');
+
 // ─── Styles + dialog behaviour ────────────────────────────────────────────────
 
 add_action('wp_footer', function () {
@@ -410,13 +564,18 @@ add_action('wp_footer', function () {
     <script>
     (function () {
         function init() {
-            var modal = document.getElementById('ceu-profile-modal');
-            if (!modal) return;
+            // Two dialogs now — edit details and change password — so openers name
+            // their target: data-ceu-open="<modal id>".
+            var openers = document.querySelectorAll('[data-ceu-open]');
+            if (!openers.length) return;
 
             var lastFocus = null;
+            var current   = null;
 
-            function open() {
+            function open(modal) {
+                if (!modal) return;
                 lastFocus = document.activeElement;
+                current   = modal;
                 modal.hidden = false;
                 document.body.style.overflow = 'hidden';
                 var first = modal.querySelector('input, select, textarea');
@@ -424,19 +583,25 @@ add_action('wp_footer', function () {
             }
 
             function close() {
-                modal.hidden = true;
+                if (!current) return;
+                current.hidden = true;
+                current = null;
                 document.body.style.overflow = '';
                 if (lastFocus) lastFocus.focus();
             }
 
-            document.querySelectorAll('[data-ceu-profile-open]').forEach(function (b) {
-                b.addEventListener('click', open);
+            openers.forEach(function (b) {
+                b.addEventListener('click', function () {
+                    open(document.getElementById(b.dataset.ceuOpen));
+                });
             });
-            modal.querySelectorAll('[data-ceu-profile-close]').forEach(function (b) {
+
+            document.querySelectorAll('[data-ceu-close]').forEach(function (b) {
                 b.addEventListener('click', close);
             });
+
             document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && !modal.hidden) close();
+                if (e.key === 'Escape') close();
             });
         }
 
@@ -447,6 +612,12 @@ add_action('wp_footer', function () {
     </script>
 
     <style>
+    /* Stated rather than inherited from the theme: the fields are width:100% with
+       padding and a border, so under content-box they overflow their dialog. */
+    #ceu-profile, #ceu-profile *, #ceu-profile *::before, #ceu-profile *::after {
+        box-sizing: border-box;
+    }
+
     #ceu-profile {
         --ceu-blue:  #2563eb;
         --ceu-ink:   #0f172a;
@@ -478,6 +649,7 @@ add_action('wp_footer', function () {
     }
     #ceu-profile .ceu-pcard-head {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
         gap: 12px;
@@ -490,6 +662,15 @@ add_action('wp_footer', function () {
         font-size: 1.05em;
         font-weight: 700;
         line-height: 1.3;
+    }
+    /* Two buttons in a narrow left column. Wrapping is on the flex line, not a
+       media query: what matters is the width of the COLUMN, which a viewport
+       breakpoint cannot see. Both fit beside the title in a wide column and drop
+       to their own row in a narrow one. */
+    #ceu-profile .ceu-pcard-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
     }
 
     #ceu-profile .ceu-pdl { margin: 0; }
@@ -552,6 +733,13 @@ add_action('wp_footer', function () {
         border-radius: 14px;
         box-shadow: 0 20px 50px rgba(15, 23, 42, .3);
         overflow: hidden;
+    }
+    /* Three password fields do not need the full-width edit dialog. */
+    #ceu-profile .ceu-modal-box-sm { width: min(440px, calc(100vw - 32px)); }
+
+    #ceu-profile .ceu-phint {
+        font-size: .8em;
+        color: var(--ceu-muted);
     }
     #ceu-profile .ceu-modal-head {
         display: flex;
@@ -629,13 +817,21 @@ add_action('wp_footer', function () {
     <?php
 }, 20);
 
-// ─── NOT YET IMPLEMENTED: change password ─────────────────────────────────────
-// The legacy page had a "Change Password" form alongside this one
-// (User.class.php::editUserSecurity — PASS = sha256(new)).
+// ─── Change password: UNVERIFIED AGAINST A REAL SESSION ───────────────────────
+// ceu_do_update_password() above now implements what this note used to defer,
+// including the re-keying the old note warned about: PASS, the _ceu_row meta,
+// $_SESSION['session_data'] and the 'ceuSession' cookie are all rewritten in the
+// one request.
 //
-// It is deliberately left out for now because CEU_USER.PASS doubles as the
-// session key: ceu-auth.php stores it in the 'ceuSession' cookie and the legacy
-// app matches on it. Changing PASS therefore has to re-issue that cookie and the
-// WP session in the same request, or the user is silently logged out — and that
-// needs testing against a real session, which cannot be done from the local
-// sandbox (it has no WordPress database).
+// It has NOT been exercised end to end. The local sandbox has no WordPress
+// database, so there is no way to log in as a CEU user here and confirm that the
+// session survives the change. Worth watching on the first real run:
+//
+//   1. After changing the password, load another page. Still logged in?
+//   2. Log out and back in with the NEW password.
+//   3. Check a page that reads $_SESSION['session_data'] — the licence expiry
+//      warnings in ceu-certificates.php are the easiest tell.
+//
+// If a change does log the user out, the cookie is the first suspect: this runs
+// on admin-post.php, so anything that sends output before setcookie() would drop
+// it silently (the headers_sent() guard skips it rather than warn).
