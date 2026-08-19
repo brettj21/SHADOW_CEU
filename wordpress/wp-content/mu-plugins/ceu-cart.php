@@ -181,7 +181,37 @@ add_action('wp_footer', function () {
                 var countEl = document.querySelector('.mini-cart-items');
                 if (countEl) countEl.textContent = ceuCartCount;
                 var contentEl = document.querySelector('.minicart-content');
-                if (contentEl) contentEl.innerHTML = ceuCartHtml;
+                if (contentEl) {
+                    contentEl.innerHTML = ceuCartHtml;
+                    ceuLiftCart(contentEl);
+                }
+            }
+
+            // ── Lift the dropdown above the rest of the header ────────────────────
+            // The panel opened UNDER the top bar's user menu and social icons. It
+            // lives inside the theme's header, so whichever ancestor forms the
+            // nearest stacking context is what the top bar is really being ranked
+            // against — raising the panel alone changes nothing.
+            //
+            // So walk up from the panel and lift every positioned ancestor as far
+            // as the header. Only positioned elements are touched, because z-index
+            // is ignored on static ones, and nothing else about them is changed.
+            //
+            // Deliberately below the profile dialogs' 2147483000: those are moved
+            // to <body> to clear the header entirely, and a tie here would let the
+            // header cover them again, since it comes later in the document.
+            var CEU_CART_LAYER = 2147482000;
+
+            function ceuLiftCart(panel) {
+                for (var el = panel; el && el !== document.body; el = el.parentElement) {
+                    var style = window.getComputedStyle(el);
+                    if (style.position === 'static') continue;
+
+                    var current = parseInt(style.zIndex, 10);
+                    if (isNaN(current) || current < CEU_CART_LAYER) {
+                        el.style.zIndex = String(CEU_CART_LAYER);
+                    }
+                }
             }
 
             // Remove item: update cookie and reload so PHP re-renders the correct state
