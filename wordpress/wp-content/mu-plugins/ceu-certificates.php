@@ -236,8 +236,14 @@ add_action('wp_footer', function () {
                 var pageEl = document.querySelector('[data-elementor-type="wp-page"]');
                 if (pageEl) {
                     var wraps   = Array.from(pageEl.querySelectorAll('.elementor-widget-wrap.elementor-element-populated'));
+                    // The chosen column gets emptied, so anything that must survive
+                    // has to be recognisable here. #ceu-profile is named explicitly:
+                    // its dialogs (the only form fields it had) are moved to <body>
+                    // by ceu-profile.php, so the form test alone stopped protecting
+                    // it. Load order saves us today — this file's handler is
+                    // registered first — but that is not something to rely on.
                     var certCol = wraps.find(function (w) {
-                        return !w.querySelector('form, input, select, textarea');
+                        return !w.querySelector('form, input, select, textarea, #ceu-profile');
                     });
 
                     if (certCol) {

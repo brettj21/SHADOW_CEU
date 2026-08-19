@@ -152,7 +152,7 @@ function ceu_profile_html() {
 
     ob_start();
     ?>
-    <div id="ceu-profile">
+    <div id="ceu-profile" class="ceu-profile-scope">
         <?php if ($saved) : ?>
             <div class="ceu-note ceu-note-ok">Your information has been updated.</div>
         <?php elseif ($failed) : ?>
@@ -569,6 +569,27 @@ add_action('wp_footer', function () {
             var openers = document.querySelectorAll('[data-ceu-open]');
             if (!openers.length) return;
 
+            // ── Move the dialogs to <body> ────────────────────────────────────
+            // They are authored inside the panel, which sits inside an Elementor
+            // column. Any ancestor with a transform, a filter or its own z-index
+            // makes a stacking context, and a fixed-position child cannot escape
+            // it — which is why the dialogs opened UNDER the sticky header even
+            // at z-index 99999. Re-parenting to <body> puts them in the page's
+            // top-level stacking context, where their z-index counts.
+            //
+            // The wrapper carries .ceu-profile-scope so every style below still
+            // applies: the panel's CSS is scoped to that class, not to #ceu-profile,
+            // precisely so the dialogs keep their styling after this move.
+            var portal = document.querySelector('.ceu-profile-portal');
+            if (!portal) {
+                portal = document.createElement('div');
+                portal.className = 'ceu-profile-scope ceu-profile-portal';
+                document.body.appendChild(portal);
+            }
+            document.querySelectorAll('.ceu-modal').forEach(function (m) {
+                portal.appendChild(m);
+            });
+
             var lastFocus = null;
             var current   = null;
 
@@ -614,11 +635,11 @@ add_action('wp_footer', function () {
     <style>
     /* Stated rather than inherited from the theme: the fields are width:100% with
        padding and a border, so under content-box they overflow their dialog. */
-    #ceu-profile, #ceu-profile *, #ceu-profile *::before, #ceu-profile *::after {
+    .ceu-profile-scope, .ceu-profile-scope *, .ceu-profile-scope *::before, .ceu-profile-scope *::after {
         box-sizing: border-box;
     }
 
-    #ceu-profile {
+    .ceu-profile-scope {
         --ceu-blue:  #2563eb;
         --ceu-ink:   #0f172a;
         --ceu-muted: #64748b;
@@ -633,27 +654,27 @@ add_action('wp_footer', function () {
     }
 
     /* ── Save/error notice ── */
-    #ceu-profile .ceu-note {
+    .ceu-profile-scope .ceu-note {
         padding: 11px 14px;
         border-radius: 8px;
         margin-bottom: 14px;
         font-size: .9em;
         font-weight: 600;
     }
-    #ceu-profile .ceu-note-ok  { background: #dbeafe; color: #1d4ed8; }
-    #ceu-profile .ceu-note-bad { background: #fee2e2; color: #b91c1c; }
+    .ceu-profile-scope .ceu-note-ok  { background: #dbeafe; color: #1d4ed8; }
+    .ceu-profile-scope .ceu-note-bad { background: #fee2e2; color: #b91c1c; }
 
     /* ── Summary card ── */
     /* Deliberately matched to the contact card that sits under it in the same
        column: same navy keyline, same corner radius. A pale grey border made this
        panel read as secondary to a card that is only support details. */
-    #ceu-profile .ceu-pcard {
+    .ceu-profile-scope .ceu-pcard {
         border: 2px solid var(--ceu-navy);
         border-radius: 16px;
         background: #fff;
         padding: 20px;
     }
-    #ceu-profile .ceu-pcard-head {
+    .ceu-profile-scope .ceu-pcard-head {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -663,7 +684,7 @@ add_action('wp_footer', function () {
         margin-bottom: 4px;
         border-bottom: 1px solid var(--ceu-line);
     }
-    #ceu-profile .ceu-pcard-title {
+    .ceu-profile-scope .ceu-pcard-title {
         margin: 0;
         font-size: 1.2em;
         font-weight: 700;
@@ -674,28 +695,28 @@ add_action('wp_footer', function () {
        media query: what matters is the width of the COLUMN, which a viewport
        breakpoint cannot see. Both fit beside the title in a wide column and drop
        to their own row in a narrow one. */
-    #ceu-profile .ceu-pcard-actions {
+    .ceu-profile-scope .ceu-pcard-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
     }
     /* Card buttons carry the brand navy; the dialog's own buttons are left alone. */
-    #ceu-profile .ceu-pcard-actions .ceu-pbtn {
+    .ceu-profile-scope .ceu-pcard-actions .ceu-pbtn {
         border-color: var(--ceu-navy);
         color: var(--ceu-navy);
     }
-    #ceu-profile .ceu-pcard-actions .ceu-pbtn:hover {
+    .ceu-profile-scope .ceu-pcard-actions .ceu-pbtn:hover {
         background: var(--ceu-navy);
         border-color: var(--ceu-navy);
         color: #fff;
     }
 
-    #ceu-profile .ceu-pdl { margin: 0; }
-    #ceu-profile .ceu-pitem { padding: 12px 0; border-bottom: 1px solid var(--ceu-line); }
-    #ceu-profile .ceu-pitem:last-child { border-bottom: 0; padding-bottom: 0; }
+    .ceu-profile-scope .ceu-pdl { margin: 0; }
+    .ceu-profile-scope .ceu-pitem { padding: 12px 0; border-bottom: 1px solid var(--ceu-line); }
+    .ceu-profile-scope .ceu-pitem:last-child { border-bottom: 0; padding-bottom: 0; }
     /* The colour does the work here as much as the weight: 700 → 800 is invisible
        in a font with no 800 face, which then falls back to 700. */
-    #ceu-profile .ceu-pitem dt {
+    .ceu-profile-scope .ceu-pitem dt {
         margin: 0 0 3px;
         font-size: .78em;
         font-weight: 800;
@@ -703,16 +724,16 @@ add_action('wp_footer', function () {
         text-transform: uppercase;
         color: var(--ceu-navy);
     }
-    #ceu-profile .ceu-pitem dd {
+    .ceu-profile-scope .ceu-pitem dd {
         margin: 0;
         font-size: .93em;
         line-height: 1.5;
     }
-    #ceu-profile .ceu-pbreak { overflow-wrap: anywhere; }
-    #ceu-profile .ceu-pmuted { color: var(--ceu-muted); }
+    .ceu-profile-scope .ceu-pbreak { overflow-wrap: anywhere; }
+    .ceu-profile-scope .ceu-pmuted { color: var(--ceu-muted); }
 
     /* ── Buttons ── */
-    #ceu-profile .ceu-pbtn {
+    .ceu-profile-scope .ceu-pbtn {
         padding: 8px 16px;
         border: 1px solid var(--ceu-line);
         border-radius: 8px;
@@ -724,24 +745,31 @@ add_action('wp_footer', function () {
         cursor: pointer;
         transition: background .15s, border-color .15s, color .15s;
     }
-    #ceu-profile .ceu-pbtn:hover { border-color: var(--ceu-blue); color: var(--ceu-blue); }
-    #ceu-profile .ceu-pbtn-primary {
+    .ceu-profile-scope .ceu-pbtn:hover { border-color: var(--ceu-blue); color: var(--ceu-blue); }
+    .ceu-profile-scope .ceu-pbtn-primary {
         background: var(--ceu-blue);
         border-color: var(--ceu-blue);
         color: #fff;
     }
-    #ceu-profile .ceu-pbtn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; color: #fff; }
-    #ceu-profile .ceu-pbtn-ghost { color: var(--ceu-muted); }
+    .ceu-profile-scope .ceu-pbtn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; color: #fff; }
+    .ceu-profile-scope .ceu-pbtn-ghost { color: var(--ceu-muted); }
 
     /* ── Modal ── */
-    #ceu-profile .ceu-modal { position: fixed; inset: 0; z-index: 99999; }
-    #ceu-profile .ceu-modal[hidden] { display: none; }
-    #ceu-profile .ceu-modal-backdrop {
+    /* The theme's sticky header runs to nine-figure z-indexes, and the dialogs are
+       moved to <body> by the script above so this number is actually comparable
+       with it — inside the Elementor column it was being judged against the
+       column's stacking context instead, where no value could have won. */
+    .ceu-profile-scope .ceu-modal { position: fixed; inset: 0; z-index: 2147483000; }
+    /* The <body>-level wrapper holding the moved dialogs. Lays out nothing; it
+       exists to carry the scope class so the styles below still apply. */
+    .ceu-profile-portal { position: static; }
+    .ceu-profile-scope .ceu-modal[hidden] { display: none; }
+    .ceu-profile-scope .ceu-modal-backdrop {
         position: absolute;
         inset: 0;
         background: rgba(15, 23, 42, .55);
     }
-    #ceu-profile .ceu-modal-box {
+    .ceu-profile-scope .ceu-modal-box {
         position: relative;
         width: min(760px, calc(100vw - 32px));
         max-height: calc(100vh - 64px);
@@ -754,21 +782,21 @@ add_action('wp_footer', function () {
         overflow: hidden;
     }
     /* Three password fields do not need the full-width edit dialog. */
-    #ceu-profile .ceu-modal-box-sm { width: min(440px, calc(100vw - 32px)); }
+    .ceu-profile-scope .ceu-modal-box-sm { width: min(440px, calc(100vw - 32px)); }
 
-    #ceu-profile .ceu-phint {
+    .ceu-profile-scope .ceu-phint {
         font-size: .8em;
         color: var(--ceu-muted);
     }
-    #ceu-profile .ceu-modal-head {
+    .ceu-profile-scope .ceu-modal-head {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 18px 22px;
         border-bottom: 1px solid var(--ceu-line);
     }
-    #ceu-profile .ceu-modal-head h3 { margin: 0; font-size: 1.1em; font-weight: 700; }
-    #ceu-profile .ceu-modal-x {
+    .ceu-profile-scope .ceu-modal-head h3 { margin: 0; font-size: 1.1em; font-weight: 700; }
+    .ceu-profile-scope .ceu-modal-x {
         border: 0;
         background: none;
         font-size: 1.7em;
@@ -777,11 +805,11 @@ add_action('wp_footer', function () {
         cursor: pointer;
         padding: 0 4px;
     }
-    #ceu-profile .ceu-modal-x:hover { color: var(--ceu-ink); }
+    .ceu-profile-scope .ceu-modal-x:hover { color: var(--ceu-ink); }
 
-    #ceu-profile .ceu-modal-body { padding: 22px; overflow-y: auto; }
+    .ceu-profile-scope .ceu-modal-body { padding: 22px; overflow-y: auto; }
 
-    #ceu-profile .ceu-fieldset-label {
+    .ceu-profile-scope .ceu-fieldset-label {
         margin: 0 0 12px;
         font-size: .76em;
         font-weight: 700;
@@ -789,21 +817,21 @@ add_action('wp_footer', function () {
         text-transform: uppercase;
         color: var(--ceu-muted);
     }
-    #ceu-profile .ceu-fgrid {
+    .ceu-profile-scope .ceu-fgrid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
         margin-bottom: 26px;
     }
-    #ceu-profile .ceu-field { display: flex; flex-direction: column; gap: 5px; }
-    #ceu-profile .ceu-field-wide { grid-column: 1 / -1; }
-    #ceu-profile .ceu-field > span {
+    .ceu-profile-scope .ceu-field { display: flex; flex-direction: column; gap: 5px; }
+    .ceu-profile-scope .ceu-field-wide { grid-column: 1 / -1; }
+    .ceu-profile-scope .ceu-field > span {
         font-size: .84em;
         font-weight: 600;
         color: var(--ceu-ink);
     }
-    #ceu-profile .ceu-field input,
-    #ceu-profile .ceu-field select {
+    .ceu-profile-scope .ceu-field input,
+    .ceu-profile-scope .ceu-field select {
         width: 100%;
         padding: 9px 12px;
         border: 1px solid var(--ceu-line);
@@ -814,14 +842,14 @@ add_action('wp_footer', function () {
         color: var(--ceu-ink);
         transition: border-color .15s, box-shadow .15s;
     }
-    #ceu-profile .ceu-field input:focus,
-    #ceu-profile .ceu-field select:focus {
+    .ceu-profile-scope .ceu-field input:focus,
+    .ceu-profile-scope .ceu-field select:focus {
         outline: 0;
         border-color: var(--ceu-blue);
         box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
     }
 
-    #ceu-profile .ceu-modal-foot {
+    .ceu-profile-scope .ceu-modal-foot {
         display: flex;
         justify-content: flex-end;
         gap: 10px;
@@ -829,8 +857,8 @@ add_action('wp_footer', function () {
     }
 
     @media (max-width: 560px) {
-        #ceu-profile .ceu-fgrid { grid-template-columns: minmax(0, 1fr); }
-        #ceu-profile .ceu-modal-box { margin: 12px auto; max-height: calc(100vh - 24px); }
+        .ceu-profile-scope .ceu-fgrid { grid-template-columns: minmax(0, 1fr); }
+        .ceu-profile-scope .ceu-modal-box { margin: 12px auto; max-height: calc(100vh - 24px); }
     }
     </style>
     <?php
