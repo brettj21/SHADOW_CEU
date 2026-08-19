@@ -275,24 +275,65 @@ add_action('wp_footer', function () {
                     if (!hoisted) return;
                     home.parentNode.insertBefore(cw, home);
                     cw.classList.remove('ceu-hoisted');
+                    cw.style.maxWidth = '';
                     hoisted = false;
+                }
+
+                // Is anything actually sitting beside the block? Asked directly, by
+                // looking for an element that shares its vertical band but lies wholly
+                // to one side. Comparing widths instead was too blunt — section and
+                // column padding alone can eat 15% of the page, which read as "still
+                // side by side" on a perfectly stacked layout.
+                function isBeside() {
+                    var r = cw.getBoundingClientRect();
+                    if (!r.width || !r.height) return false;
+
+                    var els = host.querySelectorAll('*');
+                    for (var i = 0; i < els.length; i++) {
+                        var el = els[i];
+                        if (el === cw || cw.contains(el) || el.contains(cw)) continue;
+
+                        var b = el.getBoundingClientRect();
+                        if (!b.width || !b.height) continue;
+
+                        // Must overlap vertically by at least half the shorter box …
+                        var overlap = Math.min(r.bottom, b.bottom) - Math.max(r.top, b.top);
+                        if (overlap < Math.min(r.height, b.height) / 2) continue;
+
+                        // … and clear the block entirely on one side.
+                        if (b.right > r.left + 1 && b.left < r.right - 1) continue;
+
+                        // Overlays float over the layout rather than sit in it — the
+                        // back-to-top button should not count as a neighbour.
+                        var pos = window.getComputedStyle(el).position;
+                        if (pos === 'fixed' || pos === 'sticky' || pos === 'absolute') continue;
+
+                        return true;
+                    }
+                    return false;
                 }
 
                 function sync() {
                     // Measure from the home position — otherwise, once hoisted, the
                     // block is always full width and would never move back.
                     restore();
-                    if (!narrow.matches) return;
+                    if (!narrow.matches || isBeside()) return;
 
-                    // Guard against a narrow-but-still-side-by-side layout: only hoist
-                    // when the block already spans the page on its own. A real two
-                    // column split lands near 0.5, never above 0.9.
-                    var full = host.getBoundingClientRect().width;
-                    var own  = cw.getBoundingClientRect().width;
-                    if (!full || own / full < 0.9) return;
+                    // Clamped so a block whose home was already edge to edge still
+                    // gets a gutter; a no-op for anything sitting inside a section.
+                    var own = Math.min(cw.getBoundingClientRect().width,
+                                       host.getBoundingClientRect().width - 40);
 
                     host.insertBefore(cw, host.firstChild);
                     cw.classList.add('ceu-hoisted');
+
+                    // The page wrapper has none of the section padding the block used
+                    // to sit inside, so it would otherwise run edge to edge. Carry the
+                    // width it had at home across and centre it, which reproduces the
+                    // same gutters whatever the theme uses. Vertical breathing room is
+                    // padding, not margin, in the CSS below — a top margin on a first
+                    // child collapses out of the wrapper and shows no gap at all.
+                    cw.style.maxWidth = Math.round(own) + 'px';
                     hoisted = true;
                 }
 
@@ -536,9 +577,16 @@ add_action('wp_footer', function () {
     }
 
     /* ── Hoisted to the top of the page on narrow screens ── */
-    /* The script above moves the block; this only gives it breathing room from
-       whatever section it now sits above. */
-    #ceu-coursework.ceu-hoisted { margin-bottom: 32px; }
+    /* The script above moves the block and sets its max-width; this centres it and
+       keeps it clear of the header above and the section below. Padding rather than
+       margin at the top: as the wrapper's first child, a top margin would collapse
+       straight out of the wrapper and leave the heading against the header. */
+    #ceu-coursework.ceu-hoisted {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 40px;
+        padding-top: 32px;
+    }
 
     /* ── Narrow columns ── */
     @media (max-width: 640px) {
