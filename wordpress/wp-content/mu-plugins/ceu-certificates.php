@@ -249,6 +249,59 @@ add_action('wp_footer', function () {
                 }
             }
 
+            // ── Stacked layout: lift this block to the top of the row ─────────────
+            // At narrow widths Elementor stacks the columns in DOM order, which
+            // buries Coursework and Certificates under the whole Personal
+            // Information panel. Rather than guess Elementor's breakpoint, tag this
+            // block's own column whenever the row is ACTUALLY stacked; the CSS below
+            // gives it order:-1, which beats the untouched siblings sitting at 0.
+            // The rule is capped at 1024px too, so a real side-by-side desktop
+            // layout is never touched.
+            //
+            // Deliberately keyed off nothing but this block's own column: the left
+            // column may hold the [ceu_profile] panel or the older Elementor form
+            // widget, and this works either way.
+            (function stackOrder() {
+                // A legacy Elementor column, or a direct child of one of the newer
+                // flexbox containers. If the block is not inside either, the page is
+                // not a column layout and there is nothing to reorder.
+                var cwItem = cw.closest('.elementor-column') ||
+                             cw.closest('.e-con-inner > *, .e-con > *');
+                if (!cwItem) return;
+
+                var row = cwItem.parentElement;
+                if (!row || row.children.length < 2) return;
+
+                // `order` only bites inside a flex/grid parent. Elementor's column
+                // container already is one; anything else gets made a flex column by
+                // the .ceu-stack-row rule (inside the media query, so desktop is safe).
+                var display = window.getComputedStyle(row).display;
+                if (display.indexOf('flex') === -1 && display.indexOf('grid') === -1) {
+                    row.classList.add('ceu-stack-row');
+                }
+
+                // Stacked = this column has the row to itself. Compared as a ratio so
+                // padding and gutters do not read as "still side by side"; a genuine
+                // two-column split lands near 0.5, never above 0.9. Still true once
+                // the column has moved to the top, so the test does not oscillate.
+                function sync() {
+                    var item = cwItem.getBoundingClientRect().width;
+                    var full = row.getBoundingClientRect().width;
+                    cwItem.classList.toggle('ceu-stack-first', full > 0 && item / full > 0.9);
+                }
+
+                sync();
+                var pending = false;
+                window.addEventListener('resize', function () {
+                    if (pending) return;
+                    pending = true;
+                    window.requestAnimationFrame(function () {
+                        pending = false;
+                        sync();
+                    });
+                });
+            })();
+
             var tabs   = Array.from(cw.querySelectorAll('.ceu-tab'));
             var panels = Array.from(cw.querySelectorAll('.ceu-panel'));
 
@@ -474,6 +527,17 @@ add_action('wp_footer', function () {
         text-align: center;
         color: var(--ceu-muted);
         font-size: .92em;
+    }
+
+    /* ── Stacked columns: Coursework and Certificates first ── */
+    /* The classes are applied by the script above, and only while the columns are
+       genuinely stacked — so a side-by-side row is never reordered. The cap keeps a
+       wide desktop layout out of it entirely. order:-1 beats the sibling columns,
+       which stay at the default 0; !important because Elementor sets `order` itself
+       for its reverse-column option. */
+    @media (max-width: 1024px) {
+        .ceu-stack-row   { display: flex; flex-direction: column; }
+        .ceu-stack-first { order: -1 !important; }
     }
 
     /* ── Narrow columns ── */
