@@ -54,8 +54,10 @@ function ceu_coursework_data() {
     if (!$db) return null;
 
     // Fetched via query() — no mysqlnd required. $user_id is an int cast above.
+    // TRAINING_ID is selected so a completed course can be put in the cart, which
+    // is keyed by training id (see ceu-cart.php).
     $taken = [];
-    $r = $db->query('SELECT TRAINING_TITLE, DATE_COMPLETED, CREDITS, SCORE, PASSING, STATE
+    $r = $db->query('SELECT TRAINING_ID, TRAINING_TITLE, DATE_COMPLETED, CREDITS, SCORE, PASSING, STATE
                      FROM CEU_TRAININGS_TAKEN WHERE USER_ID = ' . $user_id . '
                      ORDER BY DATE_COMPLETED DESC');
     if ($r) {
@@ -91,13 +93,17 @@ function ceu_coursework_html() {
     $lic_exp  = !empty($session['LIC_EXP']) ? $session['LIC_EXP'] : null;
     $exp_days = $lic_exp ? (int) floor((strtotime($lic_exp) - time()) / 86400) : null;
 
+    // Read once, not per row. ceu_cart_get_ids() lives in ceu-cart.php, which
+    // mu-plugins load before this file alphabetically — but don't depend on that.
+    $cart_ids = function_exists('ceu_cart_get_ids') ? ceu_cart_get_ids() : [];
+
     $clean = fn($t) => strip_tags(str_replace(['<br>', '<br/>'], ' ', $t));
     $fdate = fn($d)  => date('M j, Y', strtotime($d));
     $fcred = fn($n)  => rtrim(rtrim(number_format((float) $n, 2), '0'), '.');
 
     // One row = one course/certificate. Compact list, not a card grid — at 47
     // certificates a card wall is unreadable.
-    $row = function ($c, $kind) use ($clean, $fdate, $fcred, $exp_days) {
+    $row = function ($c, $kind) use ($clean, $fdate, $fcred, $exp_days, $cart_ids) {
         $title   = $clean($c['TRAINING_TITLE']);
         $credits = $fcred($c['CREDITS']);
         $hours   = $credits === '1' ? 'hour' : 'hours';
@@ -140,9 +146,19 @@ function ceu_coursework_html() {
             $score  = (int) $c['SCORE'];
             $h .= '<span class="ceu-chip ' . ($passed ? 'ceu-chip-pass' : 'ceu-chip-fail') . '">'
                 . $score . '%</span>';
-            $h .= $passed
-                ? '<span class="ceu-action">Add to cart</span>'
-                : '<a class="ceu-action" href="/courses/">Retake</a>';
+            if ($passed) {
+                // A real button now — it was a <span> with no handler. Whether the
+                // course is already in the cart is decided server-side from the same
+                // cookie ceu-cart.php reads, so the state survives a reload.
+                $tid     = (int) $c['TRAINING_ID'];
+                $in_cart = in_array($tid, $cart_ids, true);
+
+                $h .= $in_cart
+                    ? '<button type="button" class="ceu-btn-cart ceu-btn-cart-in" disabled>In cart</button>'
+                    : '<button type="button" class="ceu-btn-cart" data-ceu-add="' . $tid . '">Add to cart</button>';
+            } else {
+                $h .= '<a class="ceu-action" href="/courses/">Retake</a>';
+            }
         } else {
             // Certificate thumbnail + "click here", as on the old site — now an
             // actual link, opening the certificate in a new tab the way cert.php
@@ -387,6 +403,39 @@ add_action('wp_footer', function () {
                 btn.addEventListener('click', function () { activate(btn, true); });
             });
 
+            // ── Add to cart ───────────────────────────────────────────────────────
+            // The cart is the 'cart' cookie: pipe-separated training ids, read by
+            // ceu-cart.php on the next render. Same format and 30-day expiry its
+            // own remove handler writes.
+            //
+            // Reloads afterwards rather than patching the drawer's markup by hand,
+            // so the cart is drawn once, server-side, from the cookie that was just
+            // written — the button's "In cart" state comes back from PHP too.
+            cw.addEventListener('click', function (e) {
+                var btn = e.target.closest('[data-ceu-add]');
+                if (!btn) return;
+                e.preventDefault();
+
+                var tid = String(btn.dataset.ceuAdd);
+
+                var existing = '';
+                document.cookie.split(';').forEach(function (c) {
+                    var p = c.trim();
+                    if (p.indexOf('cart=') === 0) existing = decodeURIComponent(p.slice(5));
+                });
+
+                var ids = existing ? existing.split('|').filter(Boolean) : [];
+                if (ids.indexOf(tid) === -1) ids.push(tid);
+
+                var exp = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toUTCString();
+                document.cookie = 'cart=' + encodeURIComponent(ids.join('|'))
+                    + '; path=/; expires=' + exp;
+
+                btn.disabled = true;
+                btn.textContent = 'Adding…';
+                window.location.reload();
+            });
+
             // ── Deep link: /user/#certificates opens the Certificates tab ──────────
             function openFromHash() {
                 var hash = (window.location.hash || '').replace('#', '');
@@ -412,6 +461,10 @@ add_action('wp_footer', function () {
         --ceu-muted:  #64748b;
         --ceu-line:   #e2e8f0;
         --ceu-bg:     #f8fafc;
+        /* Brand navy from Elementor's global kit, same value ceu-profile.php uses.
+           Declared here too: this block is not inside #ceu-profile, so nothing
+           would inherit it and var() would resolve to nothing at all. */
+        --ceu-navy:   #183e7d;
 
         width: 100%;
         font-family: inherit;
@@ -567,6 +620,35 @@ add_action('wp_footer', function () {
     }
     #ceu-coursework .ceu-action:hover { color: var(--ceu-blue); text-decoration: underline; }
     #ceu-coursework .ceu-action-primary { color: var(--ceu-blue); }
+
+    /* ── Add to cart ── */
+    /* Sized to match the Edit / Change password buttons on the profile card, in the
+       same brand navy, so the two panels read as one page. */
+    #ceu-coursework .ceu-btn-cart {
+        padding: 5px 11px;
+        border: 1px solid var(--ceu-navy);
+        border-radius: 6px;
+        background: #fff;
+        color: var(--ceu-navy);
+        font-size: .8em;
+        font-weight: 600;
+        font-family: inherit;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: background .15s, border-color .15s, color .15s;
+    }
+    #ceu-coursework .ceu-btn-cart:hover:not(:disabled) {
+        background: var(--ceu-navy);
+        color: #fff;
+    }
+    /* Already in the cart: still legible, clearly not actionable. */
+    #ceu-coursework .ceu-btn-cart-in,
+    #ceu-coursework .ceu-btn-cart:disabled {
+        border-color: var(--ceu-line);
+        background: var(--ceu-bg);
+        color: var(--ceu-muted);
+        cursor: default;
+    }
 
     /* ── Certificate thumbnail ── */
     /* An <a> since the certificate became a real link — the theme styles anchors,
