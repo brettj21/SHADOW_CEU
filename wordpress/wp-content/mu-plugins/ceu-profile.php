@@ -760,11 +760,12 @@ add_action('wp_footer', function () {
     .ceu-profile-scope .ceu-pbtn-ghost { color: var(--ceu-muted); }
 
     /* ── Modal ── */
-    /* The theme's sticky header runs to nine-figure z-indexes, and the dialogs are
-       moved to <body> by the script above so this number is actually comparable
-       with it — inside the Elementor column it was being judged against the
-       column's stacking context instead, where no value could have won. */
-    .ceu-profile-scope .ceu-modal { position: fixed; inset: 0; z-index: 2147483000; }
+    /* The 32-bit signed maximum, matching ceu-cart.php. The theme ships z-index
+       values of 9999999999 and 9999999999999 (zilom/css/course.css) which overflow
+       and are clamped by the browser to exactly this, so nothing below it can win.
+       The dialogs are moved to <body> by the script above, last in the document,
+       so a tie at this value resolves in their favour. */
+    .ceu-profile-scope .ceu-modal { position: fixed; inset: 0; z-index: 2147483647; }
     /* The <body>-level wrapper holding the moved dialogs. Lays out nothing; it
        exists to carry the scope class so the styles below still apply. */
     .ceu-profile-portal { position: static; }

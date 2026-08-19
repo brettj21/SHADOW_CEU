@@ -197,10 +197,17 @@ add_action('wp_footer', function () {
             // as the header. Only positioned elements are touched, because z-index
             // is ignored on static ones, and nothing else about them is changed.
             //
-            // Deliberately below the profile dialogs' 2147483000: those are moved
-            // to <body> to clear the header entirely, and a tie here would let the
-            // header cover them again, since it comes later in the document.
-            var CEU_CART_LAYER = 2147482000;
+            // The value is the 32-bit signed maximum, and it has to be exactly that.
+            // The theme ships rules with z-index: 9999999999 and 9999999999999
+            // (zilom/css/course.css); both overflow and the browser CLAMPS them to
+            // 2147483647. Anything below the maximum loses to them — which is what
+            // happened to a first attempt at 2147482000.
+            //
+            // The profile dialogs use this same value. Ties are broken by document
+            // order, which falls the right way for both: the cart's lifted ancestors
+            // come after the top bar within the header, and the dialogs are appended
+            // to the end of <body>, after the header.
+            var CEU_CART_LAYER = 2147483647;
 
             function ceuLiftCart(panel) {
                 for (var el = panel; el && el !== document.body; el = el.parentElement) {
