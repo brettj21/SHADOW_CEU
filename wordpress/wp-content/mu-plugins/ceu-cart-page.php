@@ -324,13 +324,23 @@ function ceu_cart_checkout_vars(array $totals, ?array $promo): array {
 }
 
 /**
- * Where CHECKOUT posts. The legacy form targets SECURE_PATH . "/cart/checkout/";
- * on the new site that page has not been rebuilt yet, so this is a constant to
- * point at whatever replaces it without touching the markup.
+ * Where CHECKOUT posts: /cart/checkout/ on whatever host is serving the page.
+ *
+ * Built from home_url() rather than a literal domain deliberately. On shadow it
+ * resolves to https://shadow.ceunits.com/cart/checkout/, and when shadow takes
+ * over www it becomes https://www.ceunits.com/cart/checkout/ with no edit here —
+ * the path is the same on both, which is the point of keeping it.
+ *
+ * Same-origin also matters for more than tidiness: the legacy checkout reads the
+ * 'cart', 'ceu' and 'ceuSession' cookies and the PHP session. Posting across to
+ * www from shadow would arrive without any of them.
+ *
+ * CEU_CART_CHECKOUT_URL overrides it outright, for pointing a test box at a
+ * checkout hosted elsewhere.
  */
 function ceu_cart_checkout_url(): string {
     if (defined('CEU_CART_CHECKOUT_URL')) return CEU_CART_CHECKOUT_URL;
-    return home_url('/checkout/');
+    return home_url('/cart/checkout/');
 }
 
 /**
