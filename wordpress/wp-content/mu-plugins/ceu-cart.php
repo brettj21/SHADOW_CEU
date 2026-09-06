@@ -14,35 +14,65 @@ function ceu_cart_get_ids(): array {
     return array_values(array_unique(array_filter(array_map('intval', explode('|', $raw)))));
 }
 
+/**
+ * The trainings in the cart, priced.
+ *
+ * A CEU cart holds trainings the user has ALREADY TAKEN — you sit the course and
+ * its test for free, then pay to have the credits and certificate issued. So the
+ * cart is drawn from CEU_TRAININGS_TAKEN, not from the course catalogue, exactly
+ * as the legacy cart does (CEU/classes/Trainings.class.php getTrainingsForCart).
+ *
+ * Two consequences fall out of that, both deliberate:
+ *
+ *   - A signed-out visitor has no cart. There is no user, so there are no taken
+ *     trainings, and every row is scoped by USER_ID. The cookie can say anything
+ *     it likes; it selects from that user's own rows or it selects nothing.
+ *
+ *   - Price comes from the profession stored ON THE TAKEN ROW, joined to
+ *     CEU_TRAININGS_BY_PROFESSION on both TRAINING_ID and PROFESSION_ID — the
+ *     profession the user held when they took it, which is what they owe for.
+ *     The old query priced from the 'pro' cookie and fell back to MIN(COST)
+ *     when it was absent, so the same training could be quoted at $43.75 or
+ *     $25.00 depending on a cookie that logout deletes.
+ *
+ * Title and credits come from the taken row too, so a course keeps the title and
+ * credit value it carried on the day it was sat, even if the catalogue changes.
+ */
 function ceu_cart_get_items(array $ids): array {
     if (empty($ids) || !function_exists('ceu_db_connect')) return [];
+    if (!function_exists('ceu_is_logged_in') || !ceu_is_logged_in()) return [];
+
+    $user_id = (int) get_user_meta(get_current_user_id(), '_ceu_id', true);
+    if (!$user_id) return [];
+
     $db = ceu_db_connect();
     if (!$db) return [];
 
-    $pro_slug      = isset($_COOKIE['pro']) ? sanitize_key($_COOKIE['pro']) : '';
-    $professions   = defined('CEU_PROFESSIONS') ? unserialize(CEU_PROFESSIONS) : [];
-    $profession_id = isset($professions[$pro_slug]) ? (int) $professions[$pro_slug] : 0;
-
-    // $ids are already intval-sanitized — safe to inline
+    // $ids are already intval-sanitized by ceu_cart_get_ids() — safe to inline.
     $id_list = implode(',', $ids);
 
-    if ($profession_id) {
-        $sql = "SELECT p.TRAINING_ID, p.TITLE_ALT AS title, p.COST AS cost
-                FROM CEU_TRAININGS_BY_PROFESSION p
-                WHERE p.TRAINING_ID IN ($id_list)
-                  AND p.PROFESSION_ID = $profession_id
-                ORDER BY p.TITLE_ALT ASC";
-    } else {
-        $sql = "SELECT TRAINING_ID, TITLE_ALT AS title, MIN(COST) AS cost
-                FROM CEU_TRAININGS_BY_PROFESSION
-                WHERE TRAINING_ID IN ($id_list)
-                GROUP BY TRAINING_ID
-                ORDER BY TITLE_ALT ASC";
-    }
+    // One taken row per (user, training) and a 1:1 join to the profession row, so
+    // no training can appear — or be charged for — twice.
+    $sql = "SELECT t.TRAINING_ID,
+                   t.TRAINING_TITLE AS title,
+                   t.CREDITS        AS credits,
+                   p.COST           AS cost
+            FROM CEU_TRAININGS_TAKEN t
+            JOIN CEU_TRAININGS_BY_PROFESSION p
+              ON p.TRAINING_ID = t.TRAINING_ID
+             AND p.PROFESSION_ID = t.PROFESSION_ID
+            WHERE t.USER_ID = ?
+              AND t.TRAINING_ID IN ($id_list)
+            ORDER BY t.TRAINING_TITLE ASC";
 
-    $result = $db->query($sql);
-    if (!$result) return [];
-    return $result->fetch_all(MYSQLI_ASSOC);
+    $stmt = $db->prepare($sql);
+    if (!$stmt) return [];
+    $stmt->bind_param('i', $user_id);
+    $stmt->execute();
+    $rows = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+
+    return $rows;
 }
 
 // ── Build mini cart HTML (shared by PHP render + JS inline add) ───────────────
