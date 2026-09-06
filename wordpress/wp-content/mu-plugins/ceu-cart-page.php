@@ -236,37 +236,6 @@ function ceu_cart_available_discounts(): array {
     return $rows;
 }
 
-// ─── My Status ────────────────────────────────────────────────────────────────
-
-/** CEU_USER_STATUS row — credits earned this term and percent toward renewal. */
-function ceu_cart_user_status(): ?array {
-    if (!function_exists('ceu_is_logged_in') || !ceu_is_logged_in()) return null;
-    if (!function_exists('ceu_db_connect')) return null;
-
-    $user_id = (int) get_user_meta(get_current_user_id(), '_ceu_id', true);
-    if (!$user_id) return null;
-
-    $db = ceu_db_connect();
-    if (!$db) return null;
-
-    $sql = 'SELECT s.CREDITS, s.PERCENT, s.CREDITS_OUTSIDE, s.OUTSIDE_SOURCE, s.TERMS,
-                   p.PROFESSION
-            FROM CEU_USER_STATUS s
-            LEFT JOIN CEU_PROFESSIONS p ON p.ID = s.PROFESSION_ID
-            WHERE s.USER_ID = ? AND s.ACTIVE = 1
-            ORDER BY s.ID DESC
-            LIMIT 1';
-
-    $stmt = $db->prepare($sql);
-    if (!$stmt) return null;
-    $stmt->bind_param('i', $user_id);
-    $stmt->execute();
-    $row = $stmt->get_result()->fetch_assoc();
-    $stmt->close();
-
-    return $row ?: null;
-}
-
 // ─── Totals ───────────────────────────────────────────────────────────────────
 //
 // A port of CART::checkCartPromo (CEU/classes/Cart.class.php). The types and
@@ -398,9 +367,7 @@ function ceu_cart_page_html(): string {
     $totals     = ceu_cart_totals($items, $promo);
     $checkout   = ceu_cart_checkout_vars($totals, $promo);
     $discounts  = ceu_cart_available_discounts();
-    $status     = ceu_cart_user_status();
     $logged_in  = function_exists('ceu_is_logged_in') && ceu_is_logged_in();
-    $user       = ($logged_in && function_exists('ceu_profile_user')) ? ceu_profile_user() : null;
 
     $money = fn($n) => '$' . number_format((float) $n, 2);
     $fcred = fn($n) => rtrim(rtrim(number_format((float) $n, 2), '0'), '.');
@@ -449,103 +416,40 @@ function ceu_cart_page_html(): string {
 
             <!-- ── Left column ─────────────────────────────────────────────── -->
             <aside class="ceu-ct-side">
-
-                <section class="ceu-ct-card">
-                    <div class="ceu-ct-card-head">
-                        <h2>Personal Info</h2>
-                        <?php if ($user) : ?>
-                            <a class="ceu-ct-link" href="<?= esc_url(home_url('/user/')) ?>">Edit</a>
-                        <?php endif; ?>
-                    </div>
-
-                    <div class="ceu-ct-card-body">
-                        <?php if ($user) :
-                            $name = trim(($user['FIRST'] ?? '') . ' ' . ($user['LAST'] ?? ''));
-                            $csz  = trim(trim(($user['CITY'] ?? '') . ', ' . ($user['STATE'] ?? ''), ', ')
-                                    . ' ' . ($user['ZIP'] ?? ''));
-                            ?>
-                            <p class="ceu-ct-name"><?= esc_html($name ?: '—') ?></p>
-                            <address class="ceu-ct-address">
-                                <?php if (!empty($user['ADDRESS_1'])) : ?>
-                                    <?= esc_html($user['ADDRESS_1']) ?><br>
-                                <?php endif; ?>
-                                <?php if (!empty($user['ADDRESS_2'])) : ?>
-                                    <?= esc_html($user['ADDRESS_2']) ?><br>
-                                <?php endif; ?>
-                                <?php if ($csz) : ?><?= esc_html($csz) ?><br><?php endif; ?>
-                                <?php if (!empty($user['PHONE'])) : ?>
-                                    <?= esc_html($user['PHONE']) ?><br>
-                                <?php endif; ?>
-                            </address>
-                            <?php if (!empty($user['EMAIL'])) : ?>
-                                <a class="ceu-ct-link" href="mailto:<?= esc_attr($user['EMAIL']) ?>">
-                                    <?= esc_html($user['EMAIL']) ?>
-                                </a>
-                            <?php endif; ?>
-                            <?php if (!empty($user['LIC_NUM'])) : ?>
-                                <p class="ceu-ct-lic">
-                                    <span class="ceu-ct-lic-label">Licence #</span>
-                                    <?= esc_html($user['LIC_NUM']) ?>
-                                </p>
-                            <?php endif; ?>
-                        <?php else : ?>
-                            <p class="ceu-ct-muted">
-                                Sign in to check out — your courses are added to your account.
-                            </p>
-                            <a class="ceu-ct-btn ceu-ct-btn-ghost"
-                               href="<?= esc_url(home_url('/login/')) ?>">Sign in</a>
-                        <?php endif; ?>
-                    </div>
-                </section>
-
-                <?php if ($status) :
-                    // PERCENT is stored, not derived — the renewal target varies by
-                    // profession and state, so the number is trusted as written and
-                    // only clamped for the bar's width.
-                    $pct = max(0, min(100, (int) $status['PERCENT']));
+                <?php if ($logged_in && function_exists('ceu_profile_html')) : ?>
+                    <?php
+                    // The very same card the /user/ page shows, rendered by
+                    // ceu-profile.php — not a copy of it. Setting the flag its
+                    // footer hook watches brings its stylesheet and its Edit /
+                    // Change password modals along, so the two pages cannot drift
+                    // apart. Its form posts back to whatever page it is on, so
+                    // saving from here returns here.
+                    $GLOBALS['ceu_profile_rendered'] = true;
+                    echo ceu_profile_html();
                     ?>
-                    <section class="ceu-ct-card">
-                        <div class="ceu-ct-card-head"><h2>My Status</h2></div>
-                        <div class="ceu-ct-card-body">
-                            <div class="ceu-ct-meter" role="img"
-                                 aria-label="<?= esc_attr($pct) ?>% of your CE requirement complete">
-                                <span class="ceu-ct-meter-fill" style="width: <?= (int) $pct ?>%"></span>
-                            </div>
-                            <p class="ceu-ct-meter-label">
-                                <strong><?= esc_html($pct) ?>%</strong> of your CE requirement
-                            </p>
-
-                            <dl class="ceu-ct-stats">
-                                <div>
-                                    <dt>Credits earned</dt>
-                                    <dd><?= esc_html($fcred($status['CREDITS'])) ?></dd>
-                                </div>
-                                <?php if ((float) $status['CREDITS_OUTSIDE'] > 0) : ?>
-                                    <div>
-                                        <dt>Credits elsewhere</dt>
-                                        <dd><?= esc_html($fcred($status['CREDITS_OUTSIDE'])) ?></dd>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (!empty($status['PROFESSION'])) : ?>
-                                    <div>
-                                        <dt>Profession</dt>
-                                        <dd><?= esc_html($status['PROFESSION']) ?></dd>
-                                    </div>
-                                <?php endif; ?>
-                            </dl>
-                        </div>
-                    </section>
+                <?php elseif (!$logged_in) : ?>
+                    <div class="ceu-ct-card ceu-ct-card-pad">
+                        <p class="ceu-ct-muted">
+                            Sign in to check out — your courses are added to your account.
+                        </p>
+                        <a class="ceu-ct-btn ceu-ct-btn-ghost"
+                           href="<?= esc_url(home_url('/login/')) ?>">Sign in</a>
+                    </div>
                 <?php endif; ?>
             </aside>
 
             <!-- ── Right column ────────────────────────────────────────────── -->
             <main class="ceu-ct-main">
 
+                <div class="ceu-ct-block">
+                <h2 class="ceu-ct-subheading">Training<?= count($items) === 1 ? '' : 's' ?></h2>
                 <section class="ceu-ct-card">
-                    <div class="ceu-ct-card-head ceu-ct-card-head-table">
-                        <h2>Training<?= count($items) === 1 ? '' : 's' ?></h2>
-                        <span class="ceu-ct-col-cost">Cost</span>
-                    </div>
+                    <?php if (!empty($items)) : ?>
+                        <div class="ceu-ct-colhead">
+                            <span>Course</span>
+                            <span class="ceu-ct-col-cost">Cost</span>
+                        </div>
+                    <?php endif; ?>
 
                     <?php if (empty($items)) : ?>
                         <div class="ceu-ct-empty">
@@ -669,11 +573,13 @@ function ceu_cart_page_html(): string {
                         </div>
                     <?php endif; ?>
                 </section>
+                </div>
 
                 <?php if ($discounts) : ?>
-                    <section class="ceu-ct-card">
-                        <div class="ceu-ct-card-head"><h2>Available Discounts</h2></div>
-                        <div class="ceu-ct-card-body">
+                    <div class="ceu-ct-block">
+                    <h2 class="ceu-ct-subheading">Available Discounts</h2>
+                    <section class="ceu-ct-card ceu-ct-card-pad">
+                        <div>
                             <p class="ceu-ct-muted">
                                 Select to activate discount.
                                 <span class="ceu-ct-hint" title="Only one discount can be used at a time.">?</span>
@@ -712,6 +618,7 @@ function ceu_cart_page_html(): string {
                             </ul>
                         </div>
                     </section>
+                    </div>
                 <?php endif; ?>
             </main>
         </div>
@@ -816,9 +723,18 @@ add_action('wp_footer', function () {
         --ceu-bg:    #f8fafc;
         --ceu-good:  #15803d;
 
-        width: 100%;
+        /* /cart/ is a bare WP page with no Elementor container, so unlike /user/
+           there is nothing upstream holding the content off the viewport edge.
+           This block supplies its own gutter and measure. */
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 24px 60px;
+
         font-family: inherit;
         color: var(--ceu-ink);
+    }
+    @media (max-width: 640px) {
+        #ceu-cart-page { padding: 24px 16px 40px; }
     }
 
     /* Scoped rather than assumed: the full-width Checkout button and the promo
@@ -828,12 +744,23 @@ add_action('wp_footer', function () {
         box-sizing: border-box;
     }
 
+    /* ── Headings ──
+       Matching #ceu-coursework's .ceu-heading on /user/: the section name sits
+       above its card as plain type. The old filled navy bars came from the legacy
+       site and match nothing else here. */
     #ceu-cart-page .ceu-ct-heading {
         font-size: 1.6em;
         font-weight: 700;
+        color: var(--ceu-ink);
         margin: 0 0 20px;
         line-height: 1.25;
+    }
+    #ceu-cart-page .ceu-ct-subheading {
+        font-size: 1.15em;
+        font-weight: 700;
         color: var(--ceu-ink);
+        margin: 0 0 12px;
+        line-height: 1.3;
     }
 
     /* ── Notices ── */
@@ -848,10 +775,10 @@ add_action('wp_footer', function () {
     #ceu-cart-page .ceu-ct-note-ok  { background: #f0fdf4; border-color: #bbf7d0; color: #166534; }
     #ceu-cart-page .ceu-ct-note-bad { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
 
-    /* ── Layout: sidebar + main, stacking on narrow screens ── */
+    /* ── Layout ── */
     #ceu-cart-page .ceu-ct-grid {
         display: grid;
-        grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+        grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
         gap: 24px;
         align-items: start;
     }
@@ -868,32 +795,33 @@ add_action('wp_footer', function () {
         #ceu-cart-page .ceu-ct-main { order: -1; }
     }
 
-    /* ── Cards ── */
+    /* ── Cards ──
+       The same shell as the coursework list on /user/: white, hairline border,
+       12px radius, content flush to the edges unless it opts into padding. */
     #ceu-cart-page .ceu-ct-card {
         border: 1px solid var(--ceu-line);
         border-radius: 12px;
         background: #fff;
         overflow: hidden;
     }
-    #ceu-cart-page .ceu-ct-card-head {
+    #ceu-cart-page .ceu-ct-card-pad { padding: 18px; }
+    /* A heading plus its card is one unit, so the column's 24px gap falls between
+       units and the heading keeps its own 12px above its card. */
+    #ceu-cart-page .ceu-ct-block { min-width: 0; }
+
+    #ceu-cart-page .ceu-ct-colhead {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
-        padding: 14px 18px;
-        background: var(--ceu-navy);
-        color: #fff;
-    }
-    #ceu-cart-page .ceu-ct-card-head h2 {
-        margin: 0;
-        font-size: 1em;
+        padding: 10px 18px;
+        background: var(--ceu-bg);
+        border-bottom: 1px solid var(--ceu-line);
+        font-size: .78em;
         font-weight: 700;
-        color: #fff;
-        line-height: 1.3;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        color: var(--ceu-muted);
     }
-    #ceu-cart-page .ceu-ct-card-head .ceu-ct-link { color: #fff; opacity: .85; }
-    #ceu-cart-page .ceu-ct-col-cost { font-size: .85em; font-weight: 600; opacity: .85; }
-    #ceu-cart-page .ceu-ct-card-body { padding: 18px; }
 
     #ceu-cart-page .ceu-ct-link {
         color: var(--ceu-blue);
@@ -904,61 +832,6 @@ add_action('wp_footer', function () {
     }
     #ceu-cart-page .ceu-ct-link:hover { text-decoration: underline; }
     #ceu-cart-page .ceu-ct-muted { color: var(--ceu-muted); font-size: .92em; margin: 0 0 12px; }
-
-    /* ── Personal info ── */
-    #ceu-cart-page .ceu-ct-name { font-weight: 700; margin: 0 0 6px; font-size: 1.02em; }
-    #ceu-cart-page .ceu-ct-address {
-        font-style: normal;
-        color: var(--ceu-muted);
-        line-height: 1.65;
-        margin: 0 0 8px;
-        font-size: .93em;
-    }
-    #ceu-cart-page .ceu-ct-lic {
-        margin: 12px 0 0;
-        padding-top: 12px;
-        border-top: 1px solid var(--ceu-line);
-        font-size: .93em;
-    }
-    #ceu-cart-page .ceu-ct-lic-label { color: var(--ceu-muted); margin-right: 6px; }
-
-    /* ── My Status ── */
-    #ceu-cart-page .ceu-ct-meter {
-        height: 10px;
-        border-radius: 20px;
-        background: var(--ceu-line);
-        overflow: hidden;
-    }
-    #ceu-cart-page .ceu-ct-meter-fill {
-        display: block;
-        height: 100%;
-        border-radius: 20px;
-        background: linear-gradient(90deg, var(--ceu-navy), #4b9ade);
-        transition: width .4s ease;
-    }
-    #ceu-cart-page .ceu-ct-meter-label {
-        margin: 10px 0 0;
-        font-size: .92em;
-        color: var(--ceu-muted);
-    }
-    #ceu-cart-page .ceu-ct-meter-label strong { color: var(--ceu-ink); font-size: 1.15em; }
-
-    #ceu-cart-page .ceu-ct-stats {
-        margin: 16px 0 0;
-        padding-top: 14px;
-        border-top: 1px solid var(--ceu-line);
-        display: flex;
-        flex-direction: column;
-        gap: 9px;
-    }
-    #ceu-cart-page .ceu-ct-stats > div {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        font-size: .93em;
-    }
-    #ceu-cart-page .ceu-ct-stats dt { color: var(--ceu-muted); margin: 0; font-weight: 400; }
-    #ceu-cart-page .ceu-ct-stats dd { margin: 0; font-weight: 600; text-align: right; }
 
     /* ── Items ── */
     #ceu-cart-page .ceu-ct-items { list-style: none; margin: 0; padding: 0; }
@@ -979,7 +852,7 @@ add_action('wp_footer', function () {
         line-height: 1.45;
         text-decoration: none;
     }
-    a.ceu-ct-item-title:hover { text-decoration: underline; }
+    #ceu-cart-page a.ceu-ct-item-title:hover { text-decoration: underline; }
     #ceu-cart-page .ceu-ct-item-meta {
         display: block;
         margin-top: 4px;
@@ -1114,7 +987,8 @@ add_action('wp_footer', function () {
         border-color: var(--ceu-line);
     }
     #ceu-cart-page .ceu-ct-btn-ghost:hover { background: #eef2f7; }
-    #ceu-cart-page .ceu-ct-checkout { display: block; width: 100%; margin-top: 14px; padding: 13px 18px; font-size: 1em; }
+    #ceu-cart-page .ceu-ct-checkout-form { margin: 14px 0 0; }
+    #ceu-cart-page .ceu-ct-checkout { display: block; width: 100%; padding: 13px 18px; font-size: 1em; }
 
     /* ── Available discounts ── */
     #ceu-cart-page .ceu-ct-hint {
@@ -1152,6 +1026,10 @@ add_action('wp_footer', function () {
     #ceu-cart-page .ceu-ct-discount-meta { flex: 1; font-size: .85em; color: var(--ceu-muted); }
     #ceu-cart-page .ceu-ct-discount-cta { font-size: .88em; font-weight: 700; color: var(--ceu-blue); }
     #ceu-cart-page .ceu-ct-discount-on .ceu-ct-discount-cta { color: var(--ceu-good); }
+
+    /* The profile card is rendered by ceu-profile.php and brings its own styles;
+       it only needs to fill this column rather than sit at its own width. */
+    #ceu-cart-page .ceu-profile-scope { width: 100%; }
     </style>
     <?php
 }, 5);
