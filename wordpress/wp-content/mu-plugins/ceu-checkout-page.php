@@ -436,7 +436,9 @@ add_action('template_redirect', function () {
     echo ceu_checkout_page_html();
     get_footer();
     exit;
-});
+}, 1);   // priority 1: SEO plugins and themes commonly redirect 404s at the
+         // default 10, and this has to win that race — the URL the Checkout
+         // button points at must never be handed to a 404 handler.
 
 add_filter('the_content', function ($content) {
     if (is_admin() || !ceu_is_checkout_page())  return $content;
