@@ -48,22 +48,52 @@ if (!defined('CEU_PAYMENT_ENDPOINT')) {
 }
 
 // ─── The page itself ──────────────────────────────────────────────────────────
-// Created once, as a child of the cart page so the URL comes out as
-// /cart/checkout/. Guarded by an option rather than by a title search so that
-// deleting the page on purpose does not silently recreate it on the next load.
+// Created as a child of the cart page so the URL comes out as /cart/checkout/.
+//
+// WRITTEN TO SURVIVE A BRANCH SWITCH ON A LIVE SERVER
+// ──────────────────────────────────────────────────
+// Checking this branch out and later reverting to master restores the FILES but
+// not the DATABASE: the page row and the option below both persist. Two
+// consequences are handled here.
+//
+// First, the page body is an HTML comment, not the [ceu_checkout] shortcode.
+// After a revert the shortcode is no longer registered, and WordPress renders an
+// unregistered shortcode as literal text — so a customer landing on
+// /cart/checkout/ would read "[ceu_checkout]" on the page. A comment renders as
+// nothing. The block itself arrives through the_content filter below, which is
+// how the cart page works too.
+//
+// Second, the option is treated as a cache rather than as proof. If it names a
+// page that has since been deleted — reverted, tidied up, rebuilt from a backup —
+// the option is cleared and the page recreated, so switching back to this branch
+// restores a working checkout instead of a 404.
+if (!defined('CEU_CHECKOUT_PAGE_MARKER')) {
+    define('CEU_CHECKOUT_PAGE_MARKER', '<!-- ceu-checkout -->');
+}
 
 add_action('init', function () {
-    if (get_option('ceu_checkout_page_created')) return;
     if (!function_exists('get_page_by_path')) return;
+
+    // Cached id, but only trusted while the page it names is really still there.
+    $known = (int) get_option('ceu_checkout_page_created');
+    if ($known) {
+        $post = get_post($known);
+        if ($post && $post->post_status !== 'trash') return;
+        delete_option('ceu_checkout_page_created');
+    }
 
     $cart_id = (int) get_option('woocommerce_cart_page_id');
     if (!$cart_id || !get_post($cart_id)) return;
 
-    $existing = get_page_by_path('cart/' . CEU_CHECKOUT_SLUG);
-    if ($existing) {
+    // Adopt a page already at that path, but only a live one: get_page_by_path()
+    // also returns trashed pages, and adopting one would leave the option
+    // pointing at a page nobody can reach.
+    $existing = get_page_by_path(CEU_CART_SLUG . '/' . CEU_CHECKOUT_SLUG);
+    if ($existing && $existing->post_status === 'publish') {
         update_option('ceu_checkout_page_created', (int) $existing->ID);
         return;
     }
+    if ($existing) return;  // trashed or draft — leave it alone, that was deliberate
 
     $id = wp_insert_post([
         'post_title'   => 'Checkout',
@@ -71,7 +101,7 @@ add_action('init', function () {
         'post_parent'  => $cart_id,
         'post_type'    => 'page',
         'post_status'  => 'publish',
-        'post_content' => '[ceu_checkout]',
+        'post_content' => CEU_CHECKOUT_PAGE_MARKER,
         'post_author'  => 1,
     ]);
 
