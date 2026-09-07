@@ -82,13 +82,27 @@ add_action('init', function () {
         delete_option('ceu_checkout_page_created');
     }
 
-    $cart_id = (int) get_option('woocommerce_cart_page_id');
-    if (!$cart_id || !get_post($cart_id)) return;
+    // Find the cart page BY PATH first, and only then fall back to the Woo
+    // option. Everything else here identifies the cart by its URL —
+    // ceu_is_cart_page() matches the path, not an id — so /cart/ can be working
+    // perfectly while woocommerce_cart_page_id is unset, stale, or pointing at a
+    // page that was rebuilt. Trusting the option alone meant this hook returned
+    // early in that case and the checkout page was never created, giving a 404
+    // on a site whose cart was fine.
+    $cart_page = get_page_by_path(ceu_checkout_cart_slug());
+    $cart_id   = ($cart_page && $cart_page->post_status === 'publish') ? (int) $cart_page->ID : 0;
+
+    if (!$cart_id) {
+        $option_id = (int) get_option('woocommerce_cart_page_id');
+        if ($option_id && get_post($option_id)) $cart_id = $option_id;
+    }
+
+    if (!$cart_id) return;
 
     // Adopt a page already at that path, but only a live one: get_page_by_path()
     // also returns trashed pages, and adopting one would leave the option
     // pointing at a page nobody can reach.
-    $existing = get_page_by_path(CEU_CART_SLUG . '/' . CEU_CHECKOUT_SLUG);
+    $existing = get_page_by_path(ceu_checkout_cart_slug() . '/' . CEU_CHECKOUT_SLUG);
     if ($existing && $existing->post_status === 'publish') {
         update_option('ceu_checkout_page_created', (int) $existing->ID);
         return;
@@ -105,12 +119,23 @@ add_action('init', function () {
         'post_author'  => 1,
     ]);
 
-    if ($id && !is_wp_error($id)) update_option('ceu_checkout_page_created', (int) $id);
+    if ($id && !is_wp_error($id)) {
+        update_option('ceu_checkout_page_created', (int) $id);
+
+        // Once, on creation only. Page permalinks normally resolve without a
+        // flush, but a site with stale rewrite rules would 404 the new child
+        // until something else rebuilt them, and this runs at most once.
+        if (function_exists('flush_rewrite_rules')) flush_rewrite_rules(false);
+    }
 }, 20);
+
+function ceu_checkout_cart_slug(): string {
+    return defined('CEU_CART_SLUG') ? CEU_CART_SLUG : 'cart';
+}
 
 function ceu_is_checkout_page(): bool {
     $path = trim(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH), '/');
-    return $path === CEU_CART_SLUG . '/' . CEU_CHECKOUT_SLUG;
+    return $path === ceu_checkout_cart_slug() . '/' . CEU_CHECKOUT_SLUG;
 }
 
 // ─── What is owed ─────────────────────────────────────────────────────────────
@@ -171,7 +196,7 @@ function ceu_checkout_page_html(): string {
 
     [$items, $promo, $totals, $blocked] = ceu_checkout_prepare();
 
-    $cart_url = home_url('/' . CEU_CART_SLUG . '/');
+    $cart_url = home_url('/' . ceu_checkout_cart_slug() . '/');
 
     if (empty($items)) {
         return '<div id="ceu-checkout-page"><div class="ceu-ck-card ceu-ck-card-pad">'
@@ -384,6 +409,33 @@ function ceu_checkout_page_html(): string {
 add_shortcode('ceu_checkout', function () {
     $GLOBALS['ceu_checkout_page_rendered'] = true;
     return ceu_checkout_page_html();
+});
+
+// Fallback: serve /cart/checkout/ even when no page row exists.
+//
+// The page above is created automatically, but that depends on the database
+// being in the state this code expects — the cart page findable, the option
+// writable, the row not since deleted. When any of that is not true the request
+// falls through to a 404 on a URL the Checkout button points at, which is the
+// worst possible failure for the one page that takes money.
+//
+// So if the request is for /cart/checkout/ and WordPress resolved nothing, the
+// block is rendered into the theme directly. A real page, once it exists, is
+// never a 404 and this stays out of the way.
+add_action('template_redirect', function () {
+    if (is_admin() || !ceu_is_checkout_page()) return;
+    if (!is_404()) return;
+    if (!empty($GLOBALS['ceu_checkout_page_rendered'])) return;
+
+    $GLOBALS['ceu_checkout_page_rendered'] = true;
+
+    status_header(200);
+    nocache_headers();
+
+    get_header();
+    echo ceu_checkout_page_html();
+    get_footer();
+    exit;
 });
 
 add_filter('the_content', function ($content) {
