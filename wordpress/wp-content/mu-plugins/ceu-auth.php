@@ -572,6 +572,30 @@ add_action('wp_footer', function () {
     <?php
 }, 25);
 
+// ─── Where the login overlay lands you ───────────────────────────────────────
+// The theme's ajax login redirects to form_ajax_object.redirecturl on success,
+// which its own init.php sets to the Tutor dashboard whenever Tutor is active
+// (zilom-themer/add-ons/form-ajax/init.php). CEU users have no use for that
+// screen — ceu-dashboard-nav.php replaces the Tutor menus outright — so signing
+// in should simply put them back on the site, logged in.
+//
+// Overridden as a value rather than by re-registering the script: ajax-form.js
+// reads the property at submit time, so assigning it after the localised object
+// is printed is enough. Priority 30 is after wp_print_footer_scripts (20).
+
+add_action('wp_footer', function () {
+    if (is_user_logged_in()) return;   // the overlay is not rendered at all then
+    ?>
+    <script>
+    (function () {
+        if (typeof form_ajax_object === 'object' && form_ajax_object !== null) {
+            form_ajax_object.redirecturl = <?= json_encode(home_url('/')) ?>;
+        }
+    })();
+    </script>
+    <?php
+}, 30);
+
 // ─── TEMP DEBUG — remove after testing ───────────────────────────────────────
 add_action('wp_footer', function () {
     if (($_GET['ceu_debug'] ?? '') !== 'ceu2026') return;

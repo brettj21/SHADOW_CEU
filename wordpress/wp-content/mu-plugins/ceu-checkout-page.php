@@ -188,9 +188,15 @@ function ceu_checkout_page_html(): string {
     $logged_in = function_exists('ceu_is_logged_in') && ceu_is_logged_in();
 
     if (!$logged_in) {
+        // Same overlay trigger the cart uses; /login/ is not a page on this site.
+        $signin = function_exists('ceu_signin_button')
+            ? ceu_signin_button('Sign in', 'ceu-ck-btn ceu-ck-btn-primary')
+            : '<a class="ceu-ck-btn ceu-ck-btn-primary" href="'
+              . esc_url(wp_login_url(home_url('/'))) . '">Sign in</a>';
+
         return '<div id="ceu-checkout-page"><div class="ceu-ck-card ceu-ck-card-pad">'
              . '<p class="ceu-ck-muted">Please sign in to complete your purchase.</p>'
-             . '<a class="ceu-ck-btn ceu-ck-btn-primary" href="' . esc_url(home_url('/login/')) . '">Sign in</a>'
+             . $signin
              . '</div></div>';
     }
 

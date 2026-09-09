@@ -365,6 +365,73 @@ function ceu_cart_discount_label(array $d): string {
     return (string) $d['DISPLAY_VALUE'];
 }
 
+/**
+ * A "Sign in" control that opens the site's login overlay.
+ *
+ * The theme's own sign-in links are href="#" with Bootstrap's data-toggle
+ * pointing at #form-ajax-login-popup (themes/zilom/templates/parts/header-mobile.php),
+ * and footer.php prints that modal on EVERY page via
+ * Gavias_Addon_Form_Ajax::html_form(). So the overlay is already on the cart page
+ * and only needs triggering — which is why this is markup rather than a URL.
+ *
+ * It used to link to /login/. No such page exists, so WordPress sent people to
+ * wp-login.php: a stock WordPress admin screen, in the middle of a checkout.
+ *
+ * html_form() returns nothing once is_user_logged_in(), so a WP admin with no
+ * CEU account sees this button but gets no modal. The click handler in the footer
+ * falls back to a real login URL in that case rather than doing nothing at all.
+ */
+function ceu_signin_button(string $label, string $class): string {
+    return '<a class="' . esc_attr($class) . ' ceu-signin-trigger" href="#"'
+         . ' data-toggle="modal" data-target="#form-ajax-login-popup"'
+         . ' data-ceu-login-fallback="' . esc_attr(wp_login_url(home_url('/'))) . '">'
+         . esc_html($label) . '</a>';
+}
+
+add_action('wp_footer', function () {
+    if (empty($GLOBALS['ceu_cart_page_rendered']) && empty($GLOBALS['ceu_checkout_page_rendered'])) return;
+    ?>
+    <script>
+    document.addEventListener('click', function (e) {
+        var el = e.target.closest('.ceu-signin-trigger');
+        if (!el) return;
+        // The modal is missing only when the theme suppressed it (already logged
+        // in to WordPress). Anything else and Bootstrap's own handler takes it.
+        if (!document.getElementById('form-ajax-login-popup')) {
+            e.preventDefault();
+            window.location.href = el.dataset.ceuLoginFallback;
+        }
+    });
+    </script>
+    <?php
+}, 20);
+
+/**
+ * Put the cart and checkout on the same header as the rest of the site.
+ *
+ * The theme picks a header per page: zilom_get_header_layout() reads the
+ * 'zilom_page_header' post meta and only falls back to the site-wide option when
+ * that meta is absent or '__default_option_theme'. The cart page carries an
+ * override, so it renders header-default.php — which has no blue top bar at all,
+ * just the logo row — while every other page gets the Elementor-built header with
+ * the email, Sign in / Register and social links.
+ *
+ * Forced here rather than fixed in the page editor because the value lives in the
+ * database, which is not in this repo: changed there it is invisible to review and
+ * lost whenever the page is rebuilt. Same reasoning as ceu-page-tweaks.php.
+ */
+add_filter('zilom_get_header_layout', function ($header) {
+    $on_cart     = function_exists('ceu_is_cart_page') && ceu_is_cart_page();
+    $on_checkout = function_exists('ceu_is_checkout_page') && ceu_is_checkout_page();
+    if (!$on_cart && !$on_checkout) return $header;
+
+    if (!function_exists('zilom_get_option')) return $header;
+
+    // Exactly what the theme resolves for a page with no override.
+    $site_default = zilom_get_option('header_layout', '');
+    return $site_default !== '' ? $site_default : $header;
+}, 20);
+
 // ─── The page ─────────────────────────────────────────────────────────────────
 
 function ceu_cart_page_html(): string {
@@ -442,8 +509,7 @@ function ceu_cart_page_html(): string {
                         <p class="ceu-ct-muted">
                             Sign in to check out — your courses are added to your account.
                         </p>
-                        <a class="ceu-ct-btn ceu-ct-btn-ghost"
-                           href="<?= esc_url(home_url('/login/')) ?>">Sign in</a>
+                        <?= ceu_signin_button('Sign in', 'ceu-ct-btn ceu-ct-btn-ghost') ?>
                     </div>
                 <?php endif; ?>
             </aside>
@@ -576,8 +642,8 @@ function ceu_cart_page_html(): string {
                                     </button>
                                 </form>
                             <?php else : ?>
-                                <a class="ceu-ct-btn ceu-ct-btn-primary ceu-ct-checkout"
-                                   href="<?= esc_url(home_url('/login/')) ?>">Sign in to check out</a>
+                                <?= ceu_signin_button('Sign in to check out',
+                                        'ceu-ct-btn ceu-ct-btn-primary ceu-ct-checkout') ?>
                             <?php endif; ?>
                             </div>
                         </div>
