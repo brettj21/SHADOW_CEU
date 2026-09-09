@@ -67,6 +67,11 @@ if (!defined('CEU_PAYMENT_ENDPOINT')) {
 // page that has since been deleted — reverted, tidied up, rebuilt from a backup —
 // the option is cleared and the page recreated, so switching back to this branch
 // restores a working checkout instead of a 404.
+// Bump when ceu_checkout_layout_keys() changes, to re-run the one-time sync.
+if (!defined('CEU_CHECKOUT_LAYOUT_VERSION')) {
+    define('CEU_CHECKOUT_LAYOUT_VERSION', 1);
+}
+
 if (!defined('CEU_CHECKOUT_PAGE_MARKER')) {
     define('CEU_CHECKOUT_PAGE_MARKER', '<!-- ceu-checkout -->');
 }
@@ -78,7 +83,18 @@ add_action('init', function () {
     $known = (int) get_option('ceu_checkout_page_created');
     if ($known) {
         $post = get_post($known);
-        if ($post && $post->post_status !== 'trash') return;
+        if ($post && $post->post_status !== 'trash') {
+            // Already created — but a page made before the layout keys existed,
+            // or before this version of them, still needs bringing into line.
+            // Version-gated so it runs once and does not clobber a deliberate
+            // edit on every page load.
+            if ((int) get_option('ceu_checkout_layout_synced') !== CEU_CHECKOUT_LAYOUT_VERSION) {
+                $cart = get_page_by_path(ceu_checkout_cart_slug());
+                if ($cart) ceu_checkout_sync_layout($known, (int) $cart->ID);
+                update_option('ceu_checkout_layout_synced', CEU_CHECKOUT_LAYOUT_VERSION);
+            }
+            return;
+        }
         delete_option('ceu_checkout_page_created');
     }
 
@@ -121,6 +137,8 @@ add_action('init', function () {
 
     if ($id && !is_wp_error($id)) {
         update_option('ceu_checkout_page_created', (int) $id);
+        ceu_checkout_sync_layout((int) $id, $cart_id);
+        update_option('ceu_checkout_layout_synced', CEU_CHECKOUT_LAYOUT_VERSION);
 
         // Once, on creation only. Page permalinks normally resolve without a
         // flush, but a site with stale rewrite rules would 404 the new child
@@ -128,6 +146,76 @@ add_action('init', function () {
         if (function_exists('flush_rewrite_rules')) flush_rewrite_rules(false);
     }
 }, 20);
+
+/**
+ * The page-layout settings copied from the cart page onto the checkout page.
+ *
+ * The checkout was created with no meta at all, so it took the theme's defaults
+ * and rendered the full breadcrumb hero — a "Checkout" banner over a stock photo,
+ * with a Home / user-cart / Checkout trail, above the page's own Checkout heading.
+ * The cart page has none of that.
+ *
+ * Rather than work out which individual flag suppresses it, the whole layout
+ * block is copied across, so the two pages match by construction. Included:
+ *
+ *   _wp_page_template            the page template itself — an Elementor
+ *                                full-width template bypasses the theme's title
+ *                                area entirely, so this alone may be the answer
+ *   zilom_no_breadcrumbs         suppresses the breadcrumb hero
+ *   zilom_disable_page_title     suppresses the title inside it
+ *   zilom_breadcrumb_*           its geometry and background, when shown
+ *   zilom_page_title*            the title text and styling
+ *   zilom_page_full_width        content width
+ *   zilom_sidebar_config etc.    sidebars
+ *   zilom_page_footer            footer choice
+ *
+ * zilom_page_header is deliberately NOT copied: the cart page's value is the one
+ * that dropped it onto header-default.php with no top bar, and ceu-cart-page.php
+ * already overrides the header for both pages through zilom_get_header_layout.
+ */
+function ceu_checkout_layout_keys(): array {
+    return [
+        '_wp_page_template',
+        'zilom_page_full_width',
+        'zilom_page_footer',
+        'zilom_extra_page_class',
+        'zilom_disable_page_title',
+        'zilom_no_breadcrumbs',
+        'zilom_breadcrumb_layout',
+        'zilom_breadcrumb_padding_top',
+        'zilom_breadcrumb_padding_bottom',
+        'zilom_page_title',
+        'zilom_page_title_one',
+        'zilom_bg_color_title',
+        'zilom_bg_opacity_title',
+        'zilom_image_breadcrumbs',
+        'zilom_page_title_image',
+        'zilom_page_title_text_style',
+        'zilom_page_title_text_align',
+        'zilom_sidebar_config',
+        'zilom_left_sidebar',
+        'zilom_right_sidebar',
+    ];
+}
+
+/**
+ * Make the checkout page's layout match the cart page's.
+ *
+ * A key the cart page does not set is DELETED from the checkout rather than left
+ * behind, so this converges on the cart's settings instead of accumulating.
+ */
+function ceu_checkout_sync_layout(int $checkout_id, int $cart_id): void {
+    if (!$checkout_id || !$cart_id) return;
+
+    foreach (ceu_checkout_layout_keys() as $key) {
+        $value = get_post_meta($cart_id, $key, true);
+        if ($value === '' || $value === null) {
+            delete_post_meta($checkout_id, $key);
+        } else {
+            update_post_meta($checkout_id, $key, $value);
+        }
+    }
+}
 
 function ceu_checkout_cart_slug(): string {
     return defined('CEU_CART_SLUG') ? CEU_CART_SLUG : 'cart';
