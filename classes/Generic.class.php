@@ -13,9 +13,21 @@ if (!class_exists('PHPMailer\\PHPMailer\\PHPMailer')) {
     if (is_readable($ceu_vendor)) {
         require $ceu_vendor;
     } else {
-        foreach (['Exception', 'PHPMailer', 'SMTP'] as $ceu_pm) {
-            $ceu_pm_file = dirname(__DIR__) . '/wp-includes/PHPMailer/' . $ceu_pm . '.php';
-            if (is_readable($ceu_pm_file)) require_once $ceu_pm_file;
+        // WordPress core lives in a subdirectory on this install (siteurl ends
+        // /wordpress while home is the docroot), so try both layouts rather than
+        // assuming wp-includes sits beside this tree.
+        $ceu_wp_roots = [
+            dirname(__DIR__) . '/wordpress/wp-includes/PHPMailer/',
+            dirname(__DIR__) . '/wp-includes/PHPMailer/',
+        ];
+        if (defined('ABSPATH')) array_unshift($ceu_wp_roots, ABSPATH . 'wp-includes/PHPMailer/');
+
+        foreach ($ceu_wp_roots as $ceu_pm_dir) {
+            if (!is_readable($ceu_pm_dir . 'PHPMailer.php')) continue;
+            foreach (['Exception', 'PHPMailer', 'SMTP'] as $ceu_pm) {
+                if (is_readable($ceu_pm_dir . $ceu_pm . '.php')) require_once $ceu_pm_dir . $ceu_pm . '.php';
+            }
+            break;
         }
     }
 }

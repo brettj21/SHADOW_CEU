@@ -30,8 +30,11 @@ if (!function_exists('ceu_secure_files_dir')) {
         $docroot = $_SERVER['DOCUMENT_ROOT'] ?? '';
         if ($docroot) $candidates[] = dirname($docroot) . '/secure_files';
 
-        // Two levels up from this file is the docroot's parent when the tree sits
-        // at <docroot>/includes/, which is where the legacy layout puts it.
+        // Two levels up from this file is the docroot's parent: this tree sits at
+        // <docroot>/includes/, the legacy layout. Note the docroot is the REPO
+        // ROOT here, not wordpress/ — WordPress core lives in a subdirectory
+        // (siteurl ends /wordpress, home is the docroot), and the root index.php
+        // boots it from there.
         $candidates[] = dirname(__DIR__, 2) . '/secure_files';
         $candidates[] = '/var/www/vhosts/ceunits.com/secure_files';
 

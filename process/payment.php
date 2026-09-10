@@ -31,6 +31,16 @@
  * tampered form cannot change the amount, because the amount never travels in the
  * form. $_SESSION['promo_id'] and ['promo_code'] are set the same way.
  *
+ * WHERE THIS LIVES
+ * ────────────────
+ * At the DOCROOT, which on this install is the repo root, not wordpress/.
+ * WordPress core sits in a subdirectory — siteurl ends /wordpress while home is
+ * the docroot, and the root index.php boots it from there. The legacy tree has to
+ * sit beside that index.php for $_SERVER['DOCUMENT_ROOT'] . "/includes/global.php"
+ * to resolve and for /process/payment.php to be a reachable URL. The root
+ * .htaccess passes it through untouched, since it only rewrites what is not a
+ * real file.
+ *
  * DEVIATIONS FROM THE ORIGINAL, both marked inline below:
  *   - the transactions.txt path is resolved rather than hardcoded to the
  *     production vhost
