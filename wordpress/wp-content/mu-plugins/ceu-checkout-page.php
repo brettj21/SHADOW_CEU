@@ -76,7 +76,12 @@ if (!defined('CEU_CHECKOUT_PAGE_MARKER')) {
     define('CEU_CHECKOUT_PAGE_MARKER', '<!-- ceu-checkout -->');
 }
 
-add_action('init', function () {
+// admin_init, NOT init: wp_insert_post() on a front-end request fires the whole
+// save_post chain (Elementor, Tutor, WooCommerce, revslider) in a context none of
+// them expect, and anything that fatals in there takes down every page rather
+// than one admin screen. The template_redirect fallback further down already
+// serves /cart/checkout/ with no page row, so nothing waits on wp-admin.
+add_action('admin_init', function () {
     if (!function_exists('get_page_by_path')) return;
 
     // Cached id, but only trusted while the page it names is really still there.
@@ -145,7 +150,7 @@ add_action('init', function () {
         // until something else rebuilt them, and this runs at most once.
         if (function_exists('flush_rewrite_rules')) flush_rewrite_rules(false);
     }
-}, 20);
+});
 
 /**
  * The page-layout settings copied from the cart page onto the checkout page.

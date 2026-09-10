@@ -198,7 +198,18 @@ function ceu_livingworks_page_html(): string {
 // segments, so /livingworks/ stays a page while /livingworks/215/asist/ still
 // resolves to the training under profession 7.
 
-add_action('init', function () {
+// CREATED IN THE ADMIN ONLY, NEVER ON A FRONT-END REQUEST.
+//
+// This ran on init, so every visitor hit wp_insert_post(). That fires the whole
+// save_post chain — Elementor, Tutor, WooCommerce and revslider all hook it — on
+// a front-end request none of them expect, and anything that fatals in there
+// takes down every page on the site rather than one admin screen. It is also
+// simply wasteful: a write path executed on reads.
+//
+// admin_init instead. The front end never writes, and the template_redirect
+// fallback below serves /livingworks/ whether or not the page row exists yet, so
+// nothing depends on an administrator having visited wp-admin first.
+add_action('admin_init', function () {
     if (!function_exists('get_page_by_path')) return;
 
     $known = (int) get_option('ceu_livingworks_page_created');
@@ -221,8 +232,7 @@ add_action('init', function () {
         'post_type'    => 'page',
         'post_status'  => 'publish',
         // A comment, not the shortcode: an unregistered shortcode renders as
-        // literal text if this branch is ever reverted. Same reasoning as the
-        // checkout page.
+        // literal text if this branch is ever reverted.
         'post_content' => '<!-- ceu-livingworks -->',
         'post_author'  => 1,
     ]);
@@ -231,7 +241,26 @@ add_action('init', function () {
         update_option('ceu_livingworks_page_created', (int) $id);
         if (function_exists('flush_rewrite_rules')) flush_rewrite_rules(false);
     }
-}, 20);
+});
+
+// Serve /livingworks/ even with no page row, so the URL LivingWorks publishes
+// works from the moment this file is deployed. Priority 1 to beat any 404
+// handling a theme or SEO plugin registers at the default.
+add_action('template_redirect', function () {
+    if (is_admin() || !ceu_is_livingworks_page()) return;
+    if (!is_404()) return;
+    if (!empty($GLOBALS['ceu_livingworks_rendered'])) return;
+
+    $GLOBALS['ceu_livingworks_rendered'] = true;
+
+    status_header(200);
+    nocache_headers();
+
+    get_header();
+    echo ceu_livingworks_page_html();
+    get_footer();
+    exit;
+}, 1);
 
 add_shortcode('ceu_livingworks', function () {
     $GLOBALS['ceu_livingworks_rendered'] = true;
