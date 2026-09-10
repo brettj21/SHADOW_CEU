@@ -19,23 +19,26 @@
  * visitor came to find; the sign-in prompt sits alongside them rather than in
  * front of them.
  *
- * SELECTING THE FOUR
- * ──────────────────
- * Not by category. The "Live LivingWorks" topic (CEU_TRAINING_TOPICS 32) holds
- * only ASIST v11 and Suicide to Hope: ASIST v12, safeTALK v22 and safeTALK v3
- * were never assigned a grouping at all. Filtering by it would show one course.
+ * SELECTING THE TRAININGS
+ * ───────────────────────
+ * From CEU_TRAININGS_GROUPINGS, group 32 — the "Live LivingWorks" category. That
+ * is the maintained list: adding a future ASIST v13 to that group puts it on this
+ * page with no code change, which is where the decision belongs.
  *
- * Not by profession either. LivingWorks is profession 7 in CEU_DB, but that
- * profession carries the whole ~100-course catalogue, not just its own titles.
- *
- * So they are matched on title against the LivingWorks product names, which
- * returns exactly the live four and picks up a future ASIST v13 or safeTALK v4
- * with no change here. Suicide to Hope matches too but is EXPIRED in every
- * profession, and the expiry filter drops it — which is correct, it is retired.
+ * Joined to CEU_TRAININGS_BY_PROFESSION for the LivingWorks profession, so the
+ * prices and credit values are the LivingWorks ones, and retired titles drop out
+ * through the same EXPIRED check the rest of the site uses — Suicide to Hope is
+ * in the group but expired in every profession, and should not be offered.
  */
 
 if (!defined('CEU_LIVINGWORKS_SLUG')) {
     define('CEU_LIVINGWORKS_SLUG', 'livingworks');
+}
+
+// CEU_TRAINING_TOPICS row for "Live LivingWorks" — the category that decides
+// which trainings this page carries.
+if (!defined('CEU_LIVINGWORKS_GROUPING_ID')) {
+    define('CEU_LIVINGWORKS_GROUPING_ID', 32);
 }
 
 // CEU_PROFESSIONS in ceu-courses.php already maps this slug to profession 7, so
@@ -57,34 +60,37 @@ function ceu_is_livingworks_page(): bool {
 /**
  * The LivingWorks trainings, priced for the LivingWorks profession.
  *
- * TITLE_ALT is matched rather than joined through CEU_TRAININGS_GROUPINGS for the
- * reason given at the top of this file: the grouping data does not cover three of
- * the four. LIKE patterns are fixed strings in this file, not user input.
+ * DISTINCT because a training listed twice under the same grouping would
+ * otherwise render twice; the category is edited by hand and nothing in the
+ * schema prevents a duplicate row.
+ *
+ * CEU_TRAININGS is deliberately not joined. Nothing on this page needs the
+ * description or objectives, and an inner join there would silently drop any
+ * training whose row is missing from that table.
  */
 function ceu_livingworks_courses(): array {
     if (!function_exists('ceu_db_connect')) return [];
     $db = ceu_db_connect();
     if (!$db) return [];
 
-    $sql = "SELECT p.TRAINING_ID   AS training_id,
-                   p.TITLE_ALT     AS title,
-                   p.CREDIT        AS credits,
-                   p.COST          AS cost,
-                   t.DESCRIPTION   AS description,
-                   t.OBJECTIVES    AS objectives
-            FROM CEU_TRAININGS_BY_PROFESSION p
-            JOIN CEU_TRAININGS t ON t.TRAINING_ID = p.TRAINING_ID
-            WHERE p.PROFESSION_ID = ?
+    $sql = "SELECT DISTINCT
+                   p.TRAINING_ID AS training_id,
+                   p.TITLE_ALT   AS title,
+                   p.CREDIT      AS credits,
+                   p.COST        AS cost
+            FROM CEU_TRAININGS_GROUPINGS g
+            JOIN CEU_TRAININGS_BY_PROFESSION p
+              ON p.TRAINING_ID = g.TRAINING_ID
+             AND p.PROFESSION_ID = ?
+            WHERE g.GROUPING_ID = ?
               AND (p.EXPIRED IS NULL OR p.EXPIRED = 0)
-              AND (p.TITLE_ALT LIKE '%livingworks%'
-                OR p.TITLE_ALT LIKE '%safetalk%'
-                OR p.TITLE_ALT LIKE '%asist%')
             ORDER BY p.TITLE_ALT ASC";
 
     $stmt = $db->prepare($sql);
     if (!$stmt) return [];
-    $pid = CEU_LIVINGWORKS_PROFESSION_ID;
-    $stmt->bind_param('i', $pid);
+    $pid   = CEU_LIVINGWORKS_PROFESSION_ID;
+    $group = CEU_LIVINGWORKS_GROUPING_ID;
+    $stmt->bind_param('ii', $pid, $group);
     $stmt->execute();
     $rows = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
