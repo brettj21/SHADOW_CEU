@@ -1,19 +1,30 @@
 <?php
 /**
  * Payment endpoint — the process_payment branch of CEU/process/forms.php,
- * lifted verbatim so the money path is the original code, not a reimplementation.
+ * lifted verbatim and run against the ORIGINAL legacy files, not copies.
  *
- * WHY NOT forms.php ITSELF
- * ───────────────────────
- * forms.php is an 879-line switch over $_POST['todo'] carrying register, login,
- * recover, changePassword and score_post alongside the payment. Standing all of
- * that up on a WordPress site would publish a second, parallel login and
- * registration path next to the one ceu-auth.php owns — two ways to authenticate,
- * two places to fix a bug. It also drags in the Mailchimp SDK at file scope, which
- * the payment never touches.
+ * NOTHING FROM THE LEGACY SITE IS COPIED INTO THIS REPO
+ * ────────────────────────────────────────────────────
+ * An earlier version vendored classes/ and includes/ in here. That was wrong.
+ * When shadow becomes www the legacy pages — /cart/, /user/, /trainings/ — have
+ * to keep running against their own files, and copies sitting at the same paths
+ * would shadow them: a five-month-old global.php, and a Generic.class.php edited
+ * to read SMTP constants the live variables.php has never defined, which would
+ * have stopped site-wide email the moment it was deployed. Copies also rot,
+ * quietly, in exactly the code that takes money.
  *
- * So only this branch is here, copied line for line. Everything it calls is the
- * original class file, unmodified:
+ * So this loads the real tree. On shadow that is the www docroot next door on the
+ * same box; after the cutover it is simply the docroot. Same files either way,
+ * and they are the ones the rest of the legacy site already runs on.
+ *
+ * The legacy chain cooperates. global.php pulls its classes through SERVER_ROOT
+ * (defined in secure_files/variables.php) rather than DOCUMENT_ROOT, and loads
+ * variables.php by an absolute path already correct on this server. The single
+ * DOCUMENT_ROOT reference in that tree is in mail_functions.php's
+ * sendPassingEmail(), which the payment path never calls — it calls
+ * sendPaidTrainings().
+ *
+ * Everything doing the work is therefore the untouched original:
  *
  *   CART::processPayment()              posts to Authorize.Net
  *   CART::checkTransactionExists()      the double-charge guard
@@ -23,30 +34,54 @@
  *   USER::insertCEBrokerData()          the Florida CE Broker upload
  *   sendPaidTrainings()                 the receipt email
  *
+ * WHY NOT forms.php ITSELF
+ * ───────────────────────
+ * forms.php is an 879-line switch over $_POST['todo'] carrying register, login,
+ * recover, changePassword and score_post alongside the payment. Exposing all of
+ * it on the WordPress host would publish a second authentication path beside the
+ * one ceu-auth.php owns. Only the branch that takes money is reproduced here.
+ *
  * WHAT IT CHARGES
  * ───────────────
  * processPayment() charges $_SESSION['total_cost'], NOT anything in $_POST. That
- * session value is written by the checkout page (ceu-checkout-page.php), which
- * recomputes it from the cart cookie and the user's own taken-training rows. A
- * tampered form cannot change the amount, because the amount never travels in the
- * form. $_SESSION['promo_id'] and ['promo_code'] are set the same way.
+ * value is written by the checkout page, which recomputes it from the cart cookie
+ * and the user's own taken-training rows. A tampered form cannot change the
+ * amount, because the amount never travels in the form.
  *
- * WHERE THIS LIVES
- * ────────────────
- * At the DOCROOT, which on this install is the repo root, not wordpress/.
- * WordPress core sits in a subdirectory — siteurl ends /wordpress while home is
- * the docroot, and the root index.php boots it from there. The legacy tree has to
- * sit beside that index.php for $_SERVER['DOCUMENT_ROOT'] . "/includes/global.php"
- * to resolve and for /process/payment.php to be a reachable URL. The root
- * .htaccess passes it through untouched, since it only rewrites what is not a
- * real file.
- *
- * DEVIATIONS FROM THE ORIGINAL, both marked inline below:
- *   - the transactions.txt path is resolved rather than hardcoded to the
- *     production vhost
- *   - $resp is initialised, because the original reads it after a branch that may
- *     not have assigned it
+ * DEVIATION FROM THE ORIGINAL, marked inline below: $resp is initialised, because
+ * the original reads it after the one branch that never assigns it.
  */
+
+// ─── Locate the legacy tree ───────────────────────────────────────────────────
+// First hit wins:
+//   1. $CEU_LEGACY_ROOT      explicit override, set it in the vhost
+//   2. this docroot          true after the cutover, when shadow IS www
+//   3. a sibling httpdocs/   true on shadow today: www lives next door
+//   4. the production path   last resort
+//
+// Ordered so no configuration is needed either side of the cutover: the moment
+// this docroot holds the legacy tree, it wins over the neighbour's.
+if (!defined('CEU_LEGACY_ROOT')) {
+    $ceu_docroot = rtrim($_SERVER['DOCUMENT_ROOT'] ?? '', '/');
+
+    foreach ([
+        getenv('CEU_LEGACY_ROOT') ?: null,
+        $ceu_docroot ?: null,
+        $ceu_docroot ? dirname($ceu_docroot) . '/httpdocs' : null,
+        '/var/www/vhosts/ceunits.com/httpdocs',
+    ] as $ceu_candidate) {
+        if ($ceu_candidate && is_readable(rtrim($ceu_candidate, '/') . '/includes/global.php')) {
+            define('CEU_LEGACY_ROOT', rtrim($ceu_candidate, '/'));
+            break;
+        }
+    }
+}
+
+if (!defined('CEU_LEGACY_ROOT')) {
+    error_log('CEU payment: legacy tree not found; set CEU_LEGACY_ROOT for this vhost.');
+    http_response_code(500);
+    exit('Checkout is temporarily unavailable. Please contact support.');
+}
 
 session_start();
 
@@ -60,8 +95,8 @@ $loadStatus = true;
 if(!sizeof($_POST)) // IF SOMEONE HITS THIS PAGE WITH NO POST REDIRECT THEM
     header("Location: /");
 
-include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/global.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/includes/mail_functions.php");
+include_once(CEU_LEGACY_ROOT . "/includes/global.php");
+include_once(CEU_LEGACY_ROOT . "/includes/mail_functions.php");
 
 // DEVIATION: the original reads $resp after the "cost is zero" branch, which is
 // the one path that never assigns it. Initialised so that read is defined.
@@ -138,14 +173,14 @@ if($_POST['todo'] == "process_payment") {
         $str_to_write .= "\n\n";
 
         // WRITE TRANSACTION DATA TO TXT FILE
-        // DEVIATION: resolved rather than hardcoded to the production vhost.
-        // Skipped rather than fatal when secure_files is not configured — a
-        // transaction that succeeded must not fail on its own audit log.
-        $ceu_log_dir = function_exists('ceu_secure_files_dir') ? ceu_secure_files_dir() : '';
-        if ($ceu_log_dir)
-            GENERIC::writeToTextFile($ceu_log_dir . '/transactions.txt', $str_to_write, 'add');
+        // The original's path, which is correct on this server. Guarded only so
+        // a transaction that has already succeeded is never failed by its own
+        // audit log.
+        $ceu_log = '/var/www/vhosts/ceunits.com/secure_files/transactions.txt';
+        if (is_writable(dirname($ceu_log)))
+            GENERIC::writeToTextFile($ceu_log, $str_to_write, 'add');
         else
-            error_log('CEU payment: secure_files not configured; transaction log skipped.');
+            error_log('CEU payment: transaction log not writable; entry skipped.');
     endif;
 
     if($resp[0] == "1" || $resp[2] == '5' || $cost_is_zero == 'active') { 	// resp[2] = 5 means amount was zero but promotion could have made it 0 - AUTHORIZE SUCCESSFUL TRANSACTION PUT IN DB
