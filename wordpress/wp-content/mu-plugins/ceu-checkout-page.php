@@ -9,12 +9,18 @@
  * This file owns the PAGE only. It draws the form and works out what is owed.
  * It takes no payment and issues no certificate.
  *
- * The money is handled by /process/payment.php, which is the process_payment
- * branch of the legacy CEU/process/forms.php copied verbatim, calling the
- * original class files in /classes — CART::processPayment() to Authorize.Net,
- * CART::insertTransaction(), TRAININGS::insertCertificates(),
- * PROMOTIONS::markPromoDiscountAsUsed() and the receipt email. None of that is
- * reimplemented here.
+ * The money is handled by the legacy /process/forms endpoint with
+ * todo=process_payment — the same URL and the same POST contract
+ * CEU/cart/checkout.php has always used. Nothing about the payment is
+ * reimplemented, extracted or re-hosted; this page only feeds the existing one.
+ *
+ * WHERE IT WORKS
+ * ──────────────
+ * /process/forms exists wherever the legacy tree is at the docroot: www today,
+ * and shadow once it becomes www. It cannot be aimed across at www from shadow —
+ * ceu-auth.php sets 'ceu', 'ceuSession' and 'cart' without a domain, so they are
+ * scoped to the exact host, and a cross-host post would arrive with no cookies
+ * and no shared PHP session. So checkout is testable at the cutover, not before.
  *
  * THE AMOUNT NEVER TRAVELS IN THE FORM
  * ────────────────────────────────────
@@ -42,9 +48,20 @@ if (!defined('CEU_CHECKOUT_SLUG')) {
     define('CEU_CHECKOUT_SLUG', 'checkout');
 }
 
-// Where the form posts. A real file on disk, served by Apache, never by WordPress.
+// Where the form posts: the legacy endpoint, unchanged.
+//
+// /process/forms is the same URL cart/checkout.php has always posted to, handled
+// by the legacy .htaccess rule `RewriteRule ^process/forms$ process/forms.php`.
+// Nothing about the payment is reimplemented or re-hosted — this page just feeds
+// the existing one.
+//
+// That endpoint only exists where the legacy tree is at the docroot, which is www
+// today and shadow after the cutover. It cannot be pointed across at www from
+// shadow: ceu-auth.php sets the 'ceu', 'ceuSession' and 'cart' cookies without a
+// domain, so they are scoped to the exact host and a cross-host post would arrive
+// with none of them, plus no shared PHP session. See the note in the header above.
 if (!defined('CEU_PAYMENT_ENDPOINT')) {
-    define('CEU_PAYMENT_ENDPOINT', '/process/payment.php');
+    define('CEU_PAYMENT_ENDPOINT', '/process/forms');
 }
 
 // ─── The page itself ──────────────────────────────────────────────────────────
@@ -338,9 +355,10 @@ function ceu_checkout_page_html(): string {
         <form method="post" action="<?= esc_url(home_url(CEU_PAYMENT_ENDPOINT)) ?>"
               class="ceu-ck-form" id="ceu-checkout-form">
 
-            <!-- Field names are the legacy ones: /process/payment.php passes this
-                 $_POST straight into CART::processPayment() and
-                 CART::insertTransaction(). -->
+            <!-- Field names are the legacy ones, because this $_POST goes straight
+                 into the existing process_payment branch of process/forms.php,
+                 which hands it to CART::processPayment() and
+                 CART::insertTransaction() unchanged. -->
             <input type="hidden" name="todo" value="process_payment">
             <?php if ($is_free) : ?>
                 <input type="hidden" name="discount" value="active">
