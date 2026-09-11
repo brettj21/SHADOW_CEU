@@ -138,3 +138,33 @@ add_action('wp_footer', function () {
     else foreach ($headers as $h) echo "    - {$h->post_name}  ({$h->post_status})\n";
     echo '</pre>';
 }, 999);
+
+// ─── No breadcrumb hero on blog posts and archives ───────────────────────────
+//
+// The theme prints a full-width hero above the content — background image, the
+// title again, and a breadcrumb trail — from zilom_breadcrumb(), hooked to
+// zilom_before_page_content (includes/theme-hook.php).
+//
+// On a single post that means the title appears twice: once in the hero and
+// again as the entry's own H1 directly beneath it. It also matches nothing else
+// on the new site; the cart, checkout and LivingWorks pages all open straight
+// into their content.
+//
+// Removed by unhooking the action rather than hiding it in CSS, so the markup
+// and its background image are never emitted at all — no wasted request for a
+// hero image nobody sees. Pages keep theirs: they have a per-page control for
+// this, and several use it deliberately.
+//
+// template_redirect because the conditional tags need the main query resolved,
+// and it still runs before the template fires zilom_before_page_content.
+add_action('template_redirect', function () {
+    if (is_admin()) return;
+
+    $is_blog = is_singular('post')   // a post
+        || is_home()                 // the posts page, /blog/
+        || is_category() || is_tag() || is_author() || is_date();
+
+    if (!$is_blog) return;
+
+    remove_action('zilom_before_page_content', 'zilom_breadcrumb', 10);
+});
