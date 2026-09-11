@@ -137,7 +137,11 @@ add_shortcode('ceu_courses', function($atts) {
         return '<p>No courses found.</p>';
     }
 
-    $img_root = 'https://shadow.ceunits.com/wordpress/wp-content/uploads/course/';
+    // content_url() rather than a literal host: it derives from siteurl, so this
+    // is correct on shadow today and on www after the cutover with no edit here.
+    // WordPress core lives in /wordpress on this install, which is exactly the
+    // layout difference a hardcoded path gets wrong.
+    $img_root = trailingslashit(content_url('/uploads/course'));
 
     $topic_map = [];
     foreach ($topics as $t) {

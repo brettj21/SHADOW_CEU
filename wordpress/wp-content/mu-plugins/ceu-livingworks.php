@@ -104,9 +104,9 @@ function ceu_livingworks_page_html(): string {
     $courses   = ceu_livingworks_courses();
     $logged_in = function_exists('ceu_is_logged_in') && ceu_is_logged_in();
 
-    // Same uploads path the course grid uses (ceu-courses.php), but built from
-    // home_url() so it follows the domain instead of naming shadow outright.
-    $img_root = home_url('/wordpress/wp-content/uploads/course/');
+    // Same uploads path the course grid uses, via content_url() so it follows
+    // both the domain and the /wordpress install location.
+    $img_root = trailingslashit(content_url('/uploads/course'));
 
     $money = fn($n) => '$' . number_format((float) $n, 2);
     $fcred = fn($n) => rtrim(rtrim(number_format((float) $n, 2), '0'), '.');
