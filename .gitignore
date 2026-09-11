@@ -7,3 +7,13 @@ wordpress/wp-content/uploads/elementor/css/
 # WooCommerce and WordPress log files
 wordpress/wp-content/uploads/wc-logs/
 *.log
+
+# wp-config.php is per-environment and secret-bearing, so it is NOT tracked.
+#
+# It pins WP_HOME and WP_SITEURL as constants, which override whatever the
+# database says — so a tracked copy would point www's WordPress at shadow's URLs
+# and shadow's database the moment the branch was checked out there. It also
+# carries the auth keys and salts, which have no business in a repo.
+#
+# Each environment keeps its own, created from wp-config.ceu-sample.php.
+wordpress/wp-config.php
